@@ -1,8 +1,8 @@
 class UpdatePodtReq {
-  String cPOCD;
-  int iSEQ;
-  String cPREPAIRSTATUS;
-  double iPREPAIRAMOUT;
+  String? cPOCD;
+  int? iSEQ;
+  String? cPREPAIRSTATUS;
+  double? iPREPAIRAMOUT;
 
   UpdatePodtReq(
       {this.cPOCD, this.iSEQ, this.cPREPAIRSTATUS, this.iPREPAIRAMOUT});

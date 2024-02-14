@@ -1,9 +1,9 @@
 class GetProductBranchReq {
-  String cBRANCD;
-  String cCUSTTYPE;
-  String cPRICECD;
-  String cPRODCD;
-  String cPRODNM;
+  String? cBRANCD;
+  String? cCUSTTYPE;
+  String? cPRICECD;
+  String? cPRODCD;
+  String? cPRODNM;
 
   GetProductBranchReq(
       {this.cBRANCD,

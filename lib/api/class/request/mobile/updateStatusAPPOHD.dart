@@ -1,6 +1,6 @@
 class UpdateStatusAPPOHDReq {
-  String cPOCD;
-  String cCREABY;
+  String? cPOCD;
+  String? cCREABY;
 
   UpdateStatusAPPOHDReq({this.cPOCD, this.cCREABY});
 

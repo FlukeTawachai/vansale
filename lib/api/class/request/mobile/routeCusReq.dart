@@ -1,9 +1,9 @@
 class RouteCusReq {
-  String cBRANCD;
-  String cRTECD;
-  String cGRPCD;
-  String dSHIPDATE;
-  bool cUSEDT;
+  String? cBRANCD;
+  String? cRTECD;
+  String? cGRPCD;
+  String? dSHIPDATE;
+  bool? cUSEDT;
 
   RouteCusReq(
       {this.cBRANCD, this.cRTECD, this.cGRPCD, this.dSHIPDATE, this.cUSEDT});

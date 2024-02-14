@@ -1,17 +1,17 @@
 class AddReturnHDReq {
-  String cBRANCD;
-  String cGRPCD;
-  String cRTECD;
-  String cCUSTCD;
-  String cCUSTNM;
-  String cVEHICD;
-  String cDRIVER;
-  String cREMARK;
-  String iTOTAL;
-  String cREFDOC;
-  String cRETYP;
-  String cPAYST;
-  String cCREABY;
+  String? cBRANCD;
+  String? cGRPCD;
+  String? cRTECD;
+  String? cCUSTCD;
+  String? cCUSTNM;
+  String? cVEHICD;
+  String? cDRIVER;
+  String? cREMARK;
+  String? iTOTAL;
+  String? cREFDOC;
+  String? cRETYP;
+  String? cPAYST;
+  String? cCREABY;
 
   AddReturnHDReq(
       {this.cBRANCD,

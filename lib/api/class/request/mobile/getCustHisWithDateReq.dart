@@ -1,6 +1,6 @@
 class GetCustHisWithDateReq {
-  String cCUSTCD;
-  String dSHIPDATE;
+  String? cCUSTCD;
+  String? dSHIPDATE;
 
   GetCustHisWithDateReq({this.cCUSTCD, this.dSHIPDATE});
 

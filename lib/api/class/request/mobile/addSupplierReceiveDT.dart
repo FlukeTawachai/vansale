@@ -1,23 +1,23 @@
 class AddSupplierReceiveDTReq {
-  String cRECEIVENO;
-  String iSEQ;
-  String cPRODCD;
-  String cPRODNM;
-  String cBRNDCD;
-  String cBRNDNM;
-  String cSUOMCD;
-  String cSUOMNM;
-  String cMUOMCD;
-  String cMUOMNM;
-  String cLUOMCD;
-  String cLUOMNM;
-  String iSORDERQTY;
-  String iMORDERQTY;
-  String iLORDERQTY;
-  String iPLUSQTY;
-  String iLOSSQTY;
-  String cREMARK;
-  String cCREABY;
+  String? cRECEIVENO;
+  String? iSEQ;
+  String? cPRODCD;
+  String? cPRODNM;
+  String? cBRNDCD;
+  String? cBRNDNM;
+  String? cSUOMCD;
+  String? cSUOMNM;
+  String? cMUOMCD;
+  String? cMUOMNM;
+  String? cLUOMCD;
+  String? cLUOMNM;
+  String? iSORDERQTY;
+  String? iMORDERQTY;
+  String? iLORDERQTY;
+  String? iPLUSQTY;
+  String? iLOSSQTY;
+  String? cREMARK;
+  String? cCREABY;
 
   AddSupplierReceiveDTReq(
       {this.cRECEIVENO,

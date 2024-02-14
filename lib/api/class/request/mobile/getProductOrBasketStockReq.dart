@@ -1,7 +1,7 @@
 class GetProductOrBasketStockReq {
-  String cBRANCD;
-  String cWH;
-  String cSEARCH;
+  String? cBRANCD;
+  String? cWH;
+  String? cSEARCH;
 
   GetProductOrBasketStockReq({this.cBRANCD, this.cWH, this.cSEARCH});
 

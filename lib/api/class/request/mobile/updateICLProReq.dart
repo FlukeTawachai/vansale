@@ -1,10 +1,10 @@
 class UpdateICLProReq {
-  String cPOCD;
-  int iSEQ;
-  int iINCOMPRO;
-  int iCANCLEPRO;
-  int iLOSSPRO;
-  String cUPDABY;
+  String? cPOCD;
+  int? iSEQ;
+  int? iINCOMPRO;
+  int? iCANCLEPRO;
+  int? iLOSSPRO;
+  String? cUPDABY;
 
   UpdateICLProReq(
       {this.cPOCD,

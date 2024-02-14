@@ -1,7 +1,7 @@
 class GetSPOrderDTReq {
-  String cPOCD;
-  String cPRODNM;
-  String cPRODCD;
+  String? cPOCD;
+  String? cPRODNM;
+  String? cPRODCD;
 
   GetSPOrderDTReq({this.cPOCD, this.cPRODNM, this.cPRODCD});
 

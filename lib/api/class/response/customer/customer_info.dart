@@ -1,30 +1,30 @@
 class CustomerInfo {
-  String customerID;
-  String customerName;
-  String branchCode;
-  String branchName;
-  String customerBranchName;
-  String taxNo;
-  String telNo;
-  Contact contact;
-  String line;
-  String type;
-  String payType;
-  int creditTerm;
-  double creditLimit;
-  String saleTableCode;
-  String isBasket;
-  String isPhoto;
-  Photo photo;
-  Address address;
-  String asset;
-  List<Routes> routes;
-  String guid;
-  String status;
-  String createDate;
-  String createBy;
-  String updateDate;
-  String updateBy;
+  String? customerID;
+  String? customerName;
+  String? branchCode;
+  String? branchName;
+  String? customerBranchName;
+  String? taxNo;
+  String? telNo;
+  Contact? contact;
+  String? line;
+  String? type;
+  String? payType;
+  int? creditTerm;
+  double? creditLimit;
+  String? saleTableCode;
+  String? isBasket;
+  String? isPhoto;
+  Photo? photo;
+  Address? address;
+  String? asset;
+  List<Routes>? routes;
+  String? guid;
+  String? status;
+  String? createDate;
+  String? createBy;
+  String? updateDate;
+  String? updateBy;
 
   CustomerInfo(
       {this.customerID,
@@ -79,7 +79,7 @@ class CustomerInfo {
     if (json['routes'] != null) {
       routes = <Routes>[];
       json['routes'].forEach((v) {
-        routes.add(new Routes.fromJson(v));
+        routes!.add(new Routes.fromJson(v));
       });
     }
     guid = json['guid'];
@@ -100,7 +100,7 @@ class CustomerInfo {
     data['taxNo'] = this.taxNo;
     data['telNo'] = this.telNo;
     if (this.contact != null) {
-      data['contact'] = this.contact.toJson();
+      data['contact'] = this.contact!.toJson();
     }
     data['line'] = this.line;
     data['type'] = this.type;
@@ -111,14 +111,14 @@ class CustomerInfo {
     data['isBasket'] = this.isBasket;
     data['isPhoto'] = this.isPhoto;
     if (this.photo != null) {
-      data['photo'] = this.photo.toJson();
+      data['photo'] = this.photo!.toJson();
     }
     if (this.address != null) {
-      data['address'] = this.address.toJson();
+      data['address'] = this.address!.toJson();
     }
     data['asset'] = this.asset;
     if (this.routes != null) {
-      data['routes'] = this.routes.map((v) => v.toJson()).toList();
+      data['routes'] = this.routes!.map((v) => v.toJson()).toList();
     }
     data['guid'] = this.guid;
     data['status'] = this.status;
@@ -131,8 +131,8 @@ class CustomerInfo {
 }
 
 class Contact {
-  String name;
-  String tel;
+  String? name;
+  String? tel;
 
   Contact({this.name, this.tel});
 
@@ -150,10 +150,10 @@ class Contact {
 }
 
 class Photo {
-  String serverName;
-  String path;
-  String name;
-  String url;
+  String? serverName;
+  String? path;
+  String? name;
+  String? url;
 
   Photo({this.serverName, this.path, this.name, this.url});
 
@@ -175,15 +175,15 @@ class Photo {
 }
 
 class Address {
-  String latitude;
-  String longtitude;
-  String shipTo;
-  String postCode;
-  String province;
-  String district;
-  String subDistrict;
-  String address;
-  String location;
+  String? latitude;
+  String? longtitude;
+  String? shipTo;
+  String? postCode;
+  String? province;
+  String? district;
+  String? subDistrict;
+  String? address;
+  String? location;
 
   Address(
       {this.latitude,
@@ -224,8 +224,8 @@ class Address {
 }
 
 class Routes {
-  String groupCode;
-  String routeCode;
+  String? groupCode;
+  String? routeCode;
 
   Routes({this.groupCode, this.routeCode});
 

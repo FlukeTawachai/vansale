@@ -1,7 +1,7 @@
 class CreatePoByBeforePOReq {
-  String cCUSTCD;
-  String cGRPCD;
-  String cCREABY;
+  String? cCUSTCD;
+  String? cGRPCD;
+  String? cCREABY;
 
   CreatePoByBeforePOReq({this.cCUSTCD, this.cGRPCD, this.cCREABY});
 

@@ -1,12 +1,12 @@
 class AddSupplierReceiveHDReq {
-  String cREFDOC;
-  String cRECEIVEBY;
-  String iBEFOREVAT;
-  String iVATVAL;
-  String iSKIPVAT;
-  String iTOTAL;
-  String cREMARK;
-  String cCREABY;
+  String? cREFDOC;
+  String? cRECEIVEBY;
+  String? iBEFOREVAT;
+  String? iVATVAL;
+  String? iSKIPVAT;
+  String? iTOTAL;
+  String? cREMARK;
+  String? cCREABY;
 
   AddSupplierReceiveHDReq(
       {this.cREFDOC,

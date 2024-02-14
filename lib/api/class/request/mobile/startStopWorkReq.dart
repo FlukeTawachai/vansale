@@ -1,12 +1,12 @@
 class StartStopWorkReq {
-  String cBRANCD;
-  String cREFCD;
-  String cUSRNM;
-  String cSTATUS;
-  String cPLATE;
-  int iMILE;
-  String cSECTION;
-  String cCREABY;
+  String? cBRANCD;
+  String? cREFCD;
+  String? cUSRNM;
+  String? cSTATUS;
+  String? cPLATE;
+  int? iMILE;
+  String? cSECTION;
+  String? cCREABY;
 
   StartStopWorkReq(
       {this.cBRANCD,

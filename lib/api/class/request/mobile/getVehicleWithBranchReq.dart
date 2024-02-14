@@ -1,7 +1,7 @@
 class GetVehicleWithBranchReq {
-  String cBRANCD;
-  String cCUSTTYPE;
-  String cPRICECD;
+  String? cBRANCD;
+  String? cCUSTTYPE;
+  String? cPRICECD;
 
   GetVehicleWithBranchReq({this.cBRANCD, this.cCUSTTYPE, this.cPRICECD});
 

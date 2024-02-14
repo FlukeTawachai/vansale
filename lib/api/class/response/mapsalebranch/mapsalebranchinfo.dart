@@ -1,7 +1,7 @@
 class MapBranchSaleInfo {
-  String priceSelected;
-  String priceCode;
-  String priceName;
+  String? priceSelected;
+  String? priceCode;
+  String? priceName;
 
   MapBranchSaleInfo({this.priceSelected, this.priceCode, this.priceName});
 

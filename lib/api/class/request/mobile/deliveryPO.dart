@@ -1,6 +1,6 @@
 class DeliveryPOReq {
-  String cPOCD;
-  String cUPDABY;
+  String? cPOCD;
+  String? cUPDABY;
 
   DeliveryPOReq({this.cPOCD, this.cUPDABY});
 

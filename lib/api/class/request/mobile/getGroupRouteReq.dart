@@ -1,8 +1,8 @@
 class GetGroupRouteReq {
-  String cBRANCD;
-  String cGRPCD;
-  String cRTECD;
-  String cCUSTNM;
+  String? cBRANCD;
+  String? cGRPCD;
+  String? cRTECD;
+  String? cCUSTNM;
 
   GetGroupRouteReq({this.cBRANCD, this.cGRPCD, this.cRTECD, this.cCUSTNM});
 

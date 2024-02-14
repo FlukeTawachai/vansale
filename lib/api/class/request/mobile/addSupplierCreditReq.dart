@@ -1,25 +1,25 @@
 class AddSupplierCreditReq {
-  String cSUPPCD;
-  String cSUPPNM;
-  String cREFDOC;
-  String cBRANCD;
-  String cBRANNM;
-  String cPRODCD;
-  String cPRODNM;
-  String cSUOMCD;
-  String cSUOMNM;
-  String cMUOMCD;
-  String cMUOMNM;
-  String cLUOMCD;
-  String cLUOMNM;
-  String iSUNITPRICE;
-  String iMUNITPRICE;
-  String iLUNITPRICE;
-  String iORQTY;
-  String iDEBIT;
-  String iCREDIT;
-  String iRCQTY;
-  String cCREABY;
+  String? cSUPPCD;
+  String? cSUPPNM;
+  String? cREFDOC;
+  String? cBRANCD;
+  String? cBRANNM;
+  String? cPRODCD;
+  String? cPRODNM;
+  String? cSUOMCD;
+  String? cSUOMNM;
+  String? cMUOMCD;
+  String? cMUOMNM;
+  String? cLUOMCD;
+  String? cLUOMNM;
+  String? iSUNITPRICE;
+  String? iMUNITPRICE;
+  String? iLUNITPRICE;
+  String? iORQTY;
+  String? iDEBIT;
+  String? iCREDIT;
+  String? iRCQTY;
+  String? cCREABY;
 
   AddSupplierCreditReq(
       {this.cSUPPCD,

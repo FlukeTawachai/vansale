@@ -1,23 +1,23 @@
 class AddReturnDTReq {
-  String cRETCD;
-  String iSEQ;
-  String cPRODCD;
-  String cPRODNM;
-  String cBRNDCD;
-  String cBRNDNM;
-  String iSSIZEQTY;
-  String iMSIZEQTY;
-  String iLSIZEQTY;
-  String cSUOMCD;
-  String cSUOMNM;
-  String cMUOMCD;
-  String cMUOMNM;
-  String cLUOMCD;
-  String cLUOMNM;
-  String iSUNITPRICE;
-  String iMUNITPRICE;
-  String iLUNITPRICE;
-  String cCREABY;
+  String? cRETCD;
+  String? iSEQ;
+  String? cPRODCD;
+  String? cPRODNM;
+  String? cBRNDCD;
+  String? cBRNDNM;
+  String? iSSIZEQTY;
+  String? iMSIZEQTY;
+  String? iLSIZEQTY;
+  String? cSUOMCD;
+  String? cSUOMNM;
+  String? cMUOMCD;
+  String? cMUOMNM;
+  String? cLUOMCD;
+  String? cLUOMNM;
+  String? iSUNITPRICE;
+  String? iMUNITPRICE;
+  String? iLUNITPRICE;
+  String? cCREABY;
 
   AddReturnDTReq(
       {this.cRETCD,

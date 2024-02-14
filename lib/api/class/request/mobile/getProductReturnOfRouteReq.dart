@@ -1,8 +1,8 @@
 class GetProductReturnOfRouteReq {
-  String cBRANCD;
-  String cGRPCD;
-  String cRTECD;
-  String dRETDT;
+  String? cBRANCD;
+  String? cGRPCD;
+  String? cRTECD;
+  String? dRETDT;
 
   GetProductReturnOfRouteReq(
       {this.cBRANCD, this.cGRPCD, this.cRTECD, this.dRETDT});

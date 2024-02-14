@@ -1,6 +1,6 @@
 class PocdReq {
-  String cCUSTCD;
-  String dSHIPDATE;
+  String? cCUSTCD;
+  String? dSHIPDATE;
 
   PocdReq({this.cCUSTCD, this.dSHIPDATE});
 

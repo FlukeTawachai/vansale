@@ -1,8 +1,8 @@
 class PoHDAndPoDTReq {
-  String custcd;
-  String pocd;
-  String cPRODNM;
-  String cPRODCD;
+  String? custcd;
+  String? pocd;
+  String? cPRODNM;
+  String? cPRODCD;
 
   PoHDAndPoDTReq({this.custcd, this.pocd, this.cPRODNM, this.cPRODCD});
 

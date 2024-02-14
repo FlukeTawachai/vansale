@@ -1,7 +1,7 @@
 class CreateCustomerResponse {
-  bool success;
-  String message;
-  String customerID;
+  bool? success;
+  String? message;
+  String? customerID;
 
   CreateCustomerResponse({this.success, this.message, this.customerID});
 

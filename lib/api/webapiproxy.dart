@@ -50,7 +50,7 @@ class WebApiProxy {
       return resp.body;
     } else {
       var result = ApiResponse.fromJson(jsonDecode(resp.body));
-      throw ApiException(result.message);
+      throw ApiException(result.message!);
     }
   }
 
@@ -68,7 +68,7 @@ class WebApiProxy {
       return resp.body;
     } else {
       var result = ApiResponse.fromJson(jsonDecode(resp.body));
-      throw ApiException(result.message);
+      throw ApiException(result.message!);
     }
   }
 

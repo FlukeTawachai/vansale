@@ -1,7 +1,7 @@
 class getRouteTodayReq {
-  String cVEHICD;
-  String cBRANCD;
-  String cRTENM;
+  String? cVEHICD;
+  String? cBRANCD;
+  String? cRTENM;
 
   getRouteTodayReq({this.cVEHICD, this.cBRANCD, this.cRTENM});
 

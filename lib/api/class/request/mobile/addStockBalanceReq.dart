@@ -1,17 +1,17 @@
 class StockBalanceReq {
-  String cBRANCD;
-  String cPRODCD;
-  String cUOMCD;
-  String cWH;
-  String cPRODNM;
-  String cTYPE;
-  String cCATECD;
-  String cSUBCATECD;
-  String cBRNDCD;
-  String iQTY;
-  String iWEIGHT;
-  String cSTATUS;
-  String cCREABY;
+  String? cBRANCD;
+  String? cPRODCD;
+  String? cUOMCD;
+  String? cWH;
+  String? cPRODNM;
+  String? cTYPE;
+  String? cCATECD;
+  String? cSUBCATECD;
+  String? cBRNDCD;
+  String? iQTY;
+  String? iWEIGHT;
+  String? cSTATUS;
+  String? cCREABY;
 
   StockBalanceReq(
       {this.cBRANCD,

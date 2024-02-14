@@ -1,19 +1,19 @@
 class AddReturnProductToStockReq {
-  String cBRANCD;
-  String cREFDOC;
-  int iSEQ;
-  String cRETYP;
-  String cGRPCD;
-  String cRTECD;
-  String cPRODCD;
-  String cSIZE;
-  String cUOMCD;
-  String cUOMNM;
-  String iUNITPRICE;
-  String iQTY;
-  String iTRUEQTY;
-  String cWH;
-  String cCREABY;
+  String? cBRANCD;
+  String? cREFDOC;
+  int? iSEQ;
+  String? cRETYP;
+  String? cGRPCD;
+  String? cRTECD;
+  String? cPRODCD;
+  String? cSIZE;
+  String? cUOMCD;
+  String? cUOMNM;
+  String? iUNITPRICE;
+  String? iQTY;
+  String? iTRUEQTY;
+  String? cWH;
+  String? cCREABY;
 
   AddReturnProductToStockReq(
       {this.cBRANCD,

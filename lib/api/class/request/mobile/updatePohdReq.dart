@@ -1,7 +1,7 @@
 class UpdatePohdReq {
-  String cPOCD;
-  String cPREPAIRCFSTATUS;
-  double iBASKETTOTAL;
+  String? cPOCD;
+  String? cPREPAIRCFSTATUS;
+  double? iBASKETTOTAL;
 
   UpdatePohdReq({this.cPOCD, this.cPREPAIRCFSTATUS, this.iBASKETTOTAL});
 

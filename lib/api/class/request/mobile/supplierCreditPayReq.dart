@@ -1,8 +1,8 @@
 class SupplierCreditPayReq {
-  String cSUPPCD;
-  String cBRANCD;
-  String cPRODCD;
-  String cCREABY;
+  String? cSUPPCD;
+  String? cBRANCD;
+  String? cPRODCD;
+  String? cCREABY;
 
   SupplierCreditPayReq(
       {this.cSUPPCD, this.cBRANCD, this.cPRODCD, this.cCREABY});

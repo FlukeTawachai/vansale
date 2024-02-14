@@ -1,7 +1,7 @@
 class SearchRefuelReq {
-  String cBRANCD;
-  String cVEHICD;
-  String dINVENTDT;
+  String? cBRANCD;
+  String? cVEHICD;
+  String? dINVENTDT;
 
   SearchRefuelReq({this.cBRANCD, this.cVEHICD, this.dINVENTDT});
 

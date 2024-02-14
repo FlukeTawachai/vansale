@@ -1,19 +1,19 @@
 class AddRecheckStockProductReq {
-  String cBRANCD;
-  String cWH;
-  String cPRODCD;
-  String cUOMCD;
-  String cPRODNM;
-  String cTYPE;
-  String cCATECD;
-  String cSUBCATECD;
-  String cBRNDCD;
-  double iSTCQTY;
-  double iSTCWEIGHT;
-  double iRECQTY;
-  double iRECWEIGHT;
-  String cSALETYPE;
-  String cCREABY;
+  String? cBRANCD;
+  String? cWH;
+  String? cPRODCD;
+  String? cUOMCD;
+  String? cPRODNM;
+  String? cTYPE;
+  String? cCATECD;
+  String? cSUBCATECD;
+  String? cBRNDCD;
+  double? iSTCQTY;
+  double? iSTCWEIGHT;
+  double? iRECQTY;
+  double? iRECWEIGHT;
+  String? cSALETYPE;
+  String? cCREABY;
 
   AddRecheckStockProductReq(
       {this.cBRANCD,

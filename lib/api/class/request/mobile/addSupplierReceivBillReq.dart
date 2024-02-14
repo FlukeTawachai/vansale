@@ -1,11 +1,11 @@
 class AddSupplierReceivBillReq {
-  String cRECEIVENO;
-  String iSEQ;
-  String cSERVER;
-  String cIB64;
-  String cREFDOC;
-  String cTYPE;
-  String cCREABY;
+  String? cRECEIVENO;
+  String? iSEQ;
+  String? cSERVER;
+  String? cIB64;
+  String? cREFDOC;
+  String? cTYPE;
+  String? cCREABY;
 
   AddSupplierReceivBillReq(
       {this.cRECEIVENO,

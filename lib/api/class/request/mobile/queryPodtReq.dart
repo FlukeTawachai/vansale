@@ -1,8 +1,8 @@
 class QueryPodtReq {
-  String cPOCD;
-  String cPRODNM;
-  String cPRODCD;
-  String cCUSTTYPE;
+  String? cPOCD;
+  String? cPRODNM;
+  String? cPRODCD;
+  String? cCUSTTYPE;
 
   QueryPodtReq({this.cPOCD, this.cPRODNM, this.cPRODCD, this.cCUSTTYPE});
 

@@ -1,18 +1,18 @@
 class UpdateReturnHDReq {
-  String cRETCD;
-  String cBRANCD;
-  String cGRPCD;
-  String cRTECD;
-  String cCUSTCD;
-  String cCUSTNM;
-  String cVEHICD;
-  String cDRIVER;
-  String cREMARK;
-  String iTOTAL;
-  String cREFDOC;
-  String cRETYP;
-  String cPAYST;
-  String cCREABY;
+  String? cRETCD;
+  String? cBRANCD;
+  String? cGRPCD;
+  String? cRTECD;
+  String? cCUSTCD;
+  String? cCUSTNM;
+  String? cVEHICD;
+  String? cDRIVER;
+  String? cREMARK;
+  String? iTOTAL;
+  String? cREFDOC;
+  String? cRETYP;
+  String? cPAYST;
+  String? cCREABY;
 
   UpdateReturnHDReq(
       {this.cRETCD,

@@ -1,7 +1,7 @@
 class GetProductStockReq {
-  String cBRANCD;
-  String cWH;
-  String cPRODCD;
+  String? cBRANCD;
+  String? cWH;
+  String? cPRODCD;
 
   GetProductStockReq({this.cBRANCD, this.cWH, this.cPRODCD});
 

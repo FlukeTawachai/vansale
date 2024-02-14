@@ -1,6 +1,6 @@
 class GetCustomerPODTReq {
-  String cPOCD;
-  String cCUSTTYPE;
+  String? cPOCD;
+  String? cCUSTTYPE;
 
   GetCustomerPODTReq({this.cPOCD, this.cCUSTTYPE});
 

@@ -1,6 +1,6 @@
 class GetSupplierOrderReq {
-  String cBRANCD;
-  String dPODATE;
+  String? cBRANCD;
+  String? dPODATE;
 
   GetSupplierOrderReq({this.cBRANCD, this.dPODATE});
 

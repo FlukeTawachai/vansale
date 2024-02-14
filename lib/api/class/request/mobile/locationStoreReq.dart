@@ -1,5 +1,5 @@
 class LocationStoreReq {
-  String cCUSTCD;
+  String? cCUSTCD;
 
   LocationStoreReq({this.cCUSTCD});
 

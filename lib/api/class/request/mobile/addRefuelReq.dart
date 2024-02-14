@@ -1,18 +1,18 @@
 class AddRefuelReq {
-  String cBRANCD;
-  String cVEHICD;
-  String cVEHINM;
-  String cLOCATION;
-  String cFUELNM;
-  double iMILEAGE;
-  double iKM;
-  double iFUELRATE;
-  double iLITER;
-  double iPRICE;
-  String cPLATE;
-  String cPROVINCE;
-  String cREFDOC;
-  String cCREABY;
+  String? cBRANCD;
+  String? cVEHICD;
+  String? cVEHINM;
+  String? cLOCATION;
+  String? cFUELNM;
+  double? iMILEAGE;
+  double? iKM;
+  double? iFUELRATE;
+  double? iLITER;
+  double? iPRICE;
+  String? cPLATE;
+  String? cPROVINCE;
+  String? cREFDOC;
+  String? cCREABY;
 
   AddRefuelReq(
       {this.cBRANCD,

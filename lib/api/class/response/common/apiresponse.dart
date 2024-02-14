@@ -1,6 +1,6 @@
 class ApiResponse {
-  bool success;
-  String message;
+  bool? success;
+  String? message;
 
   ApiResponse({this.success, this.message});
 

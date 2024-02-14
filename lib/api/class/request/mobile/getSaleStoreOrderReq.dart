@@ -1,8 +1,8 @@
 class GetSaleStoreOrderReq {
-  String cBRANCD;
-  String cGRPCD;
-  String cRTECD;
-  String dPODATE;
+  String? cBRANCD;
+  String? cGRPCD;
+  String? cRTECD;
+  String? dPODATE;
 
   GetSaleStoreOrderReq({this.cBRANCD, this.cGRPCD, this.cRTECD, this.dPODATE});
 

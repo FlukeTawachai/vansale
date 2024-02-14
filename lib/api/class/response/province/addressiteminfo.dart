@@ -1,7 +1,7 @@
 class AddressItemInfo {
-  String name;
-  String nameEN;
-  String postCode;
+  String? name;
+  String? nameEN;
+  String? postCode;
 
   AddressItemInfo({this.name, this.nameEN, this.postCode});
 

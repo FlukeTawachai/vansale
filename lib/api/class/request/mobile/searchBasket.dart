@@ -1,6 +1,6 @@
 class SearchBasketReq {
-  String cBASKNM;
-  String cBASKCD;
+  String? cBASKNM;
+  String? cBASKCD;
 
   SearchBasketReq({this.cBASKNM, this.cBASKCD});
 

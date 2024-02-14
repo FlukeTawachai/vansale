@@ -1,15 +1,15 @@
 class AddReturnBasketToStockReq {
-  String cBRANCD;
-  String cREFDOC;
-  int iSEQ;
-  String cGRPCD;
-  String cRTECD;
-  String cBASKCD;
-  String iPRICE;
-  String iQTY;
-  String iTRUEQTY;
-  String cWH;
-  String cCREABY;
+  String? cBRANCD;
+  String? cREFDOC;
+  int? iSEQ;
+  String? cGRPCD;
+  String? cRTECD;
+  String? cBASKCD;
+  String? iPRICE;
+  String? iQTY;
+  String? iTRUEQTY;
+  String? cWH;
+  String? cCREABY;
 
   AddReturnBasketToStockReq(
       {this.cBRANCD,

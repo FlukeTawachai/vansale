@@ -1,29 +1,29 @@
 class GetProductSalePriceResp {
-  String cGUID;
-  String cPRODCD;
-  String cPRODNM;
-  String iCOST;
-  String iCOSTVAT;
-  String cPRODEX;
-  String iGENVAT;
-  String iEXCVAT;
-  String cTYPE;
-  String cMCATE;
-  String cSCATE;
-  String cBRNDCD;
-  String cCOLOR;
-  String cDIMENS;
-  String iWEIGHT;
-  String cBASKCD;
-  String cSUPCD;
-  String cSHARE;
-  String iMINSTK;
-  String iMAXSTK;
-  String dCREADT;
-  String cCREABY;
-  String dUPDADT;
-  String cUPDABY;
-  List<TPRICEDT> tPRICEDT;
+  String? cGUID;
+  String? cPRODCD;
+  String? cPRODNM;
+  String? iCOST;
+  String? iCOSTVAT;
+  String? cPRODEX;
+  String? iGENVAT;
+  String? iEXCVAT;
+  String? cTYPE;
+  String? cMCATE;
+  String? cSCATE;
+  String? cBRNDCD;
+  String? cCOLOR;
+  String? cDIMENS;
+  String? iWEIGHT;
+  String? cBASKCD;
+  String? cSUPCD;
+  String? cSHARE;
+  String? iMINSTK;
+  String? iMAXSTK;
+  String? dCREADT;
+  String? cCREABY;
+  String? dUPDADT;
+  String? cUPDABY;
+  List<TPRICEDT>? tPRICEDT;
 
   GetProductSalePriceResp(
       {this.cGUID,
@@ -80,7 +80,7 @@ class GetProductSalePriceResp {
     if (json['tPRICEDT'] != null) {
       tPRICEDT = <TPRICEDT>[];
       json['tPRICEDT'].forEach((v) {
-        tPRICEDT.add(new TPRICEDT.fromJson(v));
+        tPRICEDT!.add(new TPRICEDT.fromJson(v));
       });
     }
   }
@@ -112,28 +112,28 @@ class GetProductSalePriceResp {
     data['dUPDADT'] = this.dUPDADT;
     data['cUPDABY'] = this.cUPDABY;
     if (this.tPRICEDT != null) {
-      data['tPRICEDT'] = this.tPRICEDT.map((v) => v.toJson()).toList();
+      data['tPRICEDT'] = this.tPRICEDT!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class TPRICEDT {
-  String cGUID;
-  String cPRODCD;
-  String cUOMCD;
-  String cPRICECD;
-  int iSEQ;
-  String cTYPE;
-  String iCOST;
-  String iQTY;
-  String cBARCODE;
-  String cUOMNM;
-  String cTABLENM;
-  String dCREADT;
-  String cCREABY;
-  String dUPDADT;
-  String cUPDABY;
+  String? cGUID;
+  String? cPRODCD;
+  String? cUOMCD;
+  String? cPRICECD;
+  int? iSEQ;
+  String? cTYPE;
+  String? iCOST;
+  String? iQTY;
+  String? cBARCODE;
+  String? cUOMNM;
+  String? cTABLENM;
+  String? dCREADT;
+  String? cCREABY;
+  String? dUPDADT;
+  String? cUPDABY;
 
   TPRICEDT(
       {this.cGUID,

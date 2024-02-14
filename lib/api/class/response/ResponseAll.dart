@@ -1,6 +1,6 @@
 class Response {
-  bool success;
-  String message;
+  bool? success;
+  String? message;
   dynamic result;
 
   Response({this.success, this.message, this.result});

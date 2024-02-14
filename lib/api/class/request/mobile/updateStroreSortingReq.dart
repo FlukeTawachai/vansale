@@ -1,9 +1,9 @@
 class UpdateStroreSortingReq {
-  String cCUSTCD;
-  String cGRPCD;
-  String cRTECD;
-  int iSEQROUTE;
-  String cUPDABY;
+  String? cCUSTCD;
+  String? cGRPCD;
+  String? cRTECD;
+  int? iSEQROUTE;
+  String? cUPDABY;
 
   UpdateStroreSortingReq(
       {this.cCUSTCD, this.cGRPCD, this.cRTECD, this.iSEQROUTE, this.cUPDABY});

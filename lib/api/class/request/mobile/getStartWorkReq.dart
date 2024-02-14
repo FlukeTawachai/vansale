@@ -1,8 +1,8 @@
 class GetStartWorkReq {
-  String cBRANCD;
-  String cUSRNM;
-  String cSECTION;
-  String dINVENTDT;
+  String? cBRANCD;
+  String? cUSRNM;
+  String? cSECTION;
+  String? dINVENTDT;
 
   GetStartWorkReq({this.cBRANCD, this.cUSRNM, this.cSECTION, this.dINVENTDT});
 

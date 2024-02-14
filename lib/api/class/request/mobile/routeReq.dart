@@ -1,6 +1,6 @@
 class RouteReq {
-  String cRTENM;
-  String cBRANCD;
+  String? cRTENM;
+  String? cBRANCD;
 
   RouteReq({this.cRTENM, this.cBRANCD});
 

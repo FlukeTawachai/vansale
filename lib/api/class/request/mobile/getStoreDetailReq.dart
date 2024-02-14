@@ -1,7 +1,7 @@
 class GetStoreDetailReq {
-  String cCUSTCD;
-  String cPRODNM;
-  String cPRODCD;
+  String? cCUSTCD;
+  String? cPRODNM;
+  String? cPRODCD;
 
   GetStoreDetailReq({this.cCUSTCD, this.cPRODNM, this.cPRODCD});
 

@@ -1,8 +1,8 @@
 class GetCustomerOfBranchReq {
-  String cBRANCD;
-  String cGRPCD;
-  String cRTECD;
-  String cVEHICD;
+  String? cBRANCD;
+  String? cGRPCD;
+  String? cRTECD;
+  String? cVEHICD;
 
   GetCustomerOfBranchReq(
       {this.cBRANCD, this.cGRPCD, this.cRTECD, this.cVEHICD});

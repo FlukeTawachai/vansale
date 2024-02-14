@@ -1,6 +1,6 @@
 class GetCustomerPOHisReq {
-  String cCUSTCD;
-  String cPOCD;
+  String? cCUSTCD;
+  String? cPOCD;
 
   GetCustomerPOHisReq({this.cCUSTCD, this.cPOCD});
 

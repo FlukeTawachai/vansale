@@ -1,16 +1,16 @@
 class PayReq {
-  String cDOCREF;
-  String dDOCDATE;
-  String cTRANSCD;
-  String cCONTACTCD;
-  double iDEBIT;
-  double iCREDIT;
-  String cCREABY;
-  String cRECTYPE;
-  String cBANK;
-  String cCQTYPE;
-  String cCQCD;
-  String cCQDT;
+  String? cDOCREF;
+  String? dDOCDATE;
+  String? cTRANSCD;
+  String? cCONTACTCD;
+  double? iDEBIT;
+  double? iCREDIT;
+  String? cCREABY;
+  String? cRECTYPE;
+  String? cBANK;
+  String? cCQTYPE;
+  String? cCQCD;
+  String? cCQDT;
 
   PayReq(
       {this.cDOCREF,

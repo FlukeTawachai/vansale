@@ -1,8 +1,8 @@
 class GetCustForSortingReq {
-  String cBRANCD;
-  String cGRPCD;
-  String cVEHICD;
-  String cRTECD;
+  String? cBRANCD;
+  String? cGRPCD;
+  String? cVEHICD;
+  String? cRTECD;
 
   GetCustForSortingReq({this.cBRANCD, this.cGRPCD, this.cVEHICD, this.cRTECD});
 

@@ -1,6 +1,6 @@
 class GetProductReturnReq {
-  String cBRANCD;
-  String dCREADT;
+  String? cBRANCD;
+  String? dCREADT;
 
   GetProductReturnReq({this.cBRANCD, this.dCREADT});
 

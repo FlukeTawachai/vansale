@@ -1,7 +1,7 @@
 class CanclePoByBeforePOReq {
-  String cCUSTCD;
-  String cGRPCD;
-  String cUPDABY;
+  String? cCUSTCD;
+  String? cGRPCD;
+  String? cUPDABY;
 
   CanclePoByBeforePOReq({this.cCUSTCD, this.cGRPCD, this.cUPDABY});
 

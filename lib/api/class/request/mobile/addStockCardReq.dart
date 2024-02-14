@@ -1,14 +1,14 @@
 class StockCardReq {
-  String cBRANCD;
-  String cPRODCD;
-  String cUOMCD;
-  String cWH;
-  String cREFDOC;
-  String iRECEIVEQTY;
-  String iISSUEQTY;
-  String cREMARK;
-  String cLOTNO;
-  String cCREABY;
+  String? cBRANCD;
+  String? cPRODCD;
+  String? cUOMCD;
+  String? cWH;
+  String? cREFDOC;
+  String? iRECEIVEQTY;
+  String? iISSUEQTY;
+  String? cREMARK;
+  String? cLOTNO;
+  String? cCREABY;
 
   StockCardReq(
       {this.cBRANCD,

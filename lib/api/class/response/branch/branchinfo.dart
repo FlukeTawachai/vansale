@@ -1,23 +1,23 @@
 import 'package:vansale/api/class/response/customer/customer_info.dart';
 
 class BranchInfo {
-  String branchCode;
-  String branchName;
-  String shopName;
-  String taxNo;
-  Address address;
-  String tel;
-  String fax;
-  Contact contact;
-  String isPhoto;
-  Photo photo;
-  List<Provinces> provinces;
-  String guid;
-  String status;
-  String createDate;
-  String createBy;
-  String updateDate;
-  String updateBy;
+  String? branchCode;
+  String? branchName;
+  String? shopName;
+  String? taxNo;
+  Address? address;
+  String? tel;
+  String? fax;
+  Contact? contact;
+  String? isPhoto;
+  Photo? photo;
+  List<Provinces>? provinces;
+  String? guid;
+  String? status;
+  String? createDate;
+  String? createBy;
+  String? updateDate;
+  String? updateBy;
 
   BranchInfo(
       {this.branchCode,
@@ -54,7 +54,7 @@ class BranchInfo {
     if (json['provinces'] != null) {
       provinces = <Provinces>[];
       json['provinces'].forEach((v) {
-        provinces.add(new Provinces.fromJson(v));
+        provinces!.add(new Provinces.fromJson(v));
       });
     }
     guid = json['guid'];
@@ -72,19 +72,19 @@ class BranchInfo {
     data['shopName'] = this.shopName;
     data['taxNo'] = this.taxNo;
     if (this.address != null) {
-      data['address'] = this.address.toJson();
+      data['address'] = this.address!.toJson();
     }
     data['tel'] = this.tel;
     data['fax'] = this.fax;
     if (this.contact != null) {
-      data['contact'] = this.contact.toJson();
+      data['contact'] = this.contact!.toJson();
     }
     data['isPhoto'] = this.isPhoto;
     if (this.photo != null) {
-      data['photo'] = this.photo.toJson();
+      data['photo'] = this.photo!.toJson();
     }
     if (this.provinces != null) {
-      data['provinces'] = this.provinces.map((v) => v.toJson()).toList();
+      data['provinces'] = this.provinces!.map((v) => v.toJson()).toList();
     }
     data['guid'] = this.guid;
     data['status'] = this.status;
@@ -97,7 +97,7 @@ class BranchInfo {
 }
 
 class Provinces {
-  String province;
+  String? province;
 
   Provinces({this.province});
 

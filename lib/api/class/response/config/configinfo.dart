@@ -1,6 +1,6 @@
 class ConfigInfo {
-  String configValues;
-  String configValuesName;
+  String? configValues;
+  String? configValuesName;
 
   ConfigInfo({this.configValues, this.configValuesName});
 

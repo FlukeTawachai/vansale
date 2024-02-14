@@ -1,13 +1,13 @@
 class AddRTPROReq {
-  String cBRANCD;
-  String cPOCD;
-  String cCUSTCD;
-  String cPRODCD;
-  String iQTY;
-  String iTOTAL;
-  String cSTATUS;
-  String cUOMCD;
-  String cCREABY;
+  String? cBRANCD;
+  String? cPOCD;
+  String? cCUSTCD;
+  String? cPRODCD;
+  String? iQTY;
+  String? iTOTAL;
+  String? cSTATUS;
+  String? cUOMCD;
+  String? cCREABY;
 
   AddRTPROReq(
       {this.cBRANCD,

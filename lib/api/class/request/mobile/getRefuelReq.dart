@@ -1,5 +1,5 @@
 class GetRefuelReq {
-  String cGUID;
+  String? cGUID;
 
   GetRefuelReq({this.cGUID});
 
