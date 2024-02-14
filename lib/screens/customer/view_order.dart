@@ -22,7 +22,7 @@ class _ViewOrderState extends State<ViewOrder> {
         elevation: 0.0,
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'รายละเอียดการขาย',
           style: TextStyle(
             color: Colors.black,
@@ -32,7 +32,7 @@ class _ViewOrderState extends State<ViewOrder> {
           ),
         ),
         leading: IconButton(
-          icon: Icon(Icons.home, color: Colors.black),
+          icon: const Icon(Icons.home, color: Colors.black),
           onPressed: () {
             Navigator.push(
               context,
@@ -86,7 +86,7 @@ class _ViewOrderState extends State<ViewOrder> {
                         Expanded(
                           child: Container(
                             alignment: Alignment.centerLeft,
-                            child: Text(
+                            child: const Text(
                               '07/09/64',
                               style: TextStyle(
                                 fontSize: 16.0,
@@ -100,7 +100,7 @@ class _ViewOrderState extends State<ViewOrder> {
                         Expanded(
                           child: Container(
                             alignment: Alignment.centerRight,
-                            child: Text(
+                            child: const Text(
                               'No 640907-xxxxx',
                               style: TextStyle(
                                 fontSize: 14.0,
@@ -114,7 +114,7 @@ class _ViewOrderState extends State<ViewOrder> {
                       ],
                     ),
                   ),
-                  DottedLine(
+                  const DottedLine(
                     lineThickness: 2.0,
                     dashColor: Colors.black38,
                   ),
@@ -158,7 +158,7 @@ class _ViewOrderState extends State<ViewOrder> {
                                   Container(
                                     padding: const EdgeInsets.all(3.0),
                                     alignment: Alignment.centerLeft,
-                                    child: Text(
+                                    child: const Text(
                                       'ชื่อร้านค้า',
                                       style: TextStyle(
                                         fontFamily: 'Prompt',
@@ -171,7 +171,7 @@ class _ViewOrderState extends State<ViewOrder> {
                                   Container(
                                     padding: const EdgeInsets.all(3.0),
                                     alignment: Alignment.centerLeft,
-                                    child: Text(
+                                    child: const Text(
                                       'ที่อยู่',
                                       style: TextStyle(
                                         fontFamily: 'Prompt',
@@ -191,16 +191,16 @@ class _ViewOrderState extends State<ViewOrder> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         Container(
-                                          child: Icon(
+                                          child: const Icon(
                                             LineAwesomeIcons.boxes,
                                             color: Colors.black38,
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10.0,
                                         ),
                                         Container(
-                                          child: Text(
+                                          child: const Text(
                                             '32 รายการ',
                                             style: TextStyle(
                                               fontFamily: 'Prompt',
@@ -210,11 +210,11 @@ class _ViewOrderState extends State<ViewOrder> {
                                             ),
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10.0,
                                         ),
                                         Container(
-                                          child: Text(
+                                          child: const Text(
                                             '32 ตระกร้า',
                                             style: TextStyle(
                                               fontFamily: 'Prompt',
@@ -230,7 +230,7 @@ class _ViewOrderState extends State<ViewOrder> {
                                   Container(
                                     padding: const EdgeInsets.all(3.0),
                                     alignment: Alignment.centerLeft,
-                                    child: Text(
+                                    child: const Text(
                                       'No 640907-xxxxx',
                                       style: TextStyle(
                                         fontSize: 12.0,
@@ -258,7 +258,7 @@ class _ViewOrderState extends State<ViewOrder> {
                         Expanded(
                           child: Container(
                             alignment: Alignment.centerLeft,
-                            child: Text(
+                            child: const Text(
                               'ส่วนลดท้ายบิล',
                               style: TextStyle(
                                 fontSize: 14.0,
@@ -306,7 +306,7 @@ class _ViewOrderState extends State<ViewOrder> {
                         Expanded(
                           child: Container(
                             alignment: Alignment.centerLeft,
-                            child: Text(
+                            child: const Text(
                               'ส่วนลดสินค้า',
                               style: TextStyle(
                                 fontSize: 14.0,
@@ -354,7 +354,7 @@ class _ViewOrderState extends State<ViewOrder> {
                         Expanded(
                           child: Container(
                             alignment: Alignment.centerLeft,
-                            child: Text(
+                            child: const Text(
                               '*ลด 10 บาท แถม 1 ชิ้น',
                               style: TextStyle(
                                 fontSize: 14.0,

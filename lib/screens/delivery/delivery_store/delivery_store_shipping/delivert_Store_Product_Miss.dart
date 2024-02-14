@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:auto_size_text/auto_size_text.dart';
-
 import 'package:dotted_line/dotted_line.dart';
 
 import 'package:flutter/material.dart';
@@ -20,15 +18,11 @@ import 'package:vansale/api/class/request/mobile/queryPodtReq.dart';
 import 'package:vansale/api/class/response/routeMobile/pohdAndPodtResp.dart';
 import 'package:vansale/api/class/response/routeMobile/queryPodtResp.dart';
 
-import 'package:vansale/api/class/utility.dart';
 import 'package:vansale/screens/delivery/delivery_scanner.dart';
 
-import 'package:vansale/screens/delivery/delivery_store/delivery_store_shipping/delivery_Store_GetBad_Product.dart';
 import 'package:vansale/screens/delivery/delivery_store/delivery_store_shipping/delivery_Store_GetGood_Product.dart';
 
-import 'package:vansale/screens/delivery/delivery_store/delivery_store_shipping/delivery_Store_Miss_List.dart';
 import 'package:vansale/screens/delivery/delivery_store_footer.dart';
-import 'package:vansale/screens/shipping/return_product.dart';
 
 class DeliveryStoreProductMiss extends StatefulWidget {
   final String typeMenuCode;
@@ -42,8 +36,8 @@ class DeliveryStoreProductMiss extends StatefulWidget {
 
 class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
   double productMiss = 0;
-  String cCUSTCD = GlobalParam.deliveryProductList[0].cCUSTCD;
-  String cPOCD = GlobalParam.deliveryProductList[0].cPOCD;
+  String cCUSTCD = GlobalParam.deliveryProductList[0].cCUSTCD!;
+  String cPOCD = GlobalParam.deliveryProductList[0].cPOCD!;
   List<QueryPodtResp> podtList = [];
   List<QueryPodtResp> podtListNstatus = [];
   List<PoHDAndPoDTResp> productList = [];
@@ -65,7 +59,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
 
     final moonLanding = DateTime.now();
 
-    var newDate = moonLanding.subtract(Duration(days: 7));
+    var newDate = moonLanding.subtract(const Duration(days: 7));
 
     getCustHisWithDate(GetCustHisWithDateReq(
         cCUSTCD: GlobalParam.deliverySelectStore.cCUSTCD,
@@ -74,14 +68,14 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
     GlobalParam.deliveryCustPOHisBtnCheck = [];
     for (var item in GlobalParam.deliveryPodtShow) {
       var unitCode = "";
-      if (double.parse(item.iSSIZEQTY) > 0) {
-        unitCode = item.cSUOMCD;
+      if (double.parse(item.iSSIZEQTY!) > 0) {
+        unitCode = item.cSUOMCD!;
       }
-      if (double.parse(item.iMSIZEQTY) > 0) {
-        unitCode = item.cMUOMCD;
+      if (double.parse(item.iMSIZEQTY!) > 0) {
+        unitCode = item.cMUOMCD!;
       }
-      if (double.parse(item.iLSIZEQTY) > 0) {
-        unitCode = item.cLUOMCD;
+      if (double.parse(item.iLSIZEQTY!) > 0) {
+        unitCode = item.cLUOMCD!;
       }
       var data = {
         "cPRODCD": item.cPRODCD,
@@ -100,7 +94,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
     widthScreen = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
-          title: Text('สินค้าคืน/เหลือ'),
+          title: const Text('สินค้าคืน/เหลือ'),
           centerTitle: true,
         ),
         body: Stack(children: [
@@ -114,7 +108,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
             child: Container(
               alignment: Alignment.center,
               margin: const EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(5),
@@ -137,7 +131,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                       child: TextField(
                         onSubmitted: (value) {
                           GlobalParam.deliveryRegetPODT = false;
-                          if (value != '' && value != null) {
+                          if (value != '') {
                             getPodtShow(cPOCD, value, '');
                           } else {
                             // getPodt(cPOCD, '', '');
@@ -147,14 +141,15 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                 GlobalParam.deliveryPodtList;
                           }
                         },
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'Prompt',
                         ),
                         textInputAction: TextInputAction.search,
                         decoration: InputDecoration(
                           hintText: "ค้นหา",
                           border: InputBorder.none,
-                          contentPadding: EdgeInsets.only(left: 5.0, top: 5.0),
+                          contentPadding:
+                              const EdgeInsets.only(left: 5.0, top: 5.0),
                           prefixIcon: RotatedBox(
                             quarterTurns: 1,
                             child: IconButton(
@@ -187,7 +182,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                               builder: (context) =>
                                                   DeliveryStoreProductMiss(
                                                       GlobalParam
-                                                          .typeMenuCode)));
+                                                          .typeMenuCode!)));
                                     },
                                   )));
                         },
@@ -217,12 +212,12 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                 GlobalParam.deliveryPodCancel[i].iCANCLEPRO = 0;
               }
               updateICLPro(
-                  GlobalParam.deliveryPodCancel[i].cPOCD,
-                  GlobalParam.deliveryPodCancel[i].iSEQ,
-                  GlobalParam.deliveryPodCancel[i].iINCOMPRO,
-                  GlobalParam.deliveryPodCancel[i].iCANCLEPRO,
-                  GlobalParam.deliveryPodCancel[i].iLOSSPRO,
-                  GlobalParam.deliveryPodCancel[i].cUPDABY);
+                  GlobalParam.deliveryPodCancel[i].cPOCD!,
+                  GlobalParam.deliveryPodCancel[i].iSEQ!,
+                  GlobalParam.deliveryPodCancel[i].iINCOMPRO!,
+                  GlobalParam.deliveryPodCancel[i].iCANCLEPRO!,
+                  GlobalParam.deliveryPodCancel[i].iLOSSPRO!,
+                  GlobalParam.deliveryPodCancel[i].cUPDABY!);
 
               // if (GlobalParam.deliveryPodCancel[i].iCANCLEPRO != 0) {
               //   double price = 0.0;
@@ -259,17 +254,17 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
               context,
               MaterialPageRoute(
                 builder: (BuildContext context) =>
-                    DeliveryStoreGetGoodProduct(GlobalParam.typeMenuCode, ''),
+                    DeliveryStoreGetGoodProduct(GlobalParam.typeMenuCode!, ''),
               ),
             );
           },
           navigated2: () {},
-          icon1: Icon(
+          icon1: const Icon(
             LineAwesomeIcons.check_circle,
             color: Colors.green,
             size: 25.0,
           ),
-          icon2: Icon(
+          icon2: const Icon(
             LineAwesomeIcons.check_circle,
             color: Colors.green,
             size: 25.0,
@@ -314,247 +309,221 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
   getPodt(String cPOCD, String cPRODNM, String cPRODCD) async {
     double sumItem = 0;
     if (cPOCD != '') {
-      if (cPOCD != null) {
-        try {
-          AllApiProxyMobile proxy = AllApiProxyMobile();
+      try {
+        AllApiProxyMobile proxy = AllApiProxyMobile();
 
-          var result = await proxy.getPodt(QueryPodtReq(
-              cPOCD: cPOCD,
-              cPRODCD: '%$cPRODCD%',
-              cPRODNM: '%$cPRODNM%',
-              cCUSTTYPE: GlobalParam.customer['cCUSTTYPE']));
-          if (result.isNotEmpty) {
-            //  print('+++++++++++++++++++ query TBT_PODT success +++++++++++++++++++');
-            podtList.clear();
-            double total = 0;
-            for (int i = 0; i < result.length; i++) {
-              if (result[i].iNETTOTAL == null) {
-                result[i].iNETTOTAL = '0.0';
-              }
-              sumItem += double.parse(result[i].iSSIZEQTY) +
-                  double.parse(result[i].iMSIZEQTY) +
-                  double.parse(result[i].iLSIZEQTY);
-              total += double.parse(result[i].iTOTAL);
-              if (double.parse(result[i].iSSIZEQTY) > 0) {
-                var data = {
-                  "cUOMNM": result[i].cSUOMNM,
-                  "iPRICE": result[i].iSUNITPRICE,
-                  "iTOTAL": result[i].iTOTAL
-                };
-
-                QueryPodtResp product = new QueryPodtResp(
-                  cBASKCD: result[i].cBASKCD,
-                  cBASKNM: result[i].cBASKNM,
-                  cBRNDCD: result[i].cBRNDCD,
-                  cBRNDNM: result[i].cBRNDNM,
-                  cCATECD: result[i].cCATECD,
-                  cCATENM: result[i].cCATENM,
-                  cCREABY: result[i].cCREABY,
-                  cDISCOUNT: result[i].cDISCOUNT,
-                  cINSERTYPE: result[i].cINSERTYPE,
-                  cLUOMCD: result[i].cLUOMCD,
-                  cLUOMNM: result[i].cLUOMNM,
-                  cMUOMCD: result[i].cMUOMCD,
-                  cMUOMNM: result[i].cMUOMNM,
-                  cPHOTOPATH: result[i].cPHOTOPATH,
-                  cPHOTOSERV: result[i].cPHOTOSERV,
-                  cPOCD: result[i].cPOCD,
-                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                      ? 'N'
-                      : result[i].cPREPAIRSTATUS,
-                  cPRODCD: result[i].cPRODCD,
-                  cPRODNM: result[i].cPRODNM,
-                  cPROMO: result[i].cPROMO,
-                  cSTATUS: result[i].cSTATUS,
-                  cSUBCATECD: result[i].cSUBCATECD,
-                  cSUBCATENM: result[i].cSUBCATENM,
-                  cSUOMCD: result[i].cSUOMCD,
-                  cSUOMNM: result[i].cSUOMNM,
-                  cTYPE: result[i].cTYPE,
-                  cTYPENM: result[i].cTYPENM,
-                  cUPDABY: result[i].cUPDABY,
-                  dCREADT: result[i].dCREADT,
-                  dUPDADT: result[i].dUPDADT,
-                  iCANCLEPRO:
-                      result[i].iCANCLEPRO == null ? 0 : result[i].iCANCLEPRO,
-                  iDISCOUNT: result[i].iDISCOUNT,
-                  iFREE: result[i].iFREE,
-                  iINCOMPRO:
-                      result[i].iCANCLEPRO == null ? 0 : result[i].iCANCLEPRO,
-                  iLOSSPRO:
-                      result[i].iCANCLEPRO == null ? 0 : result[i].iCANCLEPRO,
-                  iLSIZEQTY: '0.0',
-                  iLUNITPRICE: result[i].iLUNITPRICE,
-                  iMSIZEQTY: '0.0',
-                  iMUNITPRICE: result[i].iMUNITPRICE,
-                  iNETTOTAL:
-                      result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                      ? '0'
-                      : result[i].iPREPAIRAMOUT,
-                  iSEQ: result[i].iSEQ,
-                  iSSIZEQTY: result[i].iSSIZEQTY,
-                  iSUNITPRICE: result[i].iSUNITPRICE,
-                  iTOTAL:
-                      "${double.parse(result[i].iSSIZEQTY) * double.parse(result[i].iSUNITPRICE)}",
-                );
-
-                podtList.add(product);
-              }
-              if (double.parse(result[i].iMSIZEQTY) > 0) {
-                var data = {
-                  "cUOMNM": result[i].cMUOMNM,
-                  "iPRICE": result[i].iMUNITPRICE,
-                  "iTOTAL": result[i].iTOTAL
-                };
-
-                QueryPodtResp product = new QueryPodtResp(
-                  cBASKCD: result[i].cBASKCD,
-                  cBASKNM: result[i].cBASKNM,
-                  cBRNDCD: result[i].cBRNDCD,
-                  cBRNDNM: result[i].cBRNDNM,
-                  cCATECD: result[i].cCATECD,
-                  cCATENM: result[i].cCATENM,
-                  cCREABY: result[i].cCREABY,
-                  cDISCOUNT: result[i].cDISCOUNT,
-                  cINSERTYPE: result[i].cINSERTYPE,
-                  cLUOMCD: result[i].cLUOMCD,
-                  cLUOMNM: result[i].cLUOMNM,
-                  cMUOMCD: result[i].cMUOMCD,
-                  cMUOMNM: result[i].cMUOMNM,
-                  cPHOTOPATH: result[i].cPHOTOPATH,
-                  cPHOTOSERV: result[i].cPHOTOSERV,
-                  cPOCD: result[i].cPOCD,
-                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                      ? 'N'
-                      : result[i].cPREPAIRSTATUS,
-                  cPRODCD: result[i].cPRODCD,
-                  cPRODNM: result[i].cPRODNM,
-                  cPROMO: result[i].cPROMO,
-                  cSTATUS: result[i].cSTATUS,
-                  cSUBCATECD: result[i].cSUBCATECD,
-                  cSUBCATENM: result[i].cSUBCATENM,
-                  cSUOMCD: result[i].cSUOMCD,
-                  cSUOMNM: result[i].cSUOMNM,
-                  cTYPE: result[i].cTYPE,
-                  cTYPENM: result[i].cTYPENM,
-                  cUPDABY: result[i].cUPDABY,
-                  dCREADT: result[i].dCREADT,
-                  dUPDADT: result[i].dUPDADT,
-                  iCANCLEPRO:
-                      result[i].iCANCLEPRO == null ? 0 : result[i].iCANCLEPRO,
-                  iDISCOUNT: result[i].iDISCOUNT,
-                  iFREE: result[i].iFREE,
-                  iINCOMPRO:
-                      result[i].iCANCLEPRO == null ? 0 : result[i].iCANCLEPRO,
-                  iLOSSPRO:
-                      result[i].iCANCLEPRO == null ? 0 : result[i].iCANCLEPRO,
-                  iLSIZEQTY: '0.0',
-                  iLUNITPRICE: result[i].iLUNITPRICE,
-                  iMSIZEQTY: result[i].iMSIZEQTY,
-                  iMUNITPRICE: result[i].iMUNITPRICE,
-                  iNETTOTAL:
-                      result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                      ? '0'
-                      : result[i].iPREPAIRAMOUT,
-                  iSEQ: result[i].iSEQ,
-                  iSSIZEQTY: '0.0',
-                  iSUNITPRICE: result[i].iSUNITPRICE,
-                  iTOTAL:
-                      "${double.parse(result[i].iMSIZEQTY) * double.parse(result[i].iMUNITPRICE)}",
-                );
-
-                podtList.add(product);
-              }
-              if (double.parse(result[i].iLSIZEQTY) > 0) {
-                var data = {
-                  "cUOMNM": result[i].cLUOMNM,
-                  "iPRICE": result[i].iLUNITPRICE,
-                  "iTOTAL": result[i].iTOTAL
-                };
-
-                QueryPodtResp product = new QueryPodtResp(
-                  cBASKCD: result[i].cBASKCD,
-                  cBASKNM: result[i].cBASKNM,
-                  cBRNDCD: result[i].cBRNDCD,
-                  cBRNDNM: result[i].cBRNDNM,
-                  cCATECD: result[i].cCATECD,
-                  cCATENM: result[i].cCATENM,
-                  cCREABY: result[i].cCREABY,
-                  cDISCOUNT: result[i].cDISCOUNT,
-                  cINSERTYPE: result[i].cINSERTYPE,
-                  cLUOMCD: result[i].cLUOMCD,
-                  cLUOMNM: result[i].cLUOMNM,
-                  cMUOMCD: result[i].cMUOMCD,
-                  cMUOMNM: result[i].cMUOMNM,
-                  cPHOTOPATH: result[i].cPHOTOPATH,
-                  cPHOTOSERV: result[i].cPHOTOSERV,
-                  cPOCD: result[i].cPOCD,
-                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                      ? 'N'
-                      : result[i].cPREPAIRSTATUS,
-                  cPRODCD: result[i].cPRODCD,
-                  cPRODNM: result[i].cPRODNM,
-                  cPROMO: result[i].cPROMO,
-                  cSTATUS: result[i].cSTATUS,
-                  cSUBCATECD: result[i].cSUBCATECD,
-                  cSUBCATENM: result[i].cSUBCATENM,
-                  cSUOMCD: result[i].cSUOMCD,
-                  cSUOMNM: result[i].cSUOMNM,
-                  cTYPE: result[i].cTYPE,
-                  cTYPENM: result[i].cTYPENM,
-                  cUPDABY: result[i].cUPDABY,
-                  dCREADT: result[i].dCREADT,
-                  dUPDADT: result[i].dUPDADT,
-                  iCANCLEPRO:
-                      result[i].iCANCLEPRO == null ? 0 : result[i].iCANCLEPRO,
-                  iDISCOUNT: result[i].iDISCOUNT,
-                  iFREE: result[i].iFREE,
-                  iINCOMPRO:
-                      result[i].iCANCLEPRO == null ? 0 : result[i].iCANCLEPRO,
-                  iLOSSPRO:
-                      result[i].iCANCLEPRO == null ? 0 : result[i].iCANCLEPRO,
-                  iLSIZEQTY: result[i].iLSIZEQTY,
-                  iLUNITPRICE: result[i].iLUNITPRICE,
-                  iMSIZEQTY: '0.0',
-                  iMUNITPRICE: result[i].iMUNITPRICE,
-                  iNETTOTAL:
-                      result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                      ? '0'
-                      : result[i].iPREPAIRAMOUT,
-                  iSEQ: result[i].iSEQ,
-                  iSSIZEQTY: '0.0',
-                  iSUNITPRICE: result[i].iSUNITPRICE,
-                  iTOTAL:
-                      "${double.parse(result[i].iLSIZEQTY) * double.parse(result[i].iLUNITPRICE)}",
-                );
-
-                podtList.add(product);
-              }
-
-              if (result[i].cPREPAIRSTATUS == 'N') {
-                podtListNstatus.add(result[i]);
-              }
+        var result = await proxy.getPodt(QueryPodtReq(
+            cPOCD: cPOCD,
+            cPRODCD: '%$cPRODCD%',
+            cPRODNM: '%$cPRODNM%',
+            cCUSTTYPE: GlobalParam.customer['cCUSTTYPE']));
+        if (result.isNotEmpty) {
+          //  print('+++++++++++++++++++ query TBT_PODT success +++++++++++++++++++');
+          podtList.clear();
+          double total = 0;
+          for (int i = 0; i < result.length; i++) {
+            if (result[i].iNETTOTAL == null) {
+              result[i].iNETTOTAL = '0.0';
             }
-            if (GlobalParam.deliveryRegetPODT == true) {
-              GlobalParam.deliveryPodtList = podtList;
+            sumItem += double.parse(result[i].iSSIZEQTY!) +
+                double.parse(result[i].iMSIZEQTY!) +
+                double.parse(result[i].iLSIZEQTY!);
+            total += double.parse(result[i].iTOTAL!);
+            if (double.parse(result[i].iSSIZEQTY!) > 0) {
+              var data = {
+                "cUOMNM": result[i].cSUOMNM,
+                "iPRICE": result[i].iSUNITPRICE,
+                "iTOTAL": result[i].iTOTAL
+              };
+
+              QueryPodtResp product = QueryPodtResp(
+                cBASKCD: result[i].cBASKCD,
+                cBASKNM: result[i].cBASKNM,
+                cBRNDCD: result[i].cBRNDCD,
+                cBRNDNM: result[i].cBRNDNM,
+                cCATECD: result[i].cCATECD,
+                cCATENM: result[i].cCATENM,
+                cCREABY: result[i].cCREABY,
+                cDISCOUNT: result[i].cDISCOUNT,
+                cINSERTYPE: result[i].cINSERTYPE,
+                cLUOMCD: result[i].cLUOMCD,
+                cLUOMNM: result[i].cLUOMNM,
+                cMUOMCD: result[i].cMUOMCD,
+                cMUOMNM: result[i].cMUOMNM,
+                cPHOTOPATH: result[i].cPHOTOPATH,
+                cPHOTOSERV: result[i].cPHOTOSERV,
+                cPOCD: result[i].cPOCD,
+                cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
+                cPRODCD: result[i].cPRODCD,
+                cPRODNM: result[i].cPRODNM,
+                cPROMO: result[i].cPROMO,
+                cSTATUS: result[i].cSTATUS,
+                cSUBCATECD: result[i].cSUBCATECD,
+                cSUBCATENM: result[i].cSUBCATENM,
+                cSUOMCD: result[i].cSUOMCD,
+                cSUOMNM: result[i].cSUOMNM,
+                cTYPE: result[i].cTYPE,
+                cTYPENM: result[i].cTYPENM,
+                cUPDABY: result[i].cUPDABY,
+                dCREADT: result[i].dCREADT,
+                dUPDADT: result[i].dUPDADT,
+                iCANCLEPRO: result[i].iCANCLEPRO ?? 0,
+                iDISCOUNT: result[i].iDISCOUNT,
+                iFREE: result[i].iFREE,
+                iINCOMPRO: result[i].iCANCLEPRO ?? 0,
+                iLOSSPRO: result[i].iCANCLEPRO ?? 0,
+                iLSIZEQTY: '0.0',
+                iLUNITPRICE: result[i].iLUNITPRICE,
+                iMSIZEQTY: '0.0',
+                iMUNITPRICE: result[i].iMUNITPRICE,
+                iNETTOTAL: result[i].iNETTOTAL ?? '0',
+                iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
+                iSEQ: result[i].iSEQ,
+                iSSIZEQTY: result[i].iSSIZEQTY,
+                iSUNITPRICE: result[i].iSUNITPRICE,
+                iTOTAL:
+                    "${double.parse(result[i].iSSIZEQTY!) * double.parse(result[i].iSUNITPRICE!)}",
+              );
+
+              podtList.add(product);
             }
-            GlobalParam.deliveryPodtShow = podtList;
-            GlobalParam.deliveryStoreSum.iTOTAL = total.toString();
-            getBasketsofCustomer(cCUSTCD, cPOCD, '%$cPRODNM%', '%$cPRODCD%');
-          } else {
-            // print('+++++++++++++++++++ query TBT_PODT fail +++++++++++++++++++');
-            podtList.clear();
+            if (double.parse(result[i].iMSIZEQTY!) > 0) {
+              var data = {
+                "cUOMNM": result[i].cMUOMNM,
+                "iPRICE": result[i].iMUNITPRICE,
+                "iTOTAL": result[i].iTOTAL
+              };
+
+              QueryPodtResp product = QueryPodtResp(
+                cBASKCD: result[i].cBASKCD,
+                cBASKNM: result[i].cBASKNM,
+                cBRNDCD: result[i].cBRNDCD,
+                cBRNDNM: result[i].cBRNDNM,
+                cCATECD: result[i].cCATECD,
+                cCATENM: result[i].cCATENM,
+                cCREABY: result[i].cCREABY,
+                cDISCOUNT: result[i].cDISCOUNT,
+                cINSERTYPE: result[i].cINSERTYPE,
+                cLUOMCD: result[i].cLUOMCD,
+                cLUOMNM: result[i].cLUOMNM,
+                cMUOMCD: result[i].cMUOMCD,
+                cMUOMNM: result[i].cMUOMNM,
+                cPHOTOPATH: result[i].cPHOTOPATH,
+                cPHOTOSERV: result[i].cPHOTOSERV,
+                cPOCD: result[i].cPOCD,
+                cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
+                cPRODCD: result[i].cPRODCD,
+                cPRODNM: result[i].cPRODNM,
+                cPROMO: result[i].cPROMO,
+                cSTATUS: result[i].cSTATUS,
+                cSUBCATECD: result[i].cSUBCATECD,
+                cSUBCATENM: result[i].cSUBCATENM,
+                cSUOMCD: result[i].cSUOMCD,
+                cSUOMNM: result[i].cSUOMNM,
+                cTYPE: result[i].cTYPE,
+                cTYPENM: result[i].cTYPENM,
+                cUPDABY: result[i].cUPDABY,
+                dCREADT: result[i].dCREADT,
+                dUPDADT: result[i].dUPDADT,
+                iCANCLEPRO: result[i].iCANCLEPRO ?? 0,
+                iDISCOUNT: result[i].iDISCOUNT,
+                iFREE: result[i].iFREE,
+                iINCOMPRO: result[i].iCANCLEPRO ?? 0,
+                iLOSSPRO: result[i].iCANCLEPRO ?? 0,
+                iLSIZEQTY: '0.0',
+                iLUNITPRICE: result[i].iLUNITPRICE,
+                iMSIZEQTY: result[i].iMSIZEQTY,
+                iMUNITPRICE: result[i].iMUNITPRICE,
+                iNETTOTAL: result[i].iNETTOTAL ?? '0',
+                iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
+                iSEQ: result[i].iSEQ,
+                iSSIZEQTY: '0.0',
+                iSUNITPRICE: result[i].iSUNITPRICE,
+                iTOTAL:
+                    "${double.parse(result[i].iMSIZEQTY!) * double.parse(result[i].iMUNITPRICE!)}",
+              );
+
+              podtList.add(product);
+            }
+            if (double.parse(result[i].iLSIZEQTY!) > 0) {
+              var data = {
+                "cUOMNM": result[i].cLUOMNM,
+                "iPRICE": result[i].iLUNITPRICE,
+                "iTOTAL": result[i].iTOTAL
+              };
+
+              QueryPodtResp product = QueryPodtResp(
+                cBASKCD: result[i].cBASKCD,
+                cBASKNM: result[i].cBASKNM,
+                cBRNDCD: result[i].cBRNDCD,
+                cBRNDNM: result[i].cBRNDNM,
+                cCATECD: result[i].cCATECD,
+                cCATENM: result[i].cCATENM,
+                cCREABY: result[i].cCREABY,
+                cDISCOUNT: result[i].cDISCOUNT,
+                cINSERTYPE: result[i].cINSERTYPE,
+                cLUOMCD: result[i].cLUOMCD,
+                cLUOMNM: result[i].cLUOMNM,
+                cMUOMCD: result[i].cMUOMCD,
+                cMUOMNM: result[i].cMUOMNM,
+                cPHOTOPATH: result[i].cPHOTOPATH,
+                cPHOTOSERV: result[i].cPHOTOSERV,
+                cPOCD: result[i].cPOCD,
+                cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
+                cPRODCD: result[i].cPRODCD,
+                cPRODNM: result[i].cPRODNM,
+                cPROMO: result[i].cPROMO,
+                cSTATUS: result[i].cSTATUS,
+                cSUBCATECD: result[i].cSUBCATECD,
+                cSUBCATENM: result[i].cSUBCATENM,
+                cSUOMCD: result[i].cSUOMCD,
+                cSUOMNM: result[i].cSUOMNM,
+                cTYPE: result[i].cTYPE,
+                cTYPENM: result[i].cTYPENM,
+                cUPDABY: result[i].cUPDABY,
+                dCREADT: result[i].dCREADT,
+                dUPDADT: result[i].dUPDADT,
+                iCANCLEPRO: result[i].iCANCLEPRO ?? 0,
+                iDISCOUNT: result[i].iDISCOUNT,
+                iFREE: result[i].iFREE,
+                iINCOMPRO: result[i].iCANCLEPRO ?? 0,
+                iLOSSPRO: result[i].iCANCLEPRO ?? 0,
+                iLSIZEQTY: result[i].iLSIZEQTY,
+                iLUNITPRICE: result[i].iLUNITPRICE,
+                iMSIZEQTY: '0.0',
+                iMUNITPRICE: result[i].iMUNITPRICE,
+                iNETTOTAL: result[i].iNETTOTAL ?? '0',
+                iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
+                iSEQ: result[i].iSEQ,
+                iSSIZEQTY: '0.0',
+                iSUNITPRICE: result[i].iSUNITPRICE,
+                iTOTAL:
+                    "${double.parse(result[i].iLSIZEQTY!) * double.parse(result[i].iLUNITPRICE!)}",
+              );
+
+              podtList.add(product);
+            }
+
+            if (result[i].cPREPAIRSTATUS == 'N') {
+              podtListNstatus.add(result[i]);
+            }
           }
-        } on SocketException catch (e) {
-          wrongDialog(e.message);
-        } on Exception catch (e) {
-          wrongDialog(e.toString());
+          if (GlobalParam.deliveryRegetPODT == true) {
+            GlobalParam.deliveryPodtList = podtList;
+          }
+          GlobalParam.deliveryPodtShow = podtList;
+          GlobalParam.deliveryStoreSum.iTOTAL = total.toString();
+          getBasketsofCustomer(cCUSTCD, cPOCD, '%$cPRODNM%', '%$cPRODCD%');
+        } else {
+          // print('+++++++++++++++++++ query TBT_PODT fail +++++++++++++++++++');
+          podtList.clear();
         }
-        setState(() {});
+      } on SocketException catch (e) {
+        wrongDialog(e.message);
+      } on Exception catch (e) {
+        wrongDialog(e.toString());
       }
+      setState(() {});
     } else {
       wrongDialog("custcd is null.");
     }
@@ -593,14 +562,14 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
           //   print(stockCardReqList[i].cLOTNO);
           // }
           String cUOMCD = '';
-          if (double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cSUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cSUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cMUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cMUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cLUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cLUOMCD!;
           }
           StockCardReq cancel = StockCardReq(
               cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
@@ -649,77 +618,75 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
   getPodtShow(String cPOCD, String cPRODNM, String cPRODCD) async {
     double sumItem = 0;
     if (cPOCD != '') {
-      if (cPOCD != null) {
-        try {
-          AllApiProxyMobile proxy = AllApiProxyMobile();
+      try {
+        AllApiProxyMobile proxy = AllApiProxyMobile();
 
-          var result = await proxy.getPodt(QueryPodtReq(
-              cPOCD: cPOCD,
-              cPRODCD: '%$cPRODCD%',
-              cPRODNM: '%$cPRODNM%',
-              cCUSTTYPE: GlobalParam.customer['cCUSTTYPE']));
-          if (result.isNotEmpty) {
-            //  print('+++++++++++++++++++ query TBT_PODT success +++++++++++++++++++');
-            podtList.clear();
-            double total = 0;
-            for (int i = 0; i < result.length; i++) {
-              if (result[i].iNETTOTAL == null) {
-                result[i].iNETTOTAL = '0.0';
-              }
-              sumItem += double.parse(result[i].iSSIZEQTY) +
-                  double.parse(result[i].iMSIZEQTY) +
-                  double.parse(result[i].iLSIZEQTY);
-              podtList.add(result[i]);
-              total += double.parse(result[i].iNETTOTAL);
-
-              // if (double.parse(result[i].iSSIZEQTY) != 0.0) {
-              //   var data = {
-              //     "cUOMNM": result[i].cSUOMNM,
-              //     "iPRICE": result[i].iSUNITPRICE,
-              //     "iTOTAL": result[i].iTOTAL
-              //   };
-              //   unitList.add(data);
-              // } else if (double.parse(result[i].iMSIZEQTY) != 0.0) {
-              //   var data = {
-              //     "cUOMNM": result[i].cMUOMNM,
-              //     "iPRICE": result[i].iMUNITPRICE,
-              //     "iTOTAL": result[i].iTOTAL
-              //   };
-              //   unitList.add(data);
-              // } else if (double.parse(result[i].iMSIZEQTY) != 0.0) {
-              //   var data = {
-              //     "cUOMNM": result[i].cLUOMNM,
-              //     "iPRICE": result[i].iLUNITPRICE,
-              //     "iTOTAL": result[i].iTOTAL
-              //   };
-              //   unitList.add(data);
-              // } else {
-              //   var data = {
-              //     "cUOMNM": '',
-              //     "iPRICE": '0.0',
-              //     "iTOTAL": '0.0',
-              //   };
-              //   unitList.add(data);
-              // }
-
-              if (result[i].cPREPAIRSTATUS == 'N') {
-                podtListNstatus.add(result[i]);
-              }
+        var result = await proxy.getPodt(QueryPodtReq(
+            cPOCD: cPOCD,
+            cPRODCD: '%$cPRODCD%',
+            cPRODNM: '%$cPRODNM%',
+            cCUSTTYPE: GlobalParam.customer['cCUSTTYPE']));
+        if (result.isNotEmpty) {
+          //  print('+++++++++++++++++++ query TBT_PODT success +++++++++++++++++++');
+          podtList.clear();
+          double total = 0;
+          for (int i = 0; i < result.length; i++) {
+            if (result[i].iNETTOTAL == null) {
+              result[i].iNETTOTAL = '0.0';
             }
-            GlobalParam.deliveryPodtShow = podtList;
+            sumItem += double.parse(result[i].iSSIZEQTY!) +
+                double.parse(result[i].iMSIZEQTY!) +
+                double.parse(result[i].iLSIZEQTY!);
+            podtList.add(result[i]);
+            total += double.parse(result[i].iNETTOTAL!);
 
-            getBasketsofCustomer(cCUSTCD, cPOCD, '%$cPRODNM%', '%$cPRODCD%');
-          } else {
-            // print('+++++++++++++++++++ query TBT_PODT fail +++++++++++++++++++');
-            podtList.clear();
+            // if (double.parse(result[i].iSSIZEQTY) != 0.0) {
+            //   var data = {
+            //     "cUOMNM": result[i].cSUOMNM,
+            //     "iPRICE": result[i].iSUNITPRICE,
+            //     "iTOTAL": result[i].iTOTAL
+            //   };
+            //   unitList.add(data);
+            // } else if (double.parse(result[i].iMSIZEQTY) != 0.0) {
+            //   var data = {
+            //     "cUOMNM": result[i].cMUOMNM,
+            //     "iPRICE": result[i].iMUNITPRICE,
+            //     "iTOTAL": result[i].iTOTAL
+            //   };
+            //   unitList.add(data);
+            // } else if (double.parse(result[i].iMSIZEQTY) != 0.0) {
+            //   var data = {
+            //     "cUOMNM": result[i].cLUOMNM,
+            //     "iPRICE": result[i].iLUNITPRICE,
+            //     "iTOTAL": result[i].iTOTAL
+            //   };
+            //   unitList.add(data);
+            // } else {
+            //   var data = {
+            //     "cUOMNM": '',
+            //     "iPRICE": '0.0',
+            //     "iTOTAL": '0.0',
+            //   };
+            //   unitList.add(data);
+            // }
+
+            if (result[i].cPREPAIRSTATUS == 'N') {
+              podtListNstatus.add(result[i]);
+            }
           }
-        } on SocketException catch (e) {
-          wrongDialog(e.message);
-        } on Exception catch (e) {
-          wrongDialog(e.toString());
+          GlobalParam.deliveryPodtShow = podtList;
+
+          getBasketsofCustomer(cCUSTCD, cPOCD, '%$cPRODNM%', '%$cPRODCD%');
+        } else {
+          // print('+++++++++++++++++++ query TBT_PODT fail +++++++++++++++++++');
+          podtList.clear();
         }
-        setState(() {});
+      } on SocketException catch (e) {
+        wrongDialog(e.message);
+      } on Exception catch (e) {
+        wrongDialog(e.toString());
       }
+      setState(() {});
     } else {
       wrongDialog("custcd is null.");
     }
@@ -728,25 +695,23 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
   getBasketsofCustomer(
       String custcd, String pocd, String cPRODNM, String cPRODCD) async {
     if (custcd != '') {
-      if (custcd != null) {
-        try {
-          AllApiProxyMobile proxy = AllApiProxyMobile();
+      try {
+        AllApiProxyMobile proxy = AllApiProxyMobile();
 
-          var result =
-              await proxy.getBaskets(custcd, pocd, '%$cPRODNM%', '%$cPRODCD%');
-          if ((result.isNotEmpty)) {
-            // print("+++++++++++++++++ ${result.cPOCD} +++++++++++++++++");
-            setState(() {
-              productList = result;
-              GlobalParam.deliveryProductShow = result;
-            });
-          }
-          // print('++++++++++++ ${sumOfStore.length} ++++++++++++');
-        } on SocketException catch (e) {
-          wrongDialog(e.message);
-        } on Exception catch (e) {
-          wrongDialog(e.toString());
+        var result =
+            await proxy.getBaskets(custcd, pocd, '%$cPRODNM%', '%$cPRODCD%');
+        if ((result.isNotEmpty)) {
+          // print("+++++++++++++++++ ${result.cPOCD} +++++++++++++++++");
+          setState(() {
+            productList = result;
+            GlobalParam.deliveryProductShow = result;
+          });
         }
+        // print('++++++++++++ ${sumOfStore.length} ++++++++++++');
+      } on SocketException catch (e) {
+        wrongDialog(e.message);
+      } on Exception catch (e) {
+        wrongDialog(e.toString());
       }
     } else {
       wrongDialog("custcd is null.");
@@ -818,16 +783,16 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
   }
 
   Widget listOfProduct() {
-    return GlobalParam.deliveryPodtShow.length > 0
+    return GlobalParam.deliveryPodtShow.isNotEmpty
         ? ListView.builder(
             reverse: false,
             padding: const EdgeInsets.all(5),
             itemCount: GlobalParam.deliveryPodtList.length,
             itemBuilder: (BuildContext context, int index) {
               double item = double.parse(
-                      GlobalParam.deliveryPodtShow[index].iSSIZEQTY) +
-                  double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY) +
-                  double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY);
+                      GlobalParam.deliveryPodtShow[index].iSSIZEQTY!) +
+                  double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY!) +
+                  double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY!);
               var unit = '';
               var unitCode = '';
               var size = '';
@@ -839,65 +804,68 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
               bool badCheck = false;
               controller.add(new TextEditingController());
 
-              if (double.parse(GlobalParam.deliveryPodtShow[index].iSSIZEQTY) >
+              if (double.parse(GlobalParam.deliveryPodtShow[index].iSSIZEQTY!) >
                   0) {
-                unitCode = GlobalParam.deliveryPodtShow[index].cSUOMCD;
-                unit = GlobalParam.deliveryPodtShow[index].cSUOMNM;
+                unitCode = GlobalParam.deliveryPodtShow[index].cSUOMCD!;
+                unit = GlobalParam.deliveryPodtShow[index].cSUOMNM!;
                 currentPro =
-                    double.parse(GlobalParam.deliveryPodtShow[index].iSSIZEQTY)
+                    double.parse(GlobalParam.deliveryPodtShow[index].iSSIZEQTY!)
                         .toStringAsFixed(0);
                 unitPrice = double.parse(
-                    GlobalParam.deliveryPodtShow[index].iSUNITPRICE);
+                    GlobalParam.deliveryPodtShow[index].iSUNITPRICE!);
                 total = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iSUNITPRICE) *
-                    double.parse(GlobalParam.deliveryPodtShow[index].iSSIZEQTY);
+                        GlobalParam.deliveryPodtShow[index].iSUNITPRICE!) *
+                    double.parse(
+                        GlobalParam.deliveryPodtShow[index].iSSIZEQTY!);
                 size = "S";
               }
-              if (double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY) >
+              if (double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY!) >
                   0) {
-                unitCode = GlobalParam.deliveryPodtShow[index].cMUOMCD;
-                unit = GlobalParam.deliveryPodtShow[index].cMUOMNM;
+                unitCode = GlobalParam.deliveryPodtShow[index].cMUOMCD!;
+                unit = GlobalParam.deliveryPodtShow[index].cMUOMNM!;
                 currentPro =
-                    double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY)
+                    double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY!)
                         .toStringAsFixed(0);
                 unitPrice = double.parse(
-                    GlobalParam.deliveryPodtShow[index].iMUNITPRICE);
+                    GlobalParam.deliveryPodtShow[index].iMUNITPRICE!);
                 total = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iMUNITPRICE) *
-                    double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY);
+                        GlobalParam.deliveryPodtShow[index].iMUNITPRICE!) *
+                    double.parse(
+                        GlobalParam.deliveryPodtShow[index].iMSIZEQTY!);
                 size = "M";
               }
-              if (double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY) >
+              if (double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY!) >
                   0) {
-                unitCode = GlobalParam.deliveryPodtShow[index].cLUOMCD;
-                unit = GlobalParam.deliveryPodtShow[index].cLUOMNM;
+                unitCode = GlobalParam.deliveryPodtShow[index].cLUOMCD!;
+                unit = GlobalParam.deliveryPodtShow[index].cLUOMNM!;
                 currentPro =
-                    double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY)
+                    double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY!)
                         .toStringAsFixed(0);
                 unitPrice = double.parse(
-                    GlobalParam.deliveryPodtShow[index].iLUNITPRICE);
+                    GlobalParam.deliveryPodtShow[index].iLUNITPRICE!);
                 total = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iLUNITPRICE) *
-                    double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY);
+                        GlobalParam.deliveryPodtShow[index].iLUNITPRICE!) *
+                    double.parse(
+                        GlobalParam.deliveryPodtShow[index].iLSIZEQTY!);
                 size = "L";
               }
               for (var item in GlobalParam.deliveryCustPOHisDate) {
                 if (item.cPRODCD ==
                     GlobalParam.deliveryPodtShow[index].cPRODCD) {
                   if (double.parse(
-                          GlobalParam.deliveryPodtShow[index].iSSIZEQTY) >
+                          GlobalParam.deliveryPodtShow[index].iSSIZEQTY!) >
                       0) {
-                    hisPro = item.iSSIZEQTY;
+                    hisPro = item.iSSIZEQTY!;
                   }
                   if (double.parse(
-                          GlobalParam.deliveryPodtShow[index].iMSIZEQTY) >
+                          GlobalParam.deliveryPodtShow[index].iMSIZEQTY!) >
                       0) {
-                    hisPro = item.iMSIZEQTY;
+                    hisPro = item.iMSIZEQTY!;
                   }
                   if (double.parse(
-                          GlobalParam.deliveryPodtShow[index].iLSIZEQTY) >
+                          GlobalParam.deliveryPodtShow[index].iLSIZEQTY!) >
                       0) {
-                    hisPro = item.iLSIZEQTY;
+                    hisPro = item.iLSIZEQTY!;
                   }
                 }
               }
@@ -934,21 +902,21 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                             .cPHOTOPATH !=
                                         ''
                                     ? DecorationImage(
-                                        image: new NetworkImage(
+                                        image: NetworkImage(
                                           'http://${GlobalParam.deliveryPodtShow[index].cPHOTOSERV}/${GlobalParam.deliveryPodtShow[index].cPHOTOPATH}',
                                         ),
                                         scale: 1.0,
                                         fit: BoxFit.cover,
                                       )
-                                    : DecorationImage(
-                                        image: new AssetImage(
+                                    : const DecorationImage(
+                                        image: AssetImage(
                                           "assets/images/no_image.png",
                                         ),
                                         scale: 1.0,
                                         fit: BoxFit.cover,
                                       ),
                                 color: Colors.white,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(5),
                                   topRight: Radius.circular(5),
                                   bottomLeft: Radius.circular(5),
@@ -966,7 +934,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     '${item.toStringAsFixed(0)} ${GlobalParam.deliveryPodtShow[index].cPRODNM}',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.black,
                                         fontFamily: 'Prompt',
                                         fontWeight: FontWeight.bold,
@@ -990,19 +958,18 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                         children: [
                                           Container(
                                             alignment: Alignment.centerLeft,
-                                            child: GlobalParam.deliveryPodtShow
-                                                        .length >
-                                                    0
+                                            child: GlobalParam
+                                                    .deliveryPodtShow.isNotEmpty
                                                 ? Text(
                                                     '$unit',
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.grey,
                                                         fontFamily: 'Prompt',
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         fontSize: 14.0),
                                                   )
-                                                : Text(
+                                                : const Text(
                                                     '',
                                                     style: TextStyle(
                                                         color: Colors.grey,
@@ -1015,7 +982,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                         ],
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     InkWell(
                                       onTap: () {
                                         setState(() {
@@ -1063,7 +1030,8 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                             color: goodCheck == false
                                                 ? Colors.white
                                                 : Colors.green.shade100,
-                                            borderRadius: BorderRadius.only(
+                                            borderRadius:
+                                                const BorderRadius.only(
                                               topLeft: Radius.circular(5),
                                               topRight: Radius.circular(5),
                                               bottomLeft: Radius.circular(5),
@@ -1071,7 +1039,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                             ),
                                             border: Border.all(
                                                 color: Colors.green)),
-                                        child: Center(
+                                        child: const Center(
                                             child: Text('สินค้าดี',
                                                 style: TextStyle(
                                                     color: Colors.green,
@@ -1080,7 +1048,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                                 textAlign: TextAlign.center)),
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     InkWell(
                                       onTap: () {
                                         setState(() {
@@ -1128,7 +1096,8 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                             color: badCheck == false
                                                 ? Colors.white
                                                 : Colors.red.shade100,
-                                            borderRadius: BorderRadius.only(
+                                            borderRadius:
+                                                const BorderRadius.only(
                                               topLeft: Radius.circular(5),
                                               topRight: Radius.circular(5),
                                               bottomLeft: Radius.circular(5),
@@ -1136,7 +1105,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                             ),
                                             border:
                                                 Border.all(color: Colors.red)),
-                                        child: Center(
+                                        child: const Center(
                                             child: Text('สินค้าเสีย',
                                                 style: TextStyle(
                                                     color: Colors.red,
@@ -1158,7 +1127,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                             height: 32.0,
                                             width: widthScreen * 0.2,
                                             alignment: Alignment.center,
-                                            child: Text(
+                                            child: const Text(
                                               'รอบก่อน',
                                               style: TextStyle(
                                                   color: Colors.black,
@@ -1174,7 +1143,8 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                             width: widthScreen * 0.2,
                                             decoration: BoxDecoration(
                                                 color: Colors.grey.shade400,
-                                                borderRadius: BorderRadius.only(
+                                                borderRadius:
+                                                    const BorderRadius.only(
                                                   topLeft: Radius.circular(5),
                                                   topRight: Radius.circular(5),
                                                   bottomLeft:
@@ -1186,7 +1156,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                                     color: Colors.grey)),
                                             child: Center(
                                                 child: Text(hisPro,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.black,
                                                         fontFamily: 'Prompt',
                                                         fontSize: 14.0),
@@ -1196,7 +1166,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                         ],
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Container(
                                       child: Column(
                                         children: [
@@ -1204,7 +1174,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                             height: 32.0,
                                             width: widthScreen * 0.2,
                                             alignment: Alignment.center,
-                                            child: Text(
+                                            child: const Text(
                                               'รอบนี้',
                                               style: TextStyle(
                                                   color: Colors.black,
@@ -1220,7 +1190,8 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                             width: widthScreen * 0.2,
                                             decoration: BoxDecoration(
                                                 color: Colors.grey.shade400,
-                                                borderRadius: BorderRadius.only(
+                                                borderRadius:
+                                                    const BorderRadius.only(
                                                   topLeft: Radius.circular(5),
                                                   topRight: Radius.circular(5),
                                                   bottomLeft:
@@ -1232,7 +1203,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                                     color: Colors.grey)),
                                             child: Center(
                                                 child: Text(currentPro,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.black,
                                                         fontFamily: 'Prompt',
                                                         fontSize: 14.0),
@@ -1242,7 +1213,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                         ],
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Container(
                                       child: Column(
                                         children: [
@@ -1250,7 +1221,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                             height: 32.0,
                                             width: widthScreen * 0.2,
                                             alignment: Alignment.center,
-                                            child: Text(
+                                            child: const Text(
                                               'คืน/เหลือ',
                                               style: TextStyle(
                                                   color: Colors.black,
@@ -1266,7 +1237,8 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                             width: widthScreen * 0.2,
                                             decoration: BoxDecoration(
                                                 color: Colors.white,
-                                                borderRadius: BorderRadius.only(
+                                                borderRadius:
+                                                    const BorderRadius.only(
                                                   topLeft: Radius.circular(5),
                                                   topRight: Radius.circular(5),
                                                   bottomLeft:
@@ -1290,8 +1262,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                                   int iCANCLEPRO = 0;
 
                                                   setState(() {
-                                                    if (value == '' ||
-                                                        value == null) {
+                                                    if (value == '') {
                                                       for (int j = 0;
                                                           j <
                                                               GlobalParam
@@ -1392,7 +1363,8 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                                                       size);
                                                 },
                                                 cursorColor: Colors.black,
-                                                decoration: new InputDecoration(
+                                                decoration:
+                                                    const InputDecoration(
                                                   border: InputBorder.none,
                                                   focusedBorder:
                                                       InputBorder.none,
@@ -1418,10 +1390,10 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                     ),
                     Row(
                       children: [
-                        Spacer(),
-                        Container(
+                        const Spacer(),
+                        SizedBox(
                           width: widthScreen * 0.2,
-                          child: Text(
+                          child: const Text(
                             "ต่อหน่วย",
                             style: TextStyle(
                                 color: Colors.black,
@@ -1430,20 +1402,20 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                             textAlign: TextAlign.right,
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: widthScreen * 0.22,
                           child: Text(
                             "${numberFormat.format(unitPrice)} ฿",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.black,
                                 fontFamily: 'Prompt',
                                 fontSize: 14.0),
                             textAlign: TextAlign.right,
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: widthScreen * 0.1,
-                          child: Text(
+                          child: const Text(
                             "รวม",
                             style: TextStyle(
                                 color: Colors.black,
@@ -1452,11 +1424,11 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                             textAlign: TextAlign.right,
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: widthScreen * 0.22,
                           child: Text(
                             "${numberFormat.format(total)} ฿",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.black,
                                 fontFamily: 'Prompt',
                                 fontSize: 14.0),
@@ -1465,7 +1437,7 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
                         ),
                       ],
                     ),
-                    DottedLine(
+                    const DottedLine(
                       dashColor: Colors.grey,
                     ),
                   ],
@@ -1528,25 +1500,25 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
     String unitCode = '';
     if (miss > 0) {
       if (size == "S") {
-        if (double.parse(data.iSSIZEQTY) > 0) {
+        if (double.parse(data.iSSIZEQTY!) > 0) {
           GlobalParam.deliveryPodCancel.add(incom);
-          price = double.parse(data.iSUNITPRICE);
-          unitCode = data.cSUOMCD;
+          price = double.parse(data.iSUNITPRICE!);
+          unitCode = data.cSUOMCD!;
         }
       }
 
       if (size == "M") {
-        if (double.parse(data.iMSIZEQTY) > 0) {
+        if (double.parse(data.iMSIZEQTY!) > 0) {
           GlobalParam.deliveryPodCancel.add(incom);
-          price = double.parse(data.iMUNITPRICE);
-          unitCode = data.cMUOMCD;
+          price = double.parse(data.iMUNITPRICE!);
+          unitCode = data.cMUOMCD!;
         }
       }
       if (size == "L") {
-        if (double.parse(data.iLSIZEQTY) > 0) {
+        if (double.parse(data.iLSIZEQTY!) > 0) {
           GlobalParam.deliveryPodCancel.add(incom);
-          price = double.parse(data.iLUNITPRICE);
-          unitCode = data.cLUOMCD;
+          price = double.parse(data.iLUNITPRICE!);
+          unitCode = data.cLUOMCD!;
         }
       }
 
@@ -1569,22 +1541,22 @@ class _DeliveryStoreProductMissState extends State<DeliveryStoreProductMiss> {
         // ignore: unrelated_type_equality_checks
         if (GlobalParam.deliveryPodCancel[i].cPRODCD == data.cPRODCD) {
           if (size == "S") {
-            if (double.parse(data.iSSIZEQTY) > 0) {
+            if (double.parse(data.iSSIZEQTY!) > 0) {
               GlobalParam.deliveryPodCancel.removeAt(i);
-              unitCode = data.cSUOMCD;
+              unitCode = data.cSUOMCD!;
             }
           }
 
           if (size == "M") {
-            if (double.parse(data.iMSIZEQTY) > 0) {
+            if (double.parse(data.iMSIZEQTY!) > 0) {
               GlobalParam.deliveryPodCancel.removeAt(i);
-              unitCode = data.cMUOMCD;
+              unitCode = data.cMUOMCD!;
             }
           }
           if (size == "L") {
-            if (double.parse(data.iLSIZEQTY) > 0) {
+            if (double.parse(data.iLSIZEQTY!) > 0) {
               GlobalParam.deliveryPodCancel.removeAt(i);
-              unitCode = data.cLUOMCD;
+              unitCode = data.cLUOMCD!;
             }
           }
 

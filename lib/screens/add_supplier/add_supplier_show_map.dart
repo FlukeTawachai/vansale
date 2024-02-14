@@ -22,7 +22,7 @@ class _AddSupplierShowMapState extends State<AddSupplierShowMap> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('เพิ่มร้านค้า'),
+        title: const Text('เพิ่มร้านค้า'),
       ),
       backgroundColor: Colors.black12,
       body: ListView(
@@ -63,14 +63,15 @@ class _AddSupplierShowMapState extends State<AddSupplierShowMap> {
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: TextField(
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'Prompt',
                     ),
                     textInputAction: TextInputAction.search,
                     decoration: InputDecoration(
                       hintText: "ค้นหาตำแหน่ง...",
                       border: InputBorder.none,
-                      contentPadding: EdgeInsets.only(left: 5.0, top: 5.0),
+                      contentPadding:
+                          const EdgeInsets.only(left: 5.0, top: 5.0),
                       suffixIcon: IconButton(
                         icon: Icon(
                           Icons.search,
@@ -89,9 +90,9 @@ class _AddSupplierShowMapState extends State<AddSupplierShowMap> {
                 child: TextButton(
                   style: TextButton.styleFrom(
                     backgroundColor: HexColor("#6c7e9b"),
-                    shape: CircleBorder(),
+                    shape: const CircleBorder(),
                   ),
-                  child: Icon(
+                  child: const Icon(
                     LineAwesomeIcons.crosshairs,
                     color: Colors.white,
                     size: 15.0,

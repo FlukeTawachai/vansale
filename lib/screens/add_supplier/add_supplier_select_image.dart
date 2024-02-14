@@ -18,16 +18,16 @@ class AddSupplierSelectImage extends StatefulWidget {
 }
 
 class _AddSupplierSelectImageState extends State<AddSupplierSelectImage> {
-  PickedFile imageFile;
+  late PickedFile imageFile;
   // final ImagePicker _picker = ImagePicker();
-  File file;
-  Timer timer;
+  late File file;
+  late Timer timer;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('ถ่ายรูปร้านค้า'),
+        title: const Text('ถ่ายรูปร้านค้า'),
       ),
       backgroundColor: Colors.black12,
       body: SizedBox(
@@ -35,21 +35,19 @@ class _AddSupplierSelectImageState extends State<AddSupplierSelectImage> {
         width: MediaQuery.of(context).size.width,
         child: showImage(),
       ),
-      bottomNavigationBar: Container(
-        child: Row(
-          children: [
-            Expanded(
-              child: Container(
-                child: btnSelectImage(),
-              ),
+      bottomNavigationBar: Row(
+        children: [
+          Expanded(
+            child: Container(
+              child: btnSelectImage(),
             ),
-            Expanded(
-              child: Container(
-                child: btnSavedata(),
-              ),
+          ),
+          Expanded(
+            child: Container(
+              child: btnSavedata(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -180,14 +178,14 @@ class _AddSupplierSelectImageState extends State<AddSupplierSelectImage> {
     EasyLoading.dismiss();
   }*/
 
-  File _image;
+  late File _image;
   Future<void> openCamera() async {
     //EasyLoading.show();
     // ignore: invalid_use_of_visible_for_testing_member
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
       GlobalParam.deliveryImage = File(imageFile.path);
       //EasyLoading.dismiss();
@@ -200,7 +198,7 @@ class _AddSupplierSelectImageState extends State<AddSupplierSelectImage> {
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.gallery, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
       GlobalParam.deliveryImage = File(imageFile.path);
       // EasyLoading.dismiss();

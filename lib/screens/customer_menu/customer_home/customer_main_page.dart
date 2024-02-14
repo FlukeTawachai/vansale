@@ -18,7 +18,7 @@ class _CustomerMainPageState extends State<CustomerMainPage> {
         elevation: 0.0,
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'หน้าแรก',
           style: TextStyle(
             color: Colors.black,
@@ -28,7 +28,7 @@ class _CustomerMainPageState extends State<CustomerMainPage> {
           ),
         ),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),
@@ -54,7 +54,7 @@ class _CustomerMainPageState extends State<CustomerMainPage> {
                 child: RefreshIndicator(
                   color: Colors.green,
                   onRefresh: () async {
-                    return await Future.delayed(Duration(seconds: 1));
+                    return await Future.delayed(const Duration(seconds: 1));
                   },
                   child: CustomerListDT(),
                 ),

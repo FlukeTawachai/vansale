@@ -14,7 +14,7 @@ import 'package:vansale/screens/delivery/delivery_map/map_street_view.dart';
 
 class MapStores extends StatefulWidget {
   final GetCustomerOfBranchReq req;
-  const MapStores({Key key, this.req}) : super(key: key);
+  const MapStores({Key? key, required this.req}) : super(key: key);
 
   @override
   State<MapStores> createState() => _MapStoresState();
@@ -22,14 +22,15 @@ class MapStores extends StatefulWidget {
 
 class _MapStoresState extends State<MapStores> {
   List<GetCustomerOfBranchResp> storeList = [];
-  GoogleMapController mapController; //contrller for Google map
+  late GoogleMapController mapController; //contrller for Google map
   final Set<Marker> markers = new Set(); //markers for google map
-  LatLng showLocation = LatLng(13.751533, 100.493688); //location to show in map
-  GoogleMapController _controller;
+  LatLng showLocation =
+      const LatLng(13.751533, 100.493688); //location to show in map
+  late GoogleMapController _controller;
   MapType _currentMapType = MapType.normal;
   List<DropdownMenuItem<String>> group = [
-    DropdownMenuItem(child: Text("พื้นฐาน"), value: "1"),
-    DropdownMenuItem(child: Text("ดาวเทียม"), value: "2"),
+    const DropdownMenuItem(child: Text("พื้นฐาน"), value: "1"),
+    const DropdownMenuItem(child: Text("ดาวเทียม"), value: "2"),
   ];
   String selectType = "1";
 
@@ -86,7 +87,7 @@ class _MapStoresState extends State<MapStores> {
                               color: HexColor('#000000'),
                               // fontFamily: "Prompt",
                             ),
-                            onChanged: (String value) {
+                            onChanged: (value) {
                               setState(() {
                                 if (value == "1") {
                                   _currentMapType = MapType.normal;
@@ -144,11 +145,11 @@ class _MapStoresState extends State<MapStores> {
             (icon) {
               markers.add(Marker(
                 //add first marker
-                markerId: MarkerId(LatLng(double.parse(item.cLATITUDE),
-                        double.parse(item.cLONGTITUDE))
+                markerId: MarkerId(LatLng(double.parse(item.cLATITUDE ?? '0'),
+                        double.parse(item.cLONGTITUDE ?? '0'))
                     .toString()),
-                position: LatLng(double.parse(item.cLATITUDE),
-                    double.parse(item.cLONGTITUDE)), //position of marker
+                position: LatLng(double.parse(item.cLATITUDE ?? '0'),
+                    double.parse(item.cLONGTITUDE ?? '0')), //position of marker
                 infoWindow: InfoWindow(
                   //popup info
                   title: "${item.iSEQROUTE} ${item.cCUSTCD} ${item.cCUSTNM}",
@@ -183,9 +184,9 @@ class _MapStoresState extends State<MapStores> {
           });
 
           _controller.animateCamera(CameraUpdate.newCameraPosition(
-              new CameraPosition(
-                  target: LatLng(double.parse(storeList[0].cLATITUDE),
-                      double.parse(storeList[0].cLONGTITUDE)),
+              CameraPosition(
+                  target: LatLng(double.parse(storeList[0].cLATITUDE ?? '0'),
+                      double.parse(storeList[0].cLONGTITUDE ?? '0')),
                   zoom: 5.00)));
         }
       } on SocketException catch (e) {

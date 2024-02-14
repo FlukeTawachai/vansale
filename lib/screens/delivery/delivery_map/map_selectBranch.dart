@@ -15,7 +15,7 @@ import 'package:vansale/screens/delivery/delivery_map/map_googleMap.dart';
 import 'package:vansale/screens/navigatorStore/storeInRoute.dart';
 
 class SelectBranchMap extends StatefulWidget {
-  const SelectBranchMap({Key key}) : super(key: key);
+  const SelectBranchMap({Key? key}) : super(key: key);
 
   @override
   State<SelectBranchMap> createState() => _SelectBranchMapState();
@@ -27,26 +27,26 @@ class _SelectBranchMapState extends State<SelectBranchMap> {
   String selectRoute = '';
   String selectVehicle = '';
   List<DropdownMenuItem<String>> group = [
-    DropdownMenuItem(child: Text("เลือก"), value: ""),
-    DropdownMenuItem(child: Text("วันจันทร์"), value: "GRMON"),
-    DropdownMenuItem(child: Text("วันอังคาร"), value: "GRTUE"),
-    DropdownMenuItem(child: Text("วันพุธ"), value: "GRWED"),
-    DropdownMenuItem(child: Text("วันพฤหัสบดี"), value: "GRTHU"),
-    DropdownMenuItem(child: Text("ศุกร์"), value: "GRFRI"),
-    DropdownMenuItem(child: Text("เสาร์"), value: "GRSAT"),
-    DropdownMenuItem(child: Text("อาทิตย์"), value: "GRSUN"),
+    const DropdownMenuItem(child: Text("เลือก"), value: ""),
+    const DropdownMenuItem(child: Text("วันจันทร์"), value: "GRMON"),
+    const DropdownMenuItem(child: Text("วันอังคาร"), value: "GRTUE"),
+    const DropdownMenuItem(child: Text("วันพุธ"), value: "GRWED"),
+    const DropdownMenuItem(child: Text("วันพฤหัสบดี"), value: "GRTHU"),
+    const DropdownMenuItem(child: Text("ศุกร์"), value: "GRFRI"),
+    const DropdownMenuItem(child: Text("เสาร์"), value: "GRSAT"),
+    const DropdownMenuItem(child: Text("อาทิตย์"), value: "GRSUN"),
   ];
 
   List<DropdownMenuItem<String>> route = [
-    DropdownMenuItem(child: Text("เลือก"), value: ""),
+    const DropdownMenuItem(child: Text("เลือก"), value: ""),
   ];
 
   List<DropdownMenuItem<String>> branch = [
-    DropdownMenuItem(child: Text("เลือก"), value: ""),
+    const DropdownMenuItem(child: Text("เลือก"), value: ""),
   ];
 
   List<DropdownMenuItem<String>> vehicle = [
-    DropdownMenuItem(child: Text("เลือก"), value: ""),
+    const DropdownMenuItem(child: Text("เลือก"), value: ""),
   ];
 
   @override
@@ -66,7 +66,7 @@ class _SelectBranchMapState extends State<SelectBranchMap> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
                 width: widthScreen * 0.2,
                 child: Text(
                   "เลือกสาขา:",
@@ -96,31 +96,31 @@ class _SelectBranchMapState extends State<SelectBranchMap> {
                             color: HexColor('#000000'),
                             // fontFamily: "Prompt",
                           ),
-                          onChanged: (String value) {
+                          onChanged: (value) {
                             setState(() {
-                              selectBranch = value;
+                              selectBranch = value ?? '';
                               selectGroup = '';
                               selectRoute = '';
                               selectVehicle = '';
                               route = [
-                                DropdownMenuItem(
+                                const DropdownMenuItem(
                                     child: Text("เลือก"), value: ""),
                               ];
                             });
-                            getVehicleInBranch(value);
+                            getVehicleInBranch(value ?? '');
                           },
                           items: branch))),
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
                 width: widthScreen * 0.2,
                 child: Text(
                   "เลือกชื่อรถ:",
@@ -150,23 +150,23 @@ class _SelectBranchMapState extends State<SelectBranchMap> {
                             color: HexColor('#000000'),
                             // fontFamily: "Prompt",
                           ),
-                          onChanged: (String value) {
+                          onChanged: (value) {
                             setState(() {
-                              selectVehicle = value;
+                              selectVehicle = value ?? '';
                             });
                           },
                           items: vehicle))),
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
                 width: widthScreen * 0.2,
                 child: Text(
                   "เลือกกลุ่ม:",
@@ -196,24 +196,24 @@ class _SelectBranchMapState extends State<SelectBranchMap> {
                             color: HexColor('#000000'),
                             // fontFamily: "Prompt",
                           ),
-                          onChanged: (String value) {
-                            getRouteGroup(value, selectBranch);
+                          onChanged: (value) {
+                            getRouteGroup(value ?? '', selectBranch);
                             setState(() {
-                              selectGroup = value;
+                              selectGroup = value ?? '';
                             });
                           },
                           items: group))),
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
                 width: widthScreen * 0.2,
                 child: Text(
                   "เลือกสาย:",
@@ -243,16 +243,16 @@ class _SelectBranchMapState extends State<SelectBranchMap> {
                             color: HexColor('#000000'),
                             // fontFamily: "Prompt",
                           ),
-                          onChanged: (String value) {
+                          onChanged: (value) {
                             setState(() {
-                              selectRoute = value;
+                              selectRoute = value ?? '';
                             });
                           },
                           items: route))),
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 48,
         ),
         InkWell(
@@ -367,7 +367,7 @@ class _SelectBranchMapState extends State<SelectBranchMap> {
         setState(() {
           for (var item in result) {
             branch.add(DropdownMenuItem(
-                child: Text(item.cBRANNM), value: item.cBRANCD));
+                child: Text(item.cBRANNM ?? ''), value: item.cBRANCD));
           }
         });
       }
@@ -385,13 +385,13 @@ class _SelectBranchMapState extends State<SelectBranchMap> {
       var result = await proxy.getVehicleInBranch(branch);
       if ((result.isNotEmpty)) {
         setState(() {
-          vehicle = [DropdownMenuItem(child: Text("เลือก"), value: "")];
+          vehicle = [const DropdownMenuItem(child: Text("เลือก"), value: "")];
           result.sort(
               (a, b) => a.cVEHICD.toString().compareTo(b.cVEHICD.toString()));
 
           for (var item in result) {
             vehicle.add(DropdownMenuItem(
-                child: Text(item.cVEHINM), value: item.cVEHICD));
+                child: Text(item.cVEHINM ?? ''), value: item.cVEHICD));
           }
         });
       }
@@ -413,11 +413,12 @@ class _SelectBranchMapState extends State<SelectBranchMap> {
           if ((result.isNotEmpty)) {
             setState(() {
               route = [
-                DropdownMenuItem(child: Text("เลือก"), value: ""),
+                const DropdownMenuItem(child: Text("เลือก"), value: ""),
               ];
               for (int i = 0; i < result.length; i++) {
                 route.add(DropdownMenuItem(
-                    child: Text(result[i].cRTENM), value: result[i].cRTECD));
+                    child: Text(result[i].cRTENM ?? ''),
+                    value: result[i].cRTECD));
               }
             });
           }
@@ -429,7 +430,7 @@ class _SelectBranchMapState extends State<SelectBranchMap> {
       }
     } else {
       route = [];
-      route.add(DropdownMenuItem(child: Text('เลือก'), value: ''));
+      route.add(const DropdownMenuItem(child: Text('เลือก'), value: ''));
     }
   }
 }

@@ -21,7 +21,7 @@ import 'package:vansale/screens/home/home.dart';
 class DeliveryMoneyMain extends StatefulWidget {
   final String typeMenuCode;
   final bool reset;
-  DeliveryMoneyMain(this.typeMenuCode, this.reset);
+  const DeliveryMoneyMain(this.typeMenuCode, this.reset, {super.key});
 
   @override
   State<DeliveryMoneyMain> createState() => _DeliveryMoneyMainState();
@@ -50,7 +50,7 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ส่งเงิน'),
+        title: const Text('ส่งเงิน'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -63,7 +63,7 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
                   ),
                 );
               },
-              icon: Icon(Icvp.ellipsis_v_solid))
+              icon: const Icon(Icvp.ellipsis_v_solid))
         ],
       ),
       body: Container(
@@ -82,20 +82,20 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5.0,
             ),
-            DottedLine(
+            const DottedLine(
               dashColor: Colors.grey,
             ),
-            SizedBox(
+            const SizedBox(
               height: 15.0,
             ),
             Row(
               children: [
                 Expanded(
                   child: Container(
-                    child: Text('ยอดขายทั้งหมด'),
+                    child: const Text('ยอดขายทั้งหมด'),
                   ),
                 ),
                 Expanded(
@@ -113,7 +113,7 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
               children: [
                 Expanded(
                   child: Container(
-                    child: Text('เงินสด'),
+                    child: const Text('เงินสด'),
                   ),
                 ),
                 Expanded(
@@ -121,11 +121,11 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
                     alignment: Alignment.centerRight,
                     child: Row(
                       children: [
-                        Spacer(),
+                        const Spacer(),
                         Utility.formateNumberOR18(iCASH, 18.00),
                         Container(
                           alignment: Alignment.centerRight,
-                          child: Text(
+                          child: const Text(
                             " ฿",
                             style: TextStyle(
                               fontSize: 14.0,
@@ -144,7 +144,7 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
               children: [
                 Expanded(
                   child: Container(
-                    child: Text('เงินโอน'),
+                    child: const Text('เงินโอน'),
                   ),
                 ),
                 Expanded(
@@ -152,11 +152,11 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
                     alignment: Alignment.centerRight,
                     child: Row(
                       children: [
-                        Spacer(),
+                        const Spacer(),
                         Utility.formateNumberOR18(iTRANSFER, 18.00),
                         Container(
                           alignment: Alignment.centerRight,
-                          child: Text(
+                          child: const Text(
                             " ฿",
                             style: TextStyle(
                               fontSize: 14.0,
@@ -175,7 +175,7 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
               children: [
                 Expanded(
                   child: Container(
-                    child: Text('เช็ค'),
+                    child: const Text('เช็ค'),
                   ),
                 ),
                 Expanded(
@@ -183,11 +183,11 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
                     alignment: Alignment.centerRight,
                     child: Row(
                       children: [
-                        Spacer(),
+                        const Spacer(),
                         Utility.formateNumberOR18(iCHECK, 18.00),
                         Container(
                           alignment: Alignment.centerRight,
-                          child: Text(
+                          child: const Text(
                             " ฿",
                             style: TextStyle(
                               fontSize: 14.0,
@@ -206,7 +206,7 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
               children: [
                 Expanded(
                   child: Container(
-                    child: Text('ค่าแรง'),
+                    child: const Text('ค่าแรง'),
                   ),
                 ),
                 Expanded(
@@ -214,11 +214,11 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
                     alignment: Alignment.centerRight,
                     child: Row(
                       children: [
-                        Spacer(),
+                        const Spacer(),
                         Utility.formateNumberOR18(iTOTALWAGE, 18.00),
                         Container(
                           alignment: Alignment.centerRight,
-                          child: Text(
+                          child: const Text(
                             " ฿",
                             style: TextStyle(
                               fontSize: 14.0,
@@ -237,7 +237,7 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
               children: [
                 Expanded(
                   child: Container(
-                    child: Text('ค่าน้ำมัน'),
+                    child: const Text('ค่าน้ำมัน'),
                   ),
                 ),
                 Expanded(
@@ -248,10 +248,10 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 15.0,
             ),
-            DottedLine(
+            const DottedLine(
               dashColor: Colors.grey,
             ),
             Expanded(
@@ -282,7 +282,7 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
       alignment: Alignment.centerLeft,
       child: Text(
         yearThai(),
-        style: TextStyle(
+        style: const TextStyle(
           fontFamily: 'Prompt',
           fontSize: 16.0,
           fontWeight: FontWeight.bold,
@@ -298,7 +298,7 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
         alignment: Alignment.centerRight,
         child: Text(
           'No.$newDate',
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: 'Prompt',
             fontSize: 16.0,
             fontWeight: FontWeight.bold,
@@ -312,11 +312,11 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
   Widget _totalPriceRefuel() {
     return Row(
       children: [
-        Spacer(),
+        const Spacer(),
         Utility.formateNumberOR18(refuelTotal, 18.00),
         Container(
           alignment: Alignment.centerRight,
-          child: Text(
+          child: const Text(
             " ฿",
             style: TextStyle(
               fontSize: 14.0,
@@ -332,12 +332,12 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
   Widget _totalPrice() {
     return Row(
       children: [
-        Spacer(),
+        const Spacer(),
         Utility.formateNumberGN18(
             GlobalParam.deliveryAddSendMoney.iTOTAL ?? 0, 18.00),
         Container(
           alignment: Alignment.centerRight,
-          child: Text(
+          child: const Text(
             " ฿",
             style: TextStyle(
               fontSize: 14.0,
@@ -356,7 +356,7 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
       height: 140.0,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(15),
           topRight: Radius.circular(15),
         ),
@@ -365,7 +365,7 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 7,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
@@ -382,8 +382,8 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
                         child: Container(
-                          width: MediaQuery.of(context).size.width*0.4,
-                          child: Text(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: const Text(
                             'รวมเงินที่ต้องส่ง(เงินสด)',
                             style: TextStyle(
                               fontSize: 12.0,
@@ -395,16 +395,16 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
                     ),
                     Expanded(
                       child: Container(
-                        width: MediaQuery.of(context).size.width*0.4,
+                          width: MediaQuery.of(context).size.width * 0.4,
                           alignment: Alignment.centerRight,
                           child: Row(
                             children: [
-                              Spacer(),
+                              const Spacer(),
                               Utility.formateNumberGN18(
                                   iCASH - refuelTotal - iTOTALWAGE, 18.00),
                               Container(
                                 alignment: Alignment.centerRight,
-                                child: Text(
+                                child: const Text(
                                   " ฿",
                                   style: TextStyle(
                                     fontSize: 14.0,
@@ -419,7 +419,7 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               InkWell(
@@ -432,7 +432,7 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
                         Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    HomePage(GlobalParam.typeMenuCode)),
+                                    HomePage(GlobalParam.typeMenuCode ?? '')),
                             (route) => false);
                       }),
                     ),
@@ -455,7 +455,7 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
                           
                         ),*/
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10.0,
                       ),
                       Container(
@@ -516,13 +516,13 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
 
           GlobalParam.deliveryAddSendMoney.cCREABY = GlobalParam.userID;
           sumTotal = result;
-          money = GlobalParam.deliveryAddSendMoney.iTOTAL -
-              GlobalParam.deliveryAddSendMoney.iCOST;
-          iCASH = double.parse(result.iCASH);
-          iTRANSFER = double.parse(result.iTRANSFER);
-          iCHECK = double.parse(result.iCHECK);
-          iTOTALWAGE =
-              double.parse(result.iWAGE) + double.parse(result.iTOTALWAGE);
+          money = (GlobalParam.deliveryAddSendMoney.iTOTAL ?? 0) -
+              (GlobalParam.deliveryAddSendMoney.iCOST ?? 0);
+          iCASH = double.parse(result.iCASH ?? '0');
+          iTRANSFER = double.parse(result.iTRANSFER ?? '0');
+          iCHECK = double.parse(result.iCHECK ?? '0');
+          iTOTALWAGE = double.parse(result.iWAGE ?? '0') +
+              double.parse(result.iTOTALWAGE ?? '0');
           GlobalParam.deliveryAddSendMoney.iTOTAL =
               iCASH - refuelTotal - iTOTALWAGE;
         });
@@ -547,7 +547,7 @@ class _DeliveryMoneyMainState extends State<DeliveryMoneyMain> {
         setState(() {
           refuelList.addAll(result);
           for (var item in result) {
-            refuelTotal += double.parse(item.iTOTAL);
+            refuelTotal += double.parse(item.iTOTAL ?? '0');
           }
         });
         GlobalParam.deliveryAddSendMoney.iREFUEL = refuelTotal;

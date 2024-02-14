@@ -20,7 +20,7 @@ class _TransferPaymentState extends State<TransferPayment> {
         elevation: 0.0,
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'รับชำระโอน',
           style: TextStyle(
             color: Colors.black,
@@ -30,7 +30,7 @@ class _TransferPaymentState extends State<TransferPayment> {
           ),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
         actions: [
@@ -42,14 +42,14 @@ class _TransferPaymentState extends State<TransferPayment> {
               children: [
                 Container(
                   alignment: Alignment.center,
-                  child: Icon(
+                  child: const Icon(
                     LineAwesomeIcons.print,
                     color: Colors.black54,
                   ),
                 ),
                 Container(
                   alignment: Alignment.center,
-                  child: Icon(
+                  child: const Icon(
                     LineAwesomeIcons.vertical_ellipsis,
                     color: Colors.black54,
                   ),
@@ -82,7 +82,7 @@ class _TransferPaymentState extends State<TransferPayment> {
                                     Expanded(
                                       child: Container(
                                         alignment: Alignment.centerLeft,
-                                        child: Text(
+                                        child: const Text(
                                           '07/09/64',
                                           style: TextStyle(
                                             fontSize: 16.0,
@@ -96,7 +96,7 @@ class _TransferPaymentState extends State<TransferPayment> {
                                     Expanded(
                                       child: Container(
                                         alignment: Alignment.centerRight,
-                                        child: Text(
+                                        child: const Text(
                                           'No 640907-xxxxx',
                                           style: TextStyle(
                                             fontSize: 14.0,
@@ -110,7 +110,7 @@ class _TransferPaymentState extends State<TransferPayment> {
                                   ],
                                 ),
                               ),
-                              DottedLine(
+                              const DottedLine(
                                 lineThickness: 2.0,
                                 dashColor: Colors.black38,
                               ),
@@ -158,7 +158,7 @@ class _TransferPaymentState extends State<TransferPayment> {
                                                 padding:
                                                     const EdgeInsets.all(3.0),
                                                 alignment: Alignment.centerLeft,
-                                                child: Text(
+                                                child: const Text(
                                                   'ชื่อร้านค้า',
                                                   style: TextStyle(
                                                     fontFamily: 'Prompt',
@@ -172,7 +172,7 @@ class _TransferPaymentState extends State<TransferPayment> {
                                                 padding:
                                                     const EdgeInsets.all(3.0),
                                                 alignment: Alignment.centerLeft,
-                                                child: Text(
+                                                child: const Text(
                                                   'ที่อยู่',
                                                   style: TextStyle(
                                                     fontFamily: 'Prompt',
@@ -193,16 +193,16 @@ class _TransferPaymentState extends State<TransferPayment> {
                                                       CrossAxisAlignment.center,
                                                   children: [
                                                     Container(
-                                                      child: Icon(
+                                                      child: const Icon(
                                                         LineAwesomeIcons.boxes,
                                                         color: Colors.black38,
                                                       ),
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 10.0,
                                                     ),
                                                     Container(
-                                                      child: Text(
+                                                      child: const Text(
                                                         '32 รายการ',
                                                         style: TextStyle(
                                                           fontFamily: 'Prompt',
@@ -212,11 +212,11 @@ class _TransferPaymentState extends State<TransferPayment> {
                                                         ),
                                                       ),
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 10.0,
                                                     ),
                                                     Container(
-                                                      child: Text(
+                                                      child: const Text(
                                                         '32 ตระกร้า',
                                                         style: TextStyle(
                                                           fontFamily: 'Prompt',
@@ -233,7 +233,7 @@ class _TransferPaymentState extends State<TransferPayment> {
                                                 padding:
                                                     const EdgeInsets.all(3.0),
                                                 alignment: Alignment.centerLeft,
-                                                child: Text(
+                                                child: const Text(
                                                   'No 640907-xxxxx',
                                                   style: TextStyle(
                                                     fontSize: 12.0,
@@ -262,7 +262,7 @@ class _TransferPaymentState extends State<TransferPayment> {
                                     Expanded(
                                       child: Container(
                                         alignment: Alignment.centerLeft,
-                                        child: Text(
+                                        child: const Text(
                                           'ยอดค้างชำระ',
                                           style: TextStyle(
                                             fontSize: 14.0,
@@ -311,7 +311,7 @@ class _TransferPaymentState extends State<TransferPayment> {
                                     Expanded(
                                       child: Container(
                                         alignment: Alignment.centerLeft,
-                                        child: Text(
+                                        child: const Text(
                                           'ส่วนลดท้ายบิล',
                                           style: TextStyle(
                                             fontSize: 14.0,
@@ -360,7 +360,7 @@ class _TransferPaymentState extends State<TransferPayment> {
                                     Expanded(
                                       child: Container(
                                         alignment: Alignment.centerLeft,
-                                        child: Text(
+                                        child: const Text(
                                           'ยอดปัจจุบัน',
                                           style: TextStyle(
                                             fontSize: 14.0,
@@ -409,7 +409,7 @@ class _TransferPaymentState extends State<TransferPayment> {
                                     Expanded(
                                       child: Container(
                                         alignment: Alignment.centerLeft,
-                                        child: Text(
+                                        child: const Text(
                                           'รวมทั้งหมด',
                                           style: TextStyle(
                                             fontSize: 14.0,
@@ -486,7 +486,7 @@ class _TransferPaymentState extends State<TransferPayment> {
                               Container(
                                 width: 100.0,
                                 alignment: Alignment.centerLeft,
-                                child: Text(
+                                child: const Text(
                                   'กรอกยอดชำระ',
                                   style: TextStyle(
                                     fontSize: 14.0,
@@ -515,7 +515,8 @@ class _TransferPaymentState extends State<TransferPayment> {
                                       maxLength: 15,
                                       keyboardType: TextInputType.number,
                                       cursorColor: Colors.green,
-                                      style: TextStyle(color: Colors.black),
+                                      style:
+                                          const TextStyle(color: Colors.black),
                                       decoration: new InputDecoration(
                                         border: new OutlineInputBorder(
                                           borderSide: new BorderSide(
@@ -542,7 +543,7 @@ class _TransferPaymentState extends State<TransferPayment> {
                               Expanded(
                                 child: Container(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
+                                  child: const Text(
                                     'จำนวนที่ชำระ',
                                     style: TextStyle(
                                       fontSize: 14.0,
@@ -592,7 +593,7 @@ class _TransferPaymentState extends State<TransferPayment> {
                               Expanded(
                                 child: Container(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
+                                  child: const Text(
                                     'ยอดที่ต้องชำระ',
                                     style: TextStyle(
                                       fontSize: 14.0,
@@ -642,7 +643,7 @@ class _TransferPaymentState extends State<TransferPayment> {
                               Expanded(
                                 child: Container(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
+                                  child: const Text(
                                     'รวมเป็นเงิน',
                                     style: TextStyle(
                                       fontSize: 14.0,
@@ -712,16 +713,16 @@ class _TransferPaymentState extends State<TransferPayment> {
                       children: [
                         Container(
                           alignment: Alignment.center,
-                          child: Icon(
+                          child: const Icon(
                             LineAwesomeIcons.check_circle,
                             color: Colors.green,
                             size: 25.0,
                           ),
                         ),
-                        SizedBox(width: 20.0),
+                        const SizedBox(width: 20.0),
                         Container(
                           alignment: Alignment.centerLeft,
-                          child: Text(
+                          child: const Text(
                             'บันทึกการชำระ',
                             style: TextStyle(
                               fontSize: 18.0,

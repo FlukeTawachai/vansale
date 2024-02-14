@@ -3,7 +3,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:vansale/screens/customer/customer_home.dart';
 
 class CustomerMenu extends StatefulWidget {
-  CustomerMenu({Key key}) : super(key: key);
+  const CustomerMenu({required Key key}) : super(key: key);
 
   @override
   _CustomerMenuState createState() => _CustomerMenuState();
@@ -11,12 +11,20 @@ class CustomerMenu extends StatefulWidget {
 
 class _CustomerMenuState extends State<CustomerMenu> {
   int _selectedIndex = 0;
-  PageController _pageController = PageController();
-  List<Widget> _screen = [
-    CustomerHome(),
-    CustomerHome(),
-    CustomerHome(),
-    CustomerHome(),
+  final PageController _pageController = PageController();
+  final List<Widget> _screen = [
+    const CustomerHome(
+      key: null,
+    ),
+    const CustomerHome(
+      key: null,
+    ),
+    const CustomerHome(
+      key: null,
+    ),
+    const CustomerHome(
+      key: null,
+    ),
     // Order(widget),
     // CustomerHistory(),
 
@@ -40,7 +48,7 @@ class _CustomerMenuState extends State<CustomerMenu> {
           controller: _pageController,
           children: _screen,
           onPageChanged: _onPageChanged,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
         ),
         //bodyMenu(),
         bottomNavigationBar: BottomNavigationBar(
@@ -55,52 +63,56 @@ class _CustomerMenuState extends State<CustomerMenu> {
                 LineAwesomeIcons.home,
                 color: _selectedIndex == 0 ? Colors.green : Colors.grey,
               ),
-              title: Text(
-                'หน้าแรก',
-                style: TextStyle(
-                  color: _selectedIndex == 0 ? Colors.green : Colors.grey,
-                  fontFamily: 'Prompt',
-                ),
-              ),
+              // title: Text(
+              //   'หน้าแรก',
+              //   style: TextStyle(
+              //     color: _selectedIndex == 0 ? Colors.green : Colors.grey,
+              //     fontFamily: 'Prompt',
+              //   ),
+              // ),
+              label: 'หน้าแรก',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 LineAwesomeIcons.shipping_fast,
                 color: _selectedIndex == 1 ? Colors.green : Colors.grey,
               ),
-              title: Text(
-                'สั่งสินค้า',
-                style: TextStyle(
-                  color: _selectedIndex == 1 ? Colors.green : Colors.grey,
-                  fontFamily: 'Prompt',
-                ),
-              ),
+              // title: Text(
+              //   'สั่งสินค้า',
+              //   style: TextStyle(
+              //     color: _selectedIndex == 1 ? Colors.green : Colors.grey,
+              //     fontFamily: 'Prompt',
+              //   ),
+              // ),
+              label: 'สั่งสินค้า',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 LineAwesomeIcons.th_list,
                 color: _selectedIndex == 2 ? Colors.green : Colors.grey,
               ),
-              title: Text(
-                'ประวัติ',
-                style: TextStyle(
-                  color: _selectedIndex == 2 ? Colors.green : Colors.grey,
-                  fontFamily: 'Prompt',
-                ),
-              ),
+              // title: Text(
+              //   'ประวัติ',
+              //   style: TextStyle(
+              //     color: _selectedIndex == 2 ? Colors.green : Colors.grey,
+              //     fontFamily: 'Prompt',
+              //   ),
+              // ),
+              label: 'ประวัติ',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 LineAwesomeIcons.money_bill,
                 color: _selectedIndex == 3 ? Colors.green : Colors.grey,
               ),
-              title: Text(
-                'โอนเงิน',
-                style: TextStyle(
-                  color: _selectedIndex == 3 ? Colors.green : Colors.grey,
-                  fontFamily: 'Prompt',
-                ),
-              ),
+              // title: Text(
+              //   'โอนเงิน',
+              //   style: TextStyle(
+              //     color: _selectedIndex == 3 ? Colors.green : Colors.grey,
+              //     fontFamily: 'Prompt',
+              //   ),
+              // ),
+              label: 'โอนเงิน',
             ),
             BottomNavigationBarItem(
               icon: Icon(
@@ -108,9 +120,10 @@ class _CustomerMenuState extends State<CustomerMenu> {
                 color: _selectedIndex == 4 ? Colors.green : Colors.grey,
                 size: 30.0,
               ),
-              title: Text(
-                '',
-              ),
+              // title: const Text(
+              //   '',
+              // ),
+              label: '',
             ),
           ],
         ),
@@ -171,5 +184,4 @@ class _CustomerMenuState extends State<CustomerMenu> {
         ),
       ],
     );*/
-
 }

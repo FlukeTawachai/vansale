@@ -12,37 +12,37 @@ import 'package:vansale/screens/branch_warehouse/branch_warehouse_transfer/batch
 import 'package:vansale/screens/branch_warehouse/branch_warehouse_transfer/normal_transfer.dart';
 
 class BranchWarehouseMain extends StatefulWidget {
-  BranchWarehouseMain({Key key, this.typeMenuCode}) : super(key: key);
+  BranchWarehouseMain({Key? key, required this.typeMenuCode}) : super(key: key);
   String typeMenuCode;
   @override
   State<BranchWarehouseMain> createState() => _BranchWarehouseMainState();
 }
 
 class _BranchWarehouseMainState extends State<BranchWarehouseMain> {
-  String selectedBranch;
-  String selectedVehicle;
+  late String selectedBranch;
+  late String selectedVehicle;
   String branchName = '';
   String vehicleName = '';
-  String selectedWHTransfer;
-  String selectedType;
+  late String selectedWHTransfer;
+  late String selectedType;
   List<GetBranchAllResp> branchData = [];
   List<GetVehicleWithBranchResp> vehicleData = [];
   List<BranchWarehouse> branchWarehouses = [];
   List<DropdownMenuItem<String>> branchList = [
-    DropdownMenuItem(child: Text("เลือก"), value: ""),
+    const DropdownMenuItem(child: Text("เลือก"), value: ""),
   ];
   List<DropdownMenuItem<String>> vehicleList = [
-    DropdownMenuItem(child: Text("เลือก"), value: ""),
+    const DropdownMenuItem(child: Text("เลือก"), value: ""),
   ];
   List<DropdownMenuItem<String>> transferList = [
-    DropdownMenuItem(child: Text("เลือก"), value: ""),
-    DropdownMenuItem(child: Text("โอนธรรมดา"), value: "01"),
-    DropdownMenuItem(child: Text("โอนเป็นชุด"), value: "02"),
+    const DropdownMenuItem(child: Text("เลือก"), value: ""),
+    const DropdownMenuItem(child: Text("โอนธรรมดา"), value: "01"),
+    const DropdownMenuItem(child: Text("โอนเป็นชุด"), value: "02"),
   ];
   List<DropdownMenuItem<String>> customerTypeList = [
-    DropdownMenuItem(child: Text("เลือก"), value: ""),
-    DropdownMenuItem(child: Text("ค้าปลีก"), value: "Retail"),
-    DropdownMenuItem(child: Text("ค้าส่ง"), value: "Wholesale"),
+    const DropdownMenuItem(child: Text("เลือก"), value: ""),
+    const DropdownMenuItem(child: Text("ค้าปลีก"), value: "Retail"),
+    const DropdownMenuItem(child: Text("ค้าส่ง"), value: "Wholesale"),
   ];
   double widthScreen = 0;
 
@@ -63,7 +63,7 @@ class _BranchWarehouseMainState extends State<BranchWarehouseMain> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('โอนย้าย'),
+        title: const Text('โอนย้าย'),
       ),
       body: ListView(
         children: [
@@ -84,7 +84,7 @@ class _BranchWarehouseMainState extends State<BranchWarehouseMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'สาขา',
               style: TextStyle(
                   fontFamily: "Prompt",
@@ -107,7 +107,7 @@ class _BranchWarehouseMainState extends State<BranchWarehouseMain> {
                         value: selectedBranch,
                         hint: Container(
                           alignment: Alignment.centerLeft,
-                          child: Text(
+                          child: const Text(
                             "กรุณาเลือกสาขา",
                             style: TextStyle(
                               color: Colors.black26,
@@ -127,18 +127,19 @@ class _BranchWarehouseMainState extends State<BranchWarehouseMain> {
                         onChanged: (newValue) {
                           print("*******************$newValue");
                           setState(() {
-                            selectedBranch = newValue;
+                            selectedBranch = newValue ?? '';
                             for (var i = 0; i < branchData.length; i++) {
                               if (branchData[i].cBRANCD == newValue) {
-                                branchName = branchData[i].cBRANNM;
+                                branchName = branchData[i].cBRANNM ?? '';
                               }
                             }
                             if (newValue != '') {
-                              getVehicleWithBranch(newValue);
+                              getVehicleWithBranch(newValue ?? '');
                             }
                             selectedVehicle = "";
                             vehicleList = [
-                              DropdownMenuItem(child: Text("เลือก"), value: ""),
+                              const DropdownMenuItem(
+                                  child: Text("เลือก"), value: ""),
                             ];
                           });
                         },
@@ -156,7 +157,7 @@ class _BranchWarehouseMainState extends State<BranchWarehouseMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'รถ',
               style: TextStyle(
                   fontFamily: "Prompt",
@@ -179,7 +180,7 @@ class _BranchWarehouseMainState extends State<BranchWarehouseMain> {
                         value: selectedVehicle,
                         hint: Container(
                           alignment: Alignment.centerLeft,
-                          child: Text(
+                          child: const Text(
                             "กรุณาเลือกรถ",
                             style: TextStyle(
                               color: Colors.black26,
@@ -200,10 +201,10 @@ class _BranchWarehouseMainState extends State<BranchWarehouseMain> {
                           setState(() {
                             for (var i = 0; i < vehicleData.length; i++) {
                               if (vehicleData[i].cVEHICD == newValue) {
-                                vehicleName = vehicleData[i].cVEHINM;
+                                vehicleName = vehicleData[i].cVEHINM ?? '';
                               }
                             }
-                            selectedVehicle = newValue;
+                            selectedVehicle = newValue ?? '';
                           });
                         },
                         items: vehicleList))),
@@ -220,7 +221,7 @@ class _BranchWarehouseMainState extends State<BranchWarehouseMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'โอน',
               style: TextStyle(
                   fontFamily: "Prompt",
@@ -267,7 +268,7 @@ class _BranchWarehouseMainState extends State<BranchWarehouseMain> {
                   ),
                   onChanged: (newValue) {
                     setState(() {
-                      selectedWHTransfer = newValue;
+                      selectedWHTransfer = newValue ?? '';
                     });
                   },
                   items: transferList,
@@ -287,7 +288,7 @@ class _BranchWarehouseMainState extends State<BranchWarehouseMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'กลุ่มร้านค้า',
               style: TextStyle(
                   fontFamily: "Prompt",
@@ -334,7 +335,7 @@ class _BranchWarehouseMainState extends State<BranchWarehouseMain> {
                   ),
                   onChanged: (newValue) {
                     setState(() {
-                      selectedType = newValue;
+                      selectedType = newValue ?? '';
                     });
                   },
                   items: customerTypeList,
@@ -416,7 +417,7 @@ class _BranchWarehouseMainState extends State<BranchWarehouseMain> {
                           color: HexColor('#00cb39'),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10.0,
                       ),
                       Container(
@@ -496,7 +497,8 @@ class _BranchWarehouseMainState extends State<BranchWarehouseMain> {
           branchData.addAll(result);
           for (var i = 0; i < result.length; i++) {
             branchList.add(DropdownMenuItem(
-                value: result[i].cBRANCD, child: Text(result[i].cBRANNM)));
+                value: result[i].cBRANCD,
+                child: Text(result[i].cBRANNM ?? '')));
           }
         });
       }
@@ -519,7 +521,8 @@ class _BranchWarehouseMainState extends State<BranchWarehouseMain> {
           vehicleData.addAll(result);
           for (var i = 0; i < result.length; i++) {
             vehicleList.add(DropdownMenuItem(
-                value: result[i].cVEHICD, child: Text(result[i].cVEHINM)));
+                value: result[i].cVEHICD,
+                child: Text(result[i].cVEHINM ?? '')));
           }
         });
       }

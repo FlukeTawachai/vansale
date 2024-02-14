@@ -1,12 +1,9 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:vansale/api/class/globalparam.dart';
 
-
 class MoneyDetailBody extends StatefulWidget {
-  const MoneyDetailBody({Key key}) : super(key: key);
+  const MoneyDetailBody({Key? key}) : super(key: key);
 
   @override
   State<MoneyDetailBody> createState() => _MoneyDetailBodyState();
@@ -68,7 +65,7 @@ class _MoneyDetailBodyState extends State<MoneyDetailBody> {
 
   Widget payment_amount() {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: 360,
         //padding: const EdgeInsets.only(top: 5.0, left: 25.0, right: 25.0),
         //height: 40,
@@ -78,7 +75,7 @@ class _MoneyDetailBodyState extends State<MoneyDetailBody> {
           children: [
             Container(
               //width: 360,
-              child: Text(
+              child: const Text(
                 'กรอกยอดชำระ',
                 style: TextStyle(
                   fontSize: 16.0,
@@ -92,7 +89,7 @@ class _MoneyDetailBodyState extends State<MoneyDetailBody> {
               // alignment: Alignment.centerRight,
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(5),
                     topRight: Radius.circular(5),
                     bottomLeft: Radius.circular(5),
@@ -106,7 +103,7 @@ class _MoneyDetailBodyState extends State<MoneyDetailBody> {
                 // enabled: false,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     fontFamily: 'Prompt',
                     color: Color.fromRGBO(169, 169, 169, 1),
                     fontSize: 16.0,
@@ -114,7 +111,7 @@ class _MoneyDetailBodyState extends State<MoneyDetailBody> {
                   filled: true,
                   fillColor: Colors.white,
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
@@ -138,14 +135,14 @@ class _MoneyDetailBodyState extends State<MoneyDetailBody> {
 
   Widget label1() {
     String totalCashCheck = '3000.00';
-    return Container(
+    return SizedBox(
       width: 360,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            child: Text(
+            child: const Text(
               'จำนวนที่ชำระ',
               style: TextStyle(
                 fontSize: 16.0,
@@ -178,28 +175,28 @@ class _MoneyDetailBodyState extends State<MoneyDetailBody> {
     var aa = RichText(
       text: TextSpan(
         text: '$bb',
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 18,
           color: Colors.green,
           fontWeight: FontWeight.bold,
           fontFamily: 'Prompt',
         ),
         children: <TextSpan>[
-          TextSpan(
+          const TextSpan(
             text: '.',
           ),
           TextSpan(
             text: '$cc',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.bold,
               fontFamily: 'Prompt',
             ),
           ),
-          TextSpan(
+          const TextSpan(
             text: ' ',
           ),
-          TextSpan(
+          const TextSpan(
             text: 'THB',
             style: TextStyle(
               fontSize: 14,
@@ -215,14 +212,14 @@ class _MoneyDetailBodyState extends State<MoneyDetailBody> {
 
   Widget label2() {
     String totalCashCheck = '3100.00';
-    return Container(
+    return SizedBox(
       width: 360,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            child: Text(
+            child: const Text(
               'ยอดที่ต้องชำระ',
               style: TextStyle(
                 fontSize: 16.0,
@@ -262,21 +259,21 @@ class _MoneyDetailBodyState extends State<MoneyDetailBody> {
           fontFamily: 'Prompt',
         ),
         children: <TextSpan>[
-          TextSpan(
+          const TextSpan(
             text: '.',
           ),
           TextSpan(
             text: '$cc',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.bold,
               fontFamily: 'Prompt',
             ),
           ),
-          TextSpan(
+          const TextSpan(
             text: ' ',
           ),
-          TextSpan(
+          const TextSpan(
             text: 'THB',
             style: TextStyle(
               fontSize: 14,
@@ -291,25 +288,24 @@ class _MoneyDetailBodyState extends State<MoneyDetailBody> {
   }
 
   Widget label3() {
-    double total = GlobalParam.deliveryAddSendMoney.iTOTAL -
-        GlobalParam.deliveryAddSendMoney.iCOST -
-        money-GlobalParam.deliveryAddSendMoney.iREFUEL;
+    double total = GlobalParam.deliveryAddSendMoney.iTOTAL! -
+        (GlobalParam.deliveryAddSendMoney.iCOST ?? 0) -
+        money -
+        (GlobalParam.deliveryAddSendMoney.iREFUEL ?? 0);
     String totalCashCheck = '$total';
-    return Container(
+    return SizedBox(
       width: 360,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            child: Text(
-              'รวมเป็นเงิน',
-              style: TextStyle(
-                fontSize: 16.0,
-                color: Colors.grey,
-                //fontWeight: FontWeight.bold,
-                fontFamily: 'Prompt',
-              ),
+          const Text(
+            'รวมเป็นเงิน',
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Colors.grey,
+              //fontWeight: FontWeight.bold,
+              fontFamily: 'Prompt',
             ),
           ),
           Container(
@@ -342,21 +338,21 @@ class _MoneyDetailBodyState extends State<MoneyDetailBody> {
           fontFamily: 'Prompt',
         ),
         children: <TextSpan>[
-          TextSpan(
+          const TextSpan(
             text: '.',
           ),
           TextSpan(
             text: '$cc',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.bold,
               fontFamily: 'Prompt',
             ),
           ),
-          TextSpan(
+          const TextSpan(
             text: ' ',
           ),
-          TextSpan(
+          const TextSpan(
             text: 'THB',
             style: TextStyle(
               fontSize: 14,
@@ -369,5 +365,4 @@ class _MoneyDetailBodyState extends State<MoneyDetailBody> {
     );
     return aa;
   }
-
 }

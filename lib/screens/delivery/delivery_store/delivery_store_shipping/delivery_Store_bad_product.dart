@@ -9,13 +9,13 @@ import 'package:vansale/screens/Supplier/models/product.dart';
 import 'package:vansale/screens/Supplier/supplier/widgets/pickImageBox.dart';
 
 class DeliveryBadProductCard extends StatefulWidget {
-  DeliveryBadProductCard();
+  const DeliveryBadProductCard();
   @override
   _DeliveryBadProductCardState createState() => _DeliveryBadProductCardState();
 }
 
 class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
-  double widthScreen;
+  late double widthScreen;
   final formatNum = new NumberFormat("#,###.##", "en_US");
   List<TextEditingController> sController = [];
   List<TextEditingController> mController = [];
@@ -46,22 +46,22 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
               lController.add(new TextEditingController());
               double unitPrice = 0.0;
               if (double.parse(
-                      GlobalParam.deliveryShowHisProduct[index].iSSIZEQTY) !=
+                      GlobalParam.deliveryShowHisProduct[index].iSSIZEQTY!) !=
                   0) {
                 unitPrice = double.parse(
-                    GlobalParam.deliveryShowHisProduct[index].iSUNITPRICE);
+                    GlobalParam.deliveryShowHisProduct[index].iSUNITPRICE!);
               }
               if (double.parse(
-                      GlobalParam.deliveryShowHisProduct[index].iMSIZEQTY) !=
+                      GlobalParam.deliveryShowHisProduct[index].iMSIZEQTY!) !=
                   0) {
                 unitPrice = double.parse(
-                    GlobalParam.deliveryShowHisProduct[index].iMUNITPRICE);
+                    GlobalParam.deliveryShowHisProduct[index].iMUNITPRICE!);
               }
               if (double.parse(
-                      GlobalParam.deliveryShowHisProduct[index].iLSIZEQTY) !=
+                      GlobalParam.deliveryShowHisProduct[index].iLSIZEQTY!) !=
                   0) {
                 unitPrice = double.parse(
-                    GlobalParam.deliveryShowHisProduct[index].iLUNITPRICE);
+                    GlobalParam.deliveryShowHisProduct[index].iLUNITPRICE!);
               }
 
               for (var item in GlobalParam.deliveryCustPOHisBtnCheck) {
@@ -151,7 +151,7 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                         fit: BoxFit.cover,
                                       ),
                                 color: Colors.white,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(5),
                                   topRight: Radius.circular(5),
                                   bottomLeft: Radius.circular(5),
@@ -164,13 +164,13 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                             child: Container(
                               child: Column(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: widthScreen * 0.8,
                                     height: 24,
                                     child: Text(
                                       GlobalParam.deliveryShowHisProduct[index]
-                                          .cPRODNM,
-                                      style: TextStyle(
+                                          .cPRODNM!,
+                                      style: const TextStyle(
                                         fontFamily: 'Prompt',
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16.0,
@@ -179,10 +179,10 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                     ),
                                   ),
                                   //--------------------2
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 12,
                                   ),
-                                  Container(
+                                  SizedBox(
                                     height: 36,
                                     child: Row(
                                       mainAxisAlignment:
@@ -193,7 +193,7 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                         double.parse(GlobalParam
                                                     .deliveryShowHisProduct[
                                                         index]
-                                                    .iLSIZEQTY) !=
+                                                    .iLSIZEQTY!) !=
                                                 0
                                             ? Expanded(
                                                 child: Container(
@@ -204,8 +204,8 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                                       GlobalParam
                                                           .deliveryShowHisProduct[
                                                               index]
-                                                          .cLUOMNM,
-                                                      style: TextStyle(
+                                                          .cLUOMNM!,
+                                                      style: const TextStyle(
                                                         fontFamily: 'Prompt',
                                                         color: Colors.black,
                                                         fontSize: 14,
@@ -218,7 +218,7 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                         double.parse(GlobalParam
                                                     .deliveryShowHisProduct[
                                                         index]
-                                                    .iMSIZEQTY) !=
+                                                    .iMSIZEQTY!) !=
                                                 0
                                             ? Expanded(
                                                 child: Container(
@@ -229,8 +229,8 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                                       GlobalParam
                                                           .deliveryShowHisProduct[
                                                               index]
-                                                          .cMUOMNM,
-                                                      style: TextStyle(
+                                                          .cMUOMNM!,
+                                                      style: const TextStyle(
                                                         fontFamily: 'Prompt',
                                                         color: Colors.black,
                                                         fontSize: 14,
@@ -244,7 +244,7 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                         double.parse(GlobalParam
                                                     .deliveryShowHisProduct[
                                                         index]
-                                                    .iSSIZEQTY) !=
+                                                    .iSSIZEQTY!) !=
                                                 0
                                             ? Expanded(
                                                 child: Container(
@@ -257,8 +257,8 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                                       GlobalParam
                                                           .deliveryShowHisProduct[
                                                               index]
-                                                          .cSUOMNM,
-                                                      style: TextStyle(
+                                                          .cSUOMNM!,
+                                                      style: const TextStyle(
                                                           fontFamily: 'Prompt',
                                                           fontSize: 14),
                                                     ),
@@ -270,7 +270,7 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                     ),
                                   ),
                                   //----------------------------3
-                                  Container(
+                                  SizedBox(
                                     height: 36,
                                     child: Row(
                                       mainAxisAlignment:
@@ -282,7 +282,7 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                         double.parse(GlobalParam
                                                     .deliveryShowHisProduct[
                                                         index]
-                                                    .iLSIZEQTY) !=
+                                                    .iLSIZEQTY!) !=
                                                 0
                                             ? Expanded(
                                                 child: Container(
@@ -293,7 +293,7 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                                   decoration: BoxDecoration(
                                                     color: Colors.white,
                                                     borderRadius:
-                                                        BorderRadius.only(
+                                                        const BorderRadius.only(
                                                       topLeft:
                                                           Radius.circular(5),
                                                       topRight:
@@ -410,7 +410,7 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                         double.parse(GlobalParam
                                                     .deliveryShowHisProduct[
                                                         index]
-                                                    .iMSIZEQTY) !=
+                                                    .iMSIZEQTY!) !=
                                                 0
                                             ? Expanded(
                                                 child: Container(
@@ -421,7 +421,7 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                                   decoration: BoxDecoration(
                                                     color: Colors.white,
                                                     borderRadius:
-                                                        BorderRadius.only(
+                                                        const BorderRadius.only(
                                                       topLeft:
                                                           Radius.circular(5),
                                                       topRight:
@@ -506,7 +506,7 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                                       ),
                                                       cursorColor: Colors.black,
                                                       decoration:
-                                                          new InputDecoration(
+                                                          InputDecoration(
                                                         //hintText: "1",
                                                         hintStyle: TextStyle(
                                                             color: HexColor(
@@ -537,7 +537,7 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                         double.parse(GlobalParam
                                                     .deliveryShowHisProduct[
                                                         index]
-                                                    .iSSIZEQTY) !=
+                                                    .iSSIZEQTY!) !=
                                                 0
                                             ? Expanded(
                                                 child: Container(
@@ -548,7 +548,7 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                                                   decoration: BoxDecoration(
                                                     color: Colors.white,
                                                     borderRadius:
-                                                        BorderRadius.only(
+                                                        const BorderRadius.only(
                                                       topLeft:
                                                           Radius.circular(5),
                                                       topRight:
@@ -700,15 +700,15 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-                      child: Container(
+                      child: SizedBox(
                         height: 24,
                         child: Row(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             Text(
                               'ต่อหน่วย ${formatNum.format(unitPrice)} ฿ รวม ${formatNum.format(double.parse(GlobalParam.totalProBadList[index]['total']))} ฿',
-                              style:
-                                  TextStyle(fontFamily: 'Prompt', fontSize: 14),
+                              style: const TextStyle(
+                                  fontFamily: 'Prompt', fontSize: 14),
                             ),
                             // Container(
                             //     alignment: Alignment.centerRight,
@@ -736,7 +736,7 @@ class _DeliveryBadProductCardState extends State<DeliveryBadProductCard> {
                         ),
                       ),
                     ),
-                    DottedLine(
+                    const DottedLine(
                       dashColor: Colors.grey,
                     ),
                   ],

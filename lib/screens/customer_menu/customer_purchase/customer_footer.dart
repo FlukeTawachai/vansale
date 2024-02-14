@@ -15,15 +15,15 @@ class CustomerPurchaseFooter extends StatelessWidget {
   final String item;
   final String total;
   const CustomerPurchaseFooter(
-      {Key key,
-      this.navigated1,
-      this.navigated2,
-      this.title1,
-      this.title2,
-      this.icon1,
-      this.icon2,
-      this.item,
-      this.total})
+      {Key? key,
+      required this.navigated1,
+      required this.navigated2,
+      required this.title1,
+      required this.title2,
+      required this.icon1,
+      required this.icon2,
+      required this.item,
+      required this.total})
       : super(key: key);
 
   @override

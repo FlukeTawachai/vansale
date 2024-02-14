@@ -23,29 +23,29 @@ class _DeliveryStoreProductCheckListState
             itemCount: GlobalParam.deliveryPodtShow.length,
             itemBuilder: (BuildContext context, int index) {
               double item = double.parse(
-                      GlobalParam.deliveryPodtShow[index].iSSIZEQTY) +
-                  double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY) +
-                  double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY);
+                      GlobalParam.deliveryPodtShow[index].iSSIZEQTY!) +
+                  double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY!) +
+                  double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY!);
               var unit = '';
               var unitCode = '';
               var unitPrice = '';
-              if (double.parse(GlobalParam.deliveryPodtShow[index].iSSIZEQTY) >
+              if (double.parse(GlobalParam.deliveryPodtShow[index].iSSIZEQTY!) >
                   0) {
-                unit = GlobalParam.deliveryPodtShow[index].cSUOMNM;
-                unitPrice = GlobalParam.deliveryPodtShow[index].iSUNITPRICE;
-                unitCode = GlobalParam.deliveryPodtShow[index].cSUOMCD;
+                unit = GlobalParam.deliveryPodtShow[index].cSUOMNM!;
+                unitPrice = GlobalParam.deliveryPodtShow[index].iSUNITPRICE!;
+                unitCode = GlobalParam.deliveryPodtShow[index].cSUOMCD!;
               }
-              if (double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY) >
+              if (double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY!) >
                   0) {
-                unit = GlobalParam.deliveryPodtShow[index].cMUOMNM;
-                unitPrice = GlobalParam.deliveryPodtShow[index].iMUNITPRICE;
-                unitCode = GlobalParam.deliveryPodtShow[index].cMUOMCD;
+                unit = GlobalParam.deliveryPodtShow[index].cMUOMNM!;
+                unitPrice = GlobalParam.deliveryPodtShow[index].iMUNITPRICE!;
+                unitCode = GlobalParam.deliveryPodtShow[index].cMUOMCD!;
               }
-              if (double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY) >
+              if (double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY!) >
                   0) {
-                unit = GlobalParam.deliveryPodtShow[index].cLUOMNM;
-                unitPrice = GlobalParam.deliveryPodtShow[index].iLUNITPRICE;
-                unitCode = GlobalParam.deliveryPodtShow[index].cLUOMCD;
+                unit = GlobalParam.deliveryPodtShow[index].cLUOMNM!;
+                unitPrice = GlobalParam.deliveryPodtShow[index].iLUNITPRICE!;
+                unitCode = GlobalParam.deliveryPodtShow[index].cLUOMCD!;
               }
               return Container(
                 color: HexColor("#F2F3F4"),
@@ -69,21 +69,21 @@ class _DeliveryStoreProductCheckListState
                                             .cPHOTOPATH !=
                                         ''
                                     ? DecorationImage(
-                                        image: new NetworkImage(
+                                        image: NetworkImage(
                                           'http://${GlobalParam.deliveryPodtShow[index].cPHOTOSERV}/${GlobalParam.deliveryPodtShow[index].cPHOTOPATH}',
                                         ),
                                         scale: 1.0,
                                         fit: BoxFit.cover,
                                       )
-                                    : DecorationImage(
-                                        image: new AssetImage(
+                                    : const DecorationImage(
+                                        image: AssetImage(
                                           "assets/images/no_image.png",
                                         ),
                                         scale: 1.0,
                                         fit: BoxFit.cover,
                                       ),
                                 color: Colors.white,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(5),
                                   topRight: Radius.circular(5),
                                   bottomLeft: Radius.circular(5),
@@ -100,8 +100,9 @@ class _DeliveryStoreProductCheckListState
                                 Container(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    GlobalParam.deliveryPodtShow[index].cPRODNM,
-                                    style: TextStyle(
+                                    GlobalParam
+                                        .deliveryPodtShow[index].cPRODNM!,
+                                    style: const TextStyle(
                                         color: Colors.black,
                                         fontFamily: 'Prompt',
                                         fontWeight: FontWeight.bold,
@@ -152,7 +153,7 @@ class _DeliveryStoreProductCheckListState
                                               child: Text(
                                                 GlobalParam
                                                     .deliveryPodtShow[index]
-                                                    .cPOCD,
+                                                    .cPOCD!,
                                                 style: TextStyle(
                                                     color: Colors.grey,
                                                     fontFamily: 'Prompt',

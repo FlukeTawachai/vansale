@@ -19,16 +19,16 @@ class DeliveryRefuelImage extends StatefulWidget {
 }
 
 class _DeliveryRefuelImageState extends State<DeliveryRefuelImage> {
-  PickedFile imageFile;
+  late PickedFile imageFile;
   // final ImagePicker _picker = ImagePicker();
-  File file;
-  Timer timer;
+  late File file;
+  late Timer timer;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('บันทึกการเติมน้ำมัน'),
+        title: const Text('บันทึกการเติมน้ำมัน'),
       ),
       backgroundColor: Colors.black12,
       body: SizedBox(
@@ -36,21 +36,19 @@ class _DeliveryRefuelImageState extends State<DeliveryRefuelImage> {
         width: MediaQuery.of(context).size.width,
         child: showImage(),
       ),
-      bottomNavigationBar: Container(
-        child: Row(
-          children: [
-            Expanded(
-              child: Container(
-                child: btnSelectImage(),
-              ),
+      bottomNavigationBar: Row(
+        children: [
+          Expanded(
+            child: Container(
+              child: btnSelectImage(),
             ),
-            Expanded(
-              child: Container(
-                child: btnSavedata(),
-              ),
+          ),
+          Expanded(
+            child: Container(
+              child: btnSavedata(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -74,16 +72,14 @@ class _DeliveryRefuelImageState extends State<DeliveryRefuelImage> {
     return Container(
       height: 60.0,
       color: Colors.white,
-      child: Container(
-        child: IconButton(
-          onPressed: () {
-            actionsheet(context);
-          },
-          icon: Icon(
-            LineAwesomeIcons.camera,
-            color: HexColor('#00cb39'),
-            size: 50.0,
-          ),
+      child: IconButton(
+        onPressed: () {
+          actionsheet(context);
+        },
+        icon: Icon(
+          LineAwesomeIcons.camera,
+          color: HexColor('#00cb39'),
+          size: 50.0,
         ),
       ),
     );
@@ -117,11 +113,9 @@ class _DeliveryRefuelImageState extends State<DeliveryRefuelImage> {
             ),
           );*/
         },
-        child: Container(
-          child: Icon(
-            LineAwesomeIcons.arrow_right,
-            size: 30.0,
-          ),
+        child: const Icon(
+          LineAwesomeIcons.arrow_right,
+          size: 30.0,
         ),
       ),
     );
@@ -136,7 +130,7 @@ class _DeliveryRefuelImageState extends State<DeliveryRefuelImage> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text(
+            child: const Text(
               'ยกเลิก',
               style: TextStyle(
                 fontFamily: 'Prompt',
@@ -153,7 +147,7 @@ class _DeliveryRefuelImageState extends State<DeliveryRefuelImage> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'ถ่ายภาพ',
                 style: TextStyle(
                   color: Colors.black,
@@ -168,7 +162,7 @@ class _DeliveryRefuelImageState extends State<DeliveryRefuelImage> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'เลือกรูปภาพ',
                 style: TextStyle(
                   color: Colors.black,
@@ -195,14 +189,14 @@ class _DeliveryRefuelImageState extends State<DeliveryRefuelImage> {
     EasyLoading.dismiss();
   }*/
 
-  File _image;
+  late File _image;
   Future<void> openCamera() async {
     //EasyLoading.show();
     // ignore: invalid_use_of_visible_for_testing_member
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
       GlobalParam.deliveryImage = File(imageFile.path);
       //EasyLoading.dismiss();
@@ -215,7 +209,7 @@ class _DeliveryRefuelImageState extends State<DeliveryRefuelImage> {
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.gallery, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
       GlobalParam.deliveryImage = File(imageFile.path);
       // EasyLoading.dismiss();

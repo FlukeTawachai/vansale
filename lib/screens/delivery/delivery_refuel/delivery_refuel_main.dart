@@ -8,7 +8,7 @@ import 'package:vansale/screens/home/home.dart';
 
 class DeliveryRefuelMain extends StatefulWidget {
   final String typeMenuCode;
-  DeliveryRefuelMain(this.typeMenuCode);
+  const DeliveryRefuelMain(this.typeMenuCode);
   //const DeliveryRefuelMain({Key key}) : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class _DeliveryRefuelMainState extends State<DeliveryRefuelMain> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('เติมน้ำมัน'),
+        title: const Text('เติมน้ำมัน'),
         leading: IconButton(
           onPressed: () {
             Navigator.push(
@@ -32,11 +32,11 @@ class _DeliveryRefuelMainState extends State<DeliveryRefuelMain> {
               ),
             );
           },
-          icon: Icon(LineAwesomeIcons.home),
+          icon: const Icon(LineAwesomeIcons.home),
         ),
       ),
       backgroundColor: HexColor("#F2F3F4"),
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: ListDeliveryRefuel(),
@@ -64,24 +64,20 @@ class _DeliveryRefuelMainState extends State<DeliveryRefuelMain> {
             },
             child: Container(
               alignment: Alignment.center,
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Container(
-                    child: Icon(
-                      LineAwesomeIcons.gas_pump,
-                      size: 30.0,
-                      color: Colors.green,
-                    ),
+                  Icon(
+                    LineAwesomeIcons.gas_pump,
+                    size: 30.0,
+                    color: Colors.green,
                   ),
-                  Container(
-                    child: Text(
-                      'เติมน้ำมัน',
-                      style: TextStyle(
-                        color: Colors.green,
-                        fontSize: 16.0,
-                      ),
+                  Text(
+                    'เติมน้ำมัน',
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontSize: 16.0,
                     ),
                   )
                 ],

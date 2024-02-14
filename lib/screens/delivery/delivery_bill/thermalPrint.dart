@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 class ThermalPrint extends StatefulWidget {
-  const ThermalPrint({Key key}) : super(key: key);
+  const ThermalPrint({Key? key}) : super(key: key);
 
   @override
   State<ThermalPrint> createState() => _ThermalPrintState();
@@ -15,7 +15,7 @@ class ThermalPrint extends StatefulWidget {
 
 class _ThermalPrintState extends State<ThermalPrint> {
   List<BluetoothDevice> device = [];
-  BluetoothDevice selectDevice;
+  late BluetoothDevice selectDevice;
   BlueThermalPrinter printer = BlueThermalPrinter.instance;
 
   @override
@@ -29,7 +29,7 @@ class _ThermalPrintState extends State<ThermalPrint> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('thermal print'),
+        title: const Text('thermal print'),
       ),
       body: Center(
         child: Column(
@@ -40,29 +40,29 @@ class _ThermalPrintState extends State<ThermalPrint> {
               value: selectDevice,
               items: device
                   .map((e) => DropdownMenuItem(
-                        child: Text(e.name),
+                        child: Text(e.name ?? ''),
                         value: e,
                       ))
                   .toList(),
-              onChanged: (value) {
+              onChanged: (dynamic value) {
                 setState(() {
                   selectDevice = value;
                 });
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             ElevatedButton(
                 onPressed: () {
                   printer.connect(selectDevice);
                 },
-                child: Text('connect')),
+                child: const Text('connect')),
             ElevatedButton(
                 onPressed: () {
                   printer.disconnect();
                 },
-                child: Text('disconnect')),
+                child: const Text('disconnect')),
             ElevatedButton(
                 onPressed: () async {
                   var response = await http.get(Uri.parse(
@@ -77,7 +77,7 @@ class _ThermalPrintState extends State<ThermalPrint> {
                       await rootBundle.load("assets/images/logo.png");
                   Uint8List imageBytesFromAsset = bytesAsset.buffer.asUint8List(
                       bytesAsset.offsetInBytes, bytesAsset.lengthInBytes);
-                  if (await printer.isConnected) {
+                  if (await printer.isConnected ?? false) {
                     //size
                     // 0 : Normal
                     // 1: Normal - Bold
@@ -92,11 +92,11 @@ class _ThermalPrintState extends State<ThermalPrint> {
                     // printer.printQRcode('Tawatchai', 200, 200, 1);
                     printer.printNewLine();
                     // printer.printImageBytes(imageBytesFromAsset);
-                    
+
                     printer.printNewLine();
                   }
                 },
-                child: Text('print test')),
+                child: const Text('print test')),
           ],
         ),
       ),

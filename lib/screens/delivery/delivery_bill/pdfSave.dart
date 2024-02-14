@@ -38,7 +38,7 @@ Future<void> genenratePdf() async {
               child: pw.Center(
                   child: pw.Column(children: [
             pw.Row(children: [
-              pw.Text(GlobalParam.deliverySelectStore.cCUSTNM,
+              pw.Text(GlobalParam.deliverySelectStore.cCUSTNM ?? '',
                   style: pw.TextStyle(
                       fontSize: 20,
                       fontWeight: pw.FontWeight.bold,
@@ -46,7 +46,7 @@ Future<void> genenratePdf() async {
               pw.Spacer(),
             ]),
             pw.Row(children: [
-              pw.Text(GlobalParam.deliverySelectStore.cADDRESS,
+              pw.Text(GlobalParam.deliverySelectStore.cADDRESS ?? '',
                   style: pw.TextStyle(
                       fontSize: 20,
                       fontWeight: pw.FontWeight.bold,
@@ -54,7 +54,7 @@ Future<void> genenratePdf() async {
               pw.Spacer(),
             ]),
             pw.Row(children: [
-              pw.Text(GlobalParam.deliverySelectStore.cSUBDIST,
+              pw.Text(GlobalParam.deliverySelectStore.cSUBDIST ?? '',
                   style: pw.TextStyle(
                       fontSize: 20,
                       fontWeight: pw.FontWeight.bold,
@@ -62,7 +62,7 @@ Future<void> genenratePdf() async {
               pw.Spacer(),
             ]),
             pw.Row(children: [
-              pw.Text(GlobalParam.deliverySelectStore.cDISTRICT,
+              pw.Text(GlobalParam.deliverySelectStore.cDISTRICT ?? '',
                   style: pw.TextStyle(
                       fontSize: 20,
                       fontWeight: pw.FontWeight.bold,
@@ -134,7 +134,7 @@ Future<void> genenratePdf() async {
               pw.Spacer(),
               pw.Text(
                   formatNum.format(
-                      double.parse(GlobalParam.deliveryStoreSum.iTOTAL)),
+                      double.parse(GlobalParam.deliveryStoreSum.iTOTAL ?? '0')),
                   style: pw.TextStyle(
                       fontSize: 20,
                       fontWeight: pw.FontWeight.bold,
@@ -211,28 +211,31 @@ Future<void> genenratePdf() async {
             double qty = 0, prince = 0;
             // ignore: unrelated_type_equality_checks
             if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
-              qty = double.parse(GlobalParam.deliveryPodtList[index].iSSIZEQTY);
-              prince =
-                  double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE);
-              unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM;
+              qty = double.parse(
+                  GlobalParam.deliveryPodtList[index].iSSIZEQTY ?? '0');
+              prince = double.parse(
+                  GlobalParam.deliveryPodtList[index].iSUNITPRICE ?? '0');
+              unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM ?? '';
               // ignore: unrelated_type_equality_checks
             } else if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
-              qty = double.parse(GlobalParam.deliveryPodtList[index].iMSIZEQTY);
-              prince =
-                  double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE);
-              unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM;
+              qty = double.parse(
+                  GlobalParam.deliveryPodtList[index].iMSIZEQTY ?? '0');
+              prince = double.parse(
+                  GlobalParam.deliveryPodtList[index].iMUNITPRICE ?? '0');
+              unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM ?? '';
               // ignore: unrelated_type_equality_checks
             } else if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
-              qty = double.parse(GlobalParam.deliveryPodtList[index].iLSIZEQTY);
-              prince =
-                  double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE);
-              unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM;
+              qty = double.parse(
+                  GlobalParam.deliveryPodtList[index].iLSIZEQTY ?? '0');
+              prince = double.parse(
+                  GlobalParam.deliveryPodtList[index].iLUNITPRICE ?? '0');
+              unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM ?? '';
             }
             return pw.Center(
                 child: pw.Container(
                     child: pw.Column(children: [
               pw.Row(children: [
-                pw.Text(GlobalParam.deliveryPodtList[index].cPRODNM,
+                pw.Text(GlobalParam.deliveryPodtList[index].cPRODNM ?? '',
                     textAlign: pw.TextAlign.left,
                     style: pw.TextStyle(
                         fontSize: 20,
@@ -297,30 +300,34 @@ Future<void> genenratePdf() async {
               index < GlobalParam.deliveryBasketReq.length;
               index++) {
             String unitNM = '';
-            int qty = GlobalParam.deliveryPodtList[index].iINCOMPRO;
+            int qty = GlobalParam.deliveryPodtList[index].iINCOMPRO ?? 0;
             double prince = 0;
             // ignore: unrelated_type_equality_checks
             if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
               prince = qty *
-                  double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE);
-              unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM;
+                  double.parse(
+                      GlobalParam.deliveryPodtList[index].iSUNITPRICE ?? '0');
+              unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM ?? '';
               // ignore: unrelated_type_equality_checks
             } else if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
               prince = qty *
-                  double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE);
-              unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM;
+                  double.parse(
+                      GlobalParam.deliveryPodtList[index].iMUNITPRICE ?? '0');
+              unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM ?? '';
               // ignore: unrelated_type_equality_checks
             } else if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
               prince = qty *
-                  double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE);
-              unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM;
+                  double.parse(
+                      GlobalParam.deliveryPodtList[index].iLUNITPRICE ?? '0');
+              unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM ?? '';
             }
             return pw.Center(
                 child: GlobalParam.deliveryPodtList[index].iINCOMPRO != 0
                     ? pw.Container(
                         child: pw.Column(children: [
                         pw.Row(children: [
-                          pw.Text(GlobalParam.deliveryPodtList[index].cPRODNM,
+                          pw.Text(
+                              GlobalParam.deliveryPodtList[index].cPRODNM ?? '',
                               textAlign: pw.TextAlign.left,
                               style: pw.TextStyle(
                                   fontSize: 20,
@@ -386,30 +393,34 @@ Future<void> genenratePdf() async {
               index < GlobalParam.deliveryBasketReq.length;
               index++) {
             String unitNM = '';
-            int qty = GlobalParam.deliveryPodtList[index].iCANCLEPRO;
+            int qty = GlobalParam.deliveryPodtList[index].iCANCLEPRO ?? 0;
             double prince = 0;
             // ignore: unrelated_type_equality_checks
             if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
               prince = qty *
-                  double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE);
-              unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM;
+                  double.parse(
+                      GlobalParam.deliveryPodtList[index].iSUNITPRICE ?? '0');
+              unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM ?? '';
               // ignore: unrelated_type_equality_checks
             } else if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
               prince = qty *
-                  double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE);
-              unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM;
+                  double.parse(
+                      GlobalParam.deliveryPodtList[index].iMUNITPRICE ?? '0');
+              unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM ?? '';
               // ignore: unrelated_type_equality_checks
             } else if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
               prince = qty *
-                  double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE);
-              unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM;
+                  double.parse(
+                      GlobalParam.deliveryPodtList[index].iLUNITPRICE ?? '0');
+              unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM ?? '';
             }
             return pw.Center(
                 child: GlobalParam.deliveryPodtList[index].iCANCLEPRO != 0
                     ? pw.Container(
                         child: pw.Column(children: [
                         pw.Row(children: [
-                          pw.Text(GlobalParam.deliveryPodtList[index].cPRODNM,
+                          pw.Text(
+                              GlobalParam.deliveryPodtList[index].cPRODNM ?? '',
                               textAlign: pw.TextAlign.left,
                               style: pw.TextStyle(
                                   fontSize: 20,
@@ -475,30 +486,34 @@ Future<void> genenratePdf() async {
               index < GlobalParam.deliveryPodtList.length;
               index++) {
             String unitNM = '';
-            int qty = GlobalParam.deliveryPodtList[index].iLOSSPRO;
+            int qty = GlobalParam.deliveryPodtList[index].iLOSSPRO ?? 0;
             double prince = 0;
             // ignore: unrelated_type_equality_checks
             if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
               prince = qty *
-                  double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE);
-              unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM;
+                  double.parse(
+                      GlobalParam.deliveryPodtList[index].iSUNITPRICE ?? '0');
+              unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM ?? '';
               // ignore: unrelated_type_equality_checks
             } else if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
               prince = qty *
-                  double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE);
-              unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM;
+                  double.parse(
+                      GlobalParam.deliveryPodtList[index].iMUNITPRICE ?? '0');
+              unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM ?? '';
               // ignore: unrelated_type_equality_checks
             } else if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
               prince = qty *
-                  double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE);
-              unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM;
+                  double.parse(
+                      GlobalParam.deliveryPodtList[index].iLUNITPRICE ?? '0');
+              unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM ?? '';
             }
             return pw.Center(
                 child: GlobalParam.deliveryPodtList[index].iLOSSPRO != 0
                     ? pw.Container(
                         child: pw.Column(children: [
                         pw.Row(children: [
-                          pw.Text(GlobalParam.deliveryPodtList[index].cPRODNM,
+                          pw.Text(
+                              GlobalParam.deliveryPodtList[index].cPRODNM ?? '',
                               textAlign: pw.TextAlign.left,
                               style: pw.TextStyle(
                                   fontSize: 20,
@@ -568,9 +583,10 @@ Future<void> genenratePdf() async {
             for (int i = 0; i < GlobalParam.deliveryBasketList.length; i++) {
               if (GlobalParam.deliveryBasketList[i].cBASKCD ==
                   GlobalParam.deliveryBasketReq[index].cBASKCD) {
-                basName = GlobalParam.deliveryBasketList[i].cBASKNM;
-                basTotal = GlobalParam.deliveryBasketReq[index].iQTY *
-                    double.parse(GlobalParam.deliveryBasketList[i].iPRICE);
+                basName = GlobalParam.deliveryBasketList[i].cBASKNM ?? '';
+                basTotal = (GlobalParam.deliveryBasketReq[index].iQTY *
+                    double.parse(
+                        GlobalParam.deliveryBasketList[i].iPRICE ?? '0'))!;
               }
             }
             return pw.Center(
@@ -590,7 +606,7 @@ Future<void> genenratePdf() async {
                           pw.Container(
                               width: 116,
                               child: pw.Text(
-                                  GlobalParam.deliveryBasketReq[index].iQTY
+                                  GlobalParam.deliveryBasketReq[index].iQTY!
                                       .toStringAsFixed(0),
                                   textAlign: pw.TextAlign.right,
                                   style: pw.TextStyle(

@@ -31,8 +31,7 @@ class _DeliveryMoneyMainListState extends State<DeliveryMoneyMainList> {
     return ListView.builder(
       itemCount: 1,
       itemBuilder: (BuildContext context, int index) {
-        return GlobalParam.deliveryAddSendMoney.iCOST != 0 
-              
+        return GlobalParam.deliveryAddSendMoney.iCOST != 0
             ? Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.only(
@@ -48,10 +47,10 @@ class _DeliveryMoneyMainListState extends State<DeliveryMoneyMainList> {
                       children: [
                         // _price(index),
                         Utility.formateNumberGN18(
-                          GlobalParam.deliveryAddSendMoney.iCOST,
+                          GlobalParam.deliveryAddSendMoney.iCOST ?? 0.0,
                           14.0,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 15.0,
                         ),
                         Expanded(
@@ -67,10 +66,10 @@ class _DeliveryMoneyMainListState extends State<DeliveryMoneyMainList> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5.0,
                     ),
-                    DottedLine(
+                    const DottedLine(
                       dashColor: Colors.grey,
                     ),
                   ],
@@ -82,15 +81,15 @@ class _DeliveryMoneyMainListState extends State<DeliveryMoneyMainList> {
   }
 
   Widget _price(index) {
-    Widget result;
+    late Widget result;
     switch (details[index]['type']) {
       case "1":
         result = Utility.formateNumberOR18(
-            double.parse(details[index]['price']), 14.0);
+            double.parse(details[index]['price'] ?? '0'), 14.0);
         break;
       case "2":
         result = Utility.formateNumberGN18(
-          double.parse(details[index]['price']),
+          double.parse(details[index]['price'] ?? '0'),
           14.0,
         );
         break;
@@ -99,31 +98,25 @@ class _DeliveryMoneyMainListState extends State<DeliveryMoneyMainList> {
   }
 
   Widget _name(index) {
-    return Container(
-      child: Text(GlobalParam.deliveryAddSendMoney.cCOSNM),
-    );
+    return Text(GlobalParam.deliveryAddSendMoney.cCOSNM ?? '');
   }
 
   Widget _code(index) {
-    return Container(
-      child: Text(
-        GlobalParam.deliveryAddSendMoney.cREMARK,
-        style: TextStyle(
-          color: Colors.grey,
-          fontSize: 10.0,
-        ),
+    return Text(
+      GlobalParam.deliveryAddSendMoney.cREMARK ?? '',
+      style: const TextStyle(
+        color: Colors.grey,
+        fontSize: 10.0,
       ),
     );
   }
 
   Widget _createDate(index) {
-    return Container(
-      child: Text(
-        details[index]['createdate'],
-        style: TextStyle(
-          color: Colors.grey,
-          fontSize: 10.0,
-        ),
+    return Text(
+      details[index]['createdate'] ?? '',
+      style: const TextStyle(
+        color: Colors.grey,
+        fontSize: 10.0,
       ),
     );
   }

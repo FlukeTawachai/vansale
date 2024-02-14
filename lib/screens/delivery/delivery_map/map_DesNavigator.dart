@@ -16,7 +16,7 @@ import 'package:vansale/screens/googleMap/locationServices.dart';
 import 'package:vansale/screens/home/home.dart';
 
 class DesNavigator extends StatefulWidget {
-  DesNavigator({Key key, this.openMap}) : super(key: key);
+  DesNavigator({Key? key, required this.openMap}) : super(key: key);
   final bool openMap;
 
   @override
@@ -24,18 +24,18 @@ class DesNavigator extends StatefulWidget {
 }
 
 class _DesNavigatorState extends State<DesNavigator> {
-  StreamSubscription _locationSubscription;
-  Location _locationTracker = Location();
-  Marker marker;
+  late StreamSubscription _locationSubscription;
+  final Location _locationTracker = Location();
+  late Marker marker;
   final Set<Marker> markers = new Set();
-  Circle circle;
-  GoogleMapController _controller;
+  late Circle circle;
+  late GoogleMapController _controller;
   bool discoverStores = true;
-  LatLng start = LatLng(19.025392, 99.920011);
-  LatLng destination = LatLng(19.030729, 99.924072);
+  LatLng start = const LatLng(19.025392, 99.920011);
+  LatLng destination = const LatLng(19.030729, 99.924072);
   List<LatLng> polylineCoordinates = [];
 
-  static final CameraPosition initialLocation = CameraPosition(
+  static const CameraPosition initialLocation = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
@@ -52,8 +52,8 @@ class _DesNavigatorState extends State<DesNavigator> {
 
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
         "AIzaSyD-bNWUzkY9Vjek2Z5uIjFS1fuhG8xUpUY",
-        PointLatLng(19.025392, 99.920011),
-        PointLatLng(19.030729, 99.924072));
+        const PointLatLng(19.025392, 99.920011),
+        const PointLatLng(19.030729, 99.924072));
 
     if (result.points.isEmpty) {
       result.points.forEach((element) =>
@@ -64,25 +64,26 @@ class _DesNavigatorState extends State<DesNavigator> {
   }
 
   void updateMarkerAndCircle(LocationData newLocalData, Uint8List imageData) {
-    LatLng latlng = LatLng(newLocalData.latitude, newLocalData.longitude);
+    LatLng latlng =
+        LatLng(newLocalData.latitude ?? 0, newLocalData.longitude ?? 0);
     setState(() {
       var current = Marker(
-          markerId: MarkerId("home"),
+          markerId: const MarkerId("home"),
           position: latlng,
-          rotation: newLocalData.heading,
+          rotation: newLocalData.heading ?? 0,
           draggable: false,
           zIndex: 2,
           flat: true,
-          anchor: Offset(0.5, 0.5),
+          anchor: const Offset(0.5, 0.5),
           icon: BitmapDescriptor.defaultMarker);
       var des = Marker(
-          markerId: MarkerId("home"),
+          markerId: const MarkerId("home"),
           position: destination,
-          rotation: newLocalData.heading,
+          rotation: newLocalData.heading ?? 0,
           draggable: false,
           zIndex: 2,
           flat: true,
-          anchor: Offset(0.5, 0.5),
+          anchor: const Offset(0.5, 0.5),
           icon: BitmapDescriptor.defaultMarker);
       markers.clear();
       markers.add(current);
@@ -97,8 +98,8 @@ class _DesNavigatorState extends State<DesNavigator> {
       //     anchor: Offset(0.5, 0.5),
       //     icon: BitmapDescriptor.fromBytes(imageData));
       circle = Circle(
-          circleId: CircleId("car"),
-          radius: newLocalData.accuracy,
+          circleId: const CircleId("car"),
+          radius: newLocalData.accuracy ?? 0,
           zIndex: 1,
           strokeColor: Colors.blue,
           center: latlng,
@@ -121,11 +122,12 @@ class _DesNavigatorState extends State<DesNavigator> {
           _locationTracker.onLocationChanged.listen((newLocalData) {
         if (_controller != null) {
           GlobalParam.currentLocationCheckIn =
-              LatLng(newLocalData.latitude, newLocalData.longitude);
+              LatLng(newLocalData.latitude ?? 0, newLocalData.longitude ?? 0);
           _controller.animateCamera(CameraUpdate.newCameraPosition(
-              new CameraPosition(
+              CameraPosition(
                   bearing: 192.8334901395799,
-                  target: LatLng(newLocalData.latitude, newLocalData.longitude),
+                  target: LatLng(
+                      newLocalData.latitude ?? 0, newLocalData.longitude ?? 0),
                   tilt: 0,
                   zoom: 16.00)));
           // updateMarkerAndCircle(newLocalData, imageData);
@@ -155,8 +157,8 @@ class _DesNavigatorState extends State<DesNavigator> {
     // final double lat = desPoint['geometry']['location']['lat'];
     // final double lng = desPoint['geometry']['location']['lng'];
 
-    double lat = GlobalParam.deliveryLocationStoreLatitude;
-    double lng = GlobalParam.deliveryLocationStoreLongitude;
+    double lat = GlobalParam.deliveryLocationStoreLatitude ?? 0;
+    double lng = GlobalParam.deliveryLocationStoreLongitude ?? 0;
 
     await LocationServices().openGoogleMap(lat, lng);
   }
@@ -181,7 +183,8 @@ class _DesNavigatorState extends State<DesNavigator> {
           circles: Set.of((circle != null) ? [circle] : []),
           polylines: {
             Polyline(
-                polylineId: PolylineId('route'), points: polylineCoordinates)
+                polylineId: const PolylineId('route'),
+                points: polylineCoordinates)
           },
           onMapCreated: (GoogleMapController controller) {
             _controller = controller;
@@ -217,9 +220,9 @@ class _DesNavigatorState extends State<DesNavigator> {
         print(
             '----------- Location Store: ${result.cLATITUDE},${result.cLONGTITUDE} -----------');
         GlobalParam.deliveryLocationStoreLatitude =
-            double.parse(result.cLATITUDE);
+            double.parse(result.cLATITUDE ?? '0');
         GlobalParam.deliveryLocationStoreLongitude =
-            double.parse(result.cLONGTITUDE);
+            double.parse(result.cLONGTITUDE ?? '0');
         if (widget.openMap == true) {
           openMaps();
         }

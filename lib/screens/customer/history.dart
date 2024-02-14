@@ -4,7 +4,7 @@ import 'package:vansale/list_all.dart/lst_customer_history.dart';
 class CustomerHistory extends StatefulWidget {
   //const CustomerHistory({ Key? key }) : super(key: key);
   final String typeMenuCode;
-  CustomerHistory(this.typeMenuCode);
+  const CustomerHistory(this.typeMenuCode, {super.key});
   @override
   _CustomerHistoryState createState() => _CustomerHistoryState();
 }
@@ -17,7 +17,7 @@ class _CustomerHistoryState extends State<CustomerHistory> {
         elevation: 0.0,
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'ประวัติการสั่ง',
           style: TextStyle(
             color: Colors.black,
@@ -35,7 +35,7 @@ class _CustomerHistoryState extends State<CustomerHistory> {
       body: RefreshIndicator(
         color: Colors.green,
         onRefresh: () async {
-          return await Future.delayed(Duration(seconds: 1));
+          return await Future.delayed(const Duration(seconds: 1));
         },
         child: Container(
           child: Column(

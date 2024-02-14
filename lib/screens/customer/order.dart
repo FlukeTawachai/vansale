@@ -22,7 +22,7 @@ class _OrderState extends State<Order> {
         elevation: 0.0,
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'สั่งซื้อ',
           style: TextStyle(
             color: Colors.black,
@@ -55,7 +55,7 @@ class _OrderState extends State<Order> {
               child: Container(
                 alignment: Alignment.center,
                 margin: const EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(5),
@@ -76,7 +76,7 @@ class _OrderState extends State<Order> {
                           borderRadius: BorderRadius.circular(100),
                         ),
                         child: TextField(
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'Prompt',
                           ),
                           textInputAction: TextInputAction.search,
@@ -84,7 +84,7 @@ class _OrderState extends State<Order> {
                             hintText: "ค้นหาสินค้า",
                             border: InputBorder.none,
                             contentPadding:
-                                EdgeInsets.only(left: 5.0, top: 5.0),
+                                const EdgeInsets.only(left: 5.0, top: 5.0),
                             prefixIcon: RotatedBox(
                               quarterTurns: 1,
                               child: IconButton(
@@ -133,7 +133,7 @@ class _OrderState extends State<Order> {
                             color: Colors.black12,
                             height: 50.0,
                             alignment: Alignment.center,
-                            child: Text(
+                            child: const Text(
                               'ประเภท',
                               style: TextStyle(
                                 fontSize: 14.0,
@@ -156,7 +156,7 @@ class _OrderState extends State<Order> {
                             color: Colors.black12,
                             height: 50.0,
                             alignment: Alignment.center,
-                            child: Text(
+                            child: const Text(
                               'หมวดหลัก',
                               style: TextStyle(
                                 fontSize: 14.0,
@@ -179,7 +179,7 @@ class _OrderState extends State<Order> {
                             color: Colors.black12,
                             height: 50.0,
                             alignment: Alignment.center,
-                            child: Text(
+                            child: const Text(
                               'หมวดย่อย',
                               style: TextStyle(
                                 fontSize: 14.0,
@@ -202,7 +202,7 @@ class _OrderState extends State<Order> {
                             color: Colors.black12,
                             height: 50.0,
                             alignment: Alignment.center,
-                            child: Text(
+                            child: const Text(
                               'แบรนด์',
                               style: TextStyle(
                                 fontSize: 14.0,
@@ -232,7 +232,7 @@ class _OrderState extends State<Order> {
         height: 160.0,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(15),
             topRight: Radius.circular(15),
           ),
@@ -241,7 +241,7 @@ class _OrderState extends State<Order> {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 5,
               blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
+              offset: const Offset(0, 3), // changes position of shadow
             ),
           ],
         ),
@@ -254,7 +254,7 @@ class _OrderState extends State<Order> {
                 children: [
                   Expanded(
                     child: Container(
-                      child: Text(
+                      child: const Text(
                         'จำนวนสินค้า',
                         style: TextStyle(
                           fontSize: 12.0,
@@ -268,7 +268,7 @@ class _OrderState extends State<Order> {
                   Expanded(
                     child: Container(
                       alignment: Alignment.centerRight,
-                      child: Text(
+                      child: const Text(
                         '32 ชิ้น',
                         style: TextStyle(
                           fontSize: 12.0,
@@ -287,7 +287,7 @@ class _OrderState extends State<Order> {
                 children: [
                   Expanded(
                     child: Container(
-                      child: Text(
+                      child: const Text(
                         'ราคาสินค้า',
                         style: TextStyle(
                           fontSize: 12.0,
@@ -346,7 +346,7 @@ class _OrderState extends State<Order> {
                 children: [
                   Expanded(
                     child: Container(
-                      child: Text(
+                      child: const Text(
                         'มัดจำ (ตระกร้า)',
                         style: TextStyle(
                           fontSize: 12.0,
@@ -405,7 +405,7 @@ class _OrderState extends State<Order> {
                 children: [
                   Expanded(
                     child: Container(
-                      child: Text(
+                      child: const Text(
                         'ราคารวม',
                         style: TextStyle(
                           fontSize: 14.0,
@@ -488,7 +488,7 @@ class _OrderState extends State<Order> {
                                   color: HexColor('#00cb39'),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10.0,
                               ),
                               Container(

@@ -35,7 +35,7 @@ import 'package:flutter/services.dart' show rootBundle;
 
 class BluPrintPOS extends StatefulWidget {
   final String code;
-  const BluPrintPOS({Key key, this.code}) : super(key: key);
+  const BluPrintPOS({Key? key, required this.code}) : super(key: key);
 
   @override
   State<BluPrintPOS> createState() => _BluPrintPOSState();
@@ -48,15 +48,15 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
   String dateNewF = '';
   final BluePrintPos _bluePrintPos = BluePrintPos.instance;
   List<BlueDevice> _blueDevices = <BlueDevice>[];
-  BlueDevice _selectedDevice;
+  late BlueDevice _selectedDevice;
   bool _isLoading = false;
   int _loadingAtIndex = -1;
   bool pdfSave = false;
   bool printSave = true;
-  BlueDevice deviceSelect;
+  late BlueDevice deviceSelect;
   List<BlueDevice> deviceList = [BlueDevice(address: '', name: "เลือก")];
   String deviceName = '', deviceAdd = '';
-  Database database;
+  late Database database;
   List<QueryPodtResp> podtList = [];
   List<QueryPodtResp> podtListNstatus = [];
   List<PoHDAndPoDTResp> productList = [];
@@ -64,12 +64,12 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
 
   // BLE weighing
   final flutterReactiveBle = RB.FlutterReactiveBle();
-  RB.DiscoveredDevice deviceChipseaBle;
+  late RB.DiscoveredDevice deviceChipseaBle;
   String mButtonText = "Connect Chipsea-BLE";
   String mWeighingReading = "---";
   String mUnit = "no";
-  double widthScreen;
-  Future<List<BluetoothDevice>> bluDevlist;
+  late double widthScreen;
+  late Future<List<BluetoothDevice>> bluDevlist;
 
   @override
   void initState() {
@@ -82,7 +82,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
     // getBlueDeviceList();
     // print(deviceSelect.name);
     if (GlobalParam.deliveryStoreSum.cPOCD != null) {
-      getPodt(GlobalParam.deliveryStoreSum.cPOCD);
+      getPodt(GlobalParam.deliveryStoreSum.cPOCD ?? '');
     }
   }
 
@@ -93,11 +93,11 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
 
   getBlueDeviceList() async {
     bluDevlist = getDeviceList();
-    if (GlobalParam.blueListDevice.length > 0) {
+    if (GlobalParam.blueListDevice.isNotEmpty) {
       for (int i = 0; i < GlobalParam.blueListDevice.length; i++) {
         deviceList.add(BlueDevice(
-            name: GlobalParam.blueListDevice[i].name,
-            address: GlobalParam.blueListDevice[i].address));
+            name: GlobalParam.blueListDevice[i].name ?? '',
+            address: GlobalParam.blueListDevice[i].address ?? ''));
       }
     }
   }
@@ -279,25 +279,25 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
 
     // locationStore
     receipt01.addLeftRightText(
-      GlobalParam.deliverySelectStore.cCUSTNM,
+      GlobalParam.deliverySelectStore.cCUSTNM ?? '',
       '',
       leftSize: ReceiptTextSizeType.medium,
       leftStyle: ReceiptTextStyleType.bold,
     );
     receipt01.addLeftRightText(
-      GlobalParam.deliverySelectStore.cADDRESS,
+      GlobalParam.deliverySelectStore.cADDRESS ?? '',
       '',
       leftSize: ReceiptTextSizeType.medium,
       leftStyle: ReceiptTextStyleType.bold,
     );
     receipt01.addLeftRightText(
-      GlobalParam.deliverySelectStore.cSUBDIST,
+      GlobalParam.deliverySelectStore.cSUBDIST ?? '',
       '',
       leftSize: ReceiptTextSizeType.medium,
       leftStyle: ReceiptTextStyleType.bold,
     );
     receipt01.addLeftRightText(
-      GlobalParam.deliverySelectStore.cDISTRICT,
+      GlobalParam.deliverySelectStore.cDISTRICT ?? '',
       '',
       leftSize: ReceiptTextSizeType.medium,
       leftStyle: ReceiptTextStyleType.bold,
@@ -339,26 +339,35 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
       String unitNM = '';
       double qty = 0, prince = 0;
       // ignore: unrelated_type_equality_checks
-      if (double.parse(GlobalParam.deliveryPodtList[index].iSSIZEQTY) > 0) {
-        qty = double.parse(GlobalParam.deliveryPodtList[index].iSSIZEQTY);
-        prince = double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE);
-        unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM;
+      if (double.parse(GlobalParam.deliveryPodtList[index].iSSIZEQTY ?? '0') >
+          0) {
+        qty =
+            double.parse(GlobalParam.deliveryPodtList[index].iSSIZEQTY ?? '0');
+        prince = double.parse(
+            GlobalParam.deliveryPodtList[index].iSUNITPRICE ?? '0');
+        unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM ?? '';
         // ignore: unrelated_type_equality_checks
       }
-      if (double.parse(GlobalParam.deliveryPodtList[index].iMSIZEQTY) > 0) {
-        qty = double.parse(GlobalParam.deliveryPodtList[index].iMSIZEQTY);
-        prince = double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE);
-        unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM;
+      if (double.parse(GlobalParam.deliveryPodtList[index].iMSIZEQTY ?? '0') >
+          0) {
+        qty =
+            double.parse(GlobalParam.deliveryPodtList[index].iMSIZEQTY ?? '0');
+        prince = double.parse(
+            GlobalParam.deliveryPodtList[index].iMUNITPRICE ?? '0');
+        unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM ?? '';
         // ignore: unrelated_type_equality_checks
       }
-      if (double.parse(GlobalParam.deliveryPodtList[index].iLSIZEQTY) > 0) {
-        qty = double.parse(GlobalParam.deliveryPodtList[index].iLSIZEQTY);
-        prince = double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE);
-        unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM;
+      if (double.parse(GlobalParam.deliveryPodtList[index].iLSIZEQTY ?? '0') >
+          0) {
+        qty =
+            double.parse(GlobalParam.deliveryPodtList[index].iLSIZEQTY ?? '0');
+        prince = double.parse(
+            GlobalParam.deliveryPodtList[index].iLUNITPRICE ?? '0');
+        unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM ?? '';
       }
 
       receipt01.addLeftRightText(
-        GlobalParam.deliveryPodtList[index].cPRODNM,
+        GlobalParam.deliveryPodtList[index].cPRODNM ?? '',
         '',
         leftSize: ReceiptTextSizeType.medium,
         leftStyle: ReceiptTextStyleType.bold,
@@ -392,30 +401,36 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
         GlobalParam.deliveryProIncom[index].iINCOMPRO = 0;
       }
       String unitNM = '';
-      int qty = GlobalParam.deliveryProIncom[index].iINCOMPRO;
+      int qty = GlobalParam.deliveryProIncom[index].iINCOMPRO ?? 0;
       double prince = 0;
       // ignore: unrelated_type_equality_checks
-      if (double.parse(GlobalParam.deliveryProIncom[index].iSSIZEQTY) > 0) {
-        prince =
-            qty * double.parse(GlobalParam.deliveryProIncom[index].iSUNITPRICE);
-        unitNM = GlobalParam.deliveryProIncom[index].cSUOMNM;
-        // ignore: unrelated_type_equality_checks
-      } else if (double.parse(GlobalParam.deliveryProIncom[index].iMSIZEQTY) >
+      if (double.parse(GlobalParam.deliveryProIncom[index].iSSIZEQTY ?? '0') >
           0) {
-        prince =
-            qty * double.parse(GlobalParam.deliveryProIncom[index].iMUNITPRICE);
-        unitNM = GlobalParam.deliveryProIncom[index].cMUOMNM;
+        prince = qty *
+            double.parse(
+                GlobalParam.deliveryProIncom[index].iSUNITPRICE ?? '0');
+        unitNM = GlobalParam.deliveryProIncom[index].cSUOMNM ?? '';
         // ignore: unrelated_type_equality_checks
-      } else if (double.parse(GlobalParam.deliveryProIncom[index].iLSIZEQTY) >
+      } else if (double.parse(
+              GlobalParam.deliveryProIncom[index].iMSIZEQTY ?? '0') >
           0) {
-        prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE);
-        unitNM = GlobalParam.deliveryProIncom[index].cLUOMNM;
+        prince = qty *
+            double.parse(
+                GlobalParam.deliveryProIncom[index].iMUNITPRICE ?? '0');
+        unitNM = GlobalParam.deliveryProIncom[index].cMUOMNM ?? '';
+        // ignore: unrelated_type_equality_checks
+      } else if (double.parse(
+              GlobalParam.deliveryProIncom[index].iLSIZEQTY ?? '0') >
+          0) {
+        prince = qty *
+            double.parse(
+                GlobalParam.deliveryPodtList[index].iLUNITPRICE ?? '0');
+        unitNM = GlobalParam.deliveryProIncom[index].cLUOMNM ?? '';
       }
       if (GlobalParam.deliveryProIncom[index].iINCOMPRO != 0 &&
           GlobalParam.deliveryProIncom[index].iINCOMPRO != null) {
         receipt01.addLeftRightText(
-          GlobalParam.deliveryProIncom[index].cPRODNM,
+          GlobalParam.deliveryProIncom[index].cPRODNM ?? '',
           '',
           leftSize: ReceiptTextSizeType.medium,
           leftStyle: ReceiptTextStyleType.bold,
@@ -450,30 +465,36 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
         GlobalParam.deliveryPodCancel[index].iCANCLEPRO = 0;
       }
       String unitNM = '';
-      int qty = GlobalParam.deliveryPodCancel[index].iCANCLEPRO;
+      int qty = GlobalParam.deliveryPodCancel[index].iCANCLEPRO ?? 0;
       double prince = 0;
       // ignore: unrelated_type_equality_checks
-      if (double.parse(GlobalParam.deliveryPodCancel[index].iSSIZEQTY) > 0) {
-        prince = qty *
-            double.parse(GlobalParam.deliveryPodCancel[index].iSUNITPRICE);
-        unitNM = GlobalParam.deliveryPodCancel[index].cSUOMNM;
-        // ignore: unrelated_type_equality_checks
-      } else if (double.parse(GlobalParam.deliveryPodCancel[index].iMSIZEQTY) >
+      if (double.parse(GlobalParam.deliveryPodCancel[index].iSSIZEQTY ?? '0') >
           0) {
         prince = qty *
-            double.parse(GlobalParam.deliveryPodCancel[index].iMUNITPRICE);
-        unitNM = GlobalParam.deliveryPodCancel[index].cMUOMNM;
+            double.parse(
+                GlobalParam.deliveryPodCancel[index].iSUNITPRICE ?? '0');
+        unitNM = GlobalParam.deliveryPodCancel[index].cSUOMNM ?? '';
         // ignore: unrelated_type_equality_checks
-      } else if (double.parse(GlobalParam.deliveryPodCancel[index].iLSIZEQTY) >
+      } else if (double.parse(
+              GlobalParam.deliveryPodCancel[index].iMSIZEQTY ?? '0') >
           0) {
         prince = qty *
-            double.parse(GlobalParam.deliveryPodCancel[index].iLUNITPRICE);
-        unitNM = GlobalParam.deliveryPodCancel[index].cLUOMNM;
+            double.parse(
+                GlobalParam.deliveryPodCancel[index].iMUNITPRICE ?? '0');
+        unitNM = GlobalParam.deliveryPodCancel[index].cMUOMNM ?? '';
+        // ignore: unrelated_type_equality_checks
+      } else if (double.parse(
+              GlobalParam.deliveryPodCancel[index].iLSIZEQTY ?? '0') >
+          0) {
+        prince = qty *
+            double.parse(
+                GlobalParam.deliveryPodCancel[index].iLUNITPRICE ?? '0');
+        unitNM = GlobalParam.deliveryPodCancel[index].cLUOMNM ?? '';
       }
       if (GlobalParam.deliveryPodCancel[index].iCANCLEPRO != 0 &&
           GlobalParam.deliveryPodCancel[index].iCANCLEPRO != null) {
         receipt01.addLeftRightText(
-          GlobalParam.deliveryPodCancel[index].cPRODNM,
+          GlobalParam.deliveryPodCancel[index].cPRODNM ?? '',
           '',
           leftSize: ReceiptTextSizeType.medium,
           leftStyle: ReceiptTextStyleType.bold,
@@ -511,33 +532,37 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
         GlobalParam.deliveryReturnGoodPro[index].iCANCLEPRO = 0;
       }
       String unitNM = '';
-      int qty = GlobalParam.deliveryReturnGoodPro[index].iCANCLEPRO;
+      int qty = GlobalParam.deliveryReturnGoodPro[index].iCANCLEPRO ?? 0;
       double prince = 0;
       // ignore: unrelated_type_equality_checks
-      if (double.parse(GlobalParam.deliveryReturnGoodPro[index].iSSIZEQTY) >
+      if (double.parse(
+              GlobalParam.deliveryReturnGoodPro[index].iSSIZEQTY ?? '0') >
           0) {
         prince = qty *
-            double.parse(GlobalParam.deliveryReturnGoodPro[index].iSUNITPRICE);
-        unitNM = GlobalParam.deliveryReturnGoodPro[index].cSUOMNM;
+            double.parse(
+                GlobalParam.deliveryReturnGoodPro[index].iSUNITPRICE ?? '0');
+        unitNM = GlobalParam.deliveryReturnGoodPro[index].cSUOMNM ?? '';
         // ignore: unrelated_type_equality_checks
       } else if (double.parse(
-              GlobalParam.deliveryReturnGoodPro[index].iMSIZEQTY) >
+              GlobalParam.deliveryReturnGoodPro[index].iMSIZEQTY ?? '0') >
           0) {
         prince = qty *
-            double.parse(GlobalParam.deliveryReturnGoodPro[index].iMUNITPRICE);
-        unitNM = GlobalParam.deliveryPodCancel[index].cMUOMNM;
+            double.parse(
+                GlobalParam.deliveryReturnGoodPro[index].iMUNITPRICE ?? '0');
+        unitNM = GlobalParam.deliveryPodCancel[index].cMUOMNM ?? '';
         // ignore: unrelated_type_equality_checks
       } else if (double.parse(
-              GlobalParam.deliveryReturnGoodPro[index].iLSIZEQTY) >
+              GlobalParam.deliveryReturnGoodPro[index].iLSIZEQTY ?? '0') >
           0) {
         prince = qty *
-            double.parse(GlobalParam.deliveryReturnGoodPro[index].iLUNITPRICE);
-        unitNM = GlobalParam.deliveryReturnGoodPro[index].cLUOMNM;
+            double.parse(
+                GlobalParam.deliveryReturnGoodPro[index].iLUNITPRICE ?? '0');
+        unitNM = GlobalParam.deliveryReturnGoodPro[index].cLUOMNM ?? '';
       }
       if (GlobalParam.deliveryReturnGoodPro[index].iCANCLEPRO != 0 &&
           GlobalParam.deliveryReturnGoodPro[index].iCANCLEPRO != null) {
         receipt01.addLeftRightText(
-          GlobalParam.deliveryReturnGoodPro[index].cPRODNM,
+          GlobalParam.deliveryReturnGoodPro[index].cPRODNM ?? '',
           '',
           leftSize: ReceiptTextSizeType.medium,
           leftStyle: ReceiptTextStyleType.bold,
@@ -575,32 +600,37 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
         GlobalParam.deliveryReturnBadPro[index].iCANCLEPRO = 0;
       }
       String unitNM = '';
-      int qty = GlobalParam.deliveryReturnBadPro[index].iCANCLEPRO;
+      int qty = GlobalParam.deliveryReturnBadPro[index].iCANCLEPRO ?? 0;
       double prince = 0;
       // ignore: unrelated_type_equality_checks
-      if (double.parse(GlobalParam.deliveryReturnBadPro[index].iSSIZEQTY) > 0) {
-        prince = qty *
-            double.parse(GlobalParam.deliveryReturnBadPro[index].iSUNITPRICE);
-        unitNM = GlobalParam.deliveryReturnBadPro[index].cSUOMNM;
-        // ignore: unrelated_type_equality_checks
-      } else if (double.parse(
-              GlobalParam.deliveryReturnBadPro[index].iMSIZEQTY) >
+      if (double.parse(
+              GlobalParam.deliveryReturnBadPro[index].iSSIZEQTY ?? '0') >
           0) {
         prince = qty *
-            double.parse(GlobalParam.deliveryReturnBadPro[index].iMUNITPRICE);
-        unitNM = GlobalParam.deliveryPodCancel[index].cMUOMNM;
+            double.parse(
+                GlobalParam.deliveryReturnBadPro[index].iSUNITPRICE ?? '0');
+        unitNM = GlobalParam.deliveryReturnBadPro[index].cSUOMNM ?? '';
         // ignore: unrelated_type_equality_checks
       } else if (double.parse(
-              GlobalParam.deliveryReturnBadPro[index].iLSIZEQTY) >
+              GlobalParam.deliveryReturnBadPro[index].iMSIZEQTY ?? '0') >
           0) {
         prince = qty *
-            double.parse(GlobalParam.deliveryReturnBadPro[index].iLUNITPRICE);
-        unitNM = GlobalParam.deliveryReturnBadPro[index].cLUOMNM;
+            double.parse(
+                GlobalParam.deliveryReturnBadPro[index].iMUNITPRICE ?? '0');
+        unitNM = GlobalParam.deliveryPodCancel[index].cMUOMNM ?? '';
+        // ignore: unrelated_type_equality_checks
+      } else if (double.parse(
+              GlobalParam.deliveryReturnBadPro[index].iLSIZEQTY ?? '0') >
+          0) {
+        prince = qty *
+            double.parse(
+                GlobalParam.deliveryReturnBadPro[index].iLUNITPRICE ?? '0');
+        unitNM = GlobalParam.deliveryReturnBadPro[index].cLUOMNM ?? '';
       }
       if (GlobalParam.deliveryReturnBadPro[index].iCANCLEPRO != 0 &&
           GlobalParam.deliveryReturnBadPro[index].iCANCLEPRO != null) {
         receipt01.addLeftRightText(
-          GlobalParam.deliveryReturnBadPro[index].cPRODNM,
+          GlobalParam.deliveryReturnBadPro[index].cPRODNM ?? '',
           '',
           leftSize: ReceiptTextSizeType.medium,
           leftStyle: ReceiptTextStyleType.bold,
@@ -637,9 +667,9 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
       for (int i = 0; i < GlobalParam.deliveryBasketList.length; i++) {
         if (GlobalParam.deliveryBasketList[i].cBASKCD ==
             GlobalParam.deliveryBasketReq[index].cBASKCD) {
-          basName = GlobalParam.deliveryBasketList[i].cBASKNM;
-          basTotal = GlobalParam.deliveryBasketReq[index].iQTY *
-              double.parse(GlobalParam.deliveryBasketList[i].iPRICE);
+          basName = GlobalParam.deliveryBasketList[i].cBASKNM ?? '';
+          basTotal = (GlobalParam.deliveryBasketReq[index].iQTY! *
+              double.parse(GlobalParam.deliveryBasketList[i].iPRICE ?? '0'))!;
         }
       }
       if (GlobalParam.deliveryBasketReq[index].iQTY != 0) {
@@ -692,14 +722,17 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
       var qty = 0.0;
       var price = 0.0;
       qty = double.parse('${GlobalParam.deliveryProIncom[i].iINCOMPRO}');
-      if (double.parse(GlobalParam.deliveryProIncom[i].iSSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryProIncom[i].iSUNITPRICE);
+      if (double.parse(GlobalParam.deliveryProIncom[i].iSSIZEQTY ?? '0') > 0) {
+        price =
+            double.parse(GlobalParam.deliveryProIncom[i].iSUNITPRICE ?? '0');
       }
-      if (double.parse(GlobalParam.deliveryProIncom[i].iMSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryProIncom[i].iMUNITPRICE);
+      if (double.parse(GlobalParam.deliveryProIncom[i].iMSIZEQTY ?? '0') > 0) {
+        price =
+            double.parse(GlobalParam.deliveryProIncom[i].iMUNITPRICE ?? '0');
       }
-      if (double.parse(GlobalParam.deliveryProIncom[i].iLSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryProIncom[i].iLUNITPRICE);
+      if (double.parse(GlobalParam.deliveryProIncom[i].iLSIZEQTY ?? '0') > 0) {
+        price =
+            double.parse(GlobalParam.deliveryProIncom[i].iLUNITPRICE ?? '0');
       }
       totalIncom += qty * price;
     }
@@ -708,14 +741,17 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
       var qty = 0.0;
       var price = 0.0;
       qty = double.parse('${GlobalParam.deliveryPodCancel[i].iCANCLEPRO}');
-      if (double.parse(GlobalParam.deliveryPodCancel[i].iSSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryPodCancel[i].iSUNITPRICE);
+      if (double.parse(GlobalParam.deliveryPodCancel[i].iSSIZEQTY ?? '0') > 0) {
+        price =
+            double.parse(GlobalParam.deliveryPodCancel[i].iSUNITPRICE ?? '0');
       }
-      if (double.parse(GlobalParam.deliveryPodCancel[i].iMSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryPodCancel[i].iMUNITPRICE);
+      if (double.parse(GlobalParam.deliveryPodCancel[i].iMSIZEQTY ?? '0') > 0) {
+        price =
+            double.parse(GlobalParam.deliveryPodCancel[i].iMUNITPRICE ?? '0');
       }
-      if (double.parse(GlobalParam.deliveryPodCancel[i].iLSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryPodCancel[i].iLUNITPRICE);
+      if (double.parse(GlobalParam.deliveryPodCancel[i].iLSIZEQTY ?? '0') > 0) {
+        price =
+            double.parse(GlobalParam.deliveryPodCancel[i].iLUNITPRICE ?? '0');
       }
       totalCancel += qty * price;
     }
@@ -724,14 +760,20 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
       var qty = 0.0;
       var price = 0.0;
       qty = double.parse('${GlobalParam.deliveryReturnGoodPro[i].iCANCLEPRO}');
-      if (double.parse(GlobalParam.deliveryReturnGoodPro[i].iSSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryReturnGoodPro[i].iSUNITPRICE);
+      if (double.parse(GlobalParam.deliveryReturnGoodPro[i].iSSIZEQTY ?? '0') >
+          0) {
+        price = double.parse(
+            GlobalParam.deliveryReturnGoodPro[i].iSUNITPRICE ?? '0');
       }
-      if (double.parse(GlobalParam.deliveryReturnGoodPro[i].iMSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryReturnGoodPro[i].iMUNITPRICE);
+      if (double.parse(GlobalParam.deliveryReturnGoodPro[i].iMSIZEQTY ?? '0') >
+          0) {
+        price = double.parse(
+            GlobalParam.deliveryReturnGoodPro[i].iMUNITPRICE ?? '0');
       }
-      if (double.parse(GlobalParam.deliveryReturnGoodPro[i].iLSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryReturnGoodPro[i].iLUNITPRICE);
+      if (double.parse(GlobalParam.deliveryReturnGoodPro[i].iLSIZEQTY ?? '0') >
+          0) {
+        price = double.parse(
+            GlobalParam.deliveryReturnGoodPro[i].iLUNITPRICE ?? '0');
       }
       totalReGood += qty * price;
     }
@@ -740,21 +782,32 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
       var qty = 0.0;
       var price = 0.0;
       qty = double.parse('${GlobalParam.deliveryReturnBadPro[i].iCANCLEPRO}');
-      if (double.parse(GlobalParam.deliveryReturnBadPro[i].iSSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryReturnBadPro[i].iSUNITPRICE);
+      if (double.parse(GlobalParam.deliveryReturnBadPro[i].iSSIZEQTY ?? '0') >
+          0) {
+        price = double.parse(
+            GlobalParam.deliveryReturnBadPro[i].iSUNITPRICE ?? '0');
       }
-      if (double.parse(GlobalParam.deliveryReturnBadPro[i].iMSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryReturnBadPro[i].iMUNITPRICE);
+      if (double.parse(GlobalParam.deliveryReturnBadPro[i].iMSIZEQTY ?? '0') >
+          0) {
+        price = double.parse(
+            GlobalParam.deliveryReturnBadPro[i].iMUNITPRICE ?? '0');
       }
-      if (double.parse(GlobalParam.deliveryReturnBadPro[i].iLSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryReturnBadPro[i].iLUNITPRICE);
+      if (double.parse(GlobalParam.deliveryReturnBadPro[i].iLSIZEQTY ?? '0') >
+          0) {
+        price = double.parse(
+            GlobalParam.deliveryReturnBadPro[i].iLUNITPRICE ?? '0');
       }
       totalReBad += qty * price;
     }
 
     receipt01.addLeftRightText(
       'รวมทั้งหมด',
-      '${formatNum.format(double.parse(GlobalParam.deliveryStoreSum.iTOTAL) - totalIncom - totalCancel - totalReGood - totalReBad)}',
+      formatNum.format(
+          double.parse(GlobalParam.deliveryStoreSum.iTOTAL ?? '0') -
+              totalIncom -
+              totalCancel -
+              totalReGood -
+              totalReBad),
       leftSize: ReceiptTextSizeType.medium,
       leftStyle: ReceiptTextStyleType.bold,
     );
@@ -797,19 +850,19 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
     );
 
     receipt01.addLeftRightText(
-      '${GlobalParam.selectDevice.name}',
+      GlobalParam.selectDevice!.name,
       '',
       leftSize: ReceiptTextSizeType.medium,
       leftStyle: ReceiptTextStyleType.bold,
     );
     receipt01.addLeftRightText(
-      '${GlobalParam.selectDevice.address}',
+      GlobalParam.selectDevice!.address,
       '',
       leftSize: ReceiptTextSizeType.medium,
       leftStyle: ReceiptTextStyleType.bold,
     );
     receipt01.addLeftRightText(
-      'วันที่ ${dateNewF}',
+      'วันที่ $dateNewF',
       'เวลา $timeNow',
       leftSize: ReceiptTextSizeType.medium,
       leftStyle: ReceiptTextStyleType.bold,
@@ -823,21 +876,21 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
     widthScreen = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('ตั้งค่าบลูทูธ'),
+        title: const Text('ตั้งค่าบลูทูธ'),
         centerTitle: true,
-        leading: Icon(LineAwesomeIcons.cog),
+        leading: const Icon(LineAwesomeIcons.cog),
         actions: [
           Stack(children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
-              child:
-                  Container(child: Center(child: Icon(LineAwesomeIcons.print))),
+              child: Container(
+                  child: const Center(child: Icon(LineAwesomeIcons.print))),
             ),
             GlobalParam.bluetoothConnect == true
                 ? Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 18, 6),
                     child: Container(
-                      child: Center(
+                      child: const Center(
                         child: Icon(
                           Icons.warning,
                           color: Colors.red,
@@ -867,24 +920,24 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                           child: Container(
                               child: Row(
                             children: [
-                              Container(
+                              SizedBox(
                                   width: widthScreen * 0.05,
                                   child: Checkbox(
                                     checkColor: Colors.white,
                                     activeColor: Colors.green,
                                     value: pdfSave,
-                                    onChanged: (bool value) {
+                                    onChanged: (value) {
                                       if (widget.code == '002') {
                                         wrongDialog('บันทึก PDF เรียบร้อยแล้ว');
                                         setState(() {
-                                          pdfSave = value;
+                                          pdfSave = value!;
                                           printSave = !printSave;
                                         });
                                       }
                                     },
                                   )),
-                              SizedBox(width: 12),
-                              Container(
+                              const SizedBox(width: 12),
+                              SizedBox(
                                 width: widthScreen * 0.5,
                                 child: Text(
                                   'PDF',
@@ -902,27 +955,27 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                          child: Container(
+                          child: SizedBox(
                               height: 48,
                               child: Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                       width: widthScreen * 0.05,
                                       child: Checkbox(
                                         checkColor: Colors.white,
                                         activeColor: Colors.green,
                                         value: printSave,
-                                        onChanged: (bool value) {
+                                        onChanged: (value) {
                                           setState(() {
-                                            printSave = value;
+                                            printSave = value!;
                                             pdfSave = !pdfSave;
                                           });
                                         },
                                       )),
-                                  SizedBox(width: 12),
-                                  Container(
+                                  const SizedBox(width: 12),
+                                  SizedBox(
                                     width: widthScreen * 0.5,
-                                    child: Text(
+                                    child: const Text(
                                       'Printer',
                                       style: TextStyle(
                                           fontSize: 16,
@@ -935,25 +988,25 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                          child: Container(
+                          child: SizedBox(
                               height: 48,
                               child: Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                       width: widthScreen * 0.2,
-                                      child: Text(
+                                      child: const Text(
                                         'ชื่อบลูทูธ',
                                         style: TextStyle(
                                           fontSize: 16,
                                           fontFamily: 'Prompt',
                                         ),
                                       )),
-                                  SizedBox(width: 12),
-                                  Container(
+                                  const SizedBox(width: 12),
+                                  SizedBox(
                                     width: widthScreen * 0.5,
                                     child: Text(
                                       deviceName,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 16,
                                           overflow: TextOverflow.ellipsis),
                                     ),
@@ -963,13 +1016,13 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                          child: Container(
+                          child: SizedBox(
                               height: 48,
                               child: Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: widthScreen * 0.2,
-                                    child: Text(
+                                    child: const Text(
                                       'แอดแดรส',
                                       style: TextStyle(
                                         fontSize: 16,
@@ -977,12 +1030,12 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(width: 12),
-                                  Container(
+                                  const SizedBox(width: 12),
+                                  SizedBox(
                                     width: widthScreen * 0.5,
                                     child: Text(
                                       deviceAdd,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 16,
                                           overflow: TextOverflow.ellipsis),
                                     ),
@@ -992,22 +1045,22 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                          child: Container(
+                          child: SizedBox(
                               height: 48,
                               child: Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: widthScreen * 0.2,
-                                    child: Text(
+                                    child: const Text(
                                       'ปริ้นเตอร์',
                                       style: TextStyle(
                                           fontFamily: 'Prompt', fontSize: 16),
                                     ),
                                   ),
-                                  SizedBox(width: 4),
+                                  const SizedBox(width: 4),
                                   Container(
                                     width: widthScreen * 0.7,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                         border: Border(
                                             bottom: BorderSide(
                                       color: Colors.grey,
@@ -1027,10 +1080,12 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                                                   i < dataBlueDevice.length;
                                                   i++) {
                                                 BlueDevice device = BlueDevice(
-                                                    name:
-                                                        dataBlueDevice[0].name,
+                                                    name: dataBlueDevice[0]
+                                                            .name ??
+                                                        '',
                                                     address: dataBlueDevice[0]
-                                                        .address);
+                                                            .address ??
+                                                        '');
                                                 deviceList.add(device);
                                               }
                                             }
@@ -1041,7 +1096,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                                                 alignedDropdown: true,
                                                 child:
                                                     DropdownButton<BlueDevice>(
-                                                  hint: Text("เลือก"),
+                                                  hint: const Text("เลือก"),
                                                   value: deviceSelect,
                                                   icon: const Icon(Icons
                                                       .keyboard_arrow_down),
@@ -1050,9 +1105,8 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                                                     fontSize: 16,
                                                     color: HexColor('#000000'),
                                                   ),
-                                                  onChanged:
-                                                      (BlueDevice newValue) {
-                                                    if (newValue.address !=
+                                                  onChanged: (newValue) {
+                                                    if (newValue!.address !=
                                                         '') {
                                                       _bluConnectDevice(
                                                           newValue);
@@ -1090,10 +1144,10 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                                 ],
                               )),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
-                        Container(
+                        SizedBox(
                             height: 64,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -1106,12 +1160,12 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                                           GlobalParam.bluetoothConnect == true
                                               ? Colors.grey.shade300
                                               : Colors.green,
-                                      border: Border(
+                                      border: const Border(
                                           right: BorderSide(
                                         color: Colors.grey,
                                         width: 1.0,
                                       ))),
-                                  child: Center(
+                                  child: const Center(
                                     child: Text(
                                       'เชื่อมต่อ',
                                       style: TextStyle(
@@ -1130,7 +1184,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                                             GlobalParam.bluetoothConnect == true
                                                 ? Colors.green.shade300
                                                 : Colors.grey.shade300,
-                                        border: Border(
+                                        border: const Border(
                                             right: BorderSide(
                                           color: Colors.grey,
                                           width: 1.0,
@@ -1152,7 +1206,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    if (GlobalParam.selectDevice.address !=
+                                    if (GlobalParam.selectDevice!.address !=
                                         '') {
                                       if (widget.code == '001') {
                                         _onPrintReceipt();
@@ -1168,7 +1222,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                                             GlobalParam.bluetoothConnect == true
                                                 ? Colors.green.shade300
                                                 : Colors.grey.shade300,
-                                        border: Border(
+                                        border: const Border(
                                             right: BorderSide(
                                           color: Colors.grey,
                                           width: 1.0,
@@ -1196,12 +1250,12 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                                     width: widthScreen * 0.2,
                                     decoration: BoxDecoration(
                                         color: Colors.green.shade300,
-                                        border: Border(
+                                        border: const Border(
                                             right: BorderSide(
                                           color: Colors.grey,
                                           width: 1.0,
                                         ))),
-                                    child: Center(
+                                    child: const Center(
                                       child: Text(
                                         'รีเฟรช',
                                         style: TextStyle(
@@ -1220,7 +1274,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                                         ? Colors.grey.shade300
                                         : Colors.green.shade300,
                                     width: widthScreen * 0.2,
-                                    child: Center(
+                                    child: const Center(
                                       child: Text(
                                         'ล้าง',
                                         style: TextStyle(fontSize: 14),
@@ -1234,7 +1288,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                           children: List<Widget>.generate(_blueDevices.length,
                               (int index) {
                             return Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   border: Border(
                                       bottom: BorderSide(
                                 color: Colors.grey,
@@ -1245,9 +1299,9 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                                     const EdgeInsets.fromLTRB(16, 0, 16, 0),
                                 child: Row(
                                   children: <Widget>[
-                                    Container(
+                                    SizedBox(
                                       width: widthScreen * 0.15,
-                                      child: Center(
+                                      child: const Center(
                                         child: Icon(
                                           LineAwesomeIcons.bluetooth,
                                           size: 48,
@@ -1353,7 +1407,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                                       child: Container(
                                         height: 48,
                                         width: widthScreen * 0.2,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           color: Colors.green,
                                           borderRadius: BorderRadius.only(
                                             topLeft: Radius.circular(5),
@@ -1362,7 +1416,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                                             bottomRight: Radius.circular(5),
                                           ),
                                         ),
-                                        child: Center(
+                                        child: const Center(
                                             child: Text(
                                           'เลือก',
                                           style: TextStyle(
@@ -1381,10 +1435,10 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                       ],
                     ),
                   )
-                : Center(
+                : const Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const <Widget>[
+                      children: <Widget>[
                         Text(
                           'กรุณาเปิดบลูทูธ',
                           style: TextStyle(
@@ -1406,7 +1460,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                 child: Container(
                   height: 64,
                   // width: widthScreen * 0.2,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     // borderRadius: BorderRadius.only(
                     //   topLeft: Radius.circular(5),
@@ -1415,7 +1469,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                     //   bottomRight: Radius.circular(5),
                     // ),
                   ),
-                  child: Center(
+                  child: const Center(
                       child: Text(
                     'ข้าม',
                     style: TextStyle(
@@ -1508,7 +1562,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
     final formatNum = new NumberFormat("#,###.##", "en_US");
 
     pdf.addPage(pw.MultiPage(
-        margin: pw.EdgeInsets.all(56),
+        margin: const pw.EdgeInsets.all(56),
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) {
           pw.Widget header() {
@@ -1533,7 +1587,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                 child: pw.Center(
                     child: pw.Column(children: [
               pw.Row(children: [
-                pw.Text(GlobalParam.deliverySelectStore.cCUSTNM,
+                pw.Text(GlobalParam.deliverySelectStore.cCUSTNM ?? '',
                     style: pw.TextStyle(
                         fontSize: 20,
                         fontWeight: pw.FontWeight.bold,
@@ -1541,7 +1595,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                 pw.Spacer(),
               ]),
               pw.Row(children: [
-                pw.Text(GlobalParam.deliverySelectStore.cADDRESS,
+                pw.Text(GlobalParam.deliverySelectStore.cADDRESS ?? '',
                     style: pw.TextStyle(
                         fontSize: 20,
                         fontWeight: pw.FontWeight.bold,
@@ -1549,7 +1603,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                 pw.Spacer(),
               ]),
               pw.Row(children: [
-                pw.Text(GlobalParam.deliverySelectStore.cSUBDIST,
+                pw.Text(GlobalParam.deliverySelectStore.cSUBDIST ?? '',
                     style: pw.TextStyle(
                         fontSize: 20,
                         fontWeight: pw.FontWeight.bold,
@@ -1557,7 +1611,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                 pw.Spacer(),
               ]),
               pw.Row(children: [
-                pw.Text(GlobalParam.deliverySelectStore.cDISTRICT,
+                pw.Text(GlobalParam.deliverySelectStore.cDISTRICT ?? '',
                     style: pw.TextStyle(
                         fontSize: 20,
                         fontWeight: pw.FontWeight.bold,
@@ -1630,8 +1684,8 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                         font: TH_NA)),
                 pw.Spacer(),
                 pw.Text(
-                    formatNum.format(
-                        double.parse(GlobalParam.deliveryStoreSum.iTOTAL)),
+                    formatNum.format(double.parse(
+                        GlobalParam.deliveryStoreSum.iTOTAL ?? '0')),
                     style: pw.TextStyle(
                         fontSize: 20,
                         fontWeight: pw.FontWeight.bold,
@@ -1719,34 +1773,34 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
               double qty = 0, prince = 0;
               // ignore: unrelated_type_equality_checks
               if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
-                qty =
-                    double.parse(GlobalParam.deliveryPodtList[index].iSSIZEQTY);
+                qty = double.parse(
+                    GlobalParam.deliveryPodtList[index].iSSIZEQTY ?? '0');
                 prince = double.parse(
-                    GlobalParam.deliveryPodtList[index].iSUNITPRICE);
-                unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM;
+                    GlobalParam.deliveryPodtList[index].iSUNITPRICE ?? '0');
+                unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM ?? '';
                 // ignore: unrelated_type_equality_checks
               }
               if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
-                qty =
-                    double.parse(GlobalParam.deliveryPodtList[index].iMSIZEQTY);
+                qty = double.parse(
+                    GlobalParam.deliveryPodtList[index].iMSIZEQTY ?? '0');
                 prince = double.parse(
-                    GlobalParam.deliveryPodtList[index].iMUNITPRICE);
-                unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM;
+                    GlobalParam.deliveryPodtList[index].iMUNITPRICE ?? '0');
+                unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM ?? '';
                 // ignore: unrelated_type_equality_checks
               }
               if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
-                qty =
-                    double.parse(GlobalParam.deliveryPodtList[index].iLSIZEQTY);
+                qty = double.parse(
+                    GlobalParam.deliveryPodtList[index].iLSIZEQTY ?? '0');
                 prince = double.parse(
-                    GlobalParam.deliveryPodtList[index].iLUNITPRICE);
-                unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM;
+                    GlobalParam.deliveryPodtList[index].iLUNITPRICE ?? '0');
+                unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM ?? '';
               }
 
               return pw.Center(
                   child: pw.Container(
                       child: pw.Column(children: [
                 pw.Row(children: [
-                  pw.Text(GlobalParam.deliveryPodtList[index].cPRODNM,
+                  pw.Text(GlobalParam.deliveryPodtList[index].cPRODNM ?? '0',
                       textAlign: pw.TextAlign.left,
                       style: pw.TextStyle(
                           fontSize: 20,
@@ -1816,35 +1870,37 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                 index < GlobalParam.deliveryPodtList.length;
                 index++) {
               String unitNM = '';
-              int qty = GlobalParam.deliveryPodtList[index].iINCOMPRO;
+              int qty = GlobalParam.deliveryPodtList[index].iINCOMPRO ?? 0;
               double prince = 0;
               // ignore: unrelated_type_equality_checks
               if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
                 prince = qty *
                     double.parse(
-                        GlobalParam.deliveryPodtList[index].iSUNITPRICE);
-                unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM;
+                        GlobalParam.deliveryPodtList[index].iSUNITPRICE ?? '0');
+                unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM ?? '';
                 // ignore: unrelated_type_equality_checks
               }
               if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
                 prince = qty *
                     double.parse(
-                        GlobalParam.deliveryPodtList[index].iMUNITPRICE);
-                unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM;
+                        GlobalParam.deliveryPodtList[index].iMUNITPRICE ?? '0');
+                unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM ?? '';
                 // ignore: unrelated_type_equality_checks
               }
               if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
                 prince = qty *
                     double.parse(
-                        GlobalParam.deliveryPodtList[index].iLUNITPRICE);
-                unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM;
+                        GlobalParam.deliveryPodtList[index].iLUNITPRICE ?? '0');
+                unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM ?? '';
               }
               return pw.Center(
                   child: GlobalParam.deliveryPodtList[index].iINCOMPRO != 0
                       ? pw.Container(
                           child: pw.Column(children: [
                           pw.Row(children: [
-                            pw.Text(GlobalParam.deliveryPodtList[index].cPRODNM,
+                            pw.Text(
+                                GlobalParam.deliveryPodtList[index].cPRODNM ??
+                                    '',
                                 textAlign: pw.TextAlign.left,
                                 style: pw.TextStyle(
                                     fontSize: 20,
@@ -1915,35 +1971,37 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                 index < GlobalParam.deliveryPodtList.length;
                 index++) {
               String unitNM = '';
-              int qty = GlobalParam.deliveryPodtList[index].iCANCLEPRO;
+              int qty = GlobalParam.deliveryPodtList[index].iCANCLEPRO ?? 0;
               double prince = 0;
               // ignore: unrelated_type_equality_checks
               if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
                 prince = qty *
                     double.parse(
-                        GlobalParam.deliveryPodtList[index].iSUNITPRICE);
-                unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM;
+                        GlobalParam.deliveryPodtList[index].iSUNITPRICE ?? '0');
+                unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM ?? '';
                 // ignore: unrelated_type_equality_checks
               }
               if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
                 prince = qty *
                     double.parse(
-                        GlobalParam.deliveryPodtList[index].iMUNITPRICE);
-                unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM;
+                        GlobalParam.deliveryPodtList[index].iMUNITPRICE ?? '0');
+                unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM ?? '';
                 // ignore: unrelated_type_equality_checks
               }
               if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
                 prince = qty *
                     double.parse(
-                        GlobalParam.deliveryPodtList[index].iLUNITPRICE);
-                unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM;
+                        GlobalParam.deliveryPodtList[index].iLUNITPRICE ?? '0');
+                unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM ?? '';
               }
               return pw.Center(
                   child: GlobalParam.deliveryPodtList[index].iCANCLEPRO != 0
                       ? pw.Container(
                           child: pw.Column(children: [
                           pw.Row(children: [
-                            pw.Text(GlobalParam.deliveryPodtList[index].cPRODNM,
+                            pw.Text(
+                                GlobalParam.deliveryPodtList[index].cPRODNM ??
+                                    '',
                                 textAlign: pw.TextAlign.left,
                                 style: pw.TextStyle(
                                     fontSize: 20,
@@ -2014,33 +2072,35 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                 index < GlobalParam.deliveryPodtList.length;
                 index++) {
               String unitNM = '';
-              int qty = GlobalParam.deliveryPodtList[index].iLOSSPRO;
+              int qty = GlobalParam.deliveryPodtList[index].iLOSSPRO ?? 0;
               double prince = 0;
               // ignore: unrelated_type_equality_checks
               if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
                 prince = qty *
                     double.parse(
-                        GlobalParam.deliveryPodtList[index].iSUNITPRICE);
-                unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM;
+                        GlobalParam.deliveryPodtList[index].iSUNITPRICE ?? '0');
+                unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM ?? '';
                 // ignore: unrelated_type_equality_checks
               } else if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
                 prince = qty *
                     double.parse(
-                        GlobalParam.deliveryPodtList[index].iMUNITPRICE);
-                unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM;
+                        GlobalParam.deliveryPodtList[index].iMUNITPRICE ?? '0');
+                unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM ?? '';
                 // ignore: unrelated_type_equality_checks
               } else if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
                 prince = qty *
                     double.parse(
-                        GlobalParam.deliveryPodtList[index].iLUNITPRICE);
-                unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM;
+                        GlobalParam.deliveryPodtList[index].iLUNITPRICE ?? '0');
+                unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM ?? '';
               }
               return pw.Center(
                   child: GlobalParam.deliveryPodtList[index].iLOSSPRO != 0
                       ? pw.Container(
                           child: pw.Column(children: [
                           pw.Row(children: [
-                            pw.Text(GlobalParam.deliveryPodtList[index].cPRODNM,
+                            pw.Text(
+                                GlobalParam.deliveryPodtList[index].cPRODNM ??
+                                    '',
                                 textAlign: pw.TextAlign.left,
                                 style: pw.TextStyle(
                                     fontSize: 20,
@@ -2108,9 +2168,10 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
               for (int i = 0; i < GlobalParam.deliveryBasketList.length; i++) {
                 if (GlobalParam.deliveryBasketList[i].cBASKCD ==
                     GlobalParam.deliveryBasketReq[index].cBASKCD) {
-                  basName = GlobalParam.deliveryBasketList[i].cBASKNM;
-                  basTotal = GlobalParam.deliveryBasketReq[index].iQTY *
-                      double.parse(GlobalParam.deliveryBasketList[i].iPRICE);
+                  basName = GlobalParam.deliveryBasketList[i].cBASKNM ?? '';
+                  basTotal = (GlobalParam.deliveryBasketReq[index].iQTY! *
+                      double.parse(
+                          GlobalParam.deliveryBasketList[i].iPRICE ?? '0'));
                 }
               }
               return pw.Center(
@@ -2130,7 +2191,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                             pw.Container(
                                 width: 116,
                                 child: pw.Text(
-                                    GlobalParam.deliveryBasketReq[index].iQTY
+                                    GlobalParam.deliveryBasketReq[index].iQTY!
                                         .toStringAsFixed(0),
                                     textAlign: pw.TextAlign.right,
                                     style: pw.TextStyle(
@@ -2221,7 +2282,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
 
   Future<void> saveAndLaunchFile(List<int> bytes, String fileName) async {
     // final path = (await getExternalStorageDirectory()).path;
-    final path = '/storage/emulated/0/Documents';
+    const path = '/storage/emulated/0/Documents';
     final file = File('$path/$fileName');
     // final bit = await bytes;
     print('***************$path');
@@ -2246,19 +2307,19 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
             //  print('+++++++++++++++++++ query TBT_PODT success +++++++++++++++++++');
             podtList.clear();
             for (int i = 0; i < result.length; i++) {
-              sumItem += double.parse(result[i].iSSIZEQTY) +
-                  double.parse(result[i].iMSIZEQTY) +
-                  double.parse(result[i].iLSIZEQTY);
+              sumItem += double.parse(result[i].iSSIZEQTY ?? '0') +
+                  double.parse(result[i].iMSIZEQTY ?? '0') +
+                  double.parse(result[i].iLSIZEQTY ?? '0');
 
-              if (double.parse(result[i].iSSIZEQTY) > 0) {
+              if (double.parse(result[i].iSSIZEQTY ?? '0') > 0) {
                 var data = {
                   "cPRODCD": result[i].cPRODCD,
                   "cUOMNM": result[i].cSUOMNM,
-                  "iPRICE": double.parse(result[i].iSUNITPRICE),
-                  "iTOTAL": double.parse(result[i].iSSIZEQTY)
+                  "iPRICE": double.parse(result[i].iSUNITPRICE ?? '0'),
+                  "iTOTAL": double.parse(result[i].iSSIZEQTY ?? '0')
                 };
                 unitList.add(data);
-                QueryPodtResp product = new QueryPodtResp(
+                QueryPodtResp product = QueryPodtResp(
                   cBASKCD: result[i].cBASKCD,
                   cBASKNM: result[i].cBASKNM,
                   cBRNDCD: result[i].cBRNDCD,
@@ -2275,9 +2336,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                   cPHOTOPATH: result[i].cPHOTOPATH,
                   cPHOTOSERV: result[i].cPHOTOSERV,
                   cPOCD: result[i].cPOCD,
-                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                      ? 'N'
-                      : result[i].cPREPAIRSTATUS,
+                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
                   cPRODCD: result[i].cPRODCD,
                   cPRODNM: result[i].cPRODNM,
                   cPROMO: result[i].cPROMO,
@@ -2300,28 +2359,25 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                   iLUNITPRICE: result[i].iLUNITPRICE,
                   iMSIZEQTY: '0.0',
                   iMUNITPRICE: result[i].iMUNITPRICE,
-                  iNETTOTAL:
-                      result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                      ? '0'
-                      : result[i].iPREPAIRAMOUT,
+                  iNETTOTAL: result[i].iNETTOTAL ?? '0',
+                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
                   iSEQ: result[i].iSEQ,
                   iSSIZEQTY: result[i].iSSIZEQTY,
                   iSUNITPRICE: result[i].iSUNITPRICE,
                   iTOTAL:
-                      "${double.parse(result[i].iSSIZEQTY) * double.parse(result[i].iSUNITPRICE)}",
+                      "${double.parse(result[i].iSSIZEQTY ?? '0') * double.parse(result[i].iSUNITPRICE ?? '0')}",
                 );
 
                 podtList.add(product);
               }
-              if (double.parse(result[i].iMSIZEQTY) > 0) {
+              if (double.parse(result[i].iMSIZEQTY ?? '0') > 0) {
                 var data = {
                   "cUOMNM": result[i].cMUOMNM,
-                  "iPRICE": double.parse(result[i].iMUNITPRICE),
-                  "iTOTAL": double.parse(result[i].iMSIZEQTY)
+                  "iPRICE": double.parse(result[i].iMUNITPRICE ?? '0'),
+                  "iTOTAL": double.parse(result[i].iMSIZEQTY ?? '0')
                 };
                 unitList.add(data);
-                QueryPodtResp product = new QueryPodtResp(
+                QueryPodtResp product = QueryPodtResp(
                   cBASKCD: result[i].cBASKCD,
                   cBASKNM: result[i].cBASKNM,
                   cBRNDCD: result[i].cBRNDCD,
@@ -2338,9 +2394,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                   cPHOTOPATH: result[i].cPHOTOPATH,
                   cPHOTOSERV: result[i].cPHOTOSERV,
                   cPOCD: result[i].cPOCD,
-                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                      ? 'N'
-                      : result[i].cPREPAIRSTATUS,
+                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
                   cPRODCD: result[i].cPRODCD,
                   cPRODNM: result[i].cPRODNM,
                   cPROMO: result[i].cPROMO,
@@ -2363,28 +2417,25 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                   iLUNITPRICE: result[i].iLUNITPRICE,
                   iMSIZEQTY: result[i].iMSIZEQTY,
                   iMUNITPRICE: result[i].iMUNITPRICE,
-                  iNETTOTAL:
-                      result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                      ? '0'
-                      : result[i].iPREPAIRAMOUT,
+                  iNETTOTAL: result[i].iNETTOTAL ?? '0',
+                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
                   iSEQ: result[i].iSEQ,
                   iSSIZEQTY: '0.0',
                   iSUNITPRICE: result[i].iSUNITPRICE,
                   iTOTAL:
-                      "${double.parse(result[i].iMSIZEQTY) * double.parse(result[i].iMUNITPRICE)}",
+                      "${double.parse(result[i].iMSIZEQTY ?? '0') * double.parse(result[i].iMUNITPRICE ?? '0')}",
                 );
 
                 podtList.add(product);
               }
-              if (double.parse(result[i].iLSIZEQTY) > 0) {
+              if (double.parse(result[i].iLSIZEQTY ?? '0') > 0) {
                 var data = {
                   "cUOMNM": result[i].cLUOMNM,
-                  "iPRICE": double.parse(result[i].iLUNITPRICE),
-                  "iTOTAL": double.parse(result[i].iLSIZEQTY)
+                  "iPRICE": double.parse(result[i].iLUNITPRICE ?? '0'),
+                  "iTOTAL": double.parse(result[i].iLSIZEQTY ?? '0')
                 };
                 unitList.add(data);
-                QueryPodtResp product = new QueryPodtResp(
+                QueryPodtResp product = QueryPodtResp(
                   cBASKCD: result[i].cBASKCD,
                   cBASKNM: result[i].cBASKNM,
                   cBRNDCD: result[i].cBRNDCD,
@@ -2401,9 +2452,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                   cPHOTOPATH: result[i].cPHOTOPATH,
                   cPHOTOSERV: result[i].cPHOTOSERV,
                   cPOCD: result[i].cPOCD,
-                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                      ? 'N'
-                      : result[i].cPREPAIRSTATUS,
+                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
                   cPRODCD: result[i].cPRODCD,
                   cPRODNM: result[i].cPRODNM,
                   cPROMO: result[i].cPROMO,
@@ -2426,16 +2475,13 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                   iLUNITPRICE: result[i].iLUNITPRICE,
                   iMSIZEQTY: '0.0',
                   iMUNITPRICE: result[i].iMUNITPRICE,
-                  iNETTOTAL:
-                      result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                      ? '0'
-                      : result[i].iPREPAIRAMOUT,
+                  iNETTOTAL: result[i].iNETTOTAL ?? '0',
+                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
                   iSEQ: result[i].iSEQ,
                   iSSIZEQTY: '0.0',
                   iSUNITPRICE: result[i].iSUNITPRICE,
                   iTOTAL:
-                      "${double.parse(result[i].iLSIZEQTY) * double.parse(result[i].iLUNITPRICE)}",
+                      "${double.parse(result[i].iLSIZEQTY ?? '0') * double.parse(result[i].iLUNITPRICE ?? '0')}",
                 );
 
                 podtList.add(product);

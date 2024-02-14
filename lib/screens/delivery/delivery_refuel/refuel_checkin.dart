@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -12,19 +11,11 @@ import 'package:fdottedline/fdottedline.dart';
 import 'package:location/location.dart';
 import 'package:vansale/api/allApiProxyMobile.dart';
 import 'package:vansale/api/class/globalparam.dart';
-import 'package:vansale/api/class/request/customer/customerrequest.dart';
 import 'package:vansale/api/class/request/mobile/addCheckInReq.dart';
 import 'package:vansale/api/class/request/mobile/getStoreDetailReq.dart';
-import 'package:vansale/common_screen.dart/appbar.dart';
-import 'package:vansale/screens/Supplier/delivery/delivery_newCheckIn.dart';
-import 'package:vansale/screens/Supplier/supplier/confirmPages.dart';
-import 'package:vansale/screens/Supplier/delivery/deliveryCheckMiles.dart';
-import 'package:vansale/screens/delivery/delivery_new_supplier/delivery_new_supplier_select_image.dart';
 import 'package:vansale/screens/delivery/delivery_refuel/refuel_image.dart';
 import 'package:vansale/screens/delivery/delivery_refuel/refuel_map_checkin.dart';
-import 'package:vansale/screens/delivery/delivery_store/delivery_store_home.dart';
 import 'package:vansale/screens/googleMap/locationServices.dart';
-import 'package:vansale/screens/home/home.dart';
 
 class RefuelCheckIn extends StatefulWidget {
   RefuelCheckIn();
@@ -41,11 +32,11 @@ class _RefuelCheckInState extends State<RefuelCheckIn> {
   String Name = "";
 
   Location _locationTracker = Location();
-  StreamSubscription _locationSubscription;
+  late StreamSubscription _locationSubscription;
   bool discoverStores = true;
-  Marker marker;
-  Circle circle;
-  GoogleMapController _controller;
+  late Marker marker;
+  late Circle circle;
+  late GoogleMapController _controller;
 
   @override
   void initState() {
@@ -58,9 +49,7 @@ class _RefuelCheckInState extends State<RefuelCheckIn> {
 
   @override
   void dispose() {
-    if (_locationSubscription != null) {
-      _locationSubscription.cancel();
-    }
+    _locationSubscription.cancel();
     super.dispose();
   }
 
@@ -69,7 +58,7 @@ class _RefuelCheckInState extends State<RefuelCheckIn> {
     return Material(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             'เช็คอินเติมน้ำมัน',
             style: TextStyle(
               fontSize: 18.0,
@@ -104,7 +93,7 @@ class _RefuelCheckInState extends State<RefuelCheckIn> {
                 alignment: Alignment.center,
                 child: Text(
                   dateFormat.format(DateTime.now()),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18.0,
                     color: Colors.green,
                     //fontWeight: FontWeight.bold,
@@ -133,8 +122,7 @@ class _RefuelCheckInState extends State<RefuelCheckIn> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                RefuelImage (),
+                            builder: (BuildContext context) => RefuelImage(),
                           ),
                         );
                       },
@@ -147,7 +135,7 @@ class _RefuelCheckInState extends State<RefuelCheckIn> {
                             Container(
                               width: 35.0,
                               alignment: Alignment.center,
-                              child: Icon(
+                              child: const Icon(
                                 LineAwesomeIcons.map_marker,
                                 color: Colors.green,
                                 size: 25.0,
@@ -155,7 +143,7 @@ class _RefuelCheckInState extends State<RefuelCheckIn> {
                             ),
                             Container(
                               alignment: Alignment.centerLeft,
-                              child: Text(
+                              child: const Text(
                                 'เช็คอิน',
                                 style: TextStyle(
                                   fontSize: 18.0,
@@ -179,13 +167,13 @@ class _RefuelCheckInState extends State<RefuelCheckIn> {
     );
   }
 
-  PickedFile imageFile;
-  File _image;
+  late PickedFile imageFile;
+  late File _image;
   Future<void> _openCamera() async {
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 1000.0, maxWidth: 1000.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
     });
   }
@@ -203,21 +191,16 @@ class _RefuelCheckInState extends State<RefuelCheckIn> {
 
       updateMarkerAndCircle(location, imageData);
 
-      if (_locationSubscription != null) {
-        _locationSubscription.cancel();
-      }
+      _locationSubscription.cancel();
 
       _locationSubscription =
           _locationTracker.onLocationChanged.listen((newLocalData) {
-        if (_controller != null) {
-          _controller.animateCamera(CameraUpdate.newCameraPosition(
-              new CameraPosition(
-                  bearing: 192.8334901395799,
-                  target: LatLng(newLocalData.latitude, newLocalData.longitude),
-                  tilt: 0,
-                  zoom: 18.00)));
-          updateMarkerAndCircle(newLocalData, imageData);
-        }
+        _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+            bearing: 192.8334901395799,
+            target: LatLng(newLocalData.latitude!, newLocalData.longitude!),
+            tilt: 0,
+            zoom: 18.00)));
+        updateMarkerAndCircle(newLocalData, imageData);
       });
 
       // await getLocationStore();
@@ -235,8 +218,8 @@ class _RefuelCheckInState extends State<RefuelCheckIn> {
     // final double lat = desPoint['geometry']['location']['lat'];
     // final double lng = desPoint['geometry']['location']['lng'];
 
-    double lat = GlobalParam.deliveryLocationStoreLatitude;
-    double lng = GlobalParam.deliveryLocationStoreLongitude;
+    double lat = GlobalParam.deliveryLocationStoreLatitude!;
+    double lng = GlobalParam.deliveryLocationStoreLongitude!;
 
     await LocationServices().openGoogleMap(lat, lng);
   }
@@ -247,15 +230,14 @@ class _RefuelCheckInState extends State<RefuelCheckIn> {
 
       var result = await proxy.addAndUpdateCheckIn(AddCheckInReq(
         cREFDOC: '',
-        iCHELAT: GlobalParam.currentLocationCheckIn.latitude,
-        iCHELNG: GlobalParam.currentLocationCheckIn.longitude,
+        iCHELAT: GlobalParam.currentLocationCheckIn!.latitude,
+        iCHELNG: GlobalParam.currentLocationCheckIn!.longitude,
         cCHINTYPE: "RF",
         cCREABY: GlobalParam.userID,
-      )
-         );
+      ));
       if (result.success == false) {
         wrongDialog(result.message);
-      }else{
+      } else {
         GlobalParam.refuelRff = result.result;
       }
       // setState(() {});
@@ -308,20 +290,20 @@ class _RefuelCheckInState extends State<RefuelCheckIn> {
   }
 
   void updateMarkerAndCircle(LocationData newLocalData, Uint8List imageData) {
-    LatLng latlng = LatLng(newLocalData.latitude, newLocalData.longitude);
-    this.setState(() {
+    LatLng latlng = LatLng(newLocalData.latitude!, newLocalData.longitude!);
+    setState(() {
       marker = Marker(
-          markerId: MarkerId("home"),
+          markerId: const MarkerId("home"),
           position: latlng,
-          rotation: newLocalData.heading,
+          rotation: newLocalData.heading!,
           draggable: false,
           zIndex: 2,
           flat: true,
-          anchor: Offset(0.5, 0.5),
+          anchor: const Offset(0.5, 0.5),
           icon: BitmapDescriptor.fromBytes(imageData));
       circle = Circle(
-          circleId: CircleId("car"),
-          radius: newLocalData.accuracy,
+          circleId: const CircleId("car"),
+          radius: newLocalData.accuracy!,
           zIndex: 1,
           strokeColor: Colors.blue,
           center: latlng,
@@ -356,11 +338,11 @@ class _RefuelCheckInState extends State<RefuelCheckIn> {
       if (result.isNotEmpty) {
         GlobalParam.deliveryHisBasket = result;
         GlobalParam.deliveryDebt =
-            double.parse(GlobalParam.deliveryStoreDetail.iTOTAL) -
-                double.parse(GlobalParam.deliveryStoreDetail.iPAID);
+            double.parse(GlobalParam.deliveryStoreDetail.iTOTAL!) -
+                double.parse(GlobalParam.deliveryStoreDetail.iPAID!);
         GlobalParam.deliveryRemainCredit =
-            double.parse(GlobalParam.deliveryStoreDetail.iCREDLIM) -
-                double.parse(GlobalParam.deliveryStoreDetail.iCREDTERM);
+            double.parse(GlobalParam.deliveryStoreDetail.iCREDLIM!) -
+                double.parse(GlobalParam.deliveryStoreDetail.iCREDTERM!);
         // print(result[0].iTOTAL);
       }
     } on SocketException catch (e) {

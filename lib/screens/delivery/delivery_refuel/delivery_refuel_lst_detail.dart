@@ -15,7 +15,8 @@ import 'package:vansale/api/class/response/routeMobile/searchRefuelResp.dart';
 
 class DeliveryRefuelListDetail extends StatefulWidget {
   final SearchRefuelResp data;
-  const DeliveryRefuelListDetail({Key key, this.data}) : super(key: key);
+  const DeliveryRefuelListDetail({required Key? key, required this.data})
+      : super(key: key);
 
   @override
   State<DeliveryRefuelListDetail> createState() =>
@@ -64,39 +65,37 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
       backgroundColor: HexColor("#F2F3F4"),
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'ข้อมูลการเติมน้ำมัน',
         ),
       ),
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            carouselSlider_(),
-            indicator_(),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(3.0),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    location_(),
-                    dotline_(),
-                    date_(),
-                    dotline_(),
-                    locationName_(),
-                    dotline_(),
-                    refuel_(),
-                    dotline_(),
-                    mile_(),
-                    dotline_(),
-                  ],
-                ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          carouselSlider_(),
+          indicator_(),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(3.0),
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  location_(),
+                  dotline_(),
+                  date_(),
+                  dotline_(),
+                  locationName_(),
+                  dotline_(),
+                  refuel_(),
+                  dotline_(),
+                  mile_(),
+                  dotline_(),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       bottomNavigationBar: total_(),
     );
@@ -128,10 +127,10 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
         height: 250,
         width: 250,
         padding: const EdgeInsets.only(top: 10.0),
-        decoration: new BoxDecoration(
+        decoration: const BoxDecoration(
             color: Colors.white,
             image: DecorationImage(
-              image: new AssetImage(
+              image: AssetImage(
                 "assets/images/no_image.png",
               ),
               scale: 1.0,
@@ -162,11 +161,11 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
         //   ),
 
         // ),
-        decoration: new BoxDecoration(
+        decoration: BoxDecoration(
             // shape: BoxShape.circle,
             color: Colors.grey,
             image: DecorationImage(
-              image: new NetworkImage(
+              image: NetworkImage(
                 images[index],
               ),
               scale: 1.0,
@@ -177,7 +176,7 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
   Widget buildIndicator() => AnimatedSmoothIndicator(
         activeIndex: activeIndex,
         count: images.length,
-        effect: ScrollingDotsEffect(
+        effect: const ScrollingDotsEffect(
           activeDotColor: Colors.green,
           dotColor: Colors.grey,
           dotHeight: 8,
@@ -192,18 +191,16 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
       alignment: Alignment.centerLeft,
       child: Row(
         children: [
-          Container(
-            child: Icon(
-              LineAwesomeIcons.map_marker,
-              color: Colors.grey,
-            ),
+          const Icon(
+            LineAwesomeIcons.map_marker,
+            color: Colors.grey,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10.0,
           ),
           Expanded(
             child: Container(
-              child: AutoSizeText(
+              child: const AutoSizeText(
                 'Bangkok',
                 style: TextStyle(
                   fontSize: 16.0,
@@ -224,7 +221,7 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
   Widget date_() {
     var outputDate = '';
     if (dataRefuel.dINVENTDT != "") {
-      outputDate = outputFormat.format(DateTime.parse(dataRefuel.dINVENTDT));
+      outputDate = outputFormat.format(DateTime.parse(dataRefuel.dINVENTDT!));
     }
 
     return Container(
@@ -233,16 +230,14 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
       alignment: Alignment.centerLeft,
       child: Row(
         children: [
-          Container(
-            child: Icon(
-              LineAwesomeIcons.calendar,
-              color: Colors.grey,
-            ),
+          const Icon(
+            LineAwesomeIcons.calendar,
+            color: Colors.grey,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10.0,
           ),
-          Container(
+          const SizedBox(
             width: 100.0,
             child: AutoSizeText(
               'วันที่',
@@ -256,7 +251,7 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
             child: Container(
               child: AutoSizeText(
                 outputDate,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16.0,
                 ),
                 minFontSize: 10.0,
@@ -278,16 +273,14 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
       alignment: Alignment.centerLeft,
       child: Row(
         children: [
-          Container(
-            child: Icon(
-              LineAwesomeIcons.gas_pump,
-              color: Colors.grey,
-            ),
+          const Icon(
+            LineAwesomeIcons.gas_pump,
+            color: Colors.grey,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10.0,
           ),
-          Container(
+          const SizedBox(
             width: 100.0,
             child: AutoSizeText(
               'สถานที่เติม',
@@ -300,8 +293,8 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
           Expanded(
             child: Container(
               child: AutoSizeText(
-                dataRefuel.cLOCATION,
-                style: TextStyle(
+                dataRefuel.cLOCATION!,
+                style: const TextStyle(
                   fontSize: 16.0,
                 ),
                 minFontSize: 10.0,
@@ -323,16 +316,14 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
       alignment: Alignment.centerLeft,
       child: Row(
         children: [
-          Container(
-            child: Icon(
-              LineAwesomeIcons.oil_can,
-              color: Colors.grey,
-            ),
+          const Icon(
+            LineAwesomeIcons.oil_can,
+            color: Colors.grey,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10.0,
           ),
-          Container(
+          const SizedBox(
             width: 100.0,
             child: AutoSizeText(
               'เชื้อเพลิง',
@@ -345,8 +336,8 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
           Expanded(
             child: Container(
               child: AutoSizeText(
-                dataRefuel.cFUELNM,
-                style: TextStyle(
+                dataRefuel.cFUELNM!,
+                style: const TextStyle(
                   fontSize: 16.0,
                 ),
                 minFontSize: 10.0,
@@ -368,16 +359,14 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
       alignment: Alignment.centerLeft,
       child: Row(
         children: [
-          Container(
-            child: Icon(
-              LineAwesomeIcons.alternate_tachometer,
-              color: Colors.grey,
-            ),
+          const Icon(
+            LineAwesomeIcons.alternate_tachometer,
+            color: Colors.grey,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10.0,
           ),
-          Container(
+          const SizedBox(
             width: 100.0,
             child: AutoSizeText(
               'เลขไมล์',
@@ -390,12 +379,8 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
           Expanded(
             child: Container(
               child: AutoSizeText(
-                dataRefuel.iMILEAGE +
-                    '-' +
-                    '${double.parse(dataRefuel.iMILEAGE) - double.parse(dataRefuel.iKM)}' +
-                    ' ' +
-                    '(${formatNum.format(double.parse(dataRefuel.iKM))} กม.)',
-                style: TextStyle(
+                '${dataRefuel.iMILEAGE!}-${double.parse(dataRefuel.iMILEAGE!) - double.parse(dataRefuel.iKM!)} (${formatNum.format(double.parse(dataRefuel.iKM!))} กม.)',
+                style: const TextStyle(
                   fontSize: 16.0,
                 ),
                 minFontSize: 10.0,
@@ -416,7 +401,7 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
         horizontal: 20.0,
         vertical: 3.0,
       ),
-      child: DottedLine(
+      child: const DottedLine(
         dashColor: Colors.grey,
       ),
     );
@@ -430,133 +415,127 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
       child: ListView(
         shrinkWrap: true,
         children: [
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: AutoSizeText(
-                      'จำนวนลิตร',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.grey,
-                      ),
-                      minFontSize: 10.0,
-                      maxFontSize: 16.0,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  child: const AutoSizeText(
+                    'จำนวนลิตร',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.grey,
                     ),
+                    minFontSize: 10.0,
+                    maxFontSize: 16.0,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: AutoSizeText(
-                      '${formatNum.format(double.parse(dataRefuel.iLITER))} ลิตร',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                      ),
-                      minFontSize: 10.0,
-                      maxFontSize: 16.0,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+              ),
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  child: AutoSizeText(
+                    '${formatNum.format(double.parse(dataRefuel.iLITER!))} ลิตร',
+                    style: const TextStyle(
+                      fontSize: 16.0,
                     ),
+                    minFontSize: 10.0,
+                    maxFontSize: 16.0,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           //-------------
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: AutoSizeText(
-                      'ราคาต่อลิตร',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.grey,
-                      ),
-                      minFontSize: 10.0,
-                      maxFontSize: 16.0,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  child: const AutoSizeText(
+                    'ราคาต่อลิตร',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.grey,
                     ),
+                    minFontSize: 10.0,
+                    maxFontSize: 16.0,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: AutoSizeText(
-                      '${formatNum.format(double.parse(dataRefuel.iPRICE))}  บาท',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                      ),
-                      minFontSize: 10.0,
-                      maxFontSize: 16.0,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+              ),
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  child: AutoSizeText(
+                    '${formatNum.format(double.parse(dataRefuel.iPRICE!))}  บาท',
+                    style: const TextStyle(
+                      fontSize: 16.0,
                     ),
+                    minFontSize: 10.0,
+                    maxFontSize: 16.0,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           //---------------------
-          Divider(
+          const Divider(
             color: Colors.black38,
             indent: 20.0,
             endIndent: 20.0,
           ),
           //---------------------
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: AutoSizeText(
-                      'ราคารวม',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      minFontSize: 10.0,
-                      maxFontSize: 18.0,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  child: const AutoSizeText(
+                    'ราคารวม',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
                     ),
+                    minFontSize: 10.0,
+                    maxFontSize: 18.0,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: AutoSizeText(
-                      '${formatNum.format(double.parse(dataRefuel.iTOTAL))} บาท',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      minFontSize: 10.0,
-                      maxFontSize: 18.0,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+              ),
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  child: AutoSizeText(
+                    '${formatNum.format(double.parse(dataRefuel.iTOTAL!))} บาท',
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold,
                     ),
+                    minFontSize: 10.0,
+                    maxFontSize: 18.0,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
@@ -574,10 +553,10 @@ class _DeliveryRefuelListDetailState extends State<DeliveryRefuelListDetail> {
         setState(() {
           images = [];
           dataRefuel = result;
-          if (result.aRFIMAGE.isNotEmpty) {
-            for (var i = 0; i < result.aRFIMAGE.length; i++) {
+          if (result.aRFIMAGE!.isNotEmpty) {
+            for (var i = 0; i < result.aRFIMAGE!.length; i++) {
               var path =
-                  'http://${result.aRFIMAGE[i].cPHOTOSERV}/${result.aRFIMAGE[i].cPHOTOPATH}';
+                  'http://${result.aRFIMAGE![i].cPHOTOSERV}/${result.aRFIMAGE![i].cPHOTOPATH}';
               images.add(path);
             }
           } else {

@@ -23,7 +23,7 @@ class DeliveryNewSupplierSelectImage extends StatefulWidget {
   final CustomerRequest request;
   final String subMenu;
   DeliveryNewSupplierSelectImage(this.typeMenuCode,
-      {this.request, this.subMenu});
+      {required this.request, required this.subMenu});
 
   @override
   State<DeliveryNewSupplierSelectImage> createState() =>
@@ -32,20 +32,20 @@ class DeliveryNewSupplierSelectImage extends StatefulWidget {
 
 class _DeliveryNewSupplierSelectImageState
     extends State<DeliveryNewSupplierSelectImage> {
-  PickedFile imageFile;
+  late PickedFile imageFile;
   // final ImagePicker _picker = ImagePicker();
-  File file;
-  Timer timer;
+  late File file;
+  late Timer timer;
   bool imgIsNull = true;
   List<File> imageList = [];
-  double widthScreen;
+  late double widthScreen;
 
   @override
   void initState() {
     super.initState();
     GlobalParam.imageStoreList = [];
     if (GlobalParam.deliveryImage != null) {
-      _image = GlobalParam.deliveryImage;
+      _image = GlobalParam.deliveryImage!;
     }
   }
 
@@ -55,7 +55,7 @@ class _DeliveryNewSupplierSelectImageState
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('ถ่ายรูปร้านค้า'),
+        title: const Text('ถ่ายรูปร้านค้า'),
       ),
       backgroundColor: Colors.black12,
       body: SizedBox(
@@ -63,7 +63,7 @@ class _DeliveryNewSupplierSelectImageState
         width: MediaQuery.of(context).size.width,
         child: showImage(),
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: 60,
         child: Row(
           children: [
@@ -77,7 +77,7 @@ class _DeliveryNewSupplierSelectImageState
                 //     builder: (BuildContext context) =>
                 //         ImageStoreList(imageFileList: imageList)));
               },
-              child: Container(
+              child: SizedBox(
                 width: widthScreen * 0.30,
                 height: 60,
                 child: Stack(children: [
@@ -113,7 +113,8 @@ class _DeliveryNewSupplierSelectImageState
                     child: Container(
                       child: Text(
                         '${GlobalParam.imageStoreList.length}',
-                        style: TextStyle(color: Colors.white, fontSize: 28),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 28),
                       ),
                     ),
                   )
@@ -121,13 +122,13 @@ class _DeliveryNewSupplierSelectImageState
               ),
             ),
             Expanded(
-              child: Container(
+              child: SizedBox(
                 width: widthScreen * 0.30,
                 child: btnSelectImage(),
               ),
             ),
             Expanded(
-              child: Container(
+              child: SizedBox(
                 width: widthScreen * 0.30,
                 child: btnSavedata(),
               ),
@@ -212,7 +213,7 @@ class _DeliveryNewSupplierSelectImageState
             //                 ))),
             //       )
             Container(
-          child: Center(
+          child: const Center(
               child: Text(
             'บันทึก',
             style: TextStyle(fontSize: 18),
@@ -272,7 +273,7 @@ class _DeliveryNewSupplierSelectImageState
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text(
+            child: const Text(
               'ยกเลิก',
               style: TextStyle(
                 fontFamily: 'Prompt',
@@ -289,7 +290,7 @@ class _DeliveryNewSupplierSelectImageState
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'ถ่ายภาพ',
                 style: TextStyle(
                   color: Colors.black,
@@ -304,7 +305,7 @@ class _DeliveryNewSupplierSelectImageState
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'เลือกรูปภาพ',
                 style: TextStyle(
                   color: Colors.black,
@@ -331,14 +332,14 @@ class _DeliveryNewSupplierSelectImageState
     EasyLoading.dismiss();
   }*/
 
-  File _image;
+  late File _image;
   Future<void> openCamera() async {
     //EasyLoading.show();
     // ignore: invalid_use_of_visible_for_testing_member
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
       GlobalParam.deliveryImage = File(imageFile.path);
       //EasyLoading.dismiss();
@@ -359,7 +360,7 @@ class _DeliveryNewSupplierSelectImageState
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.gallery, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
       GlobalParam.deliveryImage = File(imageFile.path);
       // EasyLoading.dismiss();
@@ -395,9 +396,9 @@ class _DeliveryNewSupplierSelectImageState
         if (GlobalParam.updateCustomerID != '') {
           var result = await proxy.updateCustomer(
               GlobalParam.updateCustomerID, widget.request);
-          if (result.success) {
+          if (result.success!) {
             List<int> imageBytes =
-                await GlobalParam.deliveryImage.readAsBytes();
+                await GlobalParam.deliveryImage!.readAsBytes();
             print(imageBytes);
             String base64Image = base64Encode(imageBytes);
             String filename = p.basename(_image.path);
@@ -422,9 +423,9 @@ class _DeliveryNewSupplierSelectImageState
           }
         } else {
           var result = await proxy.createCustomer(widget.request);
-          if (result.success) {
+          if (result.success!) {
             List<int> imageBytes =
-                await GlobalParam.deliveryImage.readAsBytes();
+                await GlobalParam.deliveryImage!.readAsBytes();
             print(imageBytes);
             String base64Image = base64Encode(imageBytes);
             String filename = p.basename(_image.path);
@@ -451,7 +452,7 @@ class _DeliveryNewSupplierSelectImageState
       } else {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) =>
-                DeliveryCheckIn(GlobalParam.typeMenuCode, false)));
+                DeliveryCheckIn(GlobalParam.typeMenuCode!, false)));
       }
     } on ApiException catch (e) {
       EasyLoading.dismiss();

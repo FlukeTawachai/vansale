@@ -23,7 +23,7 @@ class _OtherMenuState extends State<OtherMenu> {
             Container(
               padding: const EdgeInsets.all(10.0),
               alignment: Alignment.topLeft,
-              child: Text(
+              child: const Text(
                 'เมนู',
                 style: TextStyle(
                   color: Colors.black,
@@ -41,7 +41,7 @@ class _OtherMenuState extends State<OtherMenu> {
               ),
               title: new Text(
                 'แจ้งโอนเงิน',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black54,
                   fontFamily: 'Prompt',
                   fontSize: 16.0,
@@ -57,7 +57,7 @@ class _OtherMenuState extends State<OtherMenu> {
                 );
               },
             ),
-            Divider(),
+            const Divider(),
             ListTile(
               leading: new Icon(
                 LineAwesomeIcons.power_off,
@@ -66,7 +66,7 @@ class _OtherMenuState extends State<OtherMenu> {
               ),
               title: new Text(
                 'ออกจากระบบ',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black54,
                   fontFamily: 'Prompt',
                   fontSize: 16.0,

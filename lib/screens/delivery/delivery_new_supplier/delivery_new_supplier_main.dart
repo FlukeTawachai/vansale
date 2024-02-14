@@ -109,10 +109,10 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
   List<RouteInfo> lstFridayRoutes = [];
   List<RouteInfo> lstSaturdayRoutes = [];
   List<RouteInfo> lstSundayRoutes = [];
-  Future<bool> loadFunction;
-  List<Map<String, String>> lstBasket;
-  List<Map<String, String>> lstShopType;
-  List<Map<String, String>> lstShopGroup;
+  late Future<bool> loadFunction;
+  late List<Map<String, String>> lstBasket;
+  late List<Map<String, String>> lstShopType;
+  late List<Map<String, String>> lstShopGroup;
   List<BranchInfo> lstBranch = [];
   List<MapBranchSaleInfo> lstSaleTable = [];
   List<Map<String, String>> lstAsset = [
@@ -120,11 +120,11 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
     {"Text": "ร้านค้าสั่งซื้อ", "Value": "M"},
     {"Text": "สั่งซื้ออัตโนมัติ", "Value": "A"},
   ];
-  List<Map<String, String>> lstTestColor;
-  PickedFile imageFile;
+  late List<Map<String, String>> lstTestColor;
+  late PickedFile? imageFile;
   // final ImagePicker _picker = ImagePicker();
-  File file;
-  var telFormatter = new MaskTextInputFormatter(
+  late File file;
+  var telFormatter = MaskTextInputFormatter(
       mask: '###-###-####',
       filter: {"#": RegExp(r'[0-9]')},
       type: MaskAutoCompletionType.lazy);
@@ -177,12 +177,12 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
       future: loadFunction,
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
         if (!snapshot.hasData)
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
 
         return Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: Text('เพิ่มร้านค้า'),
+            title: const Text('เพิ่มร้านค้า'),
           ),
           backgroundColor: HexColor("#F2F3F4"),
           body: GestureDetector(
@@ -257,9 +257,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
       child: TextButton(
         style: TextButton.styleFrom(
           backgroundColor: HexColor("#6c7e9b"),
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
         ),
-        child: Icon(
+        child: const Icon(
           LineAwesomeIcons.crosshairs,
           color: Colors.white,
         ),
@@ -288,34 +288,39 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                 style: BorderStyle.solid,
               ),
             ),
+            // child: CircleAvatar(
+            //   backgroundColor: Colors.white,
+            //   radius: 60.0,
+            //   backgroundImage: imageFile == null
+            //       ? const AssetImage('assets/images/Image.png')
+            //       : FileImage(
+            //           File(_image.path),
+            //         ),
+            // ),
             child: CircleAvatar(
               backgroundColor: Colors.white,
               radius: 60.0,
-              backgroundImage: imageFile == null
-                  ? AssetImage('assets/images/Image.png')
-                  : FileImage(
-                      File(_image.path),
-                    ),
+              child: imageFile == null
+                  ? Image.asset('assets/images/Image.png')
+                  : Image.file(File(imageFile!.path)),
             ),
           ),
           Positioned(
             top: 60.0,
             right: 7.0,
-            child: Container(
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  shape: CircleBorder(),
-                ),
-                child: Icon(
-                  LineAwesomeIcons.camera,
-                  color: Colors.white,
-                  size: 40.0,
-                ),
-                onPressed: () {
-                  actionsheet(context);
-                },
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.transparent,
+                shape: const CircleBorder(),
               ),
+              child: const Icon(
+                LineAwesomeIcons.camera,
+                color: Colors.white,
+                size: 40.0,
+              ),
+              onPressed: () {
+                actionsheet(context);
+              },
             ),
           ),
         ],
@@ -330,9 +335,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
       child: TextButton(
         style: TextButton.styleFrom(
           backgroundColor: Colors.black12,
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
         ),
-        child: Icon(
+        child: const Icon(
           LineAwesomeIcons.edit,
           color: Colors.black,
         ),
@@ -348,7 +353,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ชื่อร้านค้า',
               style: TextStyle(
                 color: Colors.black,
@@ -373,7 +378,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                   ),
                   controller: storeName,
                   cursorColor: Colors.black,
-                  decoration: new InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     enabledBorder: InputBorder.none,
@@ -399,7 +404,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'เลขประจำตัวผู้เสียภาษี',
               style: TextStyle(
                 color: Colors.black,
@@ -424,7 +429,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                 keyboardType: TextInputType.number,
                 controller: storeTax,
                 cursorColor: Colors.black,
-                decoration: new InputDecoration(
+                decoration: InputDecoration(
                   hintText: '0-0000-00000-00-0',
                   hintStyle: TextStyle(color: HexColor('#68879A')),
                   border: InputBorder.none,
@@ -432,8 +437,8 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                   enabledBorder: InputBorder.none,
                   errorBorder: InputBorder.none,
                   disabledBorder: InputBorder.none,
-                  contentPadding:
-                      EdgeInsets.only(left: 15, bottom: 11, top: 15, right: 15),
+                  contentPadding: const EdgeInsets.only(
+                      left: 15, bottom: 11, top: 15, right: 15),
                 ),
                 onSubmitted: (value) {
                   FocusScope.of(context).requestFocus(nodeAddress);
@@ -451,7 +456,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ที่อยู่',
               style: TextStyle(
                 color: Colors.black,
@@ -476,7 +481,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                   ),
                   controller: address,
                   cursorColor: Colors.black,
-                  decoration: new InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     enabledBorder: InputBorder.none,
@@ -502,7 +507,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ที่จัดส่ง',
               style: TextStyle(
                 color: Colors.black,
@@ -526,7 +531,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                 ),
                 controller: shipTo,
                 cursorColor: Colors.black,
-                decoration: new InputDecoration(
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
@@ -550,7 +555,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'จังหวัด',
               style: TextStyle(
                 color: Colors.black,
@@ -579,13 +584,13 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                       fontSize: 16,
                       color: HexColor('#000000'),
                     ),
-                    onChanged: (String newValue) async {
+                    onChanged: (newValue) async {
                       EasyLoading.show();
                       WebApiProxy proxy = WebApiProxy();
                       lstCities.clear();
                       var cities = AddressItemInfo(
                           name: 'เลือก', nameEN: "Select", postCode: '');
-                      var allCities = await proxy.getCities(newValue);
+                      var allCities = await proxy.getCities(newValue!);
                       lstCities.add(cities);
                       lstCities.addAll(allCities);
                       // lstCities = await proxy.getCities(newValue);
@@ -595,7 +600,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                         var districts = AddressItemInfo(
                             name: 'เลือก', nameEN: "Select", postCode: '');
                         var allDistricts = await proxy.getDistricts(
-                            newValue, lstCities[0].name);
+                            newValue, lstCities[0].name ?? '');
                         lstDistricts.add(districts);
                         lstDistricts.addAll(allDistricts);
                         // lstDistricts = await proxy.getDistricts(
@@ -605,9 +610,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
 
                       setState(() {
                         dropdownProvince = newValue;
-                        dropdownDistrict = lstCities[0].name;
-                        dropdownSubDistrict = lstDistricts[0].name;
-                        postCode.text = lstDistricts[0].postCode;
+                        dropdownDistrict = lstCities[0].name!;
+                        dropdownSubDistrict = lstDistricts[0].name!;
+                        postCode.text = lstDistricts[0].postCode!;
                       });
                       FocusScope.of(context).requestFocus(nodeStoreLocation);
                     },
@@ -618,9 +623,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                           color = '#68879A';
                         }
                         return Text(
-                          value.name,
+                          value.name!,
                           style: TextStyle(
-                              color: HexColor('$color'),
+                              color: HexColor(color),
                               fontFamily: "Prompt",
                               fontSize: 16),
                         );
@@ -632,7 +637,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                       return DropdownMenuItem<String>(
                         value: value.name,
                         child: Text(
-                          value.name,
+                          value.name!,
                           // style: TextStyle(
                           //     color: HexColor('${dropdownProvinceColor}')),
                         ),
@@ -655,7 +660,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'เขต/อำเภอ',
               style: TextStyle(
                 color: Colors.black,
@@ -685,11 +690,11 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                       color: HexColor('#000000'),
                       // fontFamily: "Prompt",
                     ),
-                    onChanged: (String newValue) async {
+                    onChanged: (newValue) async {
                       EasyLoading.show();
                       WebApiProxy proxy = WebApiProxy();
                       var allDistricts =
-                          await proxy.getDistricts(dropdownProvince, newValue);
+                          await proxy.getDistricts(dropdownProvince, newValue!);
 
                       lstDistricts.addAll(allDistricts);
                       // print('++++++++++ ${lstDistricts[0].name} ++++++++++');
@@ -699,7 +704,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
 
                       setState(() {
                         dropdownDistrict = newValue;
-                        dropdownSubDistrict = lstDistricts[0].name;
+                        dropdownSubDistrict = lstDistricts[0].name!;
                         // postCode.text = lstDistricts[0].postCode;
                       });
                       FocusScope.of(context).requestFocus(nodeStoreLocation);
@@ -711,9 +716,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                           color = '#68879A';
                         }
                         return Text(
-                          value.name,
+                          value.name!,
                           style: TextStyle(
-                              color: HexColor('${color}'),
+                              color: HexColor(color),
                               fontFamily: "Prompt",
                               fontSize: 16),
                         );
@@ -723,7 +728,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                         .map<DropdownMenuItem<String>>((AddressItemInfo value) {
                       return DropdownMenuItem<String>(
                         value: value.name,
-                        child: Text(value.name),
+                        child: Text(value.name!),
                       );
                     }).toList(),
                   ),
@@ -743,7 +748,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'แขวง/ตำบล',
               style: TextStyle(
                 color: Colors.black,
@@ -773,13 +778,13 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                       color: HexColor('#000000'),
                       // fontFamily: "Prompt",
                     ),
-                    onChanged: (String newValue) {
+                    onChanged: (newValue) {
                       var districtInfo =
                           lstDistricts.where((x) => x.name == newValue).first;
 
                       setState(() {
-                        dropdownSubDistrict = newValue;
-                        postCode.text = districtInfo.postCode;
+                        dropdownSubDistrict = newValue!;
+                        postCode.text = districtInfo.postCode!;
                       });
                       FocusScope.of(context).requestFocus(nodeStoreLocation);
                     },
@@ -790,9 +795,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                           color = '#68879A';
                         }
                         return Text(
-                          value.name,
+                          value.name!,
                           style: TextStyle(
-                              color: HexColor('${color}'),
+                              color: HexColor(color),
                               fontFamily: "Prompt",
                               fontSize: 16),
                         );
@@ -802,7 +807,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                         .map<DropdownMenuItem<String>>((AddressItemInfo value) {
                       return DropdownMenuItem<String>(
                         value: value.name,
-                        child: Text(value.name),
+                        child: Text(value.name!),
                       );
                     }).toList(),
                   ),
@@ -822,7 +827,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'รหัสไปรษณีย์',
               style: TextStyle(
                 color: Colors.black,
@@ -846,7 +851,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                 ),
                 controller: postCode,
                 cursorColor: Colors.black,
-                decoration: new InputDecoration(
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
@@ -870,7 +875,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'จุดสังเกต',
               style: TextStyle(
                 color: Colors.black,
@@ -895,7 +900,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                   ),
                   controller: storeLocation,
                   cursorColor: Colors.black,
-                  decoration: new InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     enabledBorder: InputBorder.none,
@@ -921,7 +926,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ระยะห่างจากสาขาถึงร้านค้า(กิโลเมตร)',
               style: TextStyle(
                 color: Colors.black,
@@ -947,7 +952,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                   controller: storeDistance,
                   cursorColor: Colors.black,
                   keyboardType: TextInputType.number,
-                  decoration: new InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     enabledBorder: InputBorder.none,
@@ -973,7 +978,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'เบอร์โทร',
               style: TextStyle(
                 color: Colors.black,
@@ -1002,7 +1007,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                   ),
                   controller: tel,
                   cursorColor: Colors.black,
-                  decoration: new InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     enabledBorder: InputBorder.none,
@@ -1028,7 +1033,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ชื่อผู้ติดต่อ',
               style: TextStyle(
                 color: Colors.black,
@@ -1052,7 +1057,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                   ),
                   controller: contactName,
                   cursorColor: Colors.black,
-                  decoration: new InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     enabledBorder: InputBorder.none,
@@ -1078,7 +1083,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'เบอร์ติดต่อ',
               style: TextStyle(
                 color: Colors.black,
@@ -1107,7 +1112,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                   ),
                   controller: contactTel,
                   cursorColor: Colors.black,
-                  decoration: new InputDecoration(
+                  decoration: InputDecoration(
                     hintText: '000-000-0000',
                     hintStyle: TextStyle(color: HexColor('#68879A')),
                     border: InputBorder.none,
@@ -1115,8 +1120,8 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                     enabledBorder: InputBorder.none,
                     errorBorder: InputBorder.none,
                     disabledBorder: InputBorder.none,
-                    contentPadding:
-                        EdgeInsets.only(left: 15, bottom: 0, top: 0, right: 15),
+                    contentPadding: const EdgeInsets.only(
+                        left: 15, bottom: 0, top: 0, right: 15),
                   ),
                   onSubmitted: (value) {
                     FocusScope.of(context).requestFocus(nodeLine);
@@ -1135,7 +1140,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ไลน์',
               style: TextStyle(
                 color: Colors.black,
@@ -1159,7 +1164,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                 ),
                 controller: line,
                 cursorColor: Colors.black,
-                decoration: new InputDecoration(
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
@@ -1183,7 +1188,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'สาขา',
               style: TextStyle(
                 color: Colors.black,
@@ -1213,7 +1218,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                       color: HexColor('#000000'),
                       // fontFamily: "Prompt",
                     ),
-                    onChanged: (String newValue) async {
+                    onChanged: (newValue) async {
                       EasyLoading.show();
                       WebApiProxy proxy = WebApiProxy();
                       ApiProxyMobile proxy2 = ApiProxyMobile();
@@ -1261,7 +1266,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                         MapBranchSaleInfo(priceCode: '', priceName: 'เลือก')
                       ];
 
-                      if (newValue.isNotEmpty) {
+                      if (newValue!.isNotEmpty) {
                         var dd = Uri.parse(newValue)
                             .toString()
                             .replaceAll(r'%09', '');
@@ -1326,7 +1331,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
 
                       setState(() {
                         dropdownBranch = newValue;
-                        dropdownPriceTable = lstSaleTable[0].priceCode;
+                        dropdownPriceTable = lstSaleTable[0].priceCode!;
                       });
 
                       // FocusScope.of(context).requestFocus(nodeCredit);
@@ -1338,9 +1343,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                           color = '#68879A';
                         }
                         return Text(
-                          value.branchName,
+                          value.branchName!,
                           style: TextStyle(
-                              color: HexColor('$color'),
+                              color: HexColor(color),
                               fontFamily: "Prompt",
                               fontSize: 16),
                         );
@@ -1350,7 +1355,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                         .map<DropdownMenuItem<String>>((BranchInfo value) {
                       return DropdownMenuItem<String>(
                         value: value.branchCode,
-                        child: Text(value.branchName),
+                        child: Text(value.branchName!),
                       );
                     }).toList(),
                   ),
@@ -1370,7 +1375,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ประเภทร้านค้า',
               style: TextStyle(
                 color: Colors.black,
@@ -1400,9 +1405,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                       color: HexColor('#000000'),
                       // fontFamily: "Prompt",
                     ),
-                    onChanged: (String newValue) {
+                    onChanged: (newValue) {
                       setState(() {
-                        dropdownStoreType = newValue;
+                        dropdownStoreType = newValue!;
                       });
                       FocusScope.of(context).requestFocus(nodeCredit);
                     },
@@ -1413,9 +1418,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                           color = '#68879A';
                         }
                         return Text(
-                          value["Text"],
+                          value["Text"]!,
                           style: TextStyle(
-                              color: HexColor('$color'),
+                              color: HexColor(color),
                               fontFamily: "Prompt",
                               fontSize: 16),
                         );
@@ -1425,7 +1430,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                         (Map<String, String> value) {
                       return DropdownMenuItem<String>(
                         value: value["Value"],
-                        child: Text(value["Text"]),
+                        child: Text(value["Text"]!),
                       );
                     }).toList(),
                   ),
@@ -1445,7 +1450,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'เครดิต/วัน',
               style: TextStyle(
                 color: Colors.black,
@@ -1469,7 +1474,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                 controller: credit,
                 keyboardType: TextInputType.number,
                 cursorColor: Colors.black,
-                decoration: new InputDecoration(
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
@@ -1494,7 +1499,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'วงเงินเครดิต/บาท',
               style: TextStyle(
                 color: Colors.black,
@@ -1519,7 +1524,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                 controller: limit,
                 cursorColor: Colors.black,
                 keyboardType: TextInputType.number,
-                decoration: new InputDecoration(
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
@@ -1529,7 +1534,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                       EdgeInsets.only(left: 15, bottom: 0, top: 0, right: 15),
                 ),
                 onChanged: (string) {
-                  string = '${_formatNumber(string.replaceAll(',', ''))}';
+                  string = _formatNumber(string.replaceAll(',', ''));
                   limit.value = TextEditingValue(
                     text: string,
                     selection: TextSelection.collapsed(offset: string.length),
@@ -1550,7 +1555,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ตะกร้า',
               style: TextStyle(
                 color: Colors.black,
@@ -1580,9 +1585,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                       color: HexColor('#000000'),
                       // fontFamily: "Prompt",
                     ),
-                    onChanged: (String newValue) {
+                    onChanged: (newValue) {
                       setState(() {
-                        dropdownBasket = newValue;
+                        dropdownBasket = newValue!;
                       });
                     },
                     selectedItemBuilder: (BuildContext context) {
@@ -1592,9 +1597,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                           color = '#68879A';
                         }
                         return Text(
-                          value["Text"],
+                          value["Text"]!,
                           style: TextStyle(
-                              color: HexColor('$color'),
+                              color: HexColor(color),
                               fontFamily: "Prompt",
                               fontSize: 16),
                         );
@@ -1604,7 +1609,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                         (Map<String, String> value) {
                       return DropdownMenuItem<String>(
                         value: value["Value"],
-                        child: Text(value["Text"]),
+                        child: Text(value["Text"]!),
                       );
                     }).toList(),
                   ),
@@ -1624,7 +1629,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'กลุ่มร้านค้า',
               style: TextStyle(
                 color: Colors.black,
@@ -1654,9 +1659,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                       color: HexColor('#000000'),
                       // fontFamily: "Prompt",
                     ),
-                    onChanged: (String newValue) {
+                    onChanged: (newValue) {
                       setState(() {
-                        dropdownstoreGroup = newValue;
+                        dropdownstoreGroup = newValue!;
                       });
                     },
                     selectedItemBuilder: (BuildContext context) {
@@ -1666,9 +1671,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                           color = '#68879A';
                         }
                         return Text(
-                          value["Text"],
+                          value["Text"]!,
                           style: TextStyle(
-                              color: HexColor('$color'),
+                              color: HexColor(color),
                               fontFamily: "Prompt",
                               fontSize: 16),
                         );
@@ -1678,7 +1683,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                         (Map<String, String> value) {
                       return DropdownMenuItem<String>(
                         value: value["Value"],
-                        child: Text(value["Text"]),
+                        child: Text(value["Text"]!),
                       );
                     }).toList(),
                   ),
@@ -1698,7 +1703,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ตารางราคาขาย',
               style: TextStyle(
                 color: Colors.black,
@@ -1728,9 +1733,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                       color: HexColor('#000000'),
                       // fontFamily: "Prompt",
                     ),
-                    onChanged: (String newValue) {
+                    onChanged: (newValue) {
                       setState(() {
-                        dropdownPriceTable = newValue;
+                        dropdownPriceTable = newValue!;
                       });
                     },
                     selectedItemBuilder: (BuildContext context) {
@@ -1740,9 +1745,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                           color = '#68879A';
                         }
                         return Text(
-                          value.priceName,
+                          value.priceName!,
                           style: TextStyle(
-                              color: HexColor('$color'),
+                              color: HexColor(color),
                               fontFamily: "Prompt",
                               fontSize: 16),
                         );
@@ -1752,7 +1757,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                         (MapBranchSaleInfo value) {
                       return DropdownMenuItem<String>(
                         value: value.priceCode,
-                        child: Text(value.priceName),
+                        child: Text(value.priceName!),
                       );
                     }).toList(),
                   ),
@@ -1775,7 +1780,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
               Container(
                 width: widthSreen * 0.39,
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: const Text(
                   'วิธีการสั้งซื้อ',
                   style: TextStyle(
                     color: Colors.black,
@@ -1821,9 +1826,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                           color: HexColor('#000000'),
                           // fontFamily: "Prompt",
                         ),
-                        onChanged: (String newValue) {
+                        onChanged: (newValue) {
                           setState(() {
-                            dropdownStoreAsset = newValue;
+                            dropdownStoreAsset = newValue!;
                           });
                         },
                         selectedItemBuilder: (BuildContext context) {
@@ -1833,9 +1838,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               color = '#68879A';
                             }
                             return Text(
-                              value["Text"],
+                              value["Text"]!,
                               style: TextStyle(
-                                  color: HexColor('$color'),
+                                  color: HexColor(color),
                                   fontFamily: "Prompt",
                                   fontSize: 16),
                             );
@@ -1845,7 +1850,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                             (Map<String, String> value) {
                           return DropdownMenuItem<String>(
                             value: value["Value"],
-                            child: Text(value["Text"]),
+                            child: Text(value["Text"]!),
                           );
                         }).toList(),
                       ),
@@ -1901,7 +1906,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'กลุ่ม/สาย',
               style: TextStyle(
                 color: Colors.black,
@@ -1916,16 +1921,16 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                     checkColor: Colors.white,
                     activeColor: HexColor("#4e73be"),
                     value: isMon,
-                    onChanged: (bool value) {
+                    onChanged: (value) {
                       setState(() {
-                        isMon = value;
+                        isMon = value!;
                       });
                     },
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: widthSreen * 0.18,
-                  child: Text(
+                  child: const Text(
                     'วันจันทร์',
                     style: TextStyle(
                       color: Colors.black,
@@ -1938,9 +1943,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                     activeColor: HexColor("#4e73be"),
                     value: isMon_,
                     onChanged: isMon
-                        ? (bool value) {
+                        ? (value) {
                             setState(() {
-                              isMon_ = value;
+                              isMon_ = value!;
                             });
                           }
                         : null,
@@ -1972,9 +1977,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               // fontFamily: "Prompt",
                             ),
                             onChanged: isMon
-                                ? (String newValue) {
+                                ? (newValue) {
                                     setState(() {
-                                      dropdownMon = newValue;
+                                      dropdownMon = newValue!;
                                     });
                                   }
                                 : null,
@@ -1982,7 +1987,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               return lstMondayRoutes.map((value) {
                                 if (value.routeCode == '') {
                                   return Text(
-                                    value.routeName,
+                                    value.routeName!,
                                     style: TextStyle(
                                         color: HexColor('#68879A'),
                                         fontFamily: "Prompt",
@@ -1990,7 +1995,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                                   );
                                 } else {
                                   return Text(
-                                    value.routeName,
+                                    value.routeName!,
                                     style: TextStyle(
                                         color: HexColor('#00cb39'),
                                         fontFamily: "Prompt",
@@ -2004,7 +2009,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                                     (RouteInfo value) {
                               return DropdownMenuItem<String>(
                                 value: value.routeCode,
-                                child: Text(value.routeName),
+                                child: Text(value.routeName!),
                               );
                             }).toList(),
                           ),
@@ -2020,40 +2025,36 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
             padding: const EdgeInsets.only(top: 5.0),
             child: Row(
               children: [
-                Container(
-                  child: Checkbox(
-                    checkColor: Colors.white,
-                    activeColor: HexColor("#4e73be"),
-                    value: isTue,
-                    onChanged: (bool value) {
-                      setState(() {
-                        isTue = value;
-                      });
-                    },
-                  ),
+                Checkbox(
+                  checkColor: Colors.white,
+                  activeColor: HexColor("#4e73be"),
+                  value: isTue,
+                  onChanged: (value) {
+                    setState(() {
+                      isTue = value!;
+                    });
+                  },
                 ),
-                Container(
+                SizedBox(
                   width: widthSreen * 0.18,
-                  child: Text(
+                  child: const Text(
                     'วันอังคาร',
                     style: TextStyle(
                       color: Colors.black,
                     ),
                   ),
                 ),
-                Container(
-                  child: Checkbox(
-                    checkColor: Colors.white,
-                    activeColor: HexColor("#4e73be"),
-                    value: isTue_,
-                    onChanged: isTue
-                        ? (bool value) {
-                            setState(() {
-                              isTue_ = value;
-                            });
-                          }
-                        : null,
-                  ),
+                Checkbox(
+                  checkColor: Colors.white,
+                  activeColor: HexColor("#4e73be"),
+                  value: isTue_,
+                  onChanged: isTue
+                      ? (value) {
+                          setState(() {
+                            isTue_ = value!;
+                          });
+                        }
+                      : null,
                 ),
                 Expanded(
                   child: Container(
@@ -2081,9 +2082,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               // fontFamily: "Prompt",
                             ),
                             onChanged: isTue
-                                ? (String newValue) {
+                                ? (newValue) {
                                     setState(() {
-                                      dropdownTue = newValue;
+                                      dropdownTue = newValue!;
                                     });
                                   }
                                 : null,
@@ -2091,7 +2092,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               return lstTuesdayRoutes.map((value) {
                                 if (value.routeCode == '') {
                                   return Text(
-                                    value.routeName,
+                                    value.routeName!,
                                     style: TextStyle(
                                         color: HexColor('#68879A'),
                                         fontFamily: "Prompt",
@@ -2099,7 +2100,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                                   );
                                 } else {
                                   return Text(
-                                    value.routeName,
+                                    value.routeName!,
                                     style: TextStyle(
                                         color: HexColor('#00cb39'),
                                         fontFamily: "Prompt",
@@ -2113,7 +2114,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                                     (RouteInfo value) {
                               return DropdownMenuItem<String>(
                                 value: value.routeCode,
-                                child: Text(value.routeName),
+                                child: Text(value.routeName!),
                               );
                             }).toList(),
                           ),
@@ -2129,40 +2130,36 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
             padding: const EdgeInsets.only(top: 5.0),
             child: Row(
               children: [
-                Container(
-                  child: Checkbox(
-                    checkColor: Colors.white,
-                    activeColor: HexColor("#4e73be"),
-                    value: isWed,
-                    onChanged: (bool value) {
-                      setState(() {
-                        isWed = value;
-                      });
-                    },
-                  ),
+                Checkbox(
+                  checkColor: Colors.white,
+                  activeColor: HexColor("#4e73be"),
+                  value: isWed,
+                  onChanged: (value) {
+                    setState(() {
+                      isWed = value!;
+                    });
+                  },
                 ),
-                Container(
+                SizedBox(
                   width: widthSreen * 0.18,
-                  child: Text(
+                  child: const Text(
                     'วันพุธ',
                     style: TextStyle(
                       color: Colors.black,
                     ),
                   ),
                 ),
-                Container(
-                  child: Checkbox(
-                    checkColor: Colors.white,
-                    activeColor: HexColor("#4e73be"),
-                    value: isWed_,
-                    onChanged: isWed
-                        ? (bool value) {
-                            setState(() {
-                              isWed_ = value;
-                            });
-                          }
-                        : null,
-                  ),
+                Checkbox(
+                  checkColor: Colors.white,
+                  activeColor: HexColor("#4e73be"),
+                  value: isWed_,
+                  onChanged: isWed
+                      ? (value) {
+                          setState(() {
+                            isWed_ = value!;
+                          });
+                        }
+                      : null,
                 ),
                 Expanded(
                   child: Container(
@@ -2190,9 +2187,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               // fontFamily: "Prompt",
                             ),
                             onChanged: isWed
-                                ? (String newValue) {
+                                ? (newValue) {
                                     setState(() {
-                                      dropdownWed = newValue;
+                                      dropdownWed = newValue!;
                                     });
                                   }
                                 : null,
@@ -2200,7 +2197,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               return lstWednesDayRoutes.map((value) {
                                 if (value.routeCode == '') {
                                   return Text(
-                                    value.routeName,
+                                    value.routeName!,
                                     style: TextStyle(
                                         color: HexColor('#68879A'),
                                         fontFamily: "Prompt",
@@ -2208,7 +2205,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                                   );
                                 } else {
                                   return Text(
-                                    value.routeName,
+                                    value.routeName!,
                                     style: TextStyle(
                                         color: HexColor('#00cb39'),
                                         fontFamily: "Prompt",
@@ -2222,7 +2219,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                                     (RouteInfo value) {
                               return DropdownMenuItem<String>(
                                 value: value.routeCode,
-                                child: Text(value.routeName),
+                                child: Text(value.routeName!),
                               );
                             }).toList(),
                           ),
@@ -2243,16 +2240,16 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                     checkColor: Colors.white,
                     activeColor: HexColor("#4e73be"),
                     value: isThu,
-                    onChanged: (bool value) {
+                    onChanged: (value) {
                       setState(() {
-                        isThu = value;
+                        isThu = value!;
                       });
                     },
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: widthSreen * 0.18,
-                  child: Text(
+                  child: const Text(
                     'วันพฤหัส',
                     style: TextStyle(
                       color: Colors.black,
@@ -2265,9 +2262,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                     activeColor: HexColor("#4e73be"),
                     value: isThu_,
                     onChanged: isThu
-                        ? (bool value) {
+                        ? (value) {
                             setState(() {
-                              isThu_ = value;
+                              isThu_ = value!;
                             });
                           }
                         : null,
@@ -2299,9 +2296,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               // fontFamily: "Prompt",
                             ),
                             onChanged: isThu
-                                ? (String newValue) {
+                                ? (newValue) {
                                     setState(() {
-                                      dropdownThu = newValue;
+                                      dropdownThu = newValue!;
                                     });
                                   }
                                 : null,
@@ -2309,7 +2306,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               return lstThursdayRoutes.map((value) {
                                 if (value.routeCode == '') {
                                   return Text(
-                                    value.routeName,
+                                    value.routeName!,
                                     style: TextStyle(
                                         color: HexColor('#68879A'),
                                         fontFamily: "Prompt",
@@ -2317,7 +2314,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                                   );
                                 } else {
                                   return Text(
-                                    value.routeName,
+                                    value.routeName!,
                                     style: TextStyle(
                                         color: HexColor('#00cb39'),
                                         fontFamily: "Prompt",
@@ -2331,7 +2328,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                                     (RouteInfo value) {
                               return DropdownMenuItem<String>(
                                 value: value.routeCode,
-                                child: Text(value.routeName),
+                                child: Text(value.routeName!),
                               );
                             }).toList(),
                           ),
@@ -2347,21 +2344,19 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
             padding: const EdgeInsets.only(top: 5.0),
             child: Row(
               children: [
-                Container(
-                  child: Checkbox(
-                    checkColor: Colors.white,
-                    activeColor: HexColor("#4e73be"),
-                    value: isFri,
-                    onChanged: (bool value) {
-                      setState(() {
-                        isFri = value;
-                      });
-                    },
-                  ),
+                Checkbox(
+                  checkColor: Colors.white,
+                  activeColor: HexColor("#4e73be"),
+                  value: isFri,
+                  onChanged: (value) {
+                    setState(() {
+                      isFri = value!;
+                    });
+                  },
                 ),
-                Container(
+                SizedBox(
                   width: widthSreen * 0.18,
-                  child: Text(
+                  child: const Text(
                     'วันศุกร์',
                     style: TextStyle(
                       color: Colors.black,
@@ -2374,9 +2369,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                     activeColor: HexColor("#4e73be"),
                     value: isFri_,
                     onChanged: isFri
-                        ? (bool value) {
+                        ? (value) {
                             setState(() {
-                              isFri_ = value;
+                              isFri_ = value!;
                             });
                           }
                         : null,
@@ -2408,9 +2403,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               // fontFamily: "Prompt",
                             ),
                             onChanged: isFri
-                                ? (String newValue) {
+                                ? (newValue) {
                                     setState(() {
-                                      dropdownFri = newValue;
+                                      dropdownFri = newValue!;
                                     });
                                   }
                                 : null,
@@ -2418,7 +2413,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               return lstFridayRoutes.map((value) {
                                 if (value.routeCode == '') {
                                   return Text(
-                                    value.routeName,
+                                    value.routeName!,
                                     style: TextStyle(
                                         color: HexColor('#68879A'),
                                         fontFamily: "Prompt",
@@ -2426,7 +2421,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                                   );
                                 } else {
                                   return Text(
-                                    value.routeName,
+                                    value.routeName!,
                                     style: TextStyle(
                                         color: HexColor('#00cb39'),
                                         fontFamily: "Prompt",
@@ -2440,7 +2435,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                                     (RouteInfo value) {
                               return DropdownMenuItem<String>(
                                 value: value.routeCode,
-                                child: Text(value.routeName),
+                                child: Text(value.routeName!),
                               );
                             }).toList(),
                           ),
@@ -2456,40 +2451,36 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
             padding: const EdgeInsets.only(top: 5.0),
             child: Row(
               children: [
-                Container(
-                  child: Checkbox(
-                    checkColor: Colors.white,
-                    activeColor: HexColor("#4e73be"),
-                    value: isSat,
-                    onChanged: (bool value) {
-                      setState(() {
-                        isSat = value;
-                      });
-                    },
-                  ),
+                Checkbox(
+                  checkColor: Colors.white,
+                  activeColor: HexColor("#4e73be"),
+                  value: isSat,
+                  onChanged: (value) {
+                    setState(() {
+                      isSat = value!;
+                    });
+                  },
                 ),
-                Container(
+                SizedBox(
                   width: widthSreen * 0.18,
-                  child: Text(
+                  child: const Text(
                     'วันเสาร์',
                     style: TextStyle(
                       color: Colors.black,
                     ),
                   ),
                 ),
-                Container(
-                  child: Checkbox(
-                    checkColor: Colors.white,
-                    activeColor: HexColor("#4e73be"),
-                    value: isSat_,
-                    onChanged: isSat
-                        ? (bool value) {
-                            setState(() {
-                              isSat_ = value;
-                            });
-                          }
-                        : null,
-                  ),
+                Checkbox(
+                  checkColor: Colors.white,
+                  activeColor: HexColor("#4e73be"),
+                  value: isSat_,
+                  onChanged: isSat
+                      ? (value) {
+                          setState(() {
+                            isSat_ = value!;
+                          });
+                        }
+                      : null,
                 ),
                 Expanded(
                   child: Container(
@@ -2517,9 +2508,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               // fontFamily: "Prompt",
                             ),
                             onChanged: isSat
-                                ? (String newValue) {
+                                ? (newValue) {
                                     setState(() {
-                                      dropdownSat = newValue;
+                                      dropdownSat = newValue!;
                                     });
                                   }
                                 : null,
@@ -2527,7 +2518,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               return lstSaturdayRoutes.map((value) {
                                 if (value.routeCode == '') {
                                   return Text(
-                                    value.routeName,
+                                    value.routeName!,
                                     style: TextStyle(
                                         color: HexColor('#68879A'),
                                         fontFamily: "Prompt",
@@ -2535,7 +2526,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                                   );
                                 } else {
                                   return Text(
-                                    value.routeName,
+                                    value.routeName!,
                                     style: TextStyle(
                                         color: HexColor('#00cb39'),
                                         fontFamily: "Prompt",
@@ -2549,7 +2540,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                                     (RouteInfo value) {
                               return DropdownMenuItem<String>(
                                 value: value.routeCode,
-                                child: Text(value.routeName),
+                                child: Text(value.routeName!),
                               );
                             }).toList(),
                           ),
@@ -2565,40 +2556,36 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
             padding: const EdgeInsets.only(top: 5.0),
             child: Row(
               children: [
-                Container(
-                  child: Checkbox(
-                    checkColor: Colors.white,
-                    activeColor: HexColor("#4e73be"),
-                    value: isSun,
-                    onChanged: (bool value) {
-                      setState(() {
-                        isSun = value;
-                      });
-                    },
-                  ),
+                Checkbox(
+                  checkColor: Colors.white,
+                  activeColor: HexColor("#4e73be"),
+                  value: isSun,
+                  onChanged: (value) {
+                    setState(() {
+                      isSun = value!;
+                    });
+                  },
                 ),
-                Container(
+                SizedBox(
                   width: widthSreen * 0.18,
-                  child: Text(
+                  child: const Text(
                     'วันอาทิตย์',
                     style: TextStyle(
                       color: Colors.black,
                     ),
                   ),
                 ),
-                Container(
-                  child: Checkbox(
-                    checkColor: Colors.white,
-                    activeColor: HexColor("#4e73be"),
-                    value: isSun_,
-                    onChanged: isSun
-                        ? (bool value) {
-                            setState(() {
-                              isSun_ = value;
-                            });
-                          }
-                        : null,
-                  ),
+                Checkbox(
+                  checkColor: Colors.white,
+                  activeColor: HexColor("#4e73be"),
+                  value: isSun_,
+                  onChanged: isSun
+                      ? (value) {
+                          setState(() {
+                            isSun_ = value!;
+                          });
+                        }
+                      : null,
                 ),
                 Expanded(
                   child: Container(
@@ -2626,9 +2613,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               // fontFamily: "Prompt",
                             ),
                             onChanged: isSun
-                                ? (String newValue) {
+                                ? (newValue) {
                                     setState(() {
-                                      dropdownSun = newValue;
+                                      dropdownSun = newValue!;
                                     });
                                   }
                                 : null,
@@ -2636,7 +2623,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               return lstSundayRoutes.map((value) {
                                 if (value.routeCode == '') {
                                   return Text(
-                                    value.routeName,
+                                    value.routeName!,
                                     style: TextStyle(
                                         color: HexColor('#68879A'),
                                         fontFamily: "Prompt",
@@ -2644,7 +2631,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                                   );
                                 } else {
                                   return Text(
-                                    value.routeName,
+                                    value.routeName!,
                                     style: TextStyle(
                                         color: HexColor('#00cb39'),
                                         fontFamily: "Prompt",
@@ -2658,7 +2645,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                                     (RouteInfo value) {
                               return DropdownMenuItem<String>(
                                 value: value.routeCode,
-                                child: Text(value.routeName),
+                                child: Text(value.routeName!),
                               );
                             }).toList(),
                           ),
@@ -2682,60 +2669,50 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'สถานะ',
               style: TextStyle(
                 color: Colors.black,
               ),
             ),
           ),
-          Container(
-            child: Row(
-              children: [
-                Container(
-                  child: Radio<Status>(
-                    value: Status.active,
-                    groupValue: _data,
-                    onChanged: (Status value) {
-                      setState(() {
-                        _data = value;
-                      });
-                    },
+          Row(
+            children: [
+              Radio<Status>(
+                value: Status.active,
+                groupValue: _data,
+                onChanged: (value) {
+                  setState(() {
+                    _data = value!;
+                  });
+                },
+              ),
+              const Expanded(
+                child: Text(
+                  'ใช้งาน',
+                  style: TextStyle(
+                    color: Colors.black,
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    child: Text(
-                      'ใช้งาน',
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
+              ),
+              Radio<Status>(
+                value: Status.inactive,
+                groupValue: _data,
+                onChanged: (value) {
+                  setState(() {
+                    _data = value!;
+                  });
+                },
+              ),
+              const Expanded(
+                child: Text(
+                  'ไม่ใช้งาน',
+                  style: TextStyle(
+                    color: Colors.black,
                   ),
                 ),
-                Container(
-                  child: Radio<Status>(
-                    value: Status.inactive,
-                    groupValue: _data,
-                    onChanged: (Status value) {
-                      setState(() {
-                        _data = value;
-                      });
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    child: Text(
-                      'ไม่ใช้งาน',
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
@@ -2749,56 +2726,53 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              child: InkWell(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: Container(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            child: Icon(
-                              LineAwesomeIcons.times_circle,
-                              size: 25.0,
+            child: InkWell(
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          child: const Icon(
+                            LineAwesomeIcons.times_circle,
+                            size: 25.0,
+                            color: Colors.black45,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10.0,
+                        ),
+                        Container(
+                          //alignment: Alignment.centerLeft,
+                          child: const Text(
+                            'ยกเลิก',
+                            style: TextStyle(
+                              fontSize: 16.0,
                               color: Colors.black45,
                             ),
                           ),
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Container(
-                            //alignment: Alignment.centerLeft,
-                            child: Text(
-                              'ยกเลิก',
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                color: Colors.black45,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    /*SizedBox(
-                      child: Divider(
-                        height: 5.0,
-                        indent: 65.0,
-                        endIndent: 55.0,
-                        thickness: 2.0,
-                        color: Colors.black45,
-                      ),
-                    ),*/
-                  ],
-                )),
+                  ),
+                  /*SizedBox(
+                child: Divider(
+                  height: 5.0,
+                  indent: 65.0,
+                  endIndent: 55.0,
+                  thickness: 2.0,
+                  color: Colors.black45,
+                ),
+              ),*/
+                ],
               ),
             ),
           ),
@@ -2868,7 +2842,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                               color: HexColor('#00cb39'),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10.0,
                           ),
                           Container(
@@ -2912,7 +2886,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text(
+            child: const Text(
               'ยกเลิก',
               style: TextStyle(
                 fontFamily: 'Prompt',
@@ -2929,7 +2903,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'ถ่ายภาพ',
                 style: TextStyle(
                   fontFamily: 'Prompt',
@@ -2945,7 +2919,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'เลือกรูปภาพ',
                 style: TextStyle(
                   fontFamily: 'Prompt',
@@ -2960,7 +2934,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
     );
   }
 
-  File _image;
+  late File _image;
   Future<void> openCamera() async {
     //EasyLoading.show();
     // ignore: invalid_use_of_visible_for_testing_member
@@ -2968,8 +2942,8 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         source: ImageSource.camera, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
       imageFile = image;
-      _image = File(imageFile.path);
-      GlobalParam.deliveryImage = File(imageFile.path);
+      _image = File(imageFile!.path);
+      GlobalParam.deliveryImage = File(imageFile!.path);
       //EasyLoading.dismiss();
     });
   }
@@ -2981,8 +2955,8 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         source: ImageSource.gallery, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
       imageFile = image;
-      _image = File(imageFile.path);
-      GlobalParam.deliveryImage = File(imageFile.path);
+      _image = File(imageFile!.path);
+      GlobalParam.deliveryImage = File(imageFile!.path);
       // EasyLoading.dismiss();
     });
   }
@@ -3002,9 +2976,9 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
     lstCities.add(defaultSelect);
     lstDistricts.add(defaultSelect);
 
-    dropdownSubDistrict = lstDistricts[0].name;
-    dropdownProvince = lstProvices[0].name;
-    dropdownDistrict = lstCities[0].name;
+    dropdownSubDistrict = lstDistricts[0].name!;
+    dropdownProvince = lstProvices[0].name!;
+    dropdownDistrict = lstCities[0].name!;
     //String province = '';
     // if (lstProvices.isNotEmpty) {
     //   dropdownProvince = lstProvices[0].name;
@@ -3036,7 +3010,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
     if (lstBranch.isEmpty) {
       lstBranch.add(BranchInfo(branchCode: '', branchName: 'เลือก'));
     }
-    dropdownBranch = lstBranch[0].branchCode;
+    dropdownBranch = lstBranch[0].branchCode!;
 
     if (dropdownBranch.isEmpty) {
       lstSaleTable = [MapBranchSaleInfo(priceCode: '', priceName: 'เลือก')];
@@ -3055,7 +3029,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
       lstSaleTable = [MapBranchSaleInfo(priceCode: '', priceName: 'เลือก')];
     }
 
-    dropdownPriceTable = lstSaleTable[0].priceCode;
+    dropdownPriceTable = lstSaleTable[0].priceCode!;
 
     if (GlobalParam.updateCustomerID != '') {
       print('*************** ${GlobalParam.updateCustomerID}');
@@ -3079,20 +3053,20 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
     // lstProvices = await proxy.getAllProvinces();
     //String province = '';
     if (lstProvices.isNotEmpty) {
-      dropdownProvince = lstProvices[0].name;
+      dropdownProvince = lstProvices[0].name!;
 
       lstCities = await proxy.getCities(dropdownProvince);
     }
 
     if (lstCities.isNotEmpty) {
-      dropdownDistrict = lstCities[0].name;
+      dropdownDistrict = lstCities[0].name!;
       lstDistricts =
           await proxy.getDistricts(dropdownProvince, dropdownDistrict);
     }
 
     if (lstDistricts.isNotEmpty) {
-      dropdownSubDistrict = lstDistricts[0].name;
-      postCode.text = lstDistricts[0].postCode;
+      dropdownSubDistrict = lstDistricts[0].name!;
+      postCode.text = lstDistricts[0].postCode!;
     }
 
     var allRoutes = await proxy.getAllRoutes();
@@ -3125,7 +3099,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
     if (lstBranch.isEmpty) {
       lstBranch.add(BranchInfo(branchCode: '', branchName: 'ไม่ระบุ'));
     }
-    dropdownBranch = lstBranch[0].branchCode;
+    dropdownBranch = lstBranch[0].branchCode!;
 
     if (dropdownBranch.isEmpty) {
       lstSaleTable = [MapBranchSaleInfo(priceCode: '', priceName: 'ไม่ระบุ')];
@@ -3137,7 +3111,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
       lstSaleTable = [MapBranchSaleInfo(priceCode: '', priceName: 'ไม่ระบุ')];
     }
 
-    dropdownPriceTable = lstSaleTable[0].priceCode;
+    dropdownPriceTable = lstSaleTable[0].priceCode!;
 
     EasyLoading.dismiss();
   }
@@ -3160,7 +3134,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
       return;
     }
     double distance = 0.0;
-    if (storeDistance.text != '' && storeDistance.text != null) {
+    if (storeDistance.text != '') {
       distance = double.parse(storeDistance.text);
     }
 
@@ -3206,7 +3180,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         wrongDialog('กรุณาระบุสายวันจันทร์');
         activeerror = false;
       } else {
-        request.routes.add(RouteRequest(
+        request.routes!.add(RouteRequest(
             groupCode: 'GRMON',
             routeCode: dropdownMon,
             auto: isMon_ ? 'A' : 'M'));
@@ -3218,7 +3192,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         wrongDialog('กรุณาระบุสายวันอังคาร');
         activeerror = false;
       } else {
-        request.routes.add(RouteRequest(
+        request.routes!.add(RouteRequest(
             groupCode: 'GRTUE',
             routeCode: dropdownTue,
             auto: isTue_ ? 'A' : 'M'));
@@ -3230,7 +3204,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         wrongDialog('กรุณาระบุสายวันพุธ');
         activeerror = false;
       } else {
-        request.routes.add(RouteRequest(
+        request.routes!.add(RouteRequest(
             groupCode: 'GRWED',
             routeCode: dropdownWed,
             auto: isWed_ ? 'A' : 'M'));
@@ -3242,7 +3216,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         wrongDialog('กรุณาระบุสายวันพฤหัสบดี');
         activeerror = false;
       } else {
-        request.routes.add(RouteRequest(
+        request.routes!.add(RouteRequest(
             groupCode: 'GRTHU',
             routeCode: dropdownThu,
             auto: isThu_ ? 'A' : 'M'));
@@ -3254,7 +3228,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         wrongDialog('กรุณาระบุสายวันศุกร์');
         activeerror = false;
       } else {
-        request.routes.add(RouteRequest(
+        request.routes!.add(RouteRequest(
             groupCode: 'GRFRI',
             routeCode: dropdownFri,
             auto: isFri_ ? 'A' : 'M'));
@@ -3266,7 +3240,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         wrongDialog('กรุณาระบุสายวันเสาร์');
         activeerror = false;
       } else {
-        request.routes.add(RouteRequest(
+        request.routes!.add(RouteRequest(
             groupCode: 'GRSAT',
             routeCode: dropdownSat,
             auto: isSat_ ? 'A' : 'M'));
@@ -3278,7 +3252,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         wrongDialog('กรุณาระบุสายวันอาทิตน์');
         activeerror = false;
       } else {
-        request.routes.add(RouteRequest(
+        request.routes!.add(RouteRequest(
             groupCode: 'GRSUN',
             routeCode: dropdownSun,
             auto: isSun_ ? 'A' : 'M'));
@@ -3318,7 +3292,10 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
       lstAsset.add({"Text": "เลือก", "Value": ""});
 
       for (int i = 0; i < result.length; i++) {
-        var data = {"Text": result[i].cBASKNM, "Value": result[i].cBASKCD};
+        Map<String, String> data = {
+          "Text": result[i].cBASKNM!,
+          "Value": result[i].cBASKCD!
+        };
         lstAsset.add(data);
       }
 
@@ -3387,43 +3364,44 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
 
         WebApiProxy proxy = WebApiProxy();
         var allCities =
-            await proxy.getCities(customer.cPROVINCE).then((data) async {
+            await proxy.getCities(customer.cPROVINCE!).then((data) async {
           lstCities.addAll(data);
           var allDistricts = await proxy
-              .getDistricts(customer.cPROVINCE, customer.cDISTRICT)
+              .getDistricts(customer.cPROVINCE!, customer.cDISTRICT!)
               .then((value) async {
             lstDistricts.addAll(value);
-            var tableAll =
-                await proxy.getAllMapBranchSale(customer.cBRANCD).then((value) {
+            var tableAll = await proxy
+                .getAllMapBranchSale(customer.cBRANCD!)
+                .then((value) {
               lstSaleTable.addAll(value);
               setState(() {
-                dropdownSubDistrict = lstDistricts[0].name;
-                storeName.text = customer.cCUSTNM;
+                dropdownSubDistrict = lstDistricts[0].name!;
+                storeName.text = customer.cCUSTNM!;
                 storeTax.text = customer.cTAXNO;
-                storeType.text = customer.cCUSTTYPE;
-                postCode.text = customer.cPOSTCD;
-                tel.text = customer.cTEL;
-                contactName.text = customer.cCONTACT;
-                contactTel.text = customer.cCONTACTTEL;
-                line.text = customer.cLINEID;
+                storeType.text = customer.cCUSTTYPE!;
+                postCode.text = customer.cPOSTCD!;
+                tel.text = customer.cTEL!;
+                contactName.text = customer.cCONTACT!;
+                contactTel.text = customer.cCONTACTTEL!;
+                line.text = customer.cLINEID!;
                 credit.text = '${customer.iCREDTERM}';
-                limit.text = customer.iCREDLIM;
-                address.text = customer.cADDRESS;
-                shipTo.text = customer.cSHIPTO;
-                storeLocation.text = customer.cLOCATION;
+                limit.text = customer.iCREDLIM!;
+                address.text = customer.cADDRESS!;
+                shipTo.text = customer.cSHIPTO!;
+                storeLocation.text = customer.cLOCATION!;
                 storeAssetNumber.text = '0';
-                storeDistance.text = customer.cDISTANCS;
+                storeDistance.text = customer.cDISTANCS!;
 
-                dropdownValue = customer.cCUSTTYPE;
-                dropdownGroup = customer.cPAYTYPE;
-                dropdownProvince = customer.cPROVINCE;
-                dropdownDistrict = customer.cDISTRICT;
-                dropdownSubDistrict = customer.cSUBDIST;
-                dropdownBranch = customer.cBRANCD;
-                dropdownStoreType = '${customer.cPAYTYPE.replaceAll(' ', '')}';
-                dropdownBasket = customer.cISBASKET;
-                dropdownstoreGroup = customer.cCUSTTYPE;
-                dropdownPriceTable = customer.cTSELLCD;
+                dropdownValue = customer.cCUSTTYPE!;
+                dropdownGroup = customer.cPAYTYPE!;
+                dropdownProvince = customer.cPROVINCE!;
+                dropdownDistrict = customer.cDISTRICT!;
+                dropdownSubDistrict = customer.cSUBDIST!;
+                dropdownBranch = customer.cBRANCD!;
+                dropdownStoreType = customer.cPAYTYPE!.replaceAll(' ', '');
+                dropdownBasket = customer.cISBASKET!;
+                dropdownstoreGroup = customer.cCUSTTYPE!;
+                dropdownPriceTable = customer.cTSELLCD!;
               });
             });
           });
@@ -3454,27 +3432,27 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
         for (var i = 0; i < result.length; i++) {
           if (result[i].cGRPCD == "GRMON") {
             isMon = true;
-            dropdownMon = result[i].cRTECD;
+            dropdownMon = result[i].cRTECD!;
           }
           if (result[i].cGRPCD == "GRTUE") {
             isTue = true;
-            dropdownTue = result[i].cRTECD;
+            dropdownTue = result[i].cRTECD!;
           }
           if (result[i].cGRPCD == "GRWED") {
             isWed = true;
-            dropdownWed = result[i].cRTECD;
+            dropdownWed = result[i].cRTECD!;
           }
           if (result[i].cGRPCD == "GRTHU") {
             isThu = true;
-            dropdownThu = result[i].cRTECD;
+            dropdownThu = result[i].cRTECD!;
           }
           if (result[i].cGRPCD == "GRFRI") {
             isFri = true;
-            dropdownFri = result[i].cRTECD;
+            dropdownFri = result[i].cRTECD!;
           }
           if (result[i].cGRPCD == "GRSUN") {
             isSun = true;
-            dropdownSun = result[i].cRTECD;
+            dropdownSun = result[i].cRTECD!;
           }
         }
       }

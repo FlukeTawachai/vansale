@@ -18,21 +18,21 @@ import 'package:vansale/screens/delivery/delivery_refuel/delivery_refuel_edit.da
 import 'package:vansale/screens/home/home.dart';
 
 class RefuelImage extends StatefulWidget {
-  RefuelImage();
+  const RefuelImage();
 
   @override
   State<RefuelImage> createState() => _RefuelImageState();
 }
 
 class _RefuelImageState extends State<RefuelImage> {
-  PickedFile imageFile;
+  late PickedFile imageFile;
   // final ImagePicker _picker = ImagePicker();
-  File file;
-  Timer timer;
+  late File file;
+  late Timer timer;
   bool imgIsNull = true;
   List<File> imageList = [];
-  double widthScreen;
-  File _image;
+  late double widthScreen;
+  late File _image;
 
   @override
   void initState() {
@@ -46,7 +46,7 @@ class _RefuelImageState extends State<RefuelImage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('ถ่ายรูปใบเสร็จ'),
+        title: const Text('ถ่ายรูปใบเสร็จ'),
       ),
       backgroundColor: Colors.black12,
       body: SizedBox(
@@ -54,18 +54,18 @@ class _RefuelImageState extends State<RefuelImage> {
         width: MediaQuery.of(context).size.width,
         child: showImage(),
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: 60,
         child: Row(
           children: [
             Expanded(
-              child: Container(
+              child: SizedBox(
                 width: widthScreen * 0.30,
                 child: btnSelectImage(),
               ),
             ),
             Expanded(
-              child: Container(
+              child: SizedBox(
                 width: widthScreen * 0.30,
                 child: btnSavedata(),
               ),
@@ -77,13 +77,13 @@ class _RefuelImageState extends State<RefuelImage> {
   }
 
   Widget showImage() {
-    return GlobalParam.imageStoreList.length > 0
+    return GlobalParam.imageStoreList.isNotEmpty
         ? GridView.builder(
             shrinkWrap: true,
             //physics: new NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.all(15.0),
             itemCount: GlobalParam.imageStoreList.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 15,
               mainAxisSpacing: 15,
@@ -153,7 +153,7 @@ class _RefuelImageState extends State<RefuelImage> {
             //                 ))),
             //       )
             Container(
-          child: Center(
+          child: const Center(
               child: Text(
             'บันทึก',
             style: TextStyle(fontSize: 18),
@@ -172,7 +172,7 @@ class _RefuelImageState extends State<RefuelImage> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text(
+            child: const Text(
               'ยกเลิก',
               style: TextStyle(
                 fontFamily: 'Prompt',
@@ -189,7 +189,7 @@ class _RefuelImageState extends State<RefuelImage> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'ถ่ายภาพ',
                 style: TextStyle(
                   color: Colors.black,
@@ -224,7 +224,7 @@ class _RefuelImageState extends State<RefuelImage> {
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
       GlobalParam.deliveryImage = File(imageFile.path);
       //EasyLoading.dismiss();
@@ -245,7 +245,7 @@ class _RefuelImageState extends State<RefuelImage> {
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.gallery, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
       GlobalParam.deliveryImage = File(imageFile.path);
       // EasyLoading.dismiss();
@@ -277,7 +277,7 @@ class _RefuelImageState extends State<RefuelImage> {
       EasyLoading.show();
       AllApiProxyMobile proxy = AllApiProxyMobile();
       bool nextPage = false;
-      if (GlobalParam.imageStoreList.length > 0) {
+      if (GlobalParam.imageStoreList.isNotEmpty) {
         // print("-----------------------${GlobalParam.imageStoreList.length }");
         for (int i = 0; i < GlobalParam.imageStoreList.length; i++) {
           List<int> imageBytes =
@@ -304,7 +304,7 @@ class _RefuelImageState extends State<RefuelImage> {
           context,
           MaterialPageRoute(
             builder: (BuildContext context) =>
-                DeliveryRefuelEdit(GlobalParam.typeMenuCode),
+                DeliveryRefuelEdit(GlobalParam.typeMenuCode!),
           ),
         );
       } else {

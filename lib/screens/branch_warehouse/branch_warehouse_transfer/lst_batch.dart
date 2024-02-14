@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:vansale/api/class/globalparam.dart';
 
 class ListBatch extends StatefulWidget {
-  const ListBatch({Key key}) : super(key: key);
+  const ListBatch({Key? key}) : super(key: key);
 
   @override
   State<ListBatch> createState() => _ListBatchState();
@@ -27,21 +27,21 @@ class _ListBatchState extends State<ListBatch> {
         var total = 0.0;
         double totalProduct = 0;
         for (int i = 0;
-            i < GlobalParam.saleProductSetList[index].aPRODUCT.length;
+            i < (GlobalParam.saleProductSetList[index].aPRODUCT ?? []).length;
             i++) {
-          var data = GlobalParam.saleProductSetList[index].aPRODUCT[i];
+          var data = GlobalParam.saleProductSetList[index].aPRODUCT![i];
           double sCost = 0;
           double mCost = 0;
           double lCost = 0;
-          sCost = double.parse(data.iSUOMQTY) *
-              double.parse(data.iCOSTVAT) *
-              double.parse(data.iSSIZEQTY);
-          mCost = double.parse(data.iMUOMQTY) *
-              double.parse(data.iCOSTVAT) *
-              double.parse(data.iMSIZEQTY);
-          lCost = double.parse(data.iLUOMQTY) *
-              double.parse(data.iCOSTVAT) *
-              double.parse(data.iLSIZEQTY);
+          sCost = double.parse(data.iSUOMQTY ?? '0') *
+              double.parse(data.iCOSTVAT ?? '0') *
+              double.parse(data.iSSIZEQTY ?? '0');
+          mCost = double.parse(data.iMUOMQTY ?? '0') *
+              double.parse(data.iCOSTVAT ?? '0') *
+              double.parse(data.iMSIZEQTY ?? '0');
+          lCost = double.parse(data.iLUOMQTY ?? '0') *
+              double.parse(data.iCOSTVAT ?? '0') *
+              double.parse(data.iLSIZEQTY ?? '0');
           total += sCost + mCost + lCost;
         }
         return Container(
@@ -56,22 +56,25 @@ class _ListBatchState extends State<ListBatch> {
                       Row(
                         children: [
                           Container(
-                            width: widthScreen*0.4,
-                            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                            width: widthScreen * 0.4,
+                            padding:
+                                const EdgeInsets.only(left: 8.0, right: 8.0),
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              GlobalParam.saleProductSetList[index].cSETNM,
-                              style: TextStyle(
+                              GlobalParam.saleProductSetList[index].cSETNM ??
+                                  '',
+                              style: const TextStyle(
                                 fontFamily: "Prompt",
                                 fontSize: 16,
                               ),
                             ),
                           ),
                           Container(
-                            width: widthScreen*0.4,
-                            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                            width: widthScreen * 0.4,
+                            padding:
+                                const EdgeInsets.only(left: 8.0, right: 8.0),
                             alignment: Alignment.centerLeft,
-                            child: Text(
+                            child: const Text(
                               "จำนวน",
                               style: TextStyle(
                                 fontFamily: "Prompt",
@@ -81,20 +84,18 @@ class _ListBatchState extends State<ListBatch> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5.0,
                       ),
                       Container(
                         padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                         child: Row(
                           children: [
-                            Container(
-                              child: Text(
-                                'จำนวนชุด',
-                                style: TextStyle(
-                                  fontFamily: "Prompt",
-                                  fontSize: 14,
-                                ),
+                            const Text(
+                              'จำนวนชุด',
+                              style: TextStyle(
+                                fontFamily: "Prompt",
+                                fontSize: 14,
                               ),
                             ),
                             Expanded(
@@ -106,7 +107,7 @@ class _ListBatchState extends State<ListBatch> {
                                 width: 80.0,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(5),
                                     topRight: Radius.circular(5),
                                     bottomLeft: Radius.circular(5),
@@ -127,7 +128,7 @@ class _ListBatchState extends State<ListBatch> {
                                       fontFamily: 'Prompt',
                                     ),
                                     cursorColor: Colors.black,
-                                    decoration: new InputDecoration(
+                                    decoration: InputDecoration(
                                       hintStyle:
                                           TextStyle(color: HexColor('#00cb39')),
                                       border: InputBorder.none,

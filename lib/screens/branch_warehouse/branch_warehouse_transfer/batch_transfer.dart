@@ -18,13 +18,13 @@ import 'package:vansale/screens/home/home.dart';
 import 'package:vansale/screens/namo/signature_screen.dart';
 
 class BatchTransfer extends StatefulWidget {
-  final String cBRANCD;
-  final String cVEHICD;
-  final String cCUSTTYPE;
-  final String code;
-  final AddProductTransferReq reqData;
+  final String? cBRANCD;
+  final String? cVEHICD;
+  final String? cCUSTTYPE;
+  final String? code;
+  final AddProductTransferReq? reqData;
   const BatchTransfer(
-      {Key key,
+      {Key? key,
       this.cBRANCD,
       this.cVEHICD,
       this.cCUSTTYPE,
@@ -57,7 +57,7 @@ class _BatchTransferState extends State<BatchTransfer> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('โอนเป็นชุด'),
+        title: const Text('โอนเป็นชุด'),
       ),
       body: productSetList(),
       bottomNavigationBar: footer(),
@@ -73,44 +73,47 @@ class _BatchTransferState extends State<BatchTransfer> {
     double productTotal = 0;
 
     for (var i = 0; i < orderList.length; i++) {
-      double sQty = double.parse(orderList[i].iSSIZEQTY);
-      double mQty = double.parse(orderList[i].iMSIZEQTY);
-      double lQty = double.parse(orderList[i].iLSIZEQTY);
+      double sQty = double.parse(orderList[i].iSSIZEQTY ?? '0');
+      double mQty = double.parse(orderList[i].iMSIZEQTY ?? '0');
+      double lQty = double.parse(orderList[i].iLSIZEQTY ?? '0');
       double sPrice = 0;
       double mPrice = 0;
       double lPrice = 0;
 
       if ((sQty + mQty + lQty) > 0) {
-        for (int j = 0; j < orderList[i].aPRODUCT.length; j++) {
-          var data = orderList[i].aPRODUCT[j];
-          sPrice = double.parse(data.iSUOMQTY) * double.parse(data.iCOSTVAT);
-          mPrice = double.parse(data.iMUOMQTY) * double.parse(data.iCOSTVAT);
-          lPrice = double.parse(data.iLUOMQTY) * double.parse(data.iCOSTVAT);
+        for (int j = 0; j < (orderList[i].aPRODUCT ?? []).length; j++) {
+          var data = orderList[i].aPRODUCT![j];
+          sPrice = double.parse(data.iSUOMQTY ?? '0') *
+              double.parse(data.iCOSTVAT ?? '0');
+          mPrice = double.parse(data.iMUOMQTY ?? '0') *
+              double.parse(data.iCOSTVAT ?? '0');
+          lPrice = double.parse(data.iLUOMQTY ?? '0') *
+              double.parse(data.iCOSTVAT ?? '0');
 
-          if (double.parse(data.iSSIZEQTY) > 0) {
+          if (double.parse(data.iSSIZEQTY ?? '0') > 0) {
             var dataf = {
               "cPRODCD": data.cPRODCD,
               "cUOMNM": data.cSUOMNM,
               "iPRICE": sPrice,
-              "iTOTAL": double.parse(data.iSSIZEQTY)
+              "iTOTAL": double.parse(data.iSSIZEQTY ?? '0')
             };
             unitList.add(dataf);
           }
-          if (double.parse(data.iMSIZEQTY) > 0) {
+          if (double.parse(data.iMSIZEQTY ?? '0') > 0) {
             var dataf = {
               "cPRODCD": data.cPRODCD,
               "cUOMNM": data.cMUOMNM,
               "iPRICE": mPrice,
-              "iTOTAL": double.parse(data.iMSIZEQTY)
+              "iTOTAL": double.parse(data.iMSIZEQTY ?? '0')
             };
             unitList.add(dataf);
           }
-          if (double.parse(data.iLSIZEQTY) > 0) {
+          if (double.parse(data.iLSIZEQTY ?? '0') > 0) {
             var dataf = {
               "cPRODCD": data.cPRODCD,
               "cUOMNM": data.cLUOMNM,
               "iPRICE": lPrice,
-              "iTOTAL": double.parse(data.iLSIZEQTY)
+              "iTOTAL": double.parse(data.iLSIZEQTY ?? '0')
             };
             unitList.add(dataf);
           }
@@ -390,22 +393,22 @@ class _BatchTransferState extends State<BatchTransfer> {
         var total = 0.0;
         double totalProduct = 0;
         for (int i = 0;
-            i < GlobalParam.saleProductSetList[index].aPRODUCT.length;
+            i < (GlobalParam.saleProductSetList[index].aPRODUCT ?? []).length;
             i++) {
           this.totalList.add(0);
-          var data = GlobalParam.saleProductSetList[index].aPRODUCT[i];
+          var data = GlobalParam.saleProductSetList[index].aPRODUCT![i];
           double sCost = 0;
           double mCost = 0;
           double lCost = 0;
-          sCost = double.parse(data.iSUOMQTY) *
-              double.parse(data.iCOSTVAT) *
-              double.parse(data.iSSIZEQTY);
-          mCost = double.parse(data.iMUOMQTY) *
-              double.parse(data.iCOSTVAT) *
-              double.parse(data.iMSIZEQTY);
-          lCost = double.parse(data.iLUOMQTY) *
-              double.parse(data.iCOSTVAT) *
-              double.parse(data.iLSIZEQTY);
+          sCost = double.parse(data.iSUOMQTY ?? '0') *
+              double.parse(data.iCOSTVAT ?? '0') *
+              double.parse(data.iSSIZEQTY ?? '0');
+          mCost = double.parse(data.iMUOMQTY ?? '0') *
+              double.parse(data.iCOSTVAT ?? '0') *
+              double.parse(data.iMSIZEQTY ?? '0');
+          lCost = double.parse(data.iLUOMQTY ?? '0') *
+              double.parse(data.iCOSTVAT ?? '0') *
+              double.parse(data.iLSIZEQTY ?? '0');
           total += sCost + mCost + lCost;
         }
         return Container(
@@ -425,8 +428,9 @@ class _BatchTransferState extends State<BatchTransfer> {
                                 const EdgeInsets.only(left: 8.0, right: 8.0),
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              GlobalParam.saleProductSetList[index].cSETNM,
-                              style: TextStyle(
+                              GlobalParam.saleProductSetList[index].cSETNM ??
+                                  '',
+                              style: const TextStyle(
                                 fontFamily: "Prompt",
                                 fontSize: 16,
                               ),
@@ -437,7 +441,7 @@ class _BatchTransferState extends State<BatchTransfer> {
                             padding:
                                 const EdgeInsets.only(left: 8.0, right: 8.0),
                             alignment: Alignment.centerLeft,
-                            child: Text(
+                            child: const Text(
                               "ยอดเงิน",
                               style: TextStyle(
                                 fontFamily: "Prompt",
@@ -447,7 +451,7 @@ class _BatchTransferState extends State<BatchTransfer> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5.0,
                       ),
                       Container(
@@ -462,7 +466,7 @@ class _BatchTransferState extends State<BatchTransfer> {
                               width: widthScreen * 0.55,
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(5),
                                   topRight: Radius.circular(5),
                                   bottomLeft: Radius.circular(5),
@@ -515,7 +519,7 @@ class _BatchTransferState extends State<BatchTransfer> {
                               width: widthScreen * 0.28,
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade400,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(5),
                                   topRight: Radius.circular(5),
                                   bottomLeft: Radius.circular(5),
@@ -525,7 +529,7 @@ class _BatchTransferState extends State<BatchTransfer> {
                               ),
                               child: Text(
                                 "${f.format((this.totalList[index] ?? 0))} ฿",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontFamily: "Prompt",
                                   fontSize: 14,
                                 ),
@@ -535,7 +539,7 @@ class _BatchTransferState extends State<BatchTransfer> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10.0,
                       ),
                       // Container(
@@ -554,7 +558,7 @@ class _BatchTransferState extends State<BatchTransfer> {
                   ),
                 ),
               ),
-              DottedLine(
+              const DottedLine(
                 dashColor: Colors.grey,
               ),
             ],
@@ -565,9 +569,9 @@ class _BatchTransferState extends State<BatchTransfer> {
   }
 
   addProductSet(GetProductSetResp data, double value, int index) {
-    this.totalList[index] = 0.0;
-    for (var ar in data.aPRODUCT) {
-      this.totalList[index] += ((double.tryParse(ar.iCOST) ?? 0) * value);
+    totalList[index] = 0.0;
+    for (var ar in data.aPRODUCT ?? []) {
+      totalList[index] += ((double.tryParse(ar.iCOST) ?? 0) * value);
     }
 
     GlobalParam.saleProductSetTransferList = [];
@@ -590,66 +594,66 @@ class _BatchTransferState extends State<BatchTransfer> {
           aPRODUCT: []);
 
       for (var j = 0;
-          j < GlobalParam.saleProductSetList[i].aPRODUCT.length;
+          j < (GlobalParam.saleProductSetList[i].aPRODUCT ?? []).length;
           j++) {
         var data = new APRODUCTGetProductSet(
-          cGUID: GlobalParam.saleProductSetList[i].aPRODUCT[j].cGUID,
-          cSETCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSETCD,
-          iSEQ: GlobalParam.saleProductSetList[i].aPRODUCT[j].iSEQ,
-          cPRODCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cPRODCD,
-          cPRODNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cPRODNM,
-          cBRNDCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cBRNDCD,
-          cBRNDNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cBRNDNM,
-          iSSIZEQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iSSIZEQTY,
-          iMSIZEQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iMSIZEQTY,
-          iLSIZEQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iLSIZEQTY,
-          cSUOMCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSUOMCD,
-          cSUOMNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSUOMNM,
-          iSUOMQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iSUOMQTY,
-          cMUOMCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cMUOMCD,
-          cMUOMNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cMUOMNM,
-          iMUOMQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iMUOMQTY,
-          cLUOMCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cLUOMCD,
-          cLUOMNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cLUOMNM,
-          iLUOMQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iLUOMQTY,
-          cBASKCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cBASKCD,
-          cBASKNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cBASKNM,
-          dCREADT: GlobalParam.saleProductSetList[i].aPRODUCT[j].dCREADT,
-          cCREABY: GlobalParam.saleProductSetList[i].aPRODUCT[j].cCREABY,
-          dUPDADT: GlobalParam.saleProductSetList[i].aPRODUCT[j].dUPDADT,
-          cUPDABY: GlobalParam.saleProductSetList[i].aPRODUCT[j].cUPDABY,
-          iCOST: GlobalParam.saleProductSetList[i].aPRODUCT[j].iCOST,
-          iCOSTVAT: GlobalParam.saleProductSetList[i].aPRODUCT[j].iCOSTVAT,
-          cPRODEX: GlobalParam.saleProductSetList[i].aPRODUCT[j].cPRODEX,
-          iGENVAT: GlobalParam.saleProductSetList[i].aPRODUCT[j].iGENVAT,
-          iEXCVAT: GlobalParam.saleProductSetList[i].aPRODUCT[j].iEXCVAT,
-          cTYPE: GlobalParam.saleProductSetList[i].aPRODUCT[j].cTYPE,
-          cMCATE: GlobalParam.saleProductSetList[i].aPRODUCT[j].cMCATE,
-          cSCATE: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSCATE,
-          cCOLOR: GlobalParam.saleProductSetList[i].aPRODUCT[j].cCOLOR,
-          cDIMENS: GlobalParam.saleProductSetList[i].aPRODUCT[j].cDIMENS,
-          iWEIGHT: GlobalParam.saleProductSetList[i].aPRODUCT[j].iWEIGHT,
-          cSUPCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSUPCD,
-          cSHARE: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSHARE,
-          iMINSTK: GlobalParam.saleProductSetList[i].aPRODUCT[j].iMINSTK,
-          iMAXSTK: GlobalParam.saleProductSetList[i].aPRODUCT[j].iMAXSTK,
+          cGUID: GlobalParam.saleProductSetList[i].aPRODUCT![j].cGUID,
+          cSETCD: GlobalParam.saleProductSetList[i].aPRODUCT![j].cSETCD,
+          iSEQ: GlobalParam.saleProductSetList[i].aPRODUCT![j].iSEQ,
+          cPRODCD: GlobalParam.saleProductSetList[i].aPRODUCT![j].cPRODCD,
+          cPRODNM: GlobalParam.saleProductSetList[i].aPRODUCT![j].cPRODNM,
+          cBRNDCD: GlobalParam.saleProductSetList[i].aPRODUCT![j].cBRNDCD,
+          cBRNDNM: GlobalParam.saleProductSetList[i].aPRODUCT![j].cBRNDNM,
+          iSSIZEQTY: GlobalParam.saleProductSetList[i].aPRODUCT![j].iSSIZEQTY,
+          iMSIZEQTY: GlobalParam.saleProductSetList[i].aPRODUCT![j].iMSIZEQTY,
+          iLSIZEQTY: GlobalParam.saleProductSetList[i].aPRODUCT![j].iLSIZEQTY,
+          cSUOMCD: GlobalParam.saleProductSetList[i].aPRODUCT![j].cSUOMCD,
+          cSUOMNM: GlobalParam.saleProductSetList[i].aPRODUCT![j].cSUOMNM,
+          iSUOMQTY: GlobalParam.saleProductSetList[i].aPRODUCT![j].iSUOMQTY,
+          cMUOMCD: GlobalParam.saleProductSetList[i].aPRODUCT![j].cMUOMCD,
+          cMUOMNM: GlobalParam.saleProductSetList[i].aPRODUCT![j].cMUOMNM,
+          iMUOMQTY: GlobalParam.saleProductSetList[i].aPRODUCT![j].iMUOMQTY,
+          cLUOMCD: GlobalParam.saleProductSetList[i].aPRODUCT![j].cLUOMCD,
+          cLUOMNM: GlobalParam.saleProductSetList[i].aPRODUCT![j].cLUOMNM,
+          iLUOMQTY: GlobalParam.saleProductSetList[i].aPRODUCT![j].iLUOMQTY,
+          cBASKCD: GlobalParam.saleProductSetList[i].aPRODUCT![j].cBASKCD,
+          cBASKNM: GlobalParam.saleProductSetList[i].aPRODUCT![j].cBASKNM,
+          dCREADT: GlobalParam.saleProductSetList[i].aPRODUCT![j].dCREADT,
+          cCREABY: GlobalParam.saleProductSetList[i].aPRODUCT![j].cCREABY,
+          dUPDADT: GlobalParam.saleProductSetList[i].aPRODUCT![j].dUPDADT,
+          cUPDABY: GlobalParam.saleProductSetList[i].aPRODUCT![j].cUPDABY,
+          iCOST: GlobalParam.saleProductSetList[i].aPRODUCT![j].iCOST,
+          iCOSTVAT: GlobalParam.saleProductSetList[i].aPRODUCT![j].iCOSTVAT,
+          cPRODEX: GlobalParam.saleProductSetList[i].aPRODUCT![j].cPRODEX,
+          iGENVAT: GlobalParam.saleProductSetList[i].aPRODUCT![j].iGENVAT,
+          iEXCVAT: GlobalParam.saleProductSetList[i].aPRODUCT![j].iEXCVAT,
+          cTYPE: GlobalParam.saleProductSetList[i].aPRODUCT![j].cTYPE,
+          cMCATE: GlobalParam.saleProductSetList[i].aPRODUCT![j].cMCATE,
+          cSCATE: GlobalParam.saleProductSetList[i].aPRODUCT![j].cSCATE,
+          cCOLOR: GlobalParam.saleProductSetList[i].aPRODUCT![j].cCOLOR,
+          cDIMENS: GlobalParam.saleProductSetList[i].aPRODUCT![j].cDIMENS,
+          iWEIGHT: GlobalParam.saleProductSetList[i].aPRODUCT![j].iWEIGHT,
+          cSUPCD: GlobalParam.saleProductSetList[i].aPRODUCT![j].cSUPCD,
+          cSHARE: GlobalParam.saleProductSetList[i].aPRODUCT![j].cSHARE,
+          iMINSTK: GlobalParam.saleProductSetList[i].aPRODUCT![j].iMINSTK,
+          iMAXSTK: GlobalParam.saleProductSetList[i].aPRODUCT![j].iMAXSTK,
         );
-        master.aPRODUCT.add(data);
+        master.aPRODUCT!.add(data);
       }
 
       if (master.cSETCD == data.cSETCD) {
-        master.iSSIZEQTY = "${double.parse(master.iSSIZEQTY) * value}";
-        master.iMSIZEQTY = "${double.parse(master.iMSIZEQTY) * value}";
-        master.iLSIZEQTY = "${double.parse(master.iLSIZEQTY) * value}";
+        master.iSSIZEQTY = "${double.parse(master.iSSIZEQTY ?? '0') * value}";
+        master.iMSIZEQTY = "${double.parse(master.iMSIZEQTY ?? '0') * value}";
+        master.iLSIZEQTY = "${double.parse(master.iLSIZEQTY ?? '0') * value}";
 
-        for (var j = 0; j < master.aPRODUCT.length; j++) {
-          var product = master.aPRODUCT[j];
-          master.aPRODUCT[j].iSSIZEQTY =
-              "${double.parse(product.iSSIZEQTY) * value}";
-          master.aPRODUCT[j].iMSIZEQTY =
-              "${double.parse(product.iMSIZEQTY) * value}";
-          master.aPRODUCT[j].iLSIZEQTY =
-              "${double.parse(product.iLSIZEQTY) * value}";
+        for (var j = 0; j < (master.aPRODUCT ?? []).length; j++) {
+          var product = master.aPRODUCT![j];
+          master.aPRODUCT![j].iSSIZEQTY =
+              "${double.parse(product.iSSIZEQTY ?? '0') * value}";
+          master.aPRODUCT![j].iMSIZEQTY =
+              "${double.parse(product.iMSIZEQTY ?? '0') * value}";
+          master.aPRODUCT![j].iLSIZEQTY =
+              "${double.parse(product.iLSIZEQTY ?? '0') * value}";
         }
         GlobalParam.saleProductSetTransferList.add(master);
       }
@@ -686,11 +690,11 @@ class _BatchTransferState extends State<BatchTransfer> {
     try {
       AllApiProxyMobile proxy = AllApiProxyMobile();
       AddProductTransferReq req = AddProductTransferReq(
-          cBRANCD: widget.reqData.cBRANCD,
-          cSENDER: widget.reqData.cSENDER,
-          cSENDERNM: widget.reqData.cSENDERNM,
-          cRECEIVER: widget.reqData.cRECEIVER,
-          cRECEIVERNM: widget.reqData.cRECEIVERNM,
+          cBRANCD: widget.reqData!.cBRANCD,
+          cSENDER: widget.reqData!.cSENDER,
+          cSENDERNM: widget.reqData!.cSENDERNM,
+          cRECEIVER: widget.reqData!.cRECEIVER,
+          cRECEIVERNM: widget.reqData!.cRECEIVERNM,
           cTPYE: "BTV",
           cCREABY: GlobalParam.userData.cUSRNM,
           aPRODUCT: []);
@@ -698,44 +702,46 @@ class _BatchTransferState extends State<BatchTransfer> {
       for (var i = 0; i < GlobalParam.saleProductSetTransferList.length; i++) {
         var master = GlobalParam.saleProductSetTransferList[i];
         for (var j = 0;
-            j < GlobalParam.saleProductSetTransferList[i].aPRODUCT.length;
+            j <
+                (GlobalParam.saleProductSetTransferList[i].aPRODUCT ?? [])
+                    .length;
             j++) {
-          var product = GlobalParam.saleProductSetTransferList[i].aPRODUCT[j];
-          if (double.parse(product.iSSIZEQTY) > 0) {
+          var product = GlobalParam.saleProductSetTransferList[i].aPRODUCT![j];
+          if (double.parse(product.iSSIZEQTY ?? '0') > 0) {
             PRODUCTLIST data = PRODUCTLIST(
               cSETCD: master.cSETCD,
               cSETNM: master.cSETNM,
               cPRODCD: product.cPRODCD,
               cSIZE: "S",
-              iQTY: double.parse(product.iSSIZEQTY),
-              iUOMPRICE: double.parse(product.iSUOMQTY) *
-                  double.parse(product.iCOSTVAT),
+              iQTY: double.parse(product.iSSIZEQTY ?? '0'),
+              iUOMPRICE: double.parse(product.iSUOMQTY ?? '0') *
+                  double.parse(product.iCOSTVAT ?? '0'),
             );
-            req.aPRODUCT.add(data);
+            req.aPRODUCT!.add(data);
           }
-          if (double.parse(product.iMSIZEQTY) > 0) {
+          if (double.parse(product.iMSIZEQTY ?? '0') > 0) {
             PRODUCTLIST data = PRODUCTLIST(
               cSETCD: master.cSETCD,
               cSETNM: master.cSETNM,
               cPRODCD: product.cPRODCD,
               cSIZE: "M",
-              iQTY: double.parse(product.iMSIZEQTY),
-              iUOMPRICE: double.parse(product.iMUOMQTY) *
-                  double.parse(product.iCOSTVAT),
+              iQTY: double.parse(product.iMSIZEQTY ?? '0'),
+              iUOMPRICE: double.parse(product.iMUOMQTY ?? '0') *
+                  double.parse(product.iCOSTVAT ?? '0'),
             );
-            req.aPRODUCT.add(data);
+            req.aPRODUCT!.add(data);
           }
-          if (double.parse(product.iLSIZEQTY) > 0) {
+          if (double.parse(product.iLSIZEQTY ?? '0') > 0) {
             PRODUCTLIST data = PRODUCTLIST(
               cSETCD: master.cSETCD,
               cSETNM: master.cSETNM,
               cPRODCD: product.cPRODCD,
               cSIZE: "L",
-              iQTY: double.parse(product.iLSIZEQTY),
-              iUOMPRICE: double.parse(product.iLUOMQTY) *
-                  double.parse(product.iCOSTVAT),
+              iQTY: double.parse(product.iLSIZEQTY ?? '0'),
+              iUOMPRICE: double.parse(product.iLUOMQTY ?? '0') *
+                  double.parse(product.iCOSTVAT ?? '0'),
             );
-            req.aPRODUCT.add(data);
+            req.aPRODUCT!.add(data);
           }
         }
       }
@@ -757,14 +763,15 @@ class _BatchTransferState extends State<BatchTransfer> {
           await Navigator.of(context)
               .push(MaterialPageRoute(
                   builder: (context) => Signature2(
-                        cVEHICD: widget.cVEHICD,
+                        cVEHICD: widget.cVEHICD ?? '',
                         item: listItem2.length,
                         total: totalSum,
                         cREF: result.result,
                       )))
               .then((_) {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => HomePage(GlobalParam.typeMenuCode)));
+                builder: (context) =>
+                    HomePage(GlobalParam.typeMenuCode ?? '')));
           });
         }
       }
@@ -782,44 +789,44 @@ class _BatchTransferState extends State<BatchTransfer> {
     //     '**********${GlobalParam.deliveryPodtList.length} : ${basketProduct.length}************');
     try {
       List<StockCardReq> reqList = [];
-      for (int i = 0; i < data.aPRODUCT.length; i++) {
-        if (double.parse(data.aPRODUCT[i].iSSIZEQTY) > 0) {
+      for (int i = 0; i < (data.aPRODUCT ?? []).length; i++) {
+        if (double.parse(data.aPRODUCT![i].iSSIZEQTY ?? '0') > 0) {
           StockCardReq saleProSet = StockCardReq(
               cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
-              cPRODCD: data.aPRODUCT[i].cPRODCD,
-              cUOMCD: data.aPRODUCT[i].cSUOMCD,
+              cPRODCD: data.aPRODUCT![i].cPRODCD,
+              cUOMCD: data.aPRODUCT![i].cSUOMCD,
               cWH: 'FG',
               cREFDOC: cREFDOC,
               iRECEIVEQTY: '0',
-              iISSUEQTY: data.aPRODUCT[i].iSSIZEQTY,
+              iISSUEQTY: data.aPRODUCT![i].iSSIZEQTY,
               cREMARK: 'Transfer product set',
               cLOTNO: '',
               cCREABY: GlobalParam.userData.cUSRNM);
           reqList.add(saleProSet);
         }
-        if (double.parse(data.aPRODUCT[i].iMSIZEQTY) > 0) {
+        if (double.parse(data.aPRODUCT![i].iMSIZEQTY ?? '0') > 0) {
           StockCardReq saleProSet = StockCardReq(
               cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
-              cPRODCD: data.aPRODUCT[i].cPRODCD,
-              cUOMCD: data.aPRODUCT[i].cMUOMCD,
+              cPRODCD: data.aPRODUCT![i].cPRODCD,
+              cUOMCD: data.aPRODUCT![i].cMUOMCD,
               cWH: 'FG',
               cREFDOC: cREFDOC,
               iRECEIVEQTY: '0',
-              iISSUEQTY: data.aPRODUCT[i].iMSIZEQTY,
+              iISSUEQTY: data.aPRODUCT![i].iMSIZEQTY,
               cREMARK: 'Transfer product set',
               cLOTNO: '',
               cCREABY: GlobalParam.userData.cUSRNM);
           reqList.add(saleProSet);
         }
-        if (double.parse(data.aPRODUCT[i].iLSIZEQTY) > 0) {
+        if (double.parse(data.aPRODUCT![i].iLSIZEQTY ?? '0') > 0) {
           StockCardReq saleProSet = StockCardReq(
               cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
-              cPRODCD: data.aPRODUCT[i].cPRODCD,
-              cUOMCD: data.aPRODUCT[i].cLUOMCD,
+              cPRODCD: data.aPRODUCT![i].cPRODCD,
+              cUOMCD: data.aPRODUCT![i].cLUOMCD,
               cWH: 'FG',
               cREFDOC: cREFDOC,
               iRECEIVEQTY: '0',
-              iISSUEQTY: data.aPRODUCT[i].iLSIZEQTY,
+              iISSUEQTY: data.aPRODUCT![i].iLSIZEQTY,
               cREMARK: 'Transfer product set',
               cLOTNO: '',
               cCREABY: GlobalParam.userData.cUSRNM);
@@ -828,7 +835,7 @@ class _BatchTransferState extends State<BatchTransfer> {
       }
 
       AllApiProxyMobile proxy = AllApiProxyMobile();
-      var check = 0;
+      int check = 0;
       for (int i = 0; i < reqList.length; i++) {
         var result = await proxy.addStockCard(reqList[i]);
         if (result.success == false) {

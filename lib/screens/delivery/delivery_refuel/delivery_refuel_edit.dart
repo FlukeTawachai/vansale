@@ -28,7 +28,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
   TextEditingController price = TextEditingController();
   TextEditingController totalprice = TextEditingController(text: '0');
   String dropdownFuel = 'ดีเซล';
-  SearchRefuelResp refuelHis;
+  late SearchRefuelResp refuelHis;
 
   @override
   void initState() {
@@ -36,7 +36,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
     super.initState();
     if (GlobalParam.refuelList.length > 0) {
       mile.text =
-          '${double.parse(GlobalParam.refuelList[0].iMILEAGE).toStringAsFixed(0)}';
+          double.parse(GlobalParam.refuelList[0].iMILEAGE!).toStringAsFixed(0);
       refuelHis = GlobalParam.refuelList[0];
     }
   }
@@ -46,7 +46,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('บันทึกการเติมน้ำมัน'),
+        title: const Text('บันทึกการเติมน้ำมัน'),
       ),
       backgroundColor: HexColor("#F2F3F4"),
       body: SizedBox(
@@ -144,9 +144,9 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
   Widget location_() {
     return Container(
       padding: const EdgeInsets.all(5.0),
-      child: Row(
+      child: const Row(
         children: [
-          Container(
+          SizedBox(
             width: 30.0,
             child: Icon(
               LineAwesomeIcons.map_marker,
@@ -180,9 +180,9 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
       child: TextButton(
         style: TextButton.styleFrom(
           backgroundColor: HexColor("#a5b4c7"),
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
         ),
-        child: Icon(
+        child: const Icon(
           LineAwesomeIcons.edit,
           color: Colors.white,
           size: 25.0,
@@ -216,7 +216,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
                     style: BorderStyle.solid,
                   ),
                 ),
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 60.0,
                   backgroundImage: AssetImage('assets/images/Image.png'),
@@ -237,9 +237,9 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
         child: TextButton(
           style: TextButton.styleFrom(
             backgroundColor: Colors.white,
-            shape: CircleBorder(),
+            shape: const CircleBorder(),
           ),
-          child: Text(
+          child: const Text(
             '5+',
             style: TextStyle(
               color: Colors.black,
@@ -261,9 +261,9 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
         child: TextButton(
           style: TextButton.styleFrom(
             backgroundColor: HexColor("#a5b4c7"),
-            shape: CircleBorder(),
+            shape: const CircleBorder(),
           ),
-          child: Container(
+          child: const SizedBox(
             height: 40.0,
             child: Icon(
               LineAwesomeIcons.camera,
@@ -286,7 +286,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'สถานที่เติม',
               style: TextStyle(
                 fontSize: 16.0,
@@ -303,14 +303,14 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
                 borderRadius: BorderRadius.circular(5.0),
                 border: Border.all(color: Colors.grey)),
             child: TextFormField(
-              scrollPadding: EdgeInsets.only(bottom: 40),
+              scrollPadding: const EdgeInsets.only(bottom: 40),
               textAlign: TextAlign.left,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.green,
               ),
               controller: locationName,
               cursorColor: Colors.black,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -333,7 +333,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'เชื้อเพลิง',
               style: TextStyle(
                 fontSize: 16.0,
@@ -356,14 +356,14 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
                   isExpanded: true,
                   value: dropdownFuel,
                   icon: const Icon(Icons.keyboard_arrow_down),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16.0,
                     fontFamily: "Prompt",
                     color: Colors.green,
                   ),
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      dropdownFuel = newValue;
+                      dropdownFuel = newValue!;
                     });
                   },
                   items: <String>['ดีเซล', 'เบนซิน']
@@ -389,7 +389,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'เลขไมล์',
               style: TextStyle(
                 fontSize: 16.0,
@@ -405,15 +405,15 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
                 borderRadius: BorderRadius.circular(5.0),
                 border: Border.all(color: Colors.grey)),
             child: TextFormField(
-              scrollPadding: EdgeInsets.only(bottom: 40),
+              scrollPadding: const EdgeInsets.only(bottom: 40),
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.green,
               ),
               controller: mile,
               cursorColor: Colors.black,
               keyboardType: TextInputType.number,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -427,10 +427,10 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
                   double milage = double.parse(value);
                   setState(() {
                     distance.text =
-                        '${milage - double.parse(refuelHis.iMILEAGE)}';
-                    if (double.parse(refuelHis.iLITER) > 0) {
+                        '${milage - double.parse(refuelHis.iMILEAGE!)}';
+                    if (double.parse(refuelHis.iLITER!) > 0) {
                       rate.text =
-                          '${double.parse('${milage - double.parse(refuelHis.iMILEAGE)}') / double.parse(refuelHis.iLITER)}';
+                          '${double.parse('${milage - double.parse(refuelHis.iMILEAGE!)}') / double.parse(refuelHis.iLITER!)}';
                     }
                   });
                 }
@@ -449,7 +449,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ระยะทาง (Km)',
               style: TextStyle(
                 fontSize: 16.0,
@@ -466,14 +466,14 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
             ),
             child: TextFormField(
               readOnly: true,
-              scrollPadding: EdgeInsets.only(bottom: 40),
+              scrollPadding: const EdgeInsets.only(bottom: 40),
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
               ),
               controller: distance,
               cursorColor: Colors.black,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -496,7 +496,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'สิ้นเปลือง กม/ล.',
               style: TextStyle(
                 fontSize: 16.0,
@@ -513,14 +513,14 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
                 border: Border.all(color: Colors.grey)),
             child: TextFormField(
               readOnly: true,
-              scrollPadding: EdgeInsets.only(bottom: 40),
+              scrollPadding: const EdgeInsets.only(bottom: 40),
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
               ),
               controller: rate,
               cursorColor: Colors.black,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -543,7 +543,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'จำนวนลิตร',
               style: TextStyle(
                 fontSize: 16.0,
@@ -559,15 +559,15 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
                 borderRadius: BorderRadius.circular(5.0),
                 border: Border.all(color: Colors.grey)),
             child: TextFormField(
-              scrollPadding: EdgeInsets.only(bottom: 40),
+              scrollPadding: const EdgeInsets.only(bottom: 40),
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.green,
               ),
               controller: qty,
               cursorColor: Colors.black,
               keyboardType: TextInputType.number,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -603,7 +603,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ราคาลิตรละ',
               style: TextStyle(
                 fontSize: 16.0,
@@ -619,13 +619,13 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
                 borderRadius: BorderRadius.circular(5.0),
                 border: Border.all(color: Colors.grey)),
             child: TextFormField(
-              scrollPadding: EdgeInsets.only(bottom: 40),
+              scrollPadding: const EdgeInsets.only(bottom: 40),
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.green),
+              style: const TextStyle(color: Colors.green),
               controller: price,
               cursorColor: Colors.black,
               keyboardType: TextInputType.number,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -661,7 +661,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ราคารวม',
               style: TextStyle(
                 fontSize: 16.0,
@@ -678,14 +678,14 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
             ),
             child: TextFormField(
               enabled: false,
-              scrollPadding: EdgeInsets.only(bottom: 40),
+              scrollPadding: const EdgeInsets.only(bottom: 40),
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
               ),
               controller: totalprice,
               cursorColor: Colors.black,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -706,7 +706,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
       height: 130.0,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(15),
           topRight: Radius.circular(15),
         ),
@@ -715,7 +715,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 7,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
@@ -727,7 +727,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
                 Expanded(
                   child: Container(
                     padding: const EdgeInsets.only(left: 20.0, top: 10.0),
-                    child: Text(
+                    child: const Text(
                       'ราคารวม',
                       style: TextStyle(
                         fontSize: 16.0,
@@ -751,7 +751,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
           Container(
             padding: const EdgeInsets.only(right: 20.0, top: 10.0),
             alignment: Alignment.centerRight,
-            child: Text(
+            child: const Text(
               'โปรดตรวจสอบราคารวม',
               style: TextStyle(
                 color: Colors.red,
@@ -795,7 +795,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
                             Container(
                               alignment: Alignment.center,
                               child: RotationTransition(
-                                turns: new AlwaysStoppedAnimation(0 / 360),
+                                turns: const AlwaysStoppedAnimation(0 / 360),
                                 child: Icon(
                                   LineAwesomeIcons.check_circle,
                                   size: 25.0,
@@ -803,7 +803,7 @@ class _DeliveryRefuelEditState extends State<DeliveryRefuelEdit> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10.0,
                             ),
                             Container(

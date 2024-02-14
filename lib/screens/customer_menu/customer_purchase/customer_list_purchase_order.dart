@@ -5,7 +5,7 @@ import 'package:vansale/api/class/utility.dart';
 
 class CustomerListPurchaseOrder extends StatefulWidget {
   final String mode;
-  CustomerListPurchaseOrder(this.mode);
+  const CustomerListPurchaseOrder(this.mode, {super.key});
   @override
   State<CustomerListPurchaseOrder> createState() =>
       _CustomerListPurchaseOrderState();
@@ -97,7 +97,7 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                     Container(
                       margin: const EdgeInsets.all(5.0),
                       child: Image.asset(
-                        order[index]['image'],
+                        order[index]['image']!,
                         fit: BoxFit.cover,
                         width: 100.0,
                         height: 150.0,
@@ -114,8 +114,8 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                                   Expanded(
                                     child: Container(
                                       child: Text(
-                                        order[index]['name'],
-                                        style: TextStyle(
+                                        order[index]['name']!,
+                                        style: const TextStyle(
                                           fontFamily: 'Prompt',
                                         ),
                                       ),
@@ -146,8 +146,8 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                                             padding: const EdgeInsets.all(5.0),
                                             alignment: Alignment.centerLeft,
                                             child: Text(
-                                              order[index]['uom1'],
-                                              style: TextStyle(
+                                              order[index]['uom1']!,
+                                              style: const TextStyle(
                                                 fontFamily: 'Prompt',
                                               ),
                                             ),
@@ -159,15 +159,15 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                                             alignment: Alignment.centerLeft,
                                             child: order[index]['promo'] != ""
                                                 ? Text(
-                                                    order[index]['uom1'],
-                                                    style: TextStyle(
+                                                    order[index]['uom1']!,
+                                                    style: const TextStyle(
                                                       color: Colors.red,
                                                       fontFamily: 'Prompt',
                                                     ),
                                                   )
                                                 : Text(
-                                                    order[index]['uom1'],
-                                                    style: TextStyle(
+                                                    order[index]['uom1']!,
+                                                    style: const TextStyle(
                                                       fontFamily: 'Prompt',
                                                     ),
                                                   ),
@@ -178,8 +178,8 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                                           child: Container(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
-                                              order[index]['uom2'],
-                                              style: TextStyle(
+                                              order[index]['uom2']!,
+                                              style: const TextStyle(
                                                 fontFamily: 'Prompt',
                                               ),
                                             ),
@@ -190,15 +190,15 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                                             alignment: Alignment.centerLeft,
                                             child: order[index]['promo'] != ""
                                                 ? Text(
-                                                    order[index]['uom2'],
-                                                    style: TextStyle(
+                                                    order[index]['uom2']!,
+                                                    style: const TextStyle(
                                                       color: Colors.red,
                                                       fontFamily: 'Prompt',
                                                     ),
                                                   )
                                                 : Text(
-                                                    order[index]['uom2'],
-                                                    style: TextStyle(
+                                                    order[index]['uom2']!,
+                                                    style: const TextStyle(
                                                       fontFamily: 'Prompt',
                                                     ),
                                                   ),
@@ -209,8 +209,8 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                                           child: Container(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
-                                              order[index]['uom3'],
-                                              style: TextStyle(
+                                              order[index]['uom3']!,
+                                              style: const TextStyle(
                                                 fontFamily: 'Prompt',
                                               ),
                                             ),
@@ -221,15 +221,15 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                                             alignment: Alignment.centerLeft,
                                             child: order[index]['promo'] != ""
                                                 ? Text(
-                                                    order[index]['uom3'],
-                                                    style: TextStyle(
+                                                    order[index]['uom3']!,
+                                                    style: const TextStyle(
                                                       color: Colors.red,
                                                       fontFamily: 'Prompt',
                                                     ),
                                                   )
                                                 : Text(
-                                                    order[index]['uom3'],
-                                                    style: TextStyle(
+                                                    order[index]['uom3']!,
+                                                    style: const TextStyle(
                                                       fontFamily: 'Prompt',
                                                     ),
                                                   ),
@@ -243,8 +243,8 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                                 ? Container(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      order[index]['orderno'],
-                                      style: TextStyle(
+                                      order[index]['orderno']!,
+                                      style: const TextStyle(
                                         color: Colors.black54,
                                         fontFamily: 'Prompt',
                                       ),
@@ -263,7 +263,7 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                                                 left: 5.0, right: 5.0),
                                             height: 30.0,
                                             width: 80.0,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               color: Colors.white,
                                               borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(5),
@@ -287,11 +287,12 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                                                 errorBorder: InputBorder.none,
                                                 disabledBorder:
                                                     InputBorder.none,
-                                                contentPadding: EdgeInsets.only(
-                                                    left: 15,
-                                                    bottom: 11,
-                                                    top: 15,
-                                                    right: 15),
+                                                contentPadding:
+                                                    const EdgeInsets.only(
+                                                        left: 15,
+                                                        bottom: 11,
+                                                        top: 15,
+                                                        right: 15),
                                               ),
                                             ),
                                           ),
@@ -302,7 +303,7 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                                                 left: 5.0, right: 5.0),
                                             height: 30.0,
                                             width: 80.0,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               color: Colors.white,
                                               borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(5),
@@ -326,11 +327,12 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                                                 errorBorder: InputBorder.none,
                                                 disabledBorder:
                                                     InputBorder.none,
-                                                contentPadding: EdgeInsets.only(
-                                                    left: 15,
-                                                    bottom: 11,
-                                                    top: 15,
-                                                    right: 15),
+                                                contentPadding:
+                                                    const EdgeInsets.only(
+                                                        left: 15,
+                                                        bottom: 11,
+                                                        top: 15,
+                                                        right: 15),
                                               ),
                                             ),
                                           ),
@@ -341,7 +343,7 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                                                 left: 5.0, right: 5.0),
                                             height: 30.0,
                                             width: 80.0,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               color: Colors.white,
                                               borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(5),
@@ -365,11 +367,12 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                                                 errorBorder: InputBorder.none,
                                                 disabledBorder:
                                                     InputBorder.none,
-                                                contentPadding: EdgeInsets.only(
-                                                    left: 15,
-                                                    bottom: 11,
-                                                    top: 15,
-                                                    right: 15),
+                                                contentPadding:
+                                                    const EdgeInsets.only(
+                                                        left: 15,
+                                                        bottom: 11,
+                                                        top: 15,
+                                                        right: 15),
                                               ),
                                             ),
                                           ),
@@ -394,8 +397,8 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                           )
                         : Expanded(
                             child: Text(
-                              order[index]['promo'],
-                              style: TextStyle(
+                              order[index]['promo']!,
+                              style: const TextStyle(
                                 color: Colors.red,
                                 fontFamily: 'Prompt',
                               ),
@@ -405,13 +408,13 @@ class _CustomerListPurchaseOrderState extends State<CustomerListPurchaseOrder> {
                       alignment: Alignment.centerRight,
                       width: 150.0,
                       child: Utility.formateNumberBKSym(
-                        double.parse(order[index]['price']),
+                        double.parse(order[index]['price'] ?? '0'),
                       ),
                     ),
                   ],
                 ),
               ),
-              DottedLine(
+              const DottedLine(
                 dashColor: Colors.grey,
               ),
             ],

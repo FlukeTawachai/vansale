@@ -37,7 +37,7 @@ class CustomerAddOrder extends StatefulWidget {
 
 class _CustomerAddOrderState extends State<CustomerAddOrder> {
   String total = '3200.00';
-  double widthScreen;
+  late double widthScreen;
   List<TextEditingController> sController = [];
   List<TextEditingController> mController = [];
   List<TextEditingController> lController = [];
@@ -79,7 +79,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
         elevation: 0.0,
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'สั่งซื้อสินค้า',
           style: TextStyle(
             color: Colors.black,
@@ -87,7 +87,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
           ),
         ),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),
@@ -114,7 +114,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                     width: widthScreen * 0.74,
                     alignment: Alignment.center,
                     margin: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(5),
@@ -135,7 +135,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                               borderRadius: BorderRadius.circular(100),
                             ),
                             child: TextField(
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: 'Prompt',
                               ),
                               onChanged: (value) {
@@ -157,7 +157,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                 hintText: "ค้นหา",
                                 border: InputBorder.none,
                                 contentPadding:
-                                    EdgeInsets.only(left: 5.0, top: 5.0),
+                                    const EdgeInsets.only(left: 5.0, top: 5.0),
                                 prefixIcon: RotatedBox(
                                   quarterTurns: 1,
                                   child: IconButton(
@@ -186,33 +186,32 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                         ),
                         Container(
                           alignment: Alignment.center,
-                          child: Container(
-                            child: IconButton(
-                              icon: const Icon(Icons.qr_code),
-                              iconSize: 25.0,
-                              color: Colors.black,
-                              onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => DeliveryQrScanner(
-                                          code: '008',
-                                          navigator: () {
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        CustomerAddOrder(
-                                                            GlobalParam
-                                                                .typeMenuCode,
-                                                            false)));
-                                          },
-                                        )));
-                              },
-                            ),
+                          child: IconButton(
+                            icon: const Icon(Icons.qr_code),
+                            iconSize: 25.0,
+                            color: Colors.black,
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => DeliveryQrScanner(
+                                        code: '008',
+                                        navigator: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      CustomerAddOrder(
+                                                          GlobalParam
+                                                                  .typeMenuCode ??
+                                                              '',
+                                                          false)));
+                                        },
+                                      )));
+                            },
                           ),
                         ),
                       ],
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: widthScreen * 0.2,
                     height: 48,
                     child: Card(
@@ -227,7 +226,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                           color: Colors.black12,
                           height: 50.0,
                           alignment: Alignment.center,
-                          child: Text(
+                          child: const Text(
                             'ประเภท',
                             style: TextStyle(
                               fontSize: 14.0,
@@ -252,7 +251,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
   }
 
   Widget listOfProduct() {
-    return GlobalParam.customerShowProList.length != 0
+    return GlobalParam.customerShowProList.isNotEmpty
         ? ListView.builder(
             itemCount: GlobalParam.customerShowProList.length,
             itemBuilder: (BuildContext context, int index) {
@@ -269,15 +268,15 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
 
               if (GlobalParam.customerShowProList[index].cISSSIZE == 'Y') {
                 sUnitPrice = double.parse(
-                    GlobalParam.customerShowProList[index].iSUNITPRICE);
+                    GlobalParam.customerShowProList[index].iSUNITPRICE ?? '0');
               }
               if (GlobalParam.customerShowProList[index].cISMSIZE == 'Y') {
                 mUnitPrice = double.parse(
-                    GlobalParam.customerShowProList[index].iMUNITPRICE);
+                    GlobalParam.customerShowProList[index].iMUNITPRICE ?? '0');
               }
               if (GlobalParam.customerShowProList[index].cISLSIZE == 'Y') {
                 lUnitPrice = double.parse(
-                    GlobalParam.customerShowProList[index].iLUNITPRICE);
+                    GlobalParam.customerShowProList[index].iLUNITPRICE ?? '0');
               }
 
               for (var k = 0; k < totalList.length; k++) {
@@ -292,15 +291,15 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                     GlobalParam.customerShowProList[index].cPRODCD) {
                   if (stockList[k].cUOMCD ==
                       GlobalParam.customerShowProList[index].cSUOMCD) {
-                    stockS = double.parse(stockList[k].iPROQTY);
+                    stockS = double.parse(stockList[k].iPROQTY ?? '0');
                   }
                   if (stockList[k].cUOMCD ==
                       GlobalParam.customerShowProList[index].cMUOMCD) {
-                    stockM = double.parse(stockList[k].iPROQTY);
+                    stockM = double.parse(stockList[k].iPROQTY ?? '0');
                   }
                   if (stockList[k].cUOMCD ==
                       GlobalParam.customerShowProList[index].cLUOMCD) {
-                    stockL = double.parse(stockList[k].iPROQTY);
+                    stockL = double.parse(stockList[k].iPROQTY ?? '0');
                   }
                 }
               }
@@ -342,7 +341,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                         fit: BoxFit.cover,
                                       ),
                                 color: Colors.white,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(5),
                                   topRight: Radius.circular(5),
                                   bottomLeft: Radius.circular(5),
@@ -359,9 +358,10 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                     width: widthScreen * 0.8,
                                     height: 24,
                                     child: Text(
-                                      GlobalParam
-                                          .customerShowProList[index].cPRODNM,
-                                      style: TextStyle(
+                                      GlobalParam.customerShowProList[index]
+                                              .cPRODNM ??
+                                          '',
+                                      style: const TextStyle(
                                         fontFamily: 'Prompt',
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16.0,
@@ -407,10 +407,11 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                                   child: Center(
                                                     child: Text(
                                                       GlobalParam
-                                                          .customerShowProList[
-                                                              index]
-                                                          .cLUOMNM,
-                                                      style: TextStyle(
+                                                              .customerShowProList[
+                                                                  index]
+                                                              .cLUOMNM ??
+                                                          '',
+                                                      style: const TextStyle(
                                                         fontFamily: 'Prompt',
                                                         color: Colors.black,
                                                         fontSize: 12,
@@ -430,10 +431,11 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                                   child: Center(
                                                     child: Text(
                                                       GlobalParam
-                                                          .customerShowProList[
-                                                              index]
-                                                          .cMUOMNM,
-                                                      style: TextStyle(
+                                                              .customerShowProList[
+                                                                  index]
+                                                              .cMUOMNM ??
+                                                          '',
+                                                      style: const TextStyle(
                                                         fontFamily: 'Prompt',
                                                         color: Colors.black,
                                                         fontSize: 12,
@@ -456,10 +458,11 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                                   child: Center(
                                                     child: Text(
                                                       GlobalParam
-                                                          .customerShowProList[
-                                                              index]
-                                                          .cSUOMNM,
-                                                      style: TextStyle(
+                                                              .customerShowProList[
+                                                                  index]
+                                                              .cSUOMNM ??
+                                                          '',
+                                                      style: const TextStyle(
                                                           fontFamily: 'Prompt',
                                                           fontSize: 12),
                                                     ),
@@ -492,7 +495,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                                   decoration: BoxDecoration(
                                                     color: Colors.white,
                                                     borderRadius:
-                                                        BorderRadius.only(
+                                                        const BorderRadius.only(
                                                       topLeft:
                                                           Radius.circular(5),
                                                       topRight:
@@ -520,11 +523,11 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                                                 index]);
                                                         if (value != '' &&
                                                             value != null) {
-                                                          total += double.parse(
-                                                                  GlobalParam
+                                                          total += double.parse(GlobalParam
                                                                       .customerShowProList[
                                                                           index]
-                                                                      .iLUNITPRICE) *
+                                                                      .iLUNITPRICE ??
+                                                                  '0') *
                                                               double.parse(
                                                                   value);
                                                         }
@@ -545,7 +548,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                                       ),
                                                       cursorColor: Colors.black,
                                                       decoration:
-                                                          new InputDecoration(
+                                                          InputDecoration(
                                                         //hintText: "1",
                                                         hintStyle: TextStyle(
                                                             color: HexColor(
@@ -585,7 +588,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                                   decoration: BoxDecoration(
                                                     color: Colors.white,
                                                     borderRadius:
-                                                        BorderRadius.only(
+                                                        const BorderRadius.only(
                                                       topLeft:
                                                           Radius.circular(5),
                                                       topRight:
@@ -611,13 +614,12 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                                             GlobalParam
                                                                     .customerShowProList[
                                                                 index]);
-                                                        if (value != '' &&
-                                                            value != null) {
-                                                          total += double.parse(
-                                                                  GlobalParam
+                                                        if (value != '') {
+                                                          total += double.parse(GlobalParam
                                                                       .customerShowProList[
                                                                           index]
-                                                                      .iMUNITPRICE) *
+                                                                      .iMUNITPRICE ??
+                                                                  '0') *
                                                               double.parse(
                                                                   value);
                                                         }
@@ -638,7 +640,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                                       ),
                                                       cursorColor: Colors.black,
                                                       decoration:
-                                                          new InputDecoration(
+                                                          InputDecoration(
                                                         //hintText: "1",
                                                         hintStyle: TextStyle(
                                                             color: HexColor(
@@ -678,7 +680,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                                   decoration: BoxDecoration(
                                                     color: Colors.white,
                                                     borderRadius:
-                                                        BorderRadius.only(
+                                                        const BorderRadius.only(
                                                       topLeft:
                                                           Radius.circular(5),
                                                       topRight:
@@ -705,13 +707,12 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                                               GlobalParam
                                                                       .customerShowProList[
                                                                   index]);
-                                                          if (value != '' &&
-                                                              value != null) {
-                                                            total += double.parse(
-                                                                    GlobalParam
+                                                          if (value != '') {
+                                                            total += double.parse(GlobalParam
                                                                         .customerShowProList[
                                                                             index]
-                                                                        .iSUNITPRICE) *
+                                                                        .iSUNITPRICE ??
+                                                                    '0') *
                                                                 double.parse(
                                                                     value);
                                                           }
@@ -734,7 +735,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                                         cursorColor:
                                                             Colors.black,
                                                         decoration:
-                                                            new InputDecoration(
+                                                            InputDecoration(
                                                           //hintText: "1",
                                                           hintStyle: TextStyle(
                                                               color: HexColor(
@@ -772,10 +773,10 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                                       // height: 12,
                                       child: Row(
                                         children: [
-                                          Spacer(),
+                                          const Spacer(),
                                           Text(
                                             'ต่อหน่วย ${formatNum.format(lUnitPrice)}-${formatNum.format(mUnitPrice)}-${formatNum.format(sUnitPrice)} ฿ รวม ${formatNum.format(total)} ฿',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontFamily: 'Prompt',
                                                 fontSize: 12),
                                           ),
@@ -794,15 +795,15 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                       /// old version
                       // padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
                       padding: const EdgeInsets.fromLTRB(0, 0, 14, 0),
-                      child: Container(
+                      child: SizedBox(
                         height: 24,
                         child: Row(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             Text(
                               'ต่อหน่วย ${formatNum.format(lUnitPrice)}-${formatNum.format(mUnitPrice)}-${formatNum.format(sUnitPrice)} ฿ รวม ${formatNum.format(total)} ฿',
-                              style:
-                                  TextStyle(fontFamily: 'Prompt', fontSize: 14),
+                              style: const TextStyle(
+                                  fontFamily: 'Prompt', fontSize: 14),
                             ),
                             // Container(
                             //     alignment: Alignment.centerRight,
@@ -830,7 +831,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                         ),
                       ),
                     ),
-                    DottedLine(
+                    const DottedLine(
                       dashColor: Colors.grey,
                     ),
                   ],
@@ -849,12 +850,12 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
     double productTotal = 0;
 
     for (var i = 0; i < orderList.length; i++) {
-      double sQty = double.parse(orderList[i].iSSIZEQTY);
-      double mQty = double.parse(orderList[i].iMSIZEQTY);
-      double lQty = double.parse(orderList[i].iLSIZEQTY);
-      double sPrice = double.parse(orderList[i].iSUNITPRICE);
-      double mPrice = double.parse(orderList[i].iMUNITPRICE);
-      double lPrice = double.parse(orderList[i].iLUNITPRICE);
+      double sQty = double.parse(orderList[i].iSSIZEQTY ?? '0');
+      double mQty = double.parse(orderList[i].iMSIZEQTY ?? '0');
+      double lQty = double.parse(orderList[i].iLSIZEQTY ?? '0');
+      double sPrice = double.parse(orderList[i].iSUNITPRICE ?? '0');
+      double mPrice = double.parse(orderList[i].iMUNITPRICE ?? '0');
+      double lPrice = double.parse(orderList[i].iLUNITPRICE ?? '0');
       if ((sQty + mQty + lQty) > 0) {
         showData.add(orderList[i]);
         productTotal += (sQty * sPrice) + (mQty * mPrice) + (lQty * lPrice);
@@ -862,24 +863,24 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
           var data = {
             "cPRODCD": orderList[i].cPRODCD,
             "cUOMNM": orderList[i].cSUOMNM,
-            "iPRICE": double.parse(orderList[i].iSUNITPRICE),
-            "iTOTAL": double.parse(orderList[i].iSSIZEQTY)
+            "iPRICE": double.parse(orderList[i].iSUNITPRICE ?? '0'),
+            "iTOTAL": double.parse(orderList[i].iSSIZEQTY ?? '0')
           };
           unitList.add(data);
         }
         if (mQty > 0) {
           var data = {
             "cUOMNM": orderList[i].cMUOMNM,
-            "iPRICE": double.parse(orderList[i].iMUNITPRICE),
-            "iTOTAL": double.parse(orderList[i].iMSIZEQTY)
+            "iPRICE": double.parse(orderList[i].iMUNITPRICE ?? '0'),
+            "iTOTAL": double.parse(orderList[i].iMSIZEQTY ?? '0')
           };
           unitList.add(data);
         }
         if (lQty > 0) {
           var data = {
             "cUOMNM": orderList[i].cLUOMNM,
-            "iPRICE": double.parse(orderList[i].iLUNITPRICE),
-            "iTOTAL": double.parse(orderList[i].iLSIZEQTY)
+            "iPRICE": double.parse(orderList[i].iLUNITPRICE ?? '0'),
+            "iTOTAL": double.parse(orderList[i].iLSIZEQTY ?? '0')
           };
           unitList.add(data);
         }
@@ -890,7 +891,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
       height: 136.0,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(15),
           topRight: Radius.circular(15),
         ),
@@ -899,7 +900,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 7,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
@@ -916,21 +917,21 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                       height: 24,
                       child: Text(
                         '${showData.length} รายการ',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16.0,
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Prompt',
                         ),
                       )),
-                  Spacer(),
+                  const Spacer(),
                   InkWell(
                     onTap: () {
                       showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              title: Text(
+                              title: const Text(
                                 'รายละเอียด',
                                 style: TextStyle(
                                     fontFamily: 'Prompt', fontSize: 16),
@@ -973,7 +974,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                       width: widthScreen * 0.4,
                       height: 24,
                       alignment: Alignment.centerRight,
-                      child: Text(
+                      child: const Text(
                         'แสดงรายละเอียด',
                         style: TextStyle(
                           fontSize: 16.0,
@@ -996,7 +997,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                   Container(
                     width: widthScreen * 0.4,
                     height: 24,
-                    child: Text(
+                    child: const Text(
                       'รวมเป็นเงิน',
                       style: TextStyle(
                         fontSize: 16.0,
@@ -1006,7 +1007,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                       ),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: widthScreen * 0.4,
                     // height: 24,
@@ -1036,7 +1037,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
             ),
 
             //--------------
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             Row(
@@ -1054,15 +1055,15 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
                       children: [
                         Container(
                             alignment: Alignment.center,
-                            child: Icon(
+                            child: const Icon(
                               LineAwesomeIcons.boxes,
                               color: Colors.green,
                               size: 25.0,
                             )),
-                        SizedBox(
+                        const SizedBox(
                           width: 5.0,
                         ),
-                        Text(
+                        const Text(
                           'สั่งซื้อ',
                           style: TextStyle(
                             fontSize: 18.0,
@@ -1128,7 +1129,7 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
             child: Row(
               children: [
                 Text('${listItem[index]['qty']} รายการ'),
-                Spacer(),
+                const Spacer(),
                 Text(
                     '${listItem[index]['sumItem']} ${listItem[index]['unitName']}')
               ],
@@ -1199,11 +1200,13 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
         for (var i = 0; i < GlobalParam.customerProList.length; i++) {
           APRODUCT product = APRODUCT(
               cPRODCD: GlobalParam.customerProList[i].cPRODCD,
-              iSSIZEQTY: double.parse(GlobalParam.customerProList[i].iSSIZEQTY),
-              iMSIZEQTY: double.parse(GlobalParam.customerProList[i].iMSIZEQTY),
-              iLSIZEQTY:
-                  double.parse(GlobalParam.customerProList[i].iLSIZEQTY));
-          addRequest.aPRODUCT.add(product);
+              iSSIZEQTY:
+                  double.parse(GlobalParam.customerProList[i].iSSIZEQTY ?? '0'),
+              iMSIZEQTY:
+                  double.parse(GlobalParam.customerProList[i].iMSIZEQTY ?? '0'),
+              iLSIZEQTY: double.parse(
+                  GlobalParam.customerProList[i].iLSIZEQTY ?? '0'));
+          addRequest.aPRODUCT!.add(product);
           var data = {
             "cPRODCD": GlobalParam.customerProList[i].cPRODCD,
             "total": 0.0
@@ -1321,15 +1324,15 @@ class _CustomerAddOrderState extends State<CustomerAddOrder> {
           basketProduct.add(GlobalParam.customerProList[i]);
         }
       }
-      for (var j = 0; j < addRequest.aPRODUCT.length; j++) {
+      for (var j = 0; j < (addRequest.aPRODUCT ?? []).length; j++) {
         if (GlobalParam.customerProList[i].cPRODCD ==
-            addRequest.aPRODUCT[j].cPRODCD) {
-          addRequest.aPRODUCT[j].iSSIZEQTY =
-              double.parse(GlobalParam.customerProList[i].iSSIZEQTY);
-          addRequest.aPRODUCT[j].iMSIZEQTY =
-              double.parse(GlobalParam.customerProList[i].iMSIZEQTY);
-          addRequest.aPRODUCT[j].iLSIZEQTY =
-              double.parse(GlobalParam.customerProList[i].iLSIZEQTY);
+            addRequest.aPRODUCT![j].cPRODCD) {
+          addRequest.aPRODUCT![j].iSSIZEQTY =
+              double.parse(GlobalParam.customerProList[i].iSSIZEQTY ?? '0');
+          addRequest.aPRODUCT![j].iMSIZEQTY =
+              double.parse(GlobalParam.customerProList[i].iMSIZEQTY ?? '0');
+          addRequest.aPRODUCT![j].iLSIZEQTY =
+              double.parse(GlobalParam.customerProList[i].iLSIZEQTY ?? '0');
         }
       }
     }

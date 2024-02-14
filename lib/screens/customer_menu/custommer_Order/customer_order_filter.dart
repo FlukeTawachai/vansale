@@ -11,9 +11,12 @@ import 'package:vansale/screens/stocks/stock_transfer/stock_transfer_miss.dart';
 import 'package:vansale/screens/stocks/stoeck_return/stock_return_proBad.dart';
 import 'package:vansale/screens/stocks/stoeck_return/stock_return_proMiss.dart';
 
+import '../../../api/class/response/routeMobile/proTypeResp.dart';
+
 class CustomerOrderFilterPage extends StatefulWidget {
   final String pageNumber;
-  const CustomerOrderFilterPage({Key key, this.pageNumber}) : super(key: key);
+  const CustomerOrderFilterPage({Key? key, required this.pageNumber})
+      : super(key: key);
 
   @override
   State<CustomerOrderFilterPage> createState() =>
@@ -21,9 +24,9 @@ class CustomerOrderFilterPage extends StatefulWidget {
 }
 
 class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
-  var subType = [];
+  List<Category> subType = [];
   List filter = [];
-  double widthScreen;
+  late double widthScreen;
   var typeCodeNum = '';
 
   @override
@@ -33,20 +36,26 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
     for (int i = 0; i < GlobalParam.deliveryProType.length; i++) {
       // type[i]['onClick'] = false;
       GlobalParam.deliveryProType[i].onClick = false;
-      for (int j = 0; j < GlobalParam.deliveryProType[i].category.length; j++) {
-        GlobalParam.deliveryProType[i].category[j].onSelect = false;
+      for (int j = 0;
+          j < (GlobalParam.deliveryProType[i].category ?? []).length;
+          j++) {
+        GlobalParam.deliveryProType[i].category![j].onSelect = false;
         for (int k = 0;
-            k < GlobalParam.deliveryProType[i].category[j].subCategory.length;
+            k <
+                (GlobalParam.deliveryProType[i].category![j].subCategory ?? [])
+                    .length;
             k++) {
-          GlobalParam.deliveryProType[i].category[j].subCategory[k].click =
+          GlobalParam.deliveryProType[i].category![j].subCategory![k].click =
               false;
           for (int l = 0;
               l <
-                  GlobalParam.deliveryProType[i].category[j].subCategory[k]
-                      .brand.length;
+                  (GlobalParam.deliveryProType[i].category![j].subCategory![k]
+                              .brand ??
+                          [])
+                      .length;
               l++) {
-            GlobalParam.deliveryProType[i].category[j].subCategory[k].brand[l]
-                .click = false;
+            GlobalParam.deliveryProType[i].category![j].subCategory![k]
+                .brand![l].click = false;
           }
         }
       }
@@ -60,13 +69,13 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('กรองสินค้า'),
+        title: const Text('กรองสินค้า'),
       ),
       backgroundColor: HexColor('#E3EDF0'),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
               width: 96,
               child: ListView.builder(
                   itemCount: GlobalParam.deliveryProType.length,
@@ -80,10 +89,11 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
                         }
 
                         setState(() {
-                          subType = GlobalParam.deliveryProType[index].category;
+                          subType =
+                              GlobalParam.deliveryProType[index].category!;
                           GlobalParam.deliveryProType[index].onClick = true;
                           typeCodeNum =
-                              GlobalParam.deliveryProType[index].typeCD;
+                              GlobalParam.deliveryProType[index].typeCD!;
                           // print(proType[index]['category']);
                         });
                       },
@@ -100,7 +110,7 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
                           child: Text(
                             '${GlobalParam.deliveryProType[index].typeName}',
                             maxLines: 2,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontFamily: 'Prompt',
                                 fontSize: 16,
                                 overflow: TextOverflow.ellipsis),
@@ -126,7 +136,8 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
                                   onTap: () {
                                     setState(() {
                                       subType[index].hight = 48 *
-                                          subType[index].subCategory.length;
+                                          (subType[index].subCategory ?? [])
+                                              .length;
                                       if (subType[index].onSelect == true) {
                                         subType[index].onSelect = false;
                                       } else {
@@ -147,7 +158,7 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
                                     alignment: Alignment.centerLeft,
                                     child: Text(
                                       '${subType[index].catNM}',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 16,
                                           fontFamily: 'Prompt',
                                           overflow: TextOverflow.ellipsis),
@@ -155,13 +166,14 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
                                   ),
                                 ),
                                 subType[index].onSelect == true
-                                    ? Container(
+                                    ? SizedBox(
                                         height: double.parse(
                                             '${subType[index].hight}'),
                                         child: ListView.builder(
-                                            itemCount: subType[index]
-                                                .subCategory
-                                                .length,
+                                            itemCount:
+                                                (subType[index].subCategory ??
+                                                        [])
+                                                    .length,
                                             itemBuilder:
                                                 (BuildContext context, int j) {
                                               return Container(
@@ -172,52 +184,54 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
                                                     InkWell(
                                                         onTap: () {
                                                           setState(() {
-                                                            int oldHeight =
+                                                            int? oldHeight =
                                                                 subType[index]
                                                                     .hight;
-                                                            int brandLength =
-                                                                subType[index]
-                                                                    .subCategory[
-                                                                        j]
-                                                                    .brand
-                                                                    .length;
+                                                            int brandLength = (subType[
+                                                                            index]
+                                                                        .subCategory![
+                                                                            j]
+                                                                        .brand ??
+                                                                    [])
+                                                                .length;
                                                             int itemLength =
-                                                                subType[index]
-                                                                    .subCategory
+                                                                (subType[index]
+                                                                            .subCategory ??
+                                                                        [])
                                                                     .length;
 
                                                             if (subType[index]
-                                                                    .subCategory[
+                                                                    .subCategory![
                                                                         j]
                                                                     .click ==
                                                                 true) {
                                                               subType[index]
-                                                                  .subCategory[
+                                                                  .subCategory![
                                                                       j]
                                                                   .click = false;
                                                             } else {
                                                               subType[index]
-                                                                  .subCategory[
+                                                                  .subCategory![
                                                                       j]
                                                                   .click = true;
                                                             }
 
                                                             if (subType[index]
-                                                                    .subCategory[
+                                                                    .subCategory![
                                                                         j]
                                                                     .click ==
                                                                 true) {
                                                               subType[index]
                                                                       .hight =
-                                                                  oldHeight +
+                                                                  (oldHeight! +
                                                                       (brandLength *
-                                                                          48);
+                                                                          48));
                                                             } else {
                                                               subType[index]
                                                                       .hight =
-                                                                  oldHeight -
+                                                                  (oldHeight! -
                                                                       (brandLength *
-                                                                          48);
+                                                                          48))!;
                                                             }
 
                                                             // for (int i = 0;
@@ -241,7 +255,7 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
                                                               border: Border(
                                                                   bottom: BorderSide(
                                                             color: subType[index]
-                                                                        .subCategory[
+                                                                        .subCategory![
                                                                             j]
                                                                         .click ==
                                                                     true
@@ -253,13 +267,13 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
                                                               .centerLeft,
                                                           height: 48,
                                                           child: Text(
-                                                            '  ${subType[index].subCategory[j].subCatNM}',
+                                                            '  ${subType[index].subCategory![j].subCatNM}',
                                                             style: TextStyle(
                                                                 fontSize: 16,
                                                                 fontFamily:
                                                                     'Prompt',
                                                                 color: subType[index]
-                                                                            .subCategory[
+                                                                            .subCategory![
                                                                                 j]
                                                                             .click ==
                                                                         true
@@ -273,50 +287,49 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
                                                           ),
                                                         )),
                                                     subType[index]
-                                                                .subCategory[j]
+                                                                .subCategory![j]
                                                                 .click ==
                                                             true
-                                                        ? Container(
+                                                        ? SizedBox(
                                                             height: subType[
                                                                         index]
-                                                                    .subCategory[
+                                                                    .subCategory![
                                                                         j]
-                                                                    .brand
+                                                                    .brand!
                                                                     .length *
                                                                 48.0,
                                                             child: ListView
                                                                 .builder(
-                                                                    itemCount: subType[
-                                                                            index]
-                                                                        .subCategory[
-                                                                            j]
-                                                                        .brand
+                                                                    itemCount: (subType[index].subCategory![j].brand ??
+                                                                            [])
                                                                         .length,
                                                                     itemBuilder:
                                                                         (BuildContext
                                                                                 context,
                                                                             int i) {
-                                                                      return subType[index].subCategory[j].brand.length !=
-                                                                              0
+                                                                      return subType[index]
+                                                                              .subCategory![j]
+                                                                              .brand!
+                                                                              .isNotEmpty
                                                                           ? Row(
                                                                               children: [
-                                                                                Container(
+                                                                                SizedBox(
                                                                                   width: widthScreen * 0.5,
                                                                                   child: Text(
-                                                                                    '    แบรนด์ - ${subType[index].subCategory[j].brand[i].brandNM}',
+                                                                                    '    แบรนด์ - ${subType[index].subCategory![j].brand![i].brandNM}',
                                                                                     style: TextStyle(fontSize: 16, fontFamily: 'Prompt', color: subType[index].onSelect == true ? Colors.green : Colors.grey, overflow: TextOverflow.ellipsis),
                                                                                   ),
                                                                                 ),
-                                                                                Spacer(),
-                                                                                Container(
+                                                                                const Spacer(),
+                                                                                SizedBox(
                                                                                     width: widthScreen * 0.2,
                                                                                     child: Checkbox(
                                                                                       checkColor: Colors.white,
                                                                                       activeColor: Colors.green,
-                                                                                      value: subType[index].subCategory[j].brand[i].click,
-                                                                                      onChanged: (bool value) {
+                                                                                      value: subType[index].subCategory![j].brand![i].click,
+                                                                                      onChanged: (value) {
                                                                                         setState(() {
-                                                                                          subType[index].subCategory[j].brand[i].click = value;
+                                                                                          subType[index].subCategory![j].brand![i].click = value;
                                                                                         });
                                                                                       },
                                                                                     )),
@@ -360,21 +373,21 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
             for (int i = 0; i < type.length; i++) {
               var cate = type[i].category;
               if (type[i].onClick == true) {
-                typeCodeNum = type[i].typeCD;
+                typeCodeNum = type[i].typeCD!;
               }
 
-              for (int j = 0; j < cate.length; j++) {
+              for (int j = 0; j < cate!.length; j++) {
                 var subCate = cate[j].subCategory;
                 if (cate[j].onSelect == true) {
                   catCodeList.add(cate[j].catCD);
                 }
-                for (int k = 0; k < subCate.length; k++) {
+                for (int k = 0; k < subCate!.length; k++) {
                   var bra = subCate[k].brand;
                   if (subCate[k].click == true) {
                     subCatCodeList.add(subCate[k].subCatCD);
                   }
 
-                  for (int l = 0; l < bra.length; l++) {
+                  for (int l = 0; l < bra!.length; l++) {
                     if (bra[l].click == true) {
                       brandCodeList.add(bra[l].brandCD);
                     }
@@ -398,7 +411,7 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
                   typeF.add(GlobalParam.customerProList[i]);
                 }
               }
-              if (catCodeList.length > 0) {
+              if (catCodeList.isNotEmpty) {
                 GlobalParam.customerShowProList = [];
 
                 for (int i = 0; i < typeF.length; i++) {
@@ -424,7 +437,7 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
                     }
                   }
                 }
-                if (subCatCodeList.length > 0) {
+                if (subCatCodeList.isNotEmpty) {
                   GlobalParam.customerShowProList = [];
 
                   for (int i = 0; i < catF.length; i++) {
@@ -446,7 +459,7 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
                       }
                     }
                   }
-                  if (brandCodeList.length > 0) {
+                  if (brandCodeList.isNotEmpty) {
                     GlobalParam.customerShowProList = [];
 
                     for (int i = 0; i < subCatF.length; i++) {
@@ -522,7 +535,7 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
                 context,
                 MaterialPageRoute(
                   builder: (BuildContext context) =>
-                      CustomerAddOrder(GlobalParam.typeMenuCode, false),
+                      CustomerAddOrder(GlobalParam.typeMenuCode ?? '', false),
                 ),
               );
             }
@@ -531,7 +544,7 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
                 context,
                 MaterialPageRoute(
                   builder: (BuildContext context) =>
-                      StockReturnMissPro(GlobalParam.typeMenuCode, false),
+                      StockReturnMissPro(GlobalParam.typeMenuCode ?? '', false),
                 ),
               );
             }
@@ -540,7 +553,7 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
                 context,
                 MaterialPageRoute(
                   builder: (BuildContext context) =>
-                      StockReturnBadPro(GlobalParam.typeMenuCode, false),
+                      StockReturnBadPro(GlobalParam.typeMenuCode ?? '', false),
                 ),
               );
             }
@@ -576,7 +589,7 @@ class _CustomerOrderFilterPageState extends State<CustomerOrderFilterPage> {
           },
           child: Container(
               // width: 96,
-              child: Center(
+              child: const Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,

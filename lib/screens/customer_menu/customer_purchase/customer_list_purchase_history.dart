@@ -24,8 +24,8 @@ class _CustomerListPurchaseHistoryState
     return ListView.builder(
       itemCount: GlobalParam.customerPOHDList.length,
       itemBuilder: (BuildContext context, int index) {
-        DateTime parseDate = new DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-            .parse(GlobalParam.customerPOHDList[index].dPODATE);
+        DateTime parseDate = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            .parse(GlobalParam.customerPOHDList[index].dPODATE ?? '');
         var inputDate = DateTime.parse(parseDate.toString());
         var outputFormat = DateFormat('dd-MM-yyyy');
         var outputDate = outputFormat.format(inputDate);
@@ -53,7 +53,7 @@ class _CustomerListPurchaseHistoryState
           status = 'ยกเลิกสั่งซื้อ';
         }
 
-        total = double.parse(GlobalParam.customerPOHDList[index].iTOTAL);
+        total = double.parse(GlobalParam.customerPOHDList[index].iTOTAL ?? '');
         return Container(
           padding: const EdgeInsets.fromLTRB(12, 5, 12, 5),
           child: Column(
@@ -81,7 +81,8 @@ class _CustomerListPurchaseHistoryState
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            CustomerPurchaseOrderEdit(widget.typeMenuCode,true),
+                            CustomerPurchaseOrderEdit(
+                                widget.typeMenuCode, true),
                       ),
                     );
                   },

@@ -9,7 +9,7 @@ import 'package:vansale/screens/delivery/delivery_refuel/delivery_refuel_image.d
 
 class DeliveryRefuelMap extends StatefulWidget {
   final String typeMenuCode;
-  DeliveryRefuelMap(this.typeMenuCode);
+  const DeliveryRefuelMap(this.typeMenuCode, {super.key});
 
   @override
   State<DeliveryRefuelMap> createState() => _DeliveryRefuelMapState();
@@ -24,7 +24,7 @@ class _DeliveryRefuelMapState extends State<DeliveryRefuelMap> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('บันทึกการเติมน้ำมัน'),
+        title: const Text('บันทึกการเติมน้ำมัน'),
       ),
       backgroundColor: Colors.black12,
       body: Column(
@@ -69,14 +69,15 @@ class _DeliveryRefuelMapState extends State<DeliveryRefuelMap> {
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: TextField(
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'Prompt',
                     ),
                     textInputAction: TextInputAction.search,
                     decoration: InputDecoration(
                       hintText: "ค้นหาตำแหน่ง...",
                       border: InputBorder.none,
-                      contentPadding: EdgeInsets.only(left: 5.0, top: 5.0),
+                      contentPadding:
+                          const EdgeInsets.only(left: 5.0, top: 5.0),
                       suffixIcon: IconButton(
                         icon: Icon(
                           Icons.search,
@@ -95,9 +96,9 @@ class _DeliveryRefuelMapState extends State<DeliveryRefuelMap> {
                 child: TextButton(
                   style: TextButton.styleFrom(
                     backgroundColor: HexColor("#6c7e9b"),
-                    shape: CircleBorder(),
+                    shape: const CircleBorder(),
                   ),
-                  child: Icon(
+                  child: const Icon(
                     LineAwesomeIcons.crosshairs,
                     color: Colors.white,
                     size: 15.0,
@@ -126,11 +127,11 @@ class _DeliveryRefuelMapState extends State<DeliveryRefuelMap> {
             //         DeliveryRefuelImage(widget.typeMenuCode),
             //   ),
             // );
-                   Navigator.push(
+            Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (BuildContext context) =>
-                    DeliveryNewSupplierSelectImage(GlobalParam.typeMenuCode,
+                    DeliveryNewSupplierSelectImage(GlobalParam.typeMenuCode!,
                         request: CustomerRequest(), subMenu: '004'),
               ),
             );
@@ -156,7 +157,7 @@ class _DeliveryRefuelMapState extends State<DeliveryRefuelMap> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10.0,
                       ),
                       Container(

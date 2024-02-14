@@ -32,7 +32,7 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
               Container(
                 padding: const EdgeInsets.only(top: 50.0),
                 alignment: Alignment.center,
-                child: Text(
+                child: const Text(
                   'บันทึกข้อมูลการทำงาน',
                   style: TextStyle(
                     fontSize: 18.0,
@@ -47,7 +47,7 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                 alignment: Alignment.center,
                 child: Text(
                   Utility.formatDatetimeToday(DateTime.now()),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18.0,
                     color: Colors.green,
                   ),
@@ -75,11 +75,11 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                         ),
                       ),
                     ),
-                    child: Container(
+                    child: SizedBox(
                       height: 40.0,
                       child: Container(
                         alignment: Alignment.centerLeft,
-                        child: Container(
+                        child: SizedBox(
                           // color: Colors.black,
                           height: 40.0,
                           child: Row(
@@ -87,7 +87,7 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                               Container(
                                 width: 30.0,
                                 alignment: Alignment.centerLeft,
-                                child: Icon(
+                                child: const Icon(
                                   LineAwesomeIcons.map_marker,
                                   color: Colors.white,
                                   size: 25.0,
@@ -96,7 +96,7 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                               Expanded(
                                 child: Container(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
+                                  child: const Text(
                                     '123 แขวง/ตำบล เขต/อำเภอ จังหวัด ',
                                     style: TextStyle(
                                       color: Colors.white,
@@ -131,7 +131,7 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                                 children: [
                                   Container(
                                     alignment: Alignment.centerLeft,
-                                    child: Text(
+                                    child: const Text(
                                       'ทะเบียนรถ',
                                       style: TextStyle(
                                         fontSize: 14.0,
@@ -164,15 +164,16 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                                               Icons.keyboard_arrow_down,
                                               color: Colors.white,
                                             ),
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 14.0,
                                               fontFamily: "Prompt",
                                               color: Colors.white,
                                               backgroundColor: Colors.black,
                                             ),
-                                            onChanged: (String newValue) {
+                                            onChanged: (newValue) {
                                               setState(() {
-                                                dropdownLicensePlate = newValue;
+                                                dropdownLicensePlate =
+                                                    newValue!;
                                               });
                                             },
                                             items: <String>[
@@ -184,13 +185,14 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                                                 value: value,
                                                 child: Container(
                                                   alignment: Alignment.center,
-                                                  constraints: BoxConstraints(
+                                                  constraints:
+                                                      const BoxConstraints(
                                                     minHeight: 48.0,
                                                   ),
                                                   color: Colors.black,
                                                   child: AutoSizeText(
                                                     value,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 10.0,
                                                     ),
@@ -256,10 +258,10 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                             ),
                           ),
                           //-------------------------
-                          SizedBox(
+                          const SizedBox(
                             width: 10.0,
                           ),
-                          Container(
+                          SizedBox(
                             width: 100.0,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -267,7 +269,7 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                               children: [
                                 Container(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
+                                  child: const Text(
                                     'เลขไมล์',
                                     style: TextStyle(
                                       fontSize: 14.0,
@@ -291,12 +293,13 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                                       primaryColor: Colors.black,
                                       //primaryColorDark: Colors.grey,
                                     ),
-                                    child: new TextFormField(
+                                    child: TextFormField(
                                       maxLength: 7,
                                       keyboardType: TextInputType.number,
                                       cursorColor: Colors.green,
-                                      style: TextStyle(color: Colors.white),
-                                      decoration: new InputDecoration(
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                      decoration: const InputDecoration(
                                         /*border: new OutlineInputBorder(
                                           borderSide: new BorderSide(
                                               color: Colors.grey),
@@ -318,7 +321,7 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
               Container(
                 padding: const EdgeInsets.only(left: 30.0),
                 alignment: Alignment.topLeft,
-                child: Text(
+                child: const Text(
                   'บันทึกภาพถ่าย',
                   style: TextStyle(
                     fontSize: 14.0,
@@ -347,7 +350,7 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                                 onTap: () {
                                   _openCamera();
                                 },
-                                child: Container(
+                                child: SizedBox(
                                   width: 500,
                                   height: 300,
                                   child: Image.file(
@@ -365,7 +368,7 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                                 onTap: () {
                                   _openCamera();
                                 },
-                                child: Icon(
+                                child: const Icon(
                                   LineAwesomeIcons.camera,
                                   color: Colors.white,
                                   size: 100.0,
@@ -400,7 +403,7 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                             Container(
                               width: 35.0,
                               alignment: Alignment.center,
-                              child: Icon(
+                              child: const Icon(
                                 LineAwesomeIcons.arrow_left,
                                 color: Colors.white,
                                 size: 25.0,
@@ -408,7 +411,7 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                             ),
                             Container(
                               alignment: Alignment.centerLeft,
-                              child: Text(
+                              child: const Text(
                                 'กลับหน้าหลัก',
                                 style: TextStyle(
                                   fontSize: 18.0,
@@ -424,7 +427,7 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10.0,
                 ),
                 Expanded(
@@ -451,7 +454,7 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                             Container(
                               width: 35.0,
                               alignment: Alignment.center,
-                              child: Icon(
+                              child: const Icon(
                                 LineAwesomeIcons.car,
                                 color: Colors.green,
                                 size: 25.0,
@@ -459,7 +462,7 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
                             ),
                             Container(
                               alignment: Alignment.centerLeft,
-                              child: Text(
+                              child: const Text(
                                 'บันทึก',
                                 style: TextStyle(
                                   fontSize: 18.0,
@@ -483,13 +486,13 @@ class _DeliveryStartWorkState extends State<DeliveryStartWork> {
     );
   }
 
-  PickedFile imageFile;
-  File _image;
+  late PickedFile imageFile;
+  late File _image;
   Future<void> _openCamera() async {
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 1000.0, maxWidth: 1000.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
     });
   }

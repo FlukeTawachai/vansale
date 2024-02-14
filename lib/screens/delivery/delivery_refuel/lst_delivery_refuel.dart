@@ -12,7 +12,7 @@ import 'package:vansale/api/class/utility.dart';
 import 'package:vansale/screens/delivery/delivery_refuel/delivery_refuel_lst_detail.dart';
 
 class ListDeliveryRefuel extends StatefulWidget {
-  const ListDeliveryRefuel({Key key}) : super(key: key);
+  const ListDeliveryRefuel({Key? key}) : super(key: key);
 
   @override
   State<ListDeliveryRefuel> createState() => _ListDeliveryRefuelState();
@@ -21,7 +21,6 @@ class ListDeliveryRefuel extends StatefulWidget {
 class _ListDeliveryRefuelState extends State<ListDeliveryRefuel> {
   List<SearchRefuelResp> refuelList = [];
   var outputFormat = DateFormat('dd-MM-yyyy');
-
 
   @override
   void initState() {
@@ -49,13 +48,16 @@ class _ListDeliveryRefuelState extends State<ListDeliveryRefuel> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => DeliveryRefuelListDetail(data:refuelList[index]),
+                  builder: (BuildContext context) => DeliveryRefuelListDetail(
+                    data: refuelList[index],
+                    key: null,
+                  ),
                 ),
               );
             },
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   height: 80.0,
                   child: Row(
                     children: [
@@ -67,7 +69,7 @@ class _ListDeliveryRefuelState extends State<ListDeliveryRefuel> {
                   ),
                 ),
                 Container(
-                  child: DottedLine(
+                  child: const DottedLine(
                     dashColor: Colors.grey,
                   ),
                 ),
@@ -84,7 +86,7 @@ class _ListDeliveryRefuelState extends State<ListDeliveryRefuel> {
       padding: const EdgeInsets.all(5.0),
       alignment: Alignment.centerRight,
       width: 80.0,
-      child: Icon(
+      child: const Icon(
         LineAwesomeIcons.gas_pump,
         color: Colors.green,
         size: 40.0,
@@ -101,21 +103,19 @@ class _ListDeliveryRefuelState extends State<ListDeliveryRefuel> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              child: Text(
-                refuelList[index].cFUELNM,
-                style: TextStyle(
-                  fontSize: 14.0,
-                  color: Colors.grey,
-                  //fontWeight: FontWeight.bold,
-                  fontFamily: 'Prompt',
-                ),
+            Text(
+              refuelList[index].cFUELNM!,
+              style: const TextStyle(
+                fontSize: 14.0,
+                color: Colors.grey,
+                //fontWeight: FontWeight.bold,
+                fontFamily: 'Prompt',
               ),
             ),
             Container(
               child: Text(
-                '${double.parse(refuelList[index].iLITER).toStringAsFixed(0)} ลิตร',
-                style: TextStyle(
+                '${double.parse(refuelList[index].iLITER!).toStringAsFixed(0)} ลิตร',
+                style: const TextStyle(
                   fontSize: 16.0,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -140,8 +140,9 @@ class _ListDeliveryRefuelState extends State<ListDeliveryRefuel> {
           children: [
             Container(
               child: Text(
-                '${outputFormat.format(DateTime.parse(refuelList[index].dINVENTDT))}',
-                style: TextStyle(
+                outputFormat
+                    .format(DateTime.parse(refuelList[index].dINVENTDT!)),
+                style: const TextStyle(
                   fontSize: 14.0,
                   color: Colors.grey,
                   //fontWeight: FontWeight.bold,
@@ -156,13 +157,13 @@ class _ListDeliveryRefuelState extends State<ListDeliveryRefuel> {
                 children: [
                   Container(
                     child: Utility.formateNumberBK(
-                        double.parse(refuelList[index].iTOTAL)),
+                        double.parse(refuelList[index].iTOTAL!)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5.0,
                   ),
                   Container(
-                    child: Text(
+                    child: const Text(
                       "THB",
                       style: TextStyle(
                         fontSize: 12.0,
@@ -191,7 +192,7 @@ class _ListDeliveryRefuelState extends State<ListDeliveryRefuel> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              child: Text(
+              child: const Text(
                 'ระยะ',
                 style: TextStyle(
                   fontSize: 14.0,
@@ -203,8 +204,8 @@ class _ListDeliveryRefuelState extends State<ListDeliveryRefuel> {
             ),
             Container(
               child: Text(
-                '${double.parse(refuelList[index].iKM).toStringAsFixed(0)} กม.',
-                style: TextStyle(
+                '${double.parse(refuelList[index].iKM!).toStringAsFixed(0)} กม.',
+                style: const TextStyle(
                   fontSize: 16.0,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,

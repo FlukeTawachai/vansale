@@ -7,7 +7,8 @@ import 'package:vansale/screens/delivery/delivery_new_supplier/delivery_new_supp
 
 class ImageStoreList extends StatefulWidget {
   final CustomerRequest request;
-  const ImageStoreList({Key key, this.request}) : super(key: key);
+  const ImageStoreList({required Key key, required this.request})
+      : super(key: key);
 
   @override
   State<ImageStoreList> createState() => _ImageStoreListState();
@@ -47,7 +48,7 @@ class _ImageStoreListState extends State<ImageStoreList> {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) =>
                                 DeliveryNewSupplierSelectImage(
-                                    GlobalParam.typeMenuCode,
+                                    GlobalParam.typeMenuCode!,
                                     request: widget.request,
                                     subMenu: '')));
                       },

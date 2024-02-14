@@ -19,22 +19,23 @@ import 'package:vansale/screens/home/home.dart';
 class LocationStore extends StatefulWidget {
   final bool openMap;
   final CustomerRequest request;
-  LocationStore({Key key, this.openMap, this.request}) : super(key: key);
+  const LocationStore({Key? key, required this.openMap, required this.request})
+      : super(key: key);
   @override
   _LocationStoreState createState() => _LocationStoreState();
 }
 
 class _LocationStoreState extends State<LocationStore> {
-  StreamSubscription _locationSubscription;
+  late StreamSubscription _locationSubscription;
   Location _locationTracker = Location();
-  Marker marker;
-  Circle circle;
-  GoogleMapController _controller;
+  late Marker marker;
+  late Circle circle;
+  late GoogleMapController _controller;
   bool discoverStores = true;
-  double lat;
-  double lng;
+  late double lat;
+  late double lng;
 
-  static final CameraPosition initialLocation = CameraPosition(
+  static const CameraPosition initialLocation = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
@@ -46,20 +47,21 @@ class _LocationStoreState extends State<LocationStore> {
   }
 
   void updateMarkerAndCircle(LocationData newLocalData, Uint8List imageData) {
-    LatLng latlng = LatLng(newLocalData.latitude, newLocalData.longitude);
-    this.setState(() {
+    LatLng latlng =
+        LatLng(newLocalData.latitude ?? 0, newLocalData.longitude ?? 0);
+    setState(() {
       marker = Marker(
-          markerId: MarkerId("home"),
+          markerId: const MarkerId("home"),
           position: latlng,
-          rotation: newLocalData.heading,
+          rotation: newLocalData.heading ?? 0,
           draggable: false,
           zIndex: 2,
           flat: true,
-          anchor: Offset(0.5, 0.5),
+          anchor: const Offset(0.5, 0.5),
           icon: BitmapDescriptor.fromBytes(imageData));
       circle = Circle(
-          circleId: CircleId("car"),
-          radius: newLocalData.accuracy,
+          circleId: const CircleId("car"),
+          radius: newLocalData.accuracy ?? 0,
           zIndex: 1,
           strokeColor: Colors.blue,
           center: latlng,
@@ -82,14 +84,15 @@ class _LocationStoreState extends State<LocationStore> {
           _locationTracker.onLocationChanged.listen((newLocalData) {
         if (_controller != null) {
           _controller.animateCamera(CameraUpdate.newCameraPosition(
-              new CameraPosition(
+              CameraPosition(
                   bearing: 192.8334901395799,
-                  target: LatLng(newLocalData.latitude, newLocalData.longitude),
+                  target: LatLng(
+                      newLocalData.latitude ?? 0, newLocalData.longitude ?? 0),
                   tilt: 0,
                   zoom: 18.00)));
           updateMarkerAndCircle(newLocalData, imageData);
-          lat = newLocalData.latitude;
-          lng = newLocalData.longitude;
+          lat = newLocalData.latitude ?? 0;
+          lng = newLocalData.longitude ?? 0;
         }
       });
 
@@ -121,8 +124,8 @@ class _LocationStoreState extends State<LocationStore> {
     // final double lat = desPoint['geometry']['location']['lat'];
     // final double lng = desPoint['geometry']['location']['lng'];
 
-    double lat = GlobalParam.deliveryLocationStoreLatitude;
-    double lng = GlobalParam.deliveryLocationStoreLongitude;
+    double lat = GlobalParam.deliveryLocationStoreLatitude ?? 0;
+    double lng = GlobalParam.deliveryLocationStoreLongitude ?? 0;
 
     await LocationServices().openGoogleMap(lat, lng);
   }
@@ -138,7 +141,7 @@ class _LocationStoreState extends State<LocationStore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('ตำแหน่งร้าน'), centerTitle: true),
+      appBar: AppBar(title: const Text('ตำแหน่งร้าน'), centerTitle: true),
       body: GoogleMap(
         mapType: MapType.normal,
         initialCameraPosition: initialLocation,
@@ -151,7 +154,7 @@ class _LocationStoreState extends State<LocationStore> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 48, 16),
         child: FloatingActionButton(
-            child: Icon(Icons.location_searching),
+            child: const Icon(Icons.location_searching),
             onPressed: () {
               getCurrentLocation();
             }),
@@ -178,9 +181,9 @@ class _LocationStoreState extends State<LocationStore> {
         print(
             '----------- Location Store: ${result.cLATITUDE},${result.cLONGTITUDE} -----------');
         GlobalParam.deliveryLocationStoreLatitude =
-            double.parse(result.cLATITUDE);
+            double.parse(result.cLATITUDE ?? '0');
         GlobalParam.deliveryLocationStoreLongitude =
-            double.parse(result.cLONGTITUDE);
+            double.parse(result.cLONGTITUDE ?? '0');
         if (widget.openMap == true) {
           openMaps();
         }
@@ -245,15 +248,15 @@ class _LocationStoreState extends State<LocationStore> {
           ? Container(
               child: InkWell(
                 onTap: () {
-                  widget.request.address.latitude = lat.toString();
-                  widget.request.address.longtitude = lng.toString();
+                  widget.request.address!.latitude = lat.toString();
+                  widget.request.address!.longtitude = lng.toString();
                   GlobalParam.deliveryImage = null;
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (BuildContext context) =>
                           DeliveryNewSupplierSelectImage(
-                              GlobalParam.typeMenuCode,
+                              GlobalParam.typeMenuCode ?? '',
                               request: widget.request,
                               subMenu: ''),
                     ),
@@ -280,7 +283,7 @@ class _LocationStoreState extends State<LocationStore> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10.0,
                           ),
                           Container(

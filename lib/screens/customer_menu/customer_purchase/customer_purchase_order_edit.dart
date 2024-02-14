@@ -54,7 +54,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
       GlobalParam.deliveryPodtShow = [];
       for (int i = 0; i < GlobalParam.customerPODTList.length; i++) {
         if (GlobalParam.customerPODTList[i].cPOCD ==
-            GlobalParam.customerPOHDSelect.cPOCD) {
+            GlobalParam.customerPOHDSelect!.cPOCD) {
           GlobalParam.deliveryPodtList.add(GlobalParam.customerPODTList[i]);
           GlobalParam.deliveryPodtShow.add(GlobalParam.customerPODTList[i]);
           orderList.add(GlobalParam.customerPODTList[i]);
@@ -79,7 +79,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
         elevation: 0.0,
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'สั่งซื้อ',
           style: TextStyle(
             color: Colors.black,
@@ -103,7 +103,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                     width: widthScreen * 0.74,
                     alignment: Alignment.center,
                     margin: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(5),
@@ -137,7 +137,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                                 });
                                 getPodtSearch(searchData);
                               },
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: 'Prompt',
                               ),
                               textInputAction: TextInputAction.search,
@@ -145,7 +145,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                                 hintText: "ค้นหา",
                                 border: InputBorder.none,
                                 contentPadding:
-                                    EdgeInsets.only(left: 5.0, top: 5.0),
+                                    const EdgeInsets.only(left: 5.0, top: 5.0),
                                 prefixIcon: RotatedBox(
                                   quarterTurns: 1,
                                   child: IconButton(
@@ -180,7 +180,8 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                                                     builder: (context) =>
                                                         CustomerPurchaseOrderEdit(
                                                             GlobalParam
-                                                                .typeMenuCode,
+                                                                    .typeMenuCode ??
+                                                                '',
                                                             false)));
                                           },
                                         )));
@@ -199,7 +200,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                       child: InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => CustomerFilterPage(
+                              builder: (context) => const CustomerFilterPage(
                                     pageNumber: '001',
                                   )));
                         },
@@ -207,7 +208,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                           color: Colors.black12,
                           height: 50.0,
                           alignment: Alignment.center,
-                          child: Text(
+                          child: const Text(
                             'ประเภท',
                             style: TextStyle(
                               fontSize: 14.0,
@@ -265,29 +266,35 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                   }
                   if (GlobalParam.deliveryPodtShow[index].cSUOMCD != "") {
                     qty = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iSSIZEQTY);
+                        GlobalParam.deliveryPodtShow[index].iSSIZEQTY ?? '0');
                     unitPrice = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iSUNITPRICE);
-                    unitName = GlobalParam.deliveryPodtShow[index].cSUOMNM;
-                    unitCode = GlobalParam.deliveryPodtShow[index].cSUOMCD;
+                        GlobalParam.deliveryPodtShow[index].iSUNITPRICE ?? '0');
+                    unitName =
+                        GlobalParam.deliveryPodtShow[index].cSUOMNM ?? '';
+                    unitCode =
+                        GlobalParam.deliveryPodtShow[index].cSUOMCD ?? '';
                     size = "S";
                   }
                   if (GlobalParam.deliveryPodtShow[index].cMUOMCD != "") {
                     qty = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iMSIZEQTY);
+                        GlobalParam.deliveryPodtShow[index].iMSIZEQTY ?? '0');
                     unitPrice = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iMUNITPRICE);
-                    unitName = GlobalParam.deliveryPodtShow[index].cMUOMNM;
-                    unitCode = GlobalParam.deliveryPodtShow[index].cMUOMCD;
+                        GlobalParam.deliveryPodtShow[index].iMUNITPRICE ?? '0');
+                    unitName =
+                        GlobalParam.deliveryPodtShow[index].cMUOMNM ?? '';
+                    unitCode =
+                        GlobalParam.deliveryPodtShow[index].cMUOMCD ?? '';
                     size = "M";
                   }
                   if (GlobalParam.deliveryPodtShow[index].cLUOMCD != "") {
                     qty = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iLSIZEQTY);
+                        GlobalParam.deliveryPodtShow[index].iLSIZEQTY ?? '0');
                     unitPrice = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iLUNITPRICE);
-                    unitName = GlobalParam.deliveryPodtShow[index].cLUOMNM;
-                    unitCode = GlobalParam.deliveryPodtShow[index].cLUOMCD;
+                        GlobalParam.deliveryPodtShow[index].iLUNITPRICE ?? '0');
+                    unitName =
+                        GlobalParam.deliveryPodtShow[index].cLUOMNM ?? '';
+                    unitCode =
+                        GlobalParam.deliveryPodtShow[index].cLUOMCD ?? '';
                     size = "L";
                   }
 
@@ -299,7 +306,8 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                       if (GlobalParam.customerStockProductList[i].cUOMCD ==
                           unitCode) {
                         stock = double.parse(
-                            GlobalParam.customerStockProductList[i].iQTY);
+                            GlobalParam.customerStockProductList[i].iQTY ??
+                                '0');
                       }
                     }
                   }
@@ -325,21 +333,21 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                                                 .cPHOTOPATH !=
                                             ''
                                         ? DecorationImage(
-                                            image: new NetworkImage(
+                                            image: NetworkImage(
                                               'http://${GlobalParam.deliveryPodtShow[index].cPHOTOSERV}/${GlobalParam.deliveryPodtShow[index].cPHOTOPATH}',
                                             ),
                                             scale: 1.0,
                                             fit: BoxFit.cover,
                                           )
-                                        : DecorationImage(
-                                            image: new AssetImage(
+                                        : const DecorationImage(
+                                            image: AssetImage(
                                               "assets/images/no_image.png",
                                             ),
                                             scale: 1.0,
                                             fit: BoxFit.cover,
                                           ),
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.only(
+                                    borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(5),
                                       topRight: Radius.circular(5),
                                       bottomLeft: Radius.circular(5),
@@ -349,351 +357,344 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                               ),
                               //----------------------1
                               Expanded(
-                                child: Container(
-                                  child: Column(
-                                    children: [
-                                      Expanded(
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              child: Container(
-                                                width: 128,
-                                                child: Text(
-                                                  GlobalParam
-                                                      .deliveryPodtShow[index]
-                                                      .cPRODNM,
-                                                  style: TextStyle(
-                                                      fontFamily: 'Prompt',
-                                                      fontSize: 16),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                              ),
-                                            ),
-                                            Container(
-                                              child: IconButton(
-                                                icon: Icon(
-                                                  LineAwesomeIcons.trash,
-                                                  color: Colors.red,
-                                                ),
-                                                onPressed: () {
-                                                  resetProductOrder(
-                                                      size,
-                                                      GlobalParam
-                                                              .deliveryPodtShow[
-                                                          index],
-                                                      index);
-                                                },
-                                                iconSize: 30,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      //--------------------2
-                                      Expanded(
-                                        child: Container(
-                                          // width: 128,
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            "สต็อก ${stock.toStringAsFixed(0)} ${unitName}",
-                                            style: TextStyle(
-                                                fontFamily: 'Prompt',
-                                                fontSize: 12,
-                                                color: Colors.green),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      ),
-                                      //--------------------3
-                                      Expanded(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              child: Container(
-                                                width: 80.0,
-                                                // padding: const EdgeInsets.all(5.0),
-                                                alignment: Alignment.centerLeft,
-                                                child: Center(
-                                                  child: Text(
-                                                    "ยอดสั่งซื้อ",
-                                                    style: TextStyle(
-                                                        fontFamily: 'Prompt',
-                                                        color: Colors.black,
-                                                        fontSize: 12),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                width: 80.0,
-                                                alignment: Alignment.centerLeft,
-                                                child: Center(
-                                                  child: Text(
-                                                    "ลด",
-                                                    style: TextStyle(
-                                                        fontFamily: 'Prompt',
-                                                        color: Colors.red,
-                                                        fontSize: 12),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                width: 80.0,
-                                                alignment: Alignment.centerLeft,
-                                                child: Center(
-                                                  child: Text(
-                                                    "เพิ่ม",
-                                                    style: TextStyle(
-                                                        fontFamily: 'Prompt',
-                                                        color: Colors.green,
-                                                        fontSize: 12),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            // Expanded(
-                                            //   child: Container(
-                                            //     alignment: Alignment.centerLeft,
-                                            //     child: Text(
-                                            //       "คงค้าง",
-                                            //       style: TextStyle(
-                                            //           fontFamily: 'Prompt',
-                                            //           color: Colors.blue),
-                                            //     ),
-                                            //   ),
-                                            // ),
-                                          ],
-                                        ),
-                                      ),
-                                      //----------------------------4
-                                      Expanded(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            // ----------------------5
-                                            Expanded(
-                                              child: Container(
-                                                margin: const EdgeInsets.only(
-                                                    left: 5.0, right: 5.0),
-                                                height: 30.0,
-                                                width: 80.0,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.grey.shade400,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(5),
-                                                      topRight:
-                                                          Radius.circular(5),
-                                                      bottomLeft:
-                                                          Radius.circular(5),
-                                                      bottomRight:
-                                                          Radius.circular(5),
-                                                    ),
-                                                    border: Border.all(
-                                                        color: Colors.grey)),
-                                                child: Center(
-                                                  child: Text(
-                                                      qty < 0
-                                                          ? "0"
-                                                          : '${qty.toStringAsFixed(0)}',
-                                                      style: TextStyle(
-                                                          fontFamily: 'Prompt',
-                                                          fontSize: 16)),
-                                                ),
-                                              ),
-                                            ),
-                                            // -------------2
-                                            Expanded(
-                                              child: Container(
-                                                margin: const EdgeInsets.only(
-                                                    left: 5.0, right: 5.0),
-                                                height: 30.0,
-                                                width: 80.0,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(5),
-                                                      topRight:
-                                                          Radius.circular(5),
-                                                      bottomLeft:
-                                                          Radius.circular(5),
-                                                      bottomRight:
-                                                          Radius.circular(5),
-                                                    ),
-                                                    border: Border.all(
-                                                        color: Colors.grey)),
-                                                child: Center(
-                                                  child: TextFormField(
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        color: Colors.red),
-                                                    controller:
-                                                        incleaseCon[index],
-                                                    onChanged: (value) {
-                                                      if (value != '' &&
-                                                          value != null) {
-                                                        decleaseProductOrder(
-                                                            size,
-                                                            double.parse(value),
-                                                            GlobalParam
-                                                                    .deliveryPodtShow[
-                                                                index]);
-                                                      } else {
-                                                        decleaseProductOrder(
-                                                            size,
-                                                            0,
-                                                            GlobalParam
-                                                                    .deliveryPodtShow[
-                                                                index]);
-                                                      }
-                                                    },
-                                                    decoration: InputDecoration(
-                                                      border: InputBorder.none,
-                                                      focusedBorder:
-                                                          InputBorder.none,
-                                                      enabledBorder:
-                                                          InputBorder.none,
-                                                      errorBorder:
-                                                          InputBorder.none,
-                                                      disabledBorder:
-                                                          InputBorder.none,
-                                                      // contentPadding: EdgeInsets.only(
-                                                      //     left: 15,
-                                                      //     bottom: 11,
-                                                      //     top: 15,
-                                                      //     right: 15),
-                                                    ),
-                                                    keyboardType:
-                                                        TextInputType.number,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            // -------------3
-                                            Expanded(
-                                              child: Container(
-                                                margin: const EdgeInsets.only(
-                                                    left: 5.0, right: 5.0),
-                                                height: 30.0,
-                                                width: 80.0,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(5),
-                                                      topRight:
-                                                          Radius.circular(5),
-                                                      bottomLeft:
-                                                          Radius.circular(5),
-                                                      bottomRight:
-                                                          Radius.circular(5),
-                                                    ),
-                                                    border: Border.all(
-                                                        color: Colors.grey)),
-                                                child: Center(
-                                                  child: TextField(
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        color: Colors.green),
-                                                    controller:
-                                                        decleaseCon[index],
-                                                    onChanged: (value) {
-                                                      if (value != '' &&
-                                                          value != null) {
-                                                        incleaseProductOrder(
-                                                            size,
-                                                            double.parse(value),
-                                                            GlobalParam
-                                                                    .deliveryPodtShow[
-                                                                index]);
-                                                      } else {
-                                                        incleaseProductOrder(
-                                                            size,
-                                                            0,
-                                                            GlobalParam
-                                                                    .deliveryPodtShow[
-                                                                index]);
-                                                      }
-                                                    },
-                                                    decoration: InputDecoration(
-                                                      border: InputBorder.none,
-                                                      focusedBorder:
-                                                          InputBorder.none,
-                                                      enabledBorder:
-                                                          InputBorder.none,
-                                                      errorBorder:
-                                                          InputBorder.none,
-                                                      disabledBorder:
-                                                          InputBorder.none,
-                                                      // contentPadding: EdgeInsets.only(
-                                                      //     left: 15,
-                                                      //     bottom: 11,
-                                                      //     top: 15,
-                                                      //     right: 15),
-                                                    ),
-                                                    keyboardType:
-                                                        TextInputType.number,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            // ----------------------------------------------------------------4
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        // height: 48,
-                                        alignment: Alignment.centerLeft,
-                                        child: Row(
-                                          children: [
-                                            Expanded(
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: SizedBox(
+                                              width: 128,
                                               child: Text(
-                                                '',
-                                                style: TextStyle(
-                                                  color: Colors.red,
-                                                  fontFamily: 'Prompt',
+                                                GlobalParam
+                                                        .deliveryPodtShow[index]
+                                                        .cPRODNM ??
+                                                    '',
+                                                style: const TextStyle(
+                                                    fontFamily: 'Prompt',
+                                                    fontSize: 16),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                          ),
+                                          IconButton(
+                                            icon: const Icon(
+                                              LineAwesomeIcons.trash,
+                                              color: Colors.red,
+                                            ),
+                                            onPressed: () {
+                                              resetProductOrder(
+                                                  size,
+                                                  GlobalParam
+                                                      .deliveryPodtShow[index],
+                                                  index);
+                                            },
+                                            iconSize: 30,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    //--------------------2
+                                    Expanded(
+                                      child: Container(
+                                        // width: 128,
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          "สต็อก ${stock.toStringAsFixed(0)} ${unitName}",
+                                          style: const TextStyle(
+                                              fontFamily: 'Prompt',
+                                              fontSize: 12,
+                                              color: Colors.green),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ),
+                                    //--------------------3
+                                    Expanded(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                            child: Container(
+                                              width: 80.0,
+                                              // padding: const EdgeInsets.all(5.0),
+                                              alignment: Alignment.centerLeft,
+                                              child: const Center(
+                                                child: Text(
+                                                  "ยอดสั่งซื้อ",
+                                                  style: TextStyle(
+                                                      fontFamily: 'Prompt',
+                                                      color: Colors.black,
+                                                      fontSize: 12),
                                                 ),
                                               ),
                                             ),
-                                            Container(
-                                                alignment:
-                                                    Alignment.centerRight,
-                                                width: 150.0,
+                                          ),
+                                          Expanded(
+                                            child: Container(
+                                              width: 80.0,
+                                              alignment: Alignment.centerLeft,
+                                              child: const Center(
                                                 child: Text(
-                                                  'ต่อหน่วย ${formatNum.format(unitPrice)} ฿',
+                                                  "ลด",
                                                   style: TextStyle(
                                                       fontFamily: 'Prompt',
+                                                      color: Colors.red,
                                                       fontSize: 12),
-                                                )),
-                                            SizedBox(
-                                              width: 12,
-                                            )
-                                          ],
-                                        ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Container(
+                                              width: 80.0,
+                                              alignment: Alignment.centerLeft,
+                                              child: const Center(
+                                                child: Text(
+                                                  "เพิ่ม",
+                                                  style: TextStyle(
+                                                      fontFamily: 'Prompt',
+                                                      color: Colors.green,
+                                                      fontSize: 12),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          // Expanded(
+                                          //   child: Container(
+                                          //     alignment: Alignment.centerLeft,
+                                          //     child: Text(
+                                          //       "คงค้าง",
+                                          //       style: TextStyle(
+                                          //           fontFamily: 'Prompt',
+                                          //           color: Colors.blue),
+                                          //     ),
+                                          //   ),
+                                          // ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                    //----------------------------4
+                                    Expanded(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          // ----------------------5
+                                          Expanded(
+                                            child: Container(
+                                              margin: const EdgeInsets.only(
+                                                  left: 5.0, right: 5.0),
+                                              height: 30.0,
+                                              width: 80.0,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey.shade400,
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft: Radius.circular(5),
+                                                    topRight:
+                                                        Radius.circular(5),
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    bottomRight:
+                                                        Radius.circular(5),
+                                                  ),
+                                                  border: Border.all(
+                                                      color: Colors.grey)),
+                                              child: Center(
+                                                child: Text(
+                                                    qty < 0
+                                                        ? "0"
+                                                        : '${qty.toStringAsFixed(0)}',
+                                                    style: const TextStyle(
+                                                        fontFamily: 'Prompt',
+                                                        fontSize: 16)),
+                                              ),
+                                            ),
+                                          ),
+                                          // -------------2
+                                          Expanded(
+                                            child: Container(
+                                              margin: const EdgeInsets.only(
+                                                  left: 5.0, right: 5.0),
+                                              height: 30.0,
+                                              width: 80.0,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft: Radius.circular(5),
+                                                    topRight:
+                                                        Radius.circular(5),
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    bottomRight:
+                                                        Radius.circular(5),
+                                                  ),
+                                                  border: Border.all(
+                                                      color: Colors.grey)),
+                                              child: Center(
+                                                child: TextFormField(
+                                                  textAlign: TextAlign.center,
+                                                  style: const TextStyle(
+                                                      color: Colors.red),
+                                                  controller:
+                                                      incleaseCon[index],
+                                                  onChanged: (value) {
+                                                    if (value != '' &&
+                                                        value != null) {
+                                                      decleaseProductOrder(
+                                                          size,
+                                                          double.parse(value),
+                                                          GlobalParam
+                                                                  .deliveryPodtShow[
+                                                              index]);
+                                                    } else {
+                                                      decleaseProductOrder(
+                                                          size,
+                                                          0,
+                                                          GlobalParam
+                                                                  .deliveryPodtShow[
+                                                              index]);
+                                                    }
+                                                  },
+                                                  decoration:
+                                                      const InputDecoration(
+                                                    border: InputBorder.none,
+                                                    focusedBorder:
+                                                        InputBorder.none,
+                                                    enabledBorder:
+                                                        InputBorder.none,
+                                                    errorBorder:
+                                                        InputBorder.none,
+                                                    disabledBorder:
+                                                        InputBorder.none,
+                                                    // contentPadding: EdgeInsets.only(
+                                                    //     left: 15,
+                                                    //     bottom: 11,
+                                                    //     top: 15,
+                                                    //     right: 15),
+                                                  ),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          // -------------3
+                                          Expanded(
+                                            child: Container(
+                                              margin: const EdgeInsets.only(
+                                                  left: 5.0, right: 5.0),
+                                              height: 30.0,
+                                              width: 80.0,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft: Radius.circular(5),
+                                                    topRight:
+                                                        Radius.circular(5),
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    bottomRight:
+                                                        Radius.circular(5),
+                                                  ),
+                                                  border: Border.all(
+                                                      color: Colors.grey)),
+                                              child: Center(
+                                                child: TextField(
+                                                  textAlign: TextAlign.center,
+                                                  style: const TextStyle(
+                                                      color: Colors.green),
+                                                  controller:
+                                                      decleaseCon[index],
+                                                  onChanged: (value) {
+                                                    if (value != '' &&
+                                                        value != null) {
+                                                      incleaseProductOrder(
+                                                          size,
+                                                          double.parse(value),
+                                                          GlobalParam
+                                                                  .deliveryPodtShow[
+                                                              index]);
+                                                    } else {
+                                                      incleaseProductOrder(
+                                                          size,
+                                                          0,
+                                                          GlobalParam
+                                                                  .deliveryPodtShow[
+                                                              index]);
+                                                    }
+                                                  },
+                                                  decoration:
+                                                      const InputDecoration(
+                                                    border: InputBorder.none,
+                                                    focusedBorder:
+                                                        InputBorder.none,
+                                                    enabledBorder:
+                                                        InputBorder.none,
+                                                    errorBorder:
+                                                        InputBorder.none,
+                                                    disabledBorder:
+                                                        InputBorder.none,
+                                                    // contentPadding: EdgeInsets.only(
+                                                    //     left: 15,
+                                                    //     bottom: 11,
+                                                    //     top: 15,
+                                                    //     right: 15),
+                                                  ),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          // ----------------------------------------------------------------4
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      // height: 48,
+                                      alignment: Alignment.centerLeft,
+                                      child: Row(
+                                        children: [
+                                          const Expanded(
+                                            child: Text(
+                                              '',
+                                              style: TextStyle(
+                                                color: Colors.red,
+                                                fontFamily: 'Prompt',
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                              alignment: Alignment.centerRight,
+                                              width: 150.0,
+                                              child: Text(
+                                                'ต่อหน่วย ${formatNum.format(unitPrice)} ฿',
+                                                style: const TextStyle(
+                                                    fontFamily: 'Prompt',
+                                                    fontSize: 12),
+                                              )),
+                                          const SizedBox(
+                                            width: 12,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        DottedLine(
+                        const DottedLine(
                           dashColor: Colors.grey,
                         ),
                       ],
@@ -773,13 +774,13 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
     double productTotal = 0;
 
     for (var i = 0; i < orderList.length; i++) {
-      if (orderList[i].cPOCD == GlobalParam.customerPOHDSelect.cPOCD) {
-        double sQty = double.parse(orderList[i].iSSIZEQTY);
-        double mQty = double.parse(orderList[i].iMSIZEQTY);
-        double lQty = double.parse(orderList[i].iLSIZEQTY);
-        double sPrice = double.parse(orderList[i].iSUNITPRICE);
-        double mPrice = double.parse(orderList[i].iMUNITPRICE);
-        double lPrice = double.parse(orderList[i].iLUNITPRICE);
+      if (orderList[i].cPOCD == GlobalParam.customerPOHDSelect!.cPOCD) {
+        double sQty = double.parse(orderList[i].iSSIZEQTY ?? '0');
+        double mQty = double.parse(orderList[i].iMSIZEQTY ?? '0');
+        double lQty = double.parse(orderList[i].iLSIZEQTY ?? '0');
+        double sPrice = double.parse(orderList[i].iSUNITPRICE ?? '0');
+        double mPrice = double.parse(orderList[i].iMUNITPRICE ?? '0');
+        double lPrice = double.parse(orderList[i].iLUNITPRICE ?? '0');
         if ((sQty + mQty + lQty) > 0) {
           showData.add(orderList[i]);
           productTotal += (sQty * sPrice) + (mQty * mPrice) + (lQty * lPrice);
@@ -787,24 +788,24 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
             var data = {
               "cPRODCD": orderList[i].cPRODCD,
               "cUOMNM": orderList[i].cSUOMNM,
-              "iPRICE": double.parse(orderList[i].iSUNITPRICE),
-              "iTOTAL": double.parse(orderList[i].iSSIZEQTY)
+              "iPRICE": double.parse(orderList[i].iSUNITPRICE ?? '0'),
+              "iTOTAL": double.parse(orderList[i].iSSIZEQTY ?? '0')
             };
             unitList.add(data);
           }
           if (mQty > 0) {
             var data = {
               "cUOMNM": orderList[i].cMUOMNM,
-              "iPRICE": double.parse(orderList[i].iMUNITPRICE),
-              "iTOTAL": double.parse(orderList[i].iMSIZEQTY)
+              "iPRICE": double.parse(orderList[i].iMUNITPRICE ?? '0'),
+              "iTOTAL": double.parse(orderList[i].iMSIZEQTY ?? '0')
             };
             unitList.add(data);
           }
           if (lQty > 0) {
             var data = {
               "cUOMNM": orderList[i].cLUOMNM,
-              "iPRICE": double.parse(orderList[i].iLUNITPRICE),
-              "iTOTAL": double.parse(orderList[i].iLSIZEQTY)
+              "iPRICE": double.parse(orderList[i].iLUNITPRICE ?? '0'),
+              "iTOTAL": double.parse(orderList[i].iLSIZEQTY ?? '0')
             };
             unitList.add(data);
           }
@@ -816,7 +817,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
       height: 136.0,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(15),
           topRight: Radius.circular(15),
         ),
@@ -825,7 +826,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 7,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
@@ -842,21 +843,21 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                       height: 24,
                       child: Text(
                         '${showData.length} รายการ',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16.0,
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Prompt',
                         ),
                       )),
-                  Spacer(),
+                  const Spacer(),
                   InkWell(
                     onTap: () {
                       showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              title: Text(
+                              title: const Text(
                                 'รายละเอียด',
                                 style: TextStyle(
                                     fontFamily: 'Prompt', fontSize: 16),
@@ -899,7 +900,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                       width: widthScreen * 0.4,
                       height: 24,
                       alignment: Alignment.centerRight,
-                      child: Text(
+                      child: const Text(
                         'แสดงรายละเอียด',
                         style: TextStyle(
                           fontSize: 16.0,
@@ -922,7 +923,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                   Container(
                     width: widthScreen * 0.4,
                     height: 24,
-                    child: Text(
+                    child: const Text(
                       'รวมเป็นเงิน',
                       style: TextStyle(
                         fontSize: 16.0,
@@ -932,7 +933,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                       ),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: widthScreen * 0.4,
                     // height: 24,
@@ -962,7 +963,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
             ),
 
             //--------------
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             Row(
@@ -980,15 +981,15 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                       children: [
                         Container(
                             alignment: Alignment.center,
-                            child: Icon(
+                            child: const Icon(
                               LineAwesomeIcons.boxes,
                               color: Colors.green,
                               size: 25.0,
                             )),
-                        SizedBox(
+                        const SizedBox(
                           width: 5.0,
                         ),
-                        Text(
+                        const Text(
                           'สั่งซื้อ',
                           style: TextStyle(
                             fontSize: 18.0,
@@ -1001,7 +1002,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 64.0,
                 ),
                 InkWell(
@@ -1019,16 +1020,16 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
                       children: [
                         Container(
                           alignment: Alignment.center,
-                          child: Icon(
+                          child: const Icon(
                             LineAwesomeIcons.check_circle,
                             color: Colors.green,
                             size: 25.0,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5.0,
                         ),
-                        Text(
+                        const Text(
                           'สินค้าไม่เคยสั่งซื้อ',
                           style: TextStyle(
                             fontSize: 16.0,
@@ -1094,7 +1095,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
             child: Row(
               children: [
                 Text('${listItem[index]['qty']} รายการ'),
-                Spacer(),
+                const Spacer(),
                 Text(
                     '${listItem[index]['sumItem']} ${listItem[index]['unitName']}')
               ],
@@ -1116,16 +1117,16 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
 
       for (var i = 0; i < GlobalParam.customerProductList.length; i++) {
         if (GlobalParam.customerProductList[i].cPOCD ==
-            GlobalParam.customerPOHDSelect.cPOCD) {
+            GlobalParam.customerPOHDSelect!.cPOCD) {
           APRODUCT product = APRODUCT(
               cPRODCD: GlobalParam.customerProductList[i].cPRODCD,
-              iSSIZEQTY:
-                  double.parse(GlobalParam.customerProductList[i].iSSIZEQTY),
-              iMSIZEQTY:
-                  double.parse(GlobalParam.customerProductList[i].iMSIZEQTY),
-              iLSIZEQTY:
-                  double.parse(GlobalParam.customerProductList[i].iLSIZEQTY));
-          req.aPRODUCT.add(product);
+              iSSIZEQTY: double.parse(
+                  GlobalParam.customerProductList[i].iSSIZEQTY ?? '0'),
+              iMSIZEQTY: double.parse(
+                  GlobalParam.customerProductList[i].iMSIZEQTY ?? '0'),
+              iLSIZEQTY: double.parse(
+                  GlobalParam.customerProductList[i].iLSIZEQTY ?? '0'));
+          req.aPRODUCT!.add(product);
         }
       }
       var result = await proxy.addCustomerOrder(req);
@@ -1162,7 +1163,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
       var unitList = [];
       AllApiProxyMobile proxy = AllApiProxyMobile();
       var result = await proxy.getPodt(QueryPodtReq(
-          cPOCD: GlobalParam.customerPOHDSelect.cPOCD,
+          cPOCD: GlobalParam.customerPOHDSelect!.cPOCD,
           cPRODCD: '%%',
           cPRODNM: '%$cPRODNM%',
           cCUSTTYPE: GlobalParam.customer['cCUSTTYPE']));
@@ -1175,15 +1176,15 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
           //     double.parse(result[i].iMSIZEQTY) +
           //     double.parse(result[i].iLSIZEQTY);
 
-          if (double.parse(result[i].iSSIZEQTY) > 0) {
+          if (double.parse(result[i].iSSIZEQTY ?? '0') > 0) {
             var data = {
               "cPRODCD": result[i].cPRODCD,
               "cUOMNM": result[i].cSUOMNM,
-              "iPRICE": double.parse(result[i].iSUNITPRICE),
-              "iTOTAL": double.parse(result[i].iSSIZEQTY)
+              "iPRICE": double.parse(result[i].iSUNITPRICE ?? '0'),
+              "iTOTAL": double.parse(result[i].iSSIZEQTY ?? '0')
             };
             unitList.add(data);
-            QueryPodtResp product = new QueryPodtResp(
+            QueryPodtResp product = QueryPodtResp(
               cBASKCD: result[i].cBASKCD,
               cBASKNM: result[i].cBASKNM,
               cBRNDCD: result[i].cBRNDCD,
@@ -1200,9 +1201,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
               cPHOTOPATH: result[i].cPHOTOPATH,
               cPHOTOSERV: result[i].cPHOTOSERV,
               cPOCD: result[i].cPOCD,
-              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                  ? 'N'
-                  : result[i].cPREPAIRSTATUS,
+              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
               cPRODCD: result[i].cPRODCD,
               cPRODNM: result[i].cPRODNM,
               cPROMO: result[i].cPROMO,
@@ -1225,28 +1224,25 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
               iLUNITPRICE: result[i].iLUNITPRICE,
               iMSIZEQTY: '0.0',
               iMUNITPRICE: result[i].iMUNITPRICE,
-              iNETTOTAL:
-                  result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                  ? '0'
-                  : result[i].iPREPAIRAMOUT,
+              iNETTOTAL: result[i].iNETTOTAL ?? '0',
+              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
               iSEQ: result[i].iSEQ,
               iSSIZEQTY: result[i].iSSIZEQTY,
               iSUNITPRICE: result[i].iSUNITPRICE,
               iTOTAL:
-                  "${double.parse(result[i].iSSIZEQTY) * double.parse(result[i].iSUNITPRICE)}",
+                  "${double.parse(result[i].iSSIZEQTY ?? '0') * double.parse(result[i].iSUNITPRICE ?? '0')}",
             );
 
             podtList.add(product);
           }
-          if (double.parse(result[i].iMSIZEQTY) > 0) {
+          if (double.parse(result[i].iMSIZEQTY ?? '0') > 0) {
             var data = {
               "cUOMNM": result[i].cMUOMNM,
-              "iPRICE": double.parse(result[i].iMUNITPRICE),
-              "iTOTAL": double.parse(result[i].iMSIZEQTY)
+              "iPRICE": double.parse(result[i].iMUNITPRICE ?? '0'),
+              "iTOTAL": double.parse(result[i].iMSIZEQTY ?? '0')
             };
             unitList.add(data);
-            QueryPodtResp product = new QueryPodtResp(
+            QueryPodtResp product = QueryPodtResp(
               cBASKCD: result[i].cBASKCD,
               cBASKNM: result[i].cBASKNM,
               cBRNDCD: result[i].cBRNDCD,
@@ -1265,9 +1261,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
               cPHOTOPATH: result[i].cPHOTOPATH,
               cPHOTOSERV: result[i].cPHOTOSERV,
               cPOCD: result[i].cPOCD,
-              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                  ? 'N'
-                  : result[i].cPREPAIRSTATUS,
+              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
               cPRODCD: result[i].cPRODCD,
               cPRODNM: result[i].cPRODNM,
               cPROMO: result[i].cPROMO,
@@ -1288,28 +1282,25 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
               iLUNITPRICE: result[i].iLUNITPRICE,
               iMSIZEQTY: result[i].iMSIZEQTY,
               iMUNITPRICE: result[i].iMUNITPRICE,
-              iNETTOTAL:
-                  result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                  ? '0'
-                  : result[i].iPREPAIRAMOUT,
+              iNETTOTAL: result[i].iNETTOTAL ?? '0',
+              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
               iSEQ: result[i].iSEQ,
               iSSIZEQTY: '0.0',
               iSUNITPRICE: result[i].iSUNITPRICE,
               iTOTAL:
-                  "${double.parse(result[i].iMSIZEQTY) * double.parse(result[i].iMUNITPRICE)}",
+                  "${double.parse(result[i].iMSIZEQTY ?? '0') * double.parse(result[i].iMUNITPRICE ?? '0')}",
             );
 
             podtList.add(product);
           }
-          if (double.parse(result[i].iLSIZEQTY) > 0) {
+          if (double.parse(result[i].iLSIZEQTY ?? '0') > 0) {
             var data = {
               "cUOMNM": result[i].cLUOMNM,
-              "iPRICE": double.parse(result[i].iLUNITPRICE),
-              "iTOTAL": double.parse(result[i].iLSIZEQTY)
+              "iPRICE": double.parse(result[i].iLUNITPRICE ?? '0'),
+              "iTOTAL": double.parse(result[i].iLSIZEQTY ?? '0')
             };
             unitList.add(data);
-            QueryPodtResp product = new QueryPodtResp(
+            QueryPodtResp product = QueryPodtResp(
               cBASKCD: result[i].cBASKCD,
               cBASKNM: result[i].cBASKNM,
               cBRNDCD: result[i].cBRNDCD,
@@ -1328,9 +1319,7 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
               cPHOTOPATH: result[i].cPHOTOPATH,
               cPHOTOSERV: result[i].cPHOTOSERV,
               cPOCD: result[i].cPOCD,
-              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                  ? 'N'
-                  : result[i].cPREPAIRSTATUS,
+              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
               cPRODCD: result[i].cPRODCD,
               cPRODNM: result[i].cPRODNM,
               cPROMO: result[i].cPROMO,
@@ -1351,16 +1340,13 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
               iLUNITPRICE: result[i].iLUNITPRICE,
               iMSIZEQTY: '0.0',
               iMUNITPRICE: result[i].iMUNITPRICE,
-              iNETTOTAL:
-                  result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                  ? '0'
-                  : result[i].iPREPAIRAMOUT,
+              iNETTOTAL: result[i].iNETTOTAL ?? '0',
+              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
               iSEQ: result[i].iSEQ,
               iSSIZEQTY: '0.0',
               iSUNITPRICE: result[i].iSUNITPRICE,
               iTOTAL:
-                  "${double.parse(result[i].iLSIZEQTY) * double.parse(result[i].iLUNITPRICE)}",
+                  "${double.parse(result[i].iLSIZEQTY ?? '0') * double.parse(result[i].iLUNITPRICE ?? '0')}",
             );
 
             podtList.add(product);
@@ -1393,10 +1379,11 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
       double sum = 0;
       for (var i = 0; i < GlobalParam.deliveryPodtList.length; i++) {
         if (GlobalParam.deliveryPodtList[i].cPOCD ==
-            GlobalParam.customerPOHDSelect.cPOCD) {
+            GlobalParam.customerPOHDSelect!.cPOCD) {
           if (GlobalParam.deliveryPodtList[i].cPRODCD == product.cPRODCD) {
             if (GlobalParam.deliveryPodtList[i].cLUOMCD == product.cLUOMCD) {
-              sum = double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY) +
+              sum = double.parse(
+                      GlobalParam.deliveryPodtList[i].iLSIZEQTY ?? '0') +
                   inclease;
             }
           }
@@ -1436,10 +1423,11 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
       double sum = 0;
       for (var i = 0; i < GlobalParam.deliveryPodtList.length; i++) {
         if (GlobalParam.deliveryPodtList[i].cPOCD ==
-            GlobalParam.customerPOHDSelect.cPOCD) {
+            GlobalParam.customerPOHDSelect!.cPOCD) {
           if (GlobalParam.deliveryPodtList[i].cPRODCD == product.cPRODCD) {
             if (GlobalParam.deliveryPodtList[i].cMUOMCD == product.cMUOMCD) {
-              sum = double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY) +
+              sum = double.parse(
+                      GlobalParam.deliveryPodtList[i].iMSIZEQTY ?? '0') +
                   inclease;
             }
           }
@@ -1479,10 +1467,11 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
       double sum = 0;
       for (var i = 0; i < GlobalParam.deliveryPodtList.length; i++) {
         if (GlobalParam.deliveryPodtList[i].cPOCD ==
-            GlobalParam.customerPOHDSelect.cPOCD) {
+            GlobalParam.customerPOHDSelect!.cPOCD) {
           if (GlobalParam.deliveryPodtList[i].cPRODCD == product.cPRODCD) {
             if (GlobalParam.deliveryPodtList[i].cSUOMCD == product.cSUOMCD) {
-              sum = double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY) +
+              sum = double.parse(
+                      GlobalParam.deliveryPodtList[i].iSSIZEQTY ?? '0') +
                   inclease;
             }
           }
@@ -1531,10 +1520,11 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
       double sum = 0;
       for (var i = 0; i < GlobalParam.deliveryPodtList.length; i++) {
         if (GlobalParam.deliveryPodtList[i].cPOCD ==
-            GlobalParam.customerPOHDSelect.cPOCD) {
+            GlobalParam.customerPOHDSelect!.cPOCD) {
           if (GlobalParam.deliveryPodtList[i].cPRODCD == product.cPRODCD) {
             if (GlobalParam.deliveryPodtList[i].cLUOMCD == product.cLUOMCD) {
-              sum = double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY) -
+              sum = double.parse(
+                      GlobalParam.deliveryPodtList[i].iLSIZEQTY ?? '0') -
                   declease;
             }
           }
@@ -1574,10 +1564,11 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
       double sum = 0;
       for (var i = 0; i < GlobalParam.deliveryPodtList.length; i++) {
         if (GlobalParam.deliveryPodtList[i].cPOCD ==
-            GlobalParam.customerPOHDSelect.cPOCD) {
+            GlobalParam.customerPOHDSelect!.cPOCD) {
           if (GlobalParam.deliveryPodtList[i].cPRODCD == product.cPRODCD) {
             if (GlobalParam.deliveryPodtList[i].cMUOMCD == product.cMUOMCD) {
-              sum = double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY) -
+              sum = double.parse(
+                      GlobalParam.deliveryPodtList[i].iMSIZEQTY ?? '0') -
                   declease;
             }
           }
@@ -1617,10 +1608,11 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
       double sum = 0;
       for (var i = 0; i < GlobalParam.deliveryPodtList.length; i++) {
         if (GlobalParam.deliveryPodtList[i].cPOCD ==
-            GlobalParam.customerPOHDSelect.cPOCD) {
+            GlobalParam.customerPOHDSelect!.cPOCD) {
           if (GlobalParam.deliveryPodtList[i].cPRODCD == product.cPRODCD) {
             if (GlobalParam.deliveryPodtList[i].cSUOMCD == product.cSUOMCD) {
-              sum = double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY) -
+              sum = double.parse(
+                      GlobalParam.deliveryPodtList[i].iSSIZEQTY ?? '0') -
                   declease;
             }
           }

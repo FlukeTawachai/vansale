@@ -20,22 +20,20 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
         child: Container(
           child: Row(
             children: [
-              SizedBox(
+              const SizedBox(
                 width: 20.0,
               ),
               Container(
-                child: Container(
-                  width: 60.0,
-                  decoration: new BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.grey,
-                    image: DecorationImage(
-                      image: new AssetImage(
-                        'assets/images/brandon.png',
-                      ),
-                      scale: 1.0,
-                      fit: BoxFit.cover,
+                width: 60.0,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.grey,
+                  image: DecorationImage(
+                    image: AssetImage(
+                      'assets/images/brandon.png',
                     ),
+                    scale: 1.0,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -54,7 +52,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                     children: [
                       Container(
                         alignment: Alignment.centerLeft,
-                        child: Text(
+                        child: const Text(
                           'ชื่อร้านค้า',
                           style: TextStyle(
                             fontFamily: 'Prompt',
@@ -66,7 +64,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                       ),
                       Container(
                         alignment: Alignment.centerLeft,
-                        child: Text(
+                        child: const Text(
                           'ที่อยู่',
                           style: TextStyle(
                             fontFamily: 'Prompt',
@@ -78,7 +76,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                       ),
                       Container(
                         alignment: Alignment.centerLeft,
-                        child: Text(
+                        child: const Text(
                           'หมายเลขโทรศัพท์',
                           style: TextStyle(
                             fontFamily: 'Prompt',
@@ -118,18 +116,18 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                   Container(
                     alignment: Alignment.centerLeft,
                     width: 30.0,
-                    child: Icon(
+                    child: const Icon(
                       LineAwesomeIcons.user_check,
                       size: 35.0,
                       color: Colors.green,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
-                    child: Text(
+                    child: const Text(
                       'ประวัติ',
                       style: TextStyle(
                         fontFamily: 'Prompt',
@@ -151,7 +149,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                   Container(
                     padding: const EdgeInsets.only(left: 10.0),
                     alignment: Alignment.centerRight,
-                    child: Text(
+                    child: const Text(
                       'เยี่ยมครั้งสุดท้าย',
                       style: TextStyle(
                         fontFamily: 'Prompt',
@@ -161,13 +159,13 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
                   Expanded(
                     child: Container(
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         '12 ต.ค. 2563 13.10 น.',
                         style: TextStyle(
                           fontFamily: 'Prompt',
@@ -190,7 +188,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                   Container(
                     padding: const EdgeInsets.only(left: 10.0),
                     alignment: Alignment.centerRight,
-                    child: Text(
+                    child: const Text(
                       'สั่งครั้งสุดท้าย',
                       style: TextStyle(
                         fontFamily: 'Prompt',
@@ -200,13 +198,13 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
                   Expanded(
                     child: Container(
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         '10 ต.ค. 2563 16.10 น.',
                         style: TextStyle(
                           fontFamily: 'Prompt',
@@ -229,7 +227,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                   Container(
                     padding: const EdgeInsets.only(left: 10.0),
                     alignment: Alignment.centerRight,
-                    child: Text(
+                    child: const Text(
                       'เลขบิลครั้งสุดท้าย',
                       style: TextStyle(
                         fontFamily: 'Prompt',
@@ -239,13 +237,13 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
                   Container(
                     width: 60.0,
                     alignment: Alignment.centerLeft,
-                    child: Text(
+                    child: const Text(
                       'Q-3102',
                       style: TextStyle(
                         fontFamily: 'Prompt',
@@ -258,7 +256,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                   Expanded(
                     child: Container(
                       alignment: Alignment.centerRight,
-                      child: Text(
+                      child: const Text(
                         'ยอดสั่งซื้อ',
                         style: TextStyle(
                           fontFamily: 'Prompt',
@@ -269,7 +267,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
                   Container(
@@ -277,7 +275,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       '${NumberFormat("#,###", "en_US").format(int.parse('20000'))}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'Prompt',
                         color: Colors.blue,
                         //fontWeight: FontWeight.bold,
@@ -313,18 +311,18 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                   Container(
                     alignment: Alignment.centerLeft,
                     width: 30.0,
-                    child: Icon(
+                    child: const Icon(
                       LineAwesomeIcons.donate,
                       size: 35.0,
                       color: Colors.green,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
-                    child: Text(
+                    child: const Text(
                       'เครดิต',
                       style: TextStyle(
                         fontFamily: 'Prompt',
@@ -347,7 +345,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                     child: Container(
                       padding: const EdgeInsets.only(left: 50.0),
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         'ยอดค้าง',
                         style: TextStyle(
                           fontFamily: 'Prompt',
@@ -363,7 +361,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                     alignment: Alignment.centerRight,
                     child: Text(
                       '${NumberFormat("#,###", "en_US").format(int.parse('12000'))}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'Prompt',
                         color: Colors.red,
                         //fontWeight: FontWeight.bold,
@@ -371,13 +369,13 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
                   Container(
                     width: 100.0,
                     alignment: Alignment.centerLeft,
-                    child: Text(
+                    child: const Text(
                       'บาท',
                       style: TextStyle(
                         fontFamily: 'Prompt',
@@ -400,7 +398,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                     child: Container(
                       padding: const EdgeInsets.only(left: 50.0),
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         'วงเงินเครดิต',
                         style: TextStyle(
                           fontFamily: 'Prompt',
@@ -416,7 +414,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                     alignment: Alignment.centerRight,
                     child: Text(
                       '${NumberFormat("#,###", "en_US").format(int.parse('10000'))}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'Prompt',
                         color: Colors.grey,
                         //fontWeight: FontWeight.bold,
@@ -424,14 +422,14 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
                   Container(
                     width: 100.0,
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.only(right: 5.0),
-                    child: Text(
+                    child: const Text(
                       'บาท',
                       style: TextStyle(
                         fontFamily: 'Prompt',
@@ -454,7 +452,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                     child: Container(
                       padding: const EdgeInsets.only(left: 50.0),
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         'วงเงินคงเหลือ',
                         style: TextStyle(
                           fontFamily: 'Prompt',
@@ -470,7 +468,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                     alignment: Alignment.centerRight,
                     child: Text(
                       '${NumberFormat("#,###", "en_US").format(int.parse('8100'))}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'Prompt',
                         color: Colors.green,
                         //fontWeight: FontWeight.bold,
@@ -478,13 +476,13 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
                   Container(
                     width: 100.0,
                     alignment: Alignment.centerLeft,
-                    child: Text(
+                    child: const Text(
                       'บาท',
                       style: TextStyle(
                         fontFamily: 'Prompt',
@@ -522,18 +520,18 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                   Container(
                     alignment: Alignment.centerLeft,
                     width: 30.0,
-                    child: Icon(
+                    child: const Icon(
                       LineAwesomeIcons.shopping_basket,
                       size: 35.0,
                       color: Colors.green,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
-                    child: Text(
+                    child: const Text(
                       'ตระกร้า',
                       style: TextStyle(
                         fontFamily: 'Prompt',
@@ -546,7 +544,7 @@ class _CustomerStoreListState extends State<CustomerStoreList> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             Expanded(

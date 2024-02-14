@@ -40,7 +40,7 @@ class _AddSupplierMainState extends State<AddSupplierMain> {
   FocusNode nodeContactName = FocusNode();
   FocusNode nodeContactTel = FocusNode();
   FocusNode nodeLine = FocusNode();
-  Future<bool> loadFunction;
+  late Future<bool> loadFunction;
 
   List<AddressItemInfo> lstProvices = [];
   List<AddressItemInfo> lstCities = [];
@@ -66,7 +66,7 @@ class _AddSupplierMainState extends State<AddSupplierMain> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('เพิ่มร้านค้า'),
+        title: const Text('เพิ่มร้านค้า'),
       ),
       backgroundColor: HexColor("#F2F3F4"),
       body: GestureDetector(
@@ -449,13 +449,13 @@ class _AddSupplierMainState extends State<AddSupplierMain> {
                       fontSize: 16,
                       color: HexColor('#000000'),
                     ),
-                    onChanged: (String newValue) async {
+                    onChanged: (newValue) async {
                       EasyLoading.show();
                       WebApiProxy proxy = WebApiProxy();
                       lstCities.clear();
                       var cities = AddressItemInfo(
                           name: 'เลือก', nameEN: "Select", postCode: '');
-                      var allCities = await proxy.getCities(newValue);
+                      var allCities = await proxy.getCities(newValue ?? '');
                       lstCities.add(cities);
                       lstCities.addAll(allCities);
                       // lstCities = await proxy.getCities(newValue);
@@ -465,7 +465,7 @@ class _AddSupplierMainState extends State<AddSupplierMain> {
                         var districts = AddressItemInfo(
                             name: 'เลือก', nameEN: "Select", postCode: '');
                         var allDistricts = await proxy.getDistricts(
-                            newValue, lstCities[0].name);
+                            newValue ?? '', lstCities[0].name ?? '');
                         lstDistricts.add(districts);
                         lstDistricts.addAll(allDistricts);
                         // lstDistricts = await proxy.getDistricts(
@@ -474,10 +474,10 @@ class _AddSupplierMainState extends State<AddSupplierMain> {
                       EasyLoading.dismiss();
 
                       setState(() {
-                        dropdownProvince = newValue;
-                        dropdownDistrict = lstCities[0].name;
-                        dropdownSubDistrict = lstDistricts[0].name;
-                        postCode.text = lstDistricts[0].postCode;
+                        dropdownProvince = newValue ?? '';
+                        dropdownDistrict = lstCities[0].name ?? '';
+                        dropdownSubDistrict = lstDistricts[0].name ?? '';
+                        postCode.text = lstDistricts[0].postCode ?? '';
                       });
                     },
                     selectedItemBuilder: (BuildContext context) {
@@ -487,9 +487,9 @@ class _AddSupplierMainState extends State<AddSupplierMain> {
                           color = '#68879A';
                         }
                         return Text(
-                          value.name,
+                          value.name ?? '',
                           style: TextStyle(
-                              color: HexColor('${color}'),
+                              color: HexColor(color),
                               fontFamily: "Prompt",
                               fontSize: 16),
                         );
@@ -501,7 +501,7 @@ class _AddSupplierMainState extends State<AddSupplierMain> {
                       return DropdownMenuItem<String>(
                         value: value.name,
                         child: Text(
-                          value.name,
+                          value.name ?? '',
                           // style: TextStyle(
                           //     color: HexColor('${dropdownProvinceColor}')),
                         ),
@@ -554,11 +554,11 @@ class _AddSupplierMainState extends State<AddSupplierMain> {
                       color: HexColor('#000000'),
                       // fontFamily: "Prompt",
                     ),
-                    onChanged: (String newValue) async {
+                    onChanged: (newValue) async {
                       EasyLoading.show();
                       WebApiProxy proxy = WebApiProxy();
-                      var allDistricts =
-                          await proxy.getDistricts(dropdownProvince, newValue);
+                      var allDistricts = await proxy.getDistricts(
+                          dropdownProvince, newValue ?? '');
 
                       lstDistricts.addAll(allDistricts);
                       // print('++++++++++ ${lstDistricts[0].name} ++++++++++');
@@ -567,8 +567,8 @@ class _AddSupplierMainState extends State<AddSupplierMain> {
                       EasyLoading.dismiss();
 
                       setState(() {
-                        dropdownDistrict = newValue;
-                        dropdownSubDistrict = lstDistricts[0].name;
+                        dropdownDistrict = newValue ?? '';
+                        dropdownSubDistrict = lstDistricts[0].name ?? '';
                         // postCode.text = lstDistricts[0].postCode;
                       });
                     },
@@ -579,11 +579,11 @@ class _AddSupplierMainState extends State<AddSupplierMain> {
                           color = '#68879A';
                         }
                         return Text(
-                          value.name,
+                          value.name ?? '',
                           style: TextStyle(
-                              color: HexColor('${color}'),
+                              color: HexColor(color),
                               fontFamily: "Prompt",
-                              fontSize:16),
+                              fontSize: 16),
                         );
                       }).toList();
                     },
@@ -591,7 +591,7 @@ class _AddSupplierMainState extends State<AddSupplierMain> {
                         .map<DropdownMenuItem<String>>((AddressItemInfo value) {
                       return DropdownMenuItem<String>(
                         value: value.name,
-                        child: Text(value.name),
+                        child: Text(value.name ?? ''),
                       );
                     }).toList(),
                   ),
@@ -641,13 +641,13 @@ class _AddSupplierMainState extends State<AddSupplierMain> {
                       color: HexColor('#000000'),
                       // fontFamily: "Prompt",
                     ),
-                    onChanged: (String newValue) {
+                    onChanged: (newValue) {
                       var districtInfo =
                           lstDistricts.where((x) => x.name == newValue).first;
 
                       setState(() {
-                        dropdownSubDistrict = newValue;
-                        postCode.text = districtInfo.postCode;
+                        dropdownSubDistrict = newValue ?? '';
+                        postCode.text = districtInfo.postCode ?? '';
                       });
                     },
                     selectedItemBuilder: (BuildContext context) {
@@ -657,9 +657,9 @@ class _AddSupplierMainState extends State<AddSupplierMain> {
                           color = '#68879A';
                         }
                         return Text(
-                          value.name,
+                          value.name ?? '',
                           style: TextStyle(
-                              color: HexColor('${color}'),
+                              color: HexColor(color),
                               fontFamily: "Prompt",
                               fontSize: 16),
                         );
@@ -669,7 +669,7 @@ class _AddSupplierMainState extends State<AddSupplierMain> {
                         .map<DropdownMenuItem<String>>((AddressItemInfo value) {
                       return DropdownMenuItem<String>(
                         value: value.name,
-                        child: Text(value.name),
+                        child: Text(value.name ?? ''),
                       );
                     }).toList(),
                   ),
@@ -1072,9 +1072,9 @@ class _AddSupplierMainState extends State<AddSupplierMain> {
     lstDistricts.add(defaultSelect);
     lstProvices.addAll(allProvices);
 
-    dropdownSubDistrict = lstDistricts[0].name;
-    dropdownProvince = lstProvices[0].name;
-    dropdownDistrict = lstCities[0].name;
+    dropdownSubDistrict = lstDistricts[0].name ?? '';
+    dropdownProvince = lstProvices[0].name ?? '';
+    dropdownDistrict = lstCities[0].name ?? '';
     setState(() {});
   }
 }

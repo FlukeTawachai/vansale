@@ -13,7 +13,7 @@ import 'package:vansale/screens/delivery/delivery_money/delivery_money_main.dart
 
 class DeliveryMoneyNew extends StatefulWidget {
   final String typeMenuCode;
-  DeliveryMoneyNew(this.typeMenuCode);
+  const DeliveryMoneyNew(this.typeMenuCode, {super.key});
   @override
   State<DeliveryMoneyNew> createState() => _DeliveryMoneyNewState();
 }
@@ -23,11 +23,11 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
   TextEditingController name = TextEditingController();
   TextEditingController price = TextEditingController();
   TextEditingController remark = TextEditingController();
-  PickedFile imageFile;
+  late PickedFile imageFile;
   // final ImagePicker _picker = ImagePicker();
-  File file;
+  late File file;
   bool imgIsNull = true;
-  File _image;
+  late File _image;
   String base64 = '';
   String costName = '';
   double cost = 0;
@@ -39,7 +39,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('ส่งเงิน - บันทึกค่าใช้จ่าย'),
+        title: const Text('ส่งเงิน - บันทึกค่าใช้จ่าย'),
       ),
       body: Column(
         children: [
@@ -60,7 +60,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'จ่ายค่า',
               style: TextStyle(fontSize: 16),
             ),
@@ -69,7 +69,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
             height: 48.0,
             decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(5),
                   topRight: Radius.circular(5),
                   bottomLeft: Radius.circular(5),
@@ -88,7 +88,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
                     ),
                     controller: name,
                     cursorColor: Colors.black,
-                    decoration: new InputDecoration(
+                    decoration: const InputDecoration(
                       border: InputBorder.none,
                       focusedBorder: InputBorder.none,
                       enabledBorder: InputBorder.none,
@@ -117,7 +117,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'จำนวนเงิน',
               style: TextStyle(fontSize: 16),
             ),
@@ -127,7 +127,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(5),
                   topRight: Radius.circular(5),
                   bottomLeft: Radius.circular(5),
@@ -147,7 +147,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
                     controller: price,
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.black,
-                    decoration: new InputDecoration(
+                    decoration: const InputDecoration(
                       border: InputBorder.none,
                       focusedBorder: InputBorder.none,
                       enabledBorder: InputBorder.none,
@@ -178,7 +178,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'หมายเหตุ',
               style: TextStyle(fontSize: 16),
             ),
@@ -187,7 +187,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(5),
                   topRight: Radius.circular(5),
                   bottomLeft: Radius.circular(5),
@@ -199,21 +199,21 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
                 padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                 child: TextField(
                   maxLength: 100,
-                  scrollPadding: EdgeInsets.only(bottom: 40),
+                  scrollPadding: const EdgeInsets.only(bottom: 40),
                   textAlign: TextAlign.left,
                   maxLines: 2,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.grey,
                   ),
                   controller: remark,
                   cursorColor: Colors.black,
-                  decoration: new InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     enabledBorder: InputBorder.none,
                     errorBorder: InputBorder.none,
                     disabledBorder: InputBorder.none,
-                    contentPadding: EdgeInsets.only(
+                    contentPadding: const EdgeInsets.only(
                         left: 15, bottom: 11, top: 15, right: 15),
                   ),
                   onChanged: (value) {
@@ -267,7 +267,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
 
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => DeliveryMoneyMain(
-                            GlobalParam.typeMenuCode, false)));
+                            GlobalParam.typeMenuCode ?? '', false)));
                   } else {
                     if (cost == 0) {
                       wrongDialog('กรุณาระบุจำนวนเงิน');
@@ -277,7 +277,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
                       } else {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => DeliveryMoneyMain(
-                                GlobalParam.typeMenuCode, true)));
+                                GlobalParam.typeMenuCode ?? '', true)));
                         GlobalParam.deliveryAddSendMoney.cCOSNM = costName;
                         GlobalParam.deliveryAddSendMoney.iCOST = cost;
                         GlobalParam.deliveryAddSendMoney.cREMARK = comment;
@@ -303,7 +303,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
                           
                         ),*/
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10.0,
                       ),
                       Container(
@@ -337,14 +337,14 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
   }
 
   Widget showImage() {
-    return Container(
+    return SizedBox(
       height: 224,
       child: Column(
         children: [
           Container(
             padding: const EdgeInsets.only(left: 30.0),
             alignment: Alignment.topLeft,
-            child: Text(
+            child: const Text(
               'บันทึกภาพถ่าย',
               style: TextStyle(
                 fontSize: 14.0,
@@ -373,7 +373,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
                           onTap: () {
                             openCamera();
                           },
-                          child: Container(
+                          child: SizedBox(
                             width: 500,
                             height: 300,
                             child: Image.file(
@@ -391,7 +391,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
                           onTap: () {
                             openCamera();
                           },
-                          child: Icon(
+                          child: const Icon(
                             LineAwesomeIcons.camera,
                             color: Colors.white,
                             size: 100.0,
@@ -425,7 +425,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
 
       final bytes = File(imageFile.path).readAsBytesSync();

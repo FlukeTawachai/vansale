@@ -10,9 +10,12 @@ import 'package:vansale/screens/delivery/delivery_store/delivery_store_shipping/
 import 'package:vansale/screens/delivery/delivery_store/delivery_store_shipping/delivery_Store_GetGood_Product.dart';
 import 'package:vansale/screens/stocks/stockOrderDetail.dart';
 
+import '../../../api/class/response/routeMobile/proTypeResp.dart';
+
 class CustomerFilterPage extends StatefulWidget {
   final String pageNumber;
-  const CustomerFilterPage({Key key, this.pageNumber}) : super(key: key);
+  const CustomerFilterPage({Key? key, required this.pageNumber})
+      : super(key: key);
 
   @override
   State<CustomerFilterPage> createState() => _CustomerFilterPageState();
@@ -21,7 +24,7 @@ class CustomerFilterPage extends StatefulWidget {
 class _CustomerFilterPageState extends State<CustomerFilterPage> {
   var subType = [];
   List filter = [];
-  double widthScreen;
+  late double widthScreen;
   var typeCodeNum = '';
 
   @override
@@ -31,20 +34,26 @@ class _CustomerFilterPageState extends State<CustomerFilterPage> {
     for (int i = 0; i < GlobalParam.deliveryProType.length; i++) {
       // type[i]['onClick'] = false;
       GlobalParam.deliveryProType[i].onClick = false;
-      for (int j = 0; j < GlobalParam.deliveryProType[i].category.length; j++) {
-        GlobalParam.deliveryProType[i].category[j].onSelect = false;
+      for (int j = 0;
+          j < (GlobalParam.deliveryProType[i].category ?? []).length;
+          j++) {
+        GlobalParam.deliveryProType[i].category![j].onSelect = false;
         for (int k = 0;
-            k < GlobalParam.deliveryProType[i].category[j].subCategory.length;
+            k <
+                (GlobalParam.deliveryProType[i].category![j].subCategory ?? [])
+                    .length;
             k++) {
-          GlobalParam.deliveryProType[i].category[j].subCategory[k].click =
+          GlobalParam.deliveryProType[i].category![j].subCategory![k].click =
               false;
           for (int l = 0;
               l <
-                  GlobalParam.deliveryProType[i].category[j].subCategory[k]
-                      .brand.length;
+                  (GlobalParam.deliveryProType[i].category![j].subCategory![k]
+                              .brand ??
+                          [])
+                      .length;
               l++) {
-            GlobalParam.deliveryProType[i].category[j].subCategory[k].brand[l]
-                .click = false;
+            GlobalParam.deliveryProType[i].category![j].subCategory![k]
+                .brand![l].click = false;
           }
         }
       }
@@ -58,7 +67,7 @@ class _CustomerFilterPageState extends State<CustomerFilterPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('กรองสินค้า'),
+        title: const Text('กรองสินค้า'),
       ),
       backgroundColor: HexColor('#E3EDF0'),
       body: Row(
@@ -78,10 +87,11 @@ class _CustomerFilterPageState extends State<CustomerFilterPage> {
                         }
 
                         setState(() {
-                          subType = GlobalParam.deliveryProType[index].category;
+                          subType =
+                              GlobalParam.deliveryProType[index].category!;
                           GlobalParam.deliveryProType[index].onClick = true;
                           typeCodeNum =
-                              GlobalParam.deliveryProType[index].typeCD;
+                              GlobalParam.deliveryProType[index].typeCD!;
                           // print(proType[index]['category']);
                         });
                       },
@@ -98,7 +108,7 @@ class _CustomerFilterPageState extends State<CustomerFilterPage> {
                           child: Text(
                             '${GlobalParam.deliveryProType[index].typeName}',
                             maxLines: 2,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontFamily: 'Prompt',
                                 fontSize: 16,
                                 overflow: TextOverflow.ellipsis),
@@ -145,7 +155,7 @@ class _CustomerFilterPageState extends State<CustomerFilterPage> {
                                     alignment: Alignment.centerLeft,
                                     child: Text(
                                       '${subType[index].catNM}',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 16,
                                           fontFamily: 'Prompt',
                                           overflow: TextOverflow.ellipsis),
@@ -305,14 +315,14 @@ class _CustomerFilterPageState extends State<CustomerFilterPage> {
                                                                                     style: TextStyle(fontSize: 16, fontFamily: 'Prompt', color: subType[index].onSelect == true ? Colors.green : Colors.grey, overflow: TextOverflow.ellipsis),
                                                                                   ),
                                                                                 ),
-                                                                                Spacer(),
-                                                                                Container(
+                                                                                const Spacer(),
+                                                                                SizedBox(
                                                                                     width: widthScreen * 0.2,
                                                                                     child: Checkbox(
                                                                                       checkColor: Colors.white,
                                                                                       activeColor: Colors.green,
                                                                                       value: subType[index].subCategory[j].brand[i].click,
-                                                                                      onChanged: (bool value) {
+                                                                                      onChanged: (value) {
                                                                                         setState(() {
                                                                                           subType[index].subCategory[j].brand[i].click = value;
                                                                                         });
@@ -345,7 +355,16 @@ class _CustomerFilterPageState extends State<CustomerFilterPage> {
 
             for (int i = 0; i < GlobalParam.deliveryProType.length; i++) {
               if (GlobalParam.deliveryProType[i].onClick == true) {
-                GlobalParam.deliveryProType[i].category = subType;
+                List<Category> fomatSubType = subType.map((item) {
+                  return Category(
+                    catNM: item['catNM'],
+                    catCD: item['catCD'],
+                    onSelect: item['onSelect'],
+                    hight: item['hight'],
+                    subCategory: item['subCategory'],
+                  );
+                }).toList();
+                GlobalParam.deliveryProType[i].category = fomatSubType;
               }
             }
 
@@ -358,22 +377,22 @@ class _CustomerFilterPageState extends State<CustomerFilterPage> {
             for (int i = 0; i < type.length; i++) {
               var cate = type[i].category;
               if (type[i].onClick == true) {
-                typeCodeNum = type[i].typeCD;
+                typeCodeNum = type[i].typeCD!;
               }
 
-              for (int j = 0; j < cate.length; j++) {
-                var subCate = cate[j].subCategory;
+              for (int j = 0; j < (cate ?? []).length; j++) {
+                var subCate = cate![j].subCategory;
                 if (cate[j].onSelect == true) {
                   catCodeList.add(cate[j].catCD);
                 }
-                for (int k = 0; k < subCate.length; k++) {
-                  var bra = subCate[k].brand;
+                for (int k = 0; k < (subCate ?? []).length; k++) {
+                  var bra = subCate![k].brand;
                   if (subCate[k].click == true) {
                     subCatCodeList.add(subCate[k].subCatCD);
                   }
 
-                  for (int l = 0; l < bra.length; l++) {
-                    if (bra[l].click == true) {
+                  for (int l = 0; l < (bra ?? []).length; l++) {
+                    if (bra![l].click == true) {
                       brandCodeList.add(bra[l].brandCD);
                     }
                   }
@@ -523,7 +542,7 @@ class _CustomerFilterPageState extends State<CustomerFilterPage> {
                     i < GlobalParam.supplierOrProductList.length;
                     i++) {
                   if (GlobalParam.supplierOrProductList[i].cPOCD ==
-                      GlobalParam.supplierSelectOrder.cPOCD) {
+                      GlobalParam.supplierSelectOrder!.cPOCD) {
                     products.add(GlobalParam.supplierOrProductList[i]);
                   }
                 }
@@ -533,7 +552,7 @@ class _CustomerFilterPageState extends State<CustomerFilterPage> {
                     typeF.add(products[i]);
                   }
                 }
-                if (catCodeList.length > 0) {
+                if (catCodeList.isNotEmpty) {
                   GlobalParam.supplierOrProductShowList = [];
 
                   for (int i = 0; i < typeF.length; i++) {
@@ -545,7 +564,7 @@ class _CustomerFilterPageState extends State<CustomerFilterPage> {
                     }
                   }
 
-                  if (subCatCodeList.length > 0) {
+                  if (subCatCodeList.isNotEmpty) {
                     GlobalParam.supplierOrProductShowList = [];
 
                     for (int i = 0; i < catF.length; i++) {
@@ -556,7 +575,7 @@ class _CustomerFilterPageState extends State<CustomerFilterPage> {
                         }
                       }
                     }
-                    if (brandCodeList.length > 0) {
+                    if (brandCodeList.isNotEmpty) {
                       GlobalParam.supplierOrProductShowList = [];
 
                       for (int i = 0; i < subCatF.length; i++) {
@@ -602,7 +621,7 @@ class _CustomerFilterPageState extends State<CustomerFilterPage> {
                     i < GlobalParam.supplierOrProductList.length;
                     i++) {
                   if (GlobalParam.supplierOrProductList[i].cPOCD ==
-                      GlobalParam.supplierSelectOrder.cPOCD) {
+                      GlobalParam.supplierSelectOrder!.cPOCD) {
                     products.add(GlobalParam.supplierOrProductList[i]);
                   }
                 }
@@ -625,14 +644,14 @@ class _CustomerFilterPageState extends State<CustomerFilterPage> {
                 context,
                 MaterialPageRoute(
                   builder: (BuildContext context) => CustomerPurchaseOrderEdit(
-                      GlobalParam.typeMenuCode, false),
+                      GlobalParam.typeMenuCode ?? '', false),
                 ),
               );
             }
           },
           child: Container(
               // width: 96,
-              child: Center(
+              child: const Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,

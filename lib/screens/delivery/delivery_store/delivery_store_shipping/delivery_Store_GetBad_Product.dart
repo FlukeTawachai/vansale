@@ -21,7 +21,7 @@ import 'package:vansale/screens/delivery/delivery_store/delivery_store_shipping/
 import 'package:vansale/screens/delivery/delivery_store/delivery_store_shipping/delivery_store_image_product.dart';
 import 'package:vansale/screens/delivery/delivery_store_footer.dart';
 
-DelayTime delay = new DelayTime();
+DelayTime delay = DelayTime();
 
 class DeliveryStoreGetBadProduct extends StatefulWidget {
   final String typeMenuCode;
@@ -34,13 +34,13 @@ class DeliveryStoreGetBadProduct extends StatefulWidget {
 
 class _DeliveryStoreGetBadProductState
     extends State<DeliveryStoreGetBadProduct> {
-  double widthScreen;
-  String cCUSTCD = GlobalParam.deliverySelectStore.cCUSTCD;
-  String cPOCD = GlobalParam.deliveryStoreSum.cPOCD;
+  late double widthScreen;
+  String cCUSTCD = GlobalParam.deliverySelectStore.cCUSTCD!;
+  String cPOCD = GlobalParam.deliveryStoreSum.cPOCD!;
   List<QueryPodtResp> podtList = [];
   List<QueryPodtResp> podtListNstatus = [];
   List<PoHDAndPoDTResp> productList = [];
-  final formatNum = new NumberFormat("#,###.##", "en_US");
+  final formatNum = NumberFormat("#,###.##", "en_US");
   List<TextEditingController> sController = [];
   List<TextEditingController> mController = [];
   List<TextEditingController> lController = [];
@@ -72,13 +72,13 @@ class _DeliveryStoreGetBadProductState
     widthScreen = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black, //change your color here
           ),
           elevation: 0.0,
           backgroundColor: Colors.green,
           centerTitle: true,
-          title: Text(
+          title: const Text(
             'สินค้าเสีย',
             style: TextStyle(
               color: Colors.black,
@@ -88,7 +88,7 @@ class _DeliveryStoreGetBadProductState
           actions: [
             GlobalParam.subMenuCode == "003"
                 ? IconButton(
-                    onPressed: () {}, icon: Icon(LineAwesomeIcons.print))
+                    onPressed: () {}, icon: const Icon(LineAwesomeIcons.print))
                 : Container()
           ],
         ),
@@ -109,7 +109,7 @@ class _DeliveryStoreGetBadProductState
                             width: widthScreen * 0.74,
                             alignment: Alignment.center,
                             margin: const EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(5),
@@ -139,14 +139,14 @@ class _DeliveryStoreGetBadProductState
                                               GlobalParam.deliveryHisProduct;
                                         }
                                       },
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontFamily: 'Prompt',
                                       ),
                                       textInputAction: TextInputAction.search,
                                       decoration: InputDecoration(
                                         hintText: "ค้นหา",
                                         border: InputBorder.none,
-                                        contentPadding: EdgeInsets.only(
+                                        contentPadding: const EdgeInsets.only(
                                             left: 5.0, top: 5.0),
                                         prefixIcon: RotatedBox(
                                           quarterTurns: 1,
@@ -165,39 +165,37 @@ class _DeliveryStoreGetBadProductState
                                 ),
                                 Container(
                                   alignment: Alignment.center,
-                                  child: Container(
-                                    child: IconButton(
-                                      icon: const Icon(Icons.qr_code),
-                                      iconSize: 25.0,
-                                      color: Colors.black,
-                                      onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DeliveryQrScanner(
-                                                      code: '002',
-                                                      navigator: () {
-                                                        Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (BuildContext
-                                                                    context) =>
-                                                                DeliveryStoreGetBadProduct(
-                                                                    GlobalParam
-                                                                        .typeMenuCode,
-                                                                    ''),
-                                                          ),
-                                                        );
-                                                      },
-                                                    )));
-                                      },
-                                    ),
+                                  child: IconButton(
+                                    icon: const Icon(Icons.qr_code),
+                                    iconSize: 25.0,
+                                    color: Colors.black,
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  DeliveryQrScanner(
+                                                    code: '002',
+                                                    navigator: () {
+                                                      Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              DeliveryStoreGetBadProduct(
+                                                                  GlobalParam
+                                                                      .typeMenuCode!,
+                                                                  ''),
+                                                        ),
+                                                      );
+                                                    },
+                                                  )));
+                                    },
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             width: widthScreen * 0.2,
                             height: 48,
                             child: Card(
@@ -205,7 +203,7 @@ class _DeliveryStoreGetBadProductState
                               child: InkWell(
                                 onTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => FilterPage(
+                                      builder: (context) => const FilterPage(
                                             pageNumber: '002',
                                           )));
                                 },
@@ -213,7 +211,7 @@ class _DeliveryStoreGetBadProductState
                                   color: Colors.black12,
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text(
+                                  child: const Text(
                                     'ประเภท',
                                     style: TextStyle(
                                       fontSize: 14.0,
@@ -238,7 +236,8 @@ class _DeliveryStoreGetBadProductState
                       child: Center(
                           child: Text(
                         widget.routeName,
-                        style: TextStyle(fontSize: 18, fontFamily: "Prompt"),
+                        style:
+                            const TextStyle(fontSize: 18, fontFamily: "Prompt"),
                       )))
                   : Container(),
               Expanded(child: listOfProduct()),
@@ -291,12 +290,12 @@ class _DeliveryStoreGetBadProductState
                   addReturnHD();
                 },
                 navigated2: () {},
-                icon1: Icon(
+                icon1: const Icon(
                   LineAwesomeIcons.check_circle,
                   color: Colors.red,
                   size: 25.0,
                 ),
-                icon2: Icon(
+                icon2: const Icon(
                   LineAwesomeIcons.check_circle,
                   color: Colors.red,
                   size: 25.0,
@@ -342,11 +341,11 @@ class _DeliveryStoreGetBadProductState
             podtList.clear();
             double total = 0;
             for (int i = 0; i < result.length; i++) {
-              sumItem += double.parse(result[i].iSSIZEQTY) +
-                  double.parse(result[i].iMSIZEQTY) +
-                  double.parse(result[i].iLSIZEQTY);
+              sumItem += double.parse(result[i].iSSIZEQTY!) +
+                  double.parse(result[i].iMSIZEQTY!) +
+                  double.parse(result[i].iLSIZEQTY!);
               podtList.add(result[i]);
-              total += double.parse(result[i].iNETTOTAL);
+              total += double.parse(result[i].iNETTOTAL!);
 
               // if (double.parse(result[i].iSSIZEQTY) != 0.0) {
               //   var data = {
@@ -472,26 +471,26 @@ class _DeliveryStoreGetBadProductState
         if (GlobalParam.deliveryHisProduct[i].iINCOMPRO == null) {
           GlobalParam.deliveryHisProduct[i].iINCOMPRO = 0;
         }
-        checkReturn += GlobalParam.deliveryHisProduct[i].iINCOMPRO;
-        if (GlobalParam.deliveryHisProduct[i].iINCOMPRO > 0) {
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY) > 0) {
-            sQty = double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY);
+        checkReturn += GlobalParam.deliveryHisProduct[i].iINCOMPRO!;
+        if (GlobalParam.deliveryHisProduct[i].iINCOMPRO! > 0) {
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY!) > 0) {
+            sQty = double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY!);
             sPrice =
-                double.parse(GlobalParam.deliveryHisProduct[i].iSUNITPRICE);
+                double.parse(GlobalParam.deliveryHisProduct[i].iSUNITPRICE!);
             sTotal += sQty * sPrice;
           }
 
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iMSIZEQTY) > 0) {
-            mQty = double.parse(GlobalParam.deliveryHisProduct[i].iMSIZEQTY);
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iMSIZEQTY!) > 0) {
+            mQty = double.parse(GlobalParam.deliveryHisProduct[i].iMSIZEQTY!);
             mPrice =
-                double.parse(GlobalParam.deliveryHisProduct[i].iMUNITPRICE);
+                double.parse(GlobalParam.deliveryHisProduct[i].iMUNITPRICE!);
             mTotal += mQty * mPrice;
           }
 
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iLSIZEQTY) > 0) {
-            lQty = double.parse(GlobalParam.deliveryHisProduct[i].iLSIZEQTY);
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iLSIZEQTY!) > 0) {
+            lQty = double.parse(GlobalParam.deliveryHisProduct[i].iLSIZEQTY!);
             lPrice =
-                double.parse(GlobalParam.deliveryHisProduct[i].iLUNITPRICE);
+                double.parse(GlobalParam.deliveryHisProduct[i].iLUNITPRICE!);
             lTotal += lQty * lPrice;
           }
         }
@@ -518,11 +517,11 @@ class _DeliveryStoreGetBadProductState
           } else {
             GlobalParam.deliveryReturnProRef = result.result;
             for (int i = 0; i < GlobalParam.deliveryHisProduct.length; i++) {
-              if ((double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY) +
+              if ((double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY!) +
                       double.parse(
-                          GlobalParam.deliveryHisProduct[i].iMSIZEQTY) +
+                          GlobalParam.deliveryHisProduct[i].iMSIZEQTY!) +
                       double.parse(
-                          GlobalParam.deliveryHisProduct[i].iLSIZEQTY)) >
+                          GlobalParam.deliveryHisProduct[i].iLSIZEQTY!)) >
                   0) {
                 AddReturnDTReq data = AddReturnDTReq(
                     cRETCD: result.result,
@@ -552,13 +551,13 @@ class _DeliveryStoreGetBadProductState
           GlobalParam.deliveryRegetPODT = true;
           Navigator.of(context).push(MaterialPageRoute(
               builder: (comtext) =>
-                  DeliveryImageProduct(GlobalParam.typeMenuCode)));
+                  DeliveryImageProduct(GlobalParam.typeMenuCode!)));
         }
       } else {
         GlobalParam.deliveryRegetPODT = true;
         Navigator.of(context).push(MaterialPageRoute(
             builder: (comtext) =>
-                DeliveryImageProduct(GlobalParam.typeMenuCode)));
+                DeliveryImageProduct(GlobalParam.typeMenuCode!)));
       }
     } on SocketException catch (e) {
       wrongDialog(e.message);
@@ -596,14 +595,14 @@ class _DeliveryStoreGetBadProductState
       for (int i = 0; i < GlobalParam.deliveryHisProduct.length; i++) {
         if (GlobalParam.deliveryHisProduct[i].iLOSSPRO != 0) {
           String cUOMCD = '';
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryHisProduct[i].cSUOMCD;
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryHisProduct[i].cSUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iMSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryHisProduct[i].cMUOMCD;
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iMSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryHisProduct[i].cMUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iLSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryHisProduct[i].cLUOMCD;
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iLSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryHisProduct[i].cLUOMCD!;
           }
           StockCardReq reBad = StockCardReq(
               cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
@@ -642,7 +641,7 @@ class _DeliveryStoreGetBadProductState
       GlobalParam.deliveryRegetPODT = true;
       Navigator.of(context).push(MaterialPageRoute(
           builder: (comtext) =>
-              DeliveryImageProduct(GlobalParam.typeMenuCode)));
+              DeliveryImageProduct(GlobalParam.typeMenuCode!)));
 
       // setState(() {});
     } on SocketException catch (e) {
@@ -698,27 +697,27 @@ class _DeliveryStoreGetBadProductState
         ? ListView.builder(
             itemCount: GlobalParam.deliveryShowHisProduct.length,
             itemBuilder: (BuildContext context, int index) {
-              sController.add(new TextEditingController());
-              mController.add(new TextEditingController());
-              lController.add(new TextEditingController());
+              sController.add(TextEditingController());
+              mController.add(TextEditingController());
+              lController.add(TextEditingController());
               double unitPrice = 0.0;
               if (double.parse(
-                      GlobalParam.deliveryShowHisProduct[index].iSSIZEQTY) !=
+                      GlobalParam.deliveryShowHisProduct[index].iSSIZEQTY!) !=
                   0) {
                 unitPrice = double.parse(
-                    GlobalParam.deliveryShowHisProduct[index].iSUNITPRICE);
+                    GlobalParam.deliveryShowHisProduct[index].iSUNITPRICE!);
               }
               if (double.parse(
-                      GlobalParam.deliveryShowHisProduct[index].iMSIZEQTY) !=
+                      GlobalParam.deliveryShowHisProduct[index].iMSIZEQTY!) !=
                   0) {
                 unitPrice = double.parse(
-                    GlobalParam.deliveryShowHisProduct[index].iMUNITPRICE);
+                    GlobalParam.deliveryShowHisProduct[index].iMUNITPRICE!);
               }
               if (double.parse(
-                      GlobalParam.deliveryShowHisProduct[index].iLSIZEQTY) !=
+                      GlobalParam.deliveryShowHisProduct[index].iLSIZEQTY!) !=
                   0) {
                 unitPrice = double.parse(
-                    GlobalParam.deliveryShowHisProduct[index].iLUNITPRICE);
+                    GlobalParam.deliveryShowHisProduct[index].iLUNITPRICE!);
               }
 
               for (var item in GlobalParam.deliveryCustPOHisBtnCheck) {
@@ -794,21 +793,21 @@ class _DeliveryStoreGetBadProductState
                                             .cPHOTOPATH !=
                                         ''
                                     ? DecorationImage(
-                                        image: new NetworkImage(
+                                        image: NetworkImage(
                                           'http://${GlobalParam.deliveryShowHisProduct[index].cPHOTOSERV}/${GlobalParam.deliveryShowHisProduct[index].cPHOTOPATH}',
                                         ),
                                         scale: 1.0,
                                         fit: BoxFit.cover,
                                       )
-                                    : DecorationImage(
-                                        image: new AssetImage(
+                                    : const DecorationImage(
+                                        image: AssetImage(
                                           "assets/images/no_image.png",
                                         ),
                                         scale: 1.0,
                                         fit: BoxFit.cover,
                                       ),
                                 color: Colors.white,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(5),
                                   topRight: Radius.circular(5),
                                   bottomLeft: Radius.circular(5),
@@ -818,819 +817,793 @@ class _DeliveryStoreGetBadProductState
                           ),
                           //----------------------1
                           Expanded(
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    width: widthScreen * 0.8,
-                                    height: 24,
-                                    child: Text(
-                                      GlobalParam.deliveryShowHisProduct[index]
-                                          .cPRODNM,
-                                      style: TextStyle(
-                                        fontFamily: 'Prompt',
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16.0,
-                                      ),
-                                      overflow: TextOverflow.ellipsis,
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  width: widthScreen * 0.8,
+                                  height: 24,
+                                  child: Text(
+                                    GlobalParam
+                                        .deliveryShowHisProduct[index].cPRODNM!,
+                                    style: const TextStyle(
+                                      fontFamily: 'Prompt',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16.0,
                                     ),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                  //--------------------2
-                                  SizedBox(
-                                    height: 12,
-                                  ),
-                                  Container(
-                                    height: 36,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        double.parse(GlobalParam
-                                                    .deliveryShowHisProduct[
-                                                        index]
-                                                    .iLSIZEQTY) !=
-                                                0
-                                            ? Expanded(
-                                                child: Container(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: Center(
-                                                    child: Text(
-                                                      GlobalParam
-                                                          .deliveryShowHisProduct[
-                                                              index]
-                                                          .cLUOMNM,
-                                                      style: TextStyle(
-                                                        fontFamily: 'Prompt',
-                                                        color: Colors.black,
-                                                        fontSize: 14,
-                                                      ),
+                                ),
+                                //--------------------2
+                                const SizedBox(
+                                  height: 12,
+                                ),
+                                SizedBox(
+                                  height: 36,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      double.parse(GlobalParam
+                                                  .deliveryShowHisProduct[index]
+                                                  .iLSIZEQTY!) !=
+                                              0
+                                          ? Expanded(
+                                              child: Container(
+                                                alignment: Alignment.centerLeft,
+                                                child: Center(
+                                                  child: Text(
+                                                    GlobalParam
+                                                        .deliveryShowHisProduct[
+                                                            index]
+                                                        .cLUOMNM!,
+                                                    style: const TextStyle(
+                                                      fontFamily: 'Prompt',
+                                                      color: Colors.black,
+                                                      fontSize: 14,
                                                     ),
                                                   ),
                                                 ),
-                                              )
-                                            : Container(),
-                                        double.parse(GlobalParam
-                                                    .deliveryShowHisProduct[
-                                                        index]
-                                                    .iMSIZEQTY) !=
-                                                0
-                                            ? Expanded(
-                                                child: Container(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: Center(
-                                                    child: Text(
-                                                      GlobalParam
-                                                          .deliveryShowHisProduct[
-                                                              index]
-                                                          .cMUOMNM,
-                                                      style: TextStyle(
-                                                        fontFamily: 'Prompt',
-                                                        color: Colors.black,
-                                                        fontSize: 14,
-                                                      ),
+                                              ),
+                                            )
+                                          : Container(),
+                                      double.parse(GlobalParam
+                                                  .deliveryShowHisProduct[index]
+                                                  .iMSIZEQTY!) !=
+                                              0
+                                          ? Expanded(
+                                              child: Container(
+                                                alignment: Alignment.centerLeft,
+                                                child: Center(
+                                                  child: Text(
+                                                    GlobalParam
+                                                        .deliveryShowHisProduct[
+                                                            index]
+                                                        .cMUOMNM!,
+                                                    style: const TextStyle(
+                                                      fontFamily: 'Prompt',
+                                                      color: Colors.black,
+                                                      fontSize: 14,
                                                     ),
                                                   ),
                                                 ),
-                                              )
-                                            : Container(),
-                                        // ignore: unrelated_type_equality_checks
-                                        double.parse(GlobalParam
-                                                    .deliveryShowHisProduct[
-                                                        index]
-                                                    .iSSIZEQTY) !=
-                                                0
-                                            ? Expanded(
-                                                child: Container(
+                                              ),
+                                            )
+                                          : Container(),
+                                      // ignore: unrelated_type_equality_checks
+                                      double.parse(GlobalParam
+                                                  .deliveryShowHisProduct[index]
+                                                  .iSSIZEQTY!) !=
+                                              0
+                                          ? Expanded(
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.all(5.0),
+                                                alignment: Alignment.centerLeft,
+                                                child: Center(
+                                                  child: Text(
+                                                    GlobalParam
+                                                        .deliveryShowHisProduct[
+                                                            index]
+                                                        .cSUOMNM!,
+                                                    style: const TextStyle(
+                                                        fontFamily: 'Prompt',
+                                                        fontSize: 14),
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          : Container(),
+                                    ],
+                                  ),
+                                ),
+                                //----------------------------3
+                                SizedBox(
+                                  height: 36,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      // ignore: unrelated_type_equality_checks
+                                      double.parse(GlobalParam
+                                                  .deliveryShowHisProduct[index]
+                                                  .iLSIZEQTY!) !=
+                                              0
+                                          ? Expanded(
+                                              child: Container(
+                                                margin: const EdgeInsets.only(
+                                                    left: 5.0, right: 5.0),
+                                                height: 30.0,
+                                                width: 80.0,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft: Radius.circular(5),
+                                                    topRight:
+                                                        Radius.circular(5),
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    bottomRight:
+                                                        Radius.circular(5),
+                                                  ),
+                                                  border: Border.all(
+                                                      color: Colors.grey),
+                                                ),
+                                                child: Padding(
                                                   padding:
-                                                      const EdgeInsets.all(5.0),
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: Center(
-                                                    child: Text(
-                                                      GlobalParam
-                                                          .deliveryShowHisProduct[
-                                                              index]
-                                                          .cSUOMNM,
-                                                      style: TextStyle(
-                                                          fontFamily: 'Prompt',
-                                                          fontSize: 14),
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
-                                            : Container(),
-                                      ],
-                                    ),
-                                  ),
-                                  //----------------------------3
-                                  Container(
-                                    height: 36,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        // ignore: unrelated_type_equality_checks
-                                        double.parse(GlobalParam
-                                                    .deliveryShowHisProduct[
-                                                        index]
-                                                    .iLSIZEQTY) !=
-                                                0
-                                            ? Expanded(
-                                                child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      left: 5.0, right: 5.0),
-                                                  height: 30.0,
-                                                  width: 80.0,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(5),
-                                                      topRight:
-                                                          Radius.circular(5),
-                                                      bottomLeft:
-                                                          Radius.circular(5),
-                                                      bottomRight:
-                                                          Radius.circular(5),
-                                                    ),
-                                                    border: Border.all(
-                                                        color: Colors.grey),
-                                                  ),
-                                                  child: Padding(
-                                                    padding: const EdgeInsets
-                                                        .fromLTRB(0, 8, 0, 0),
-                                                    child: TextField(
-                                                      controller:
-                                                          lController[index],
-                                                      onChanged: (value) {
-                                                        int iLOSSPRO = 0;
-                                                        setState(() {
-                                                          if (value == '' ||
-                                                              value == null) {
-                                                            for (int j = 0;
-                                                                j <
-                                                                    GlobalParam
-                                                                        .deliveryUnitList
-                                                                        .length;
-                                                                j++) {
-                                                              if (GlobalParam
-                                                                          .deliveryUnitList[j]
-                                                                      [
-                                                                      "cPRODCD"] ==
-                                                                  GlobalParam
-                                                                      .deliveryShowHisProduct[
-                                                                          index]
-                                                                      .cPRODCD) {
-                                                                if (GlobalParam
-                                                                            .deliveryUnitList[j]
-                                                                        [
-                                                                        "cUOMCD"] ==
-                                                                    GlobalParam
-                                                                        .deliveryShowHisProduct[
-                                                                            index]
-                                                                        .cLUOMCD) {
+                                                      const EdgeInsets.fromLTRB(
+                                                          0, 8, 0, 0),
+                                                  child: TextField(
+                                                    controller:
+                                                        lController[index],
+                                                    onChanged: (value) {
+                                                      int iLOSSPRO = 0;
+                                                      setState(() {
+                                                        if (value == '' ||
+                                                            value == null) {
+                                                          for (int j = 0;
+                                                              j <
                                                                   GlobalParam
                                                                       .deliveryUnitList
-                                                                      .removeAt(
-                                                                          j);
-                                                                }
-                                                              }
-                                                            }
-                                                          } else {
-                                                            iLOSSPRO =
-                                                                int.parse(
-                                                                    value);
-                                                            var data = {
-                                                              "cPRODCD": GlobalParam
-                                                                  .deliveryShowHisProduct[
-                                                                      index]
-                                                                  .cPRODCD,
-                                                              "cUOMCD": GlobalParam
-                                                                  .deliveryShowHisProduct[
-                                                                      index]
-                                                                  .cLUOMCD,
-                                                              "cUOMNM": GlobalParam
-                                                                  .deliveryShowHisProduct[
-                                                                      index]
-                                                                  .cLUOMNM,
-                                                              "iPRICE": double
-                                                                  .parse(GlobalParam
-                                                                      .deliveryShowHisProduct[
-                                                                          index]
-                                                                      .iLUNITPRICE),
-                                                              "iTOTAL":
-                                                                  double.parse(
-                                                                      '$iLOSSPRO')
-                                                            };
-                                                            GlobalParam
-                                                                .deliveryUnitList
-                                                                .add(data);
-                                                          }
-                                                        });
-
-                                                        for (int i = 0;
-                                                            i <
-                                                                GlobalParam
-                                                                    .deliveryShowHisProduct
-                                                                    .length;
-                                                            i++) {
-                                                          // ignore: unrelated_type_equality_checks
-                                                          if (GlobalParam
-                                                                  .deliveryHisProduct[
-                                                                      i]
-                                                                  .cPRODCD ==
-                                                              GlobalParam
-                                                                  .deliveryShowHisProduct[
-                                                                      index]
-                                                                  .cPRODCD) {
-                                                            GlobalParam
-                                                                    .deliveryHisProduct[
-                                                                        index]
-                                                                    .iLSIZEQTY =
-                                                                '$iLOSSPRO';
-                                                          }
-                                                        }
-
-                                                        for (int i = 0;
-                                                            i <
-                                                                GlobalParam
-                                                                    .totalProBadList
-                                                                    .length;
-                                                            i++) {
-                                                          if (GlobalParam
-                                                                  .deliveryShowHisProduct[
-                                                                      index]
-                                                                  .cPRODCD ==
-                                                              GlobalParam
-                                                                      .totalProBadList[i]
-                                                                  ['proCode']) {
-                                                            GlobalParam.totalProBadList[
-                                                                        i]
-                                                                    ['total'] =
-                                                                '${iLOSSPRO * unitPrice}';
-                                                          }
-                                                        }
-
-                                                        for (int i = 0;
-                                                            i <
-                                                                GlobalParam
-                                                                    .deliveryPodtList
-                                                                    .length;
-                                                            i++) {
-                                                          if (GlobalParam
-                                                                  .deliveryPodtList[
-                                                                      i]
-                                                                  .cPRODCD ==
-                                                              GlobalParam
-                                                                  .deliveryShowHisProduct[
-                                                                      index]
-                                                                  .cPRODCD) {
-                                                            if (GlobalParam
-                                                                    .deliveryPodtList[
-                                                                        i]
-                                                                    .cLUOMCD ==
-                                                                GlobalParam
-                                                                    .deliveryShowHisProduct[
-                                                                        index]
-                                                                    .cLUOMCD)
-                                                              GlobalParam
-                                                                      .deliveryPodtList[
-                                                                          index]
-                                                                      .iLOSSPRO =
-                                                                  iLOSSPRO;
-                                                          }
-                                                        }
-                                                        addReturnBad(
-                                                            GlobalParam
-                                                                    .deliveryPodtList[
-                                                                index],
-                                                            iLOSSPRO,
-                                                            "L");
-                                                      },
-                                                      enabled: GlobalParam
-                                                                  .subMenuCode !=
-                                                              "003"
-                                                          ? true
-                                                          : false,
-                                                      keyboardType:
-                                                          TextInputType.number,
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: TextStyle(
-                                                        color:
-                                                            HexColor('#00cb39'),
-                                                        fontFamily: 'Prompt',
-                                                      ),
-                                                      cursorColor: Colors.black,
-                                                      decoration:
-                                                          new InputDecoration(
-                                                        //hintText: "1",
-                                                        hintStyle: TextStyle(
-                                                            color: HexColor(
-                                                                '#00cb39')),
-                                                        border:
-                                                            InputBorder.none,
-                                                        focusedBorder:
-                                                            InputBorder.none,
-                                                        enabledBorder:
-                                                            InputBorder.none,
-                                                        errorBorder:
-                                                            InputBorder.none,
-                                                        disabledBorder:
-                                                            InputBorder.none,
-                                                        // contentPadding:
-                                                        //     EdgeInsets.only(
-                                                        //         left: 15,
-                                                        //         bottom: 10,
-                                                        //         top: 0,
-                                                        //         right: 15),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
-                                            : Container(),
-                                        // ignore: unrelated_type_equality_checks
-                                        double.parse(GlobalParam
-                                                    .deliveryShowHisProduct[
-                                                        index]
-                                                    .iMSIZEQTY) !=
-                                                0
-                                            ? Expanded(
-                                                child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      left: 5.0, right: 5.0),
-                                                  height: 30.0,
-                                                  width: 80.0,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(5),
-                                                      topRight:
-                                                          Radius.circular(5),
-                                                      bottomLeft:
-                                                          Radius.circular(5),
-                                                      bottomRight:
-                                                          Radius.circular(5),
-                                                    ),
-                                                    border: Border.all(
-                                                        color: Colors.grey),
-                                                  ),
-                                                  child: Padding(
-                                                    padding: const EdgeInsets
-                                                        .fromLTRB(0, 8, 0, 0),
-                                                    child: TextField(
-                                                      controller:
-                                                          mController[index],
-                                                      onChanged: (value) {
-                                                        int iLOSSPRO = 0;
-                                                        setState(() {
-                                                          if (value == '' ||
-                                                              value == null) {
-                                                            for (int j = 0;
-                                                                j <
-                                                                    GlobalParam
-                                                                        .deliveryUnitList
-                                                                        .length;
-                                                                j++) {
-                                                              if (GlobalParam
-                                                                          .deliveryUnitList[j]
-                                                                      [
-                                                                      "cPRODCD"] ==
-                                                                  GlobalParam
-                                                                      .deliveryShowHisProduct[
-                                                                          index]
-                                                                      .cPRODCD) {
-                                                                if (GlobalParam
-                                                                            .deliveryUnitList[j]
-                                                                        [
-                                                                        "cUOMCD"] ==
-                                                                    GlobalParam
-                                                                        .deliveryShowHisProduct[
-                                                                            index]
-                                                                        .cMUOMCD) {
-                                                                  GlobalParam
-                                                                      .deliveryUnitList
-                                                                      .removeAt(
-                                                                          j);
-                                                                }
-                                                              }
-                                                            }
-                                                          } else {
-                                                            iLOSSPRO =
-                                                                int.parse(
-                                                                    value);
-                                                            var data = {
-                                                              "cPRODCD": GlobalParam
-                                                                  .deliveryShowHisProduct[
-                                                                      index]
-                                                                  .cPRODCD,
-                                                              "cUOMCD": GlobalParam
-                                                                  .deliveryShowHisProduct[
-                                                                      index]
-                                                                  .cMUOMCD,
-                                                              "cUOMNM": GlobalParam
-                                                                  .deliveryShowHisProduct[
-                                                                      index]
-                                                                  .cMUOMNM,
-                                                              "iPRICE": double
-                                                                  .parse(GlobalParam
-                                                                      .deliveryShowHisProduct[
-                                                                          index]
-                                                                      .iMUNITPRICE),
-                                                              "iTOTAL":
-                                                                  double.parse(
-                                                                      '$iLOSSPRO')
-                                                            };
-                                                            GlobalParam
-                                                                .deliveryUnitList
-                                                                .add(data);
-                                                          }
-                                                        });
-
-                                                        for (int i = 0;
-                                                            i <
-                                                                GlobalParam
-                                                                    .deliveryShowHisProduct
-                                                                    .length;
-                                                            i++) {
-                                                          // ignore: unrelated_type_equality_checks
-                                                          if (GlobalParam
-                                                                  .deliveryHisProduct[
-                                                                      i]
-                                                                  .cPRODCD ==
-                                                              GlobalParam
-                                                                  .deliveryShowHisProduct[
-                                                                      index]
-                                                                  .cPRODCD) {
-                                                            GlobalParam
-                                                                    .deliveryHisProduct[
-                                                                        index]
-                                                                    .iMSIZEQTY =
-                                                                '$iLOSSPRO';
-                                                          }
-                                                        }
-                                                        for (int i = 0;
-                                                            i <
-                                                                GlobalParam
-                                                                    .totalProBadList
-                                                                    .length;
-                                                            i++) {
-                                                          if (GlobalParam
-                                                                  .deliveryShowHisProduct[
-                                                                      index]
-                                                                  .cPRODCD ==
-                                                              GlobalParam
-                                                                      .totalProBadList[i]
-                                                                  ['proCode']) {
-                                                            GlobalParam.totalProBadList[
-                                                                        i]
-                                                                    ['total'] =
-                                                                '${iLOSSPRO * unitPrice}';
-                                                          }
-                                                        }
-
-                                                        for (int i = 0;
-                                                            i <
-                                                                GlobalParam
-                                                                    .deliveryPodtList
-                                                                    .length;
-                                                            i++) {
-                                                          if (GlobalParam
-                                                                  .deliveryPodtList[
-                                                                      i]
-                                                                  .cPRODCD ==
-                                                              GlobalParam
-                                                                  .deliveryShowHisProduct[
-                                                                      index]
-                                                                  .cPRODCD) {
-                                                            if (GlobalParam
-                                                                    .deliveryPodtList[
-                                                                        i]
-                                                                    .cMUOMCD ==
-                                                                GlobalParam
-                                                                    .deliveryShowHisProduct[
-                                                                        index]
-                                                                    .cMUOMCD)
-                                                              GlobalParam
-                                                                      .deliveryPodtList[
-                                                                          index]
-                                                                      .iLOSSPRO =
-                                                                  iLOSSPRO;
-                                                          }
-                                                        }
-                                                        addReturnBad(
-                                                            GlobalParam
-                                                                    .deliveryPodtList[
-                                                                index],
-                                                            iLOSSPRO,
-                                                            "M");
-                                                      },
-                                                      enabled: GlobalParam
-                                                                  .subMenuCode !=
-                                                              "003"
-                                                          ? true
-                                                          : false,
-                                                      keyboardType:
-                                                          TextInputType.number,
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: TextStyle(
-                                                        color:
-                                                            HexColor('#00cb39'),
-                                                        fontFamily: 'Prompt',
-                                                      ),
-                                                      cursorColor: Colors.black,
-                                                      decoration:
-                                                          new InputDecoration(
-                                                        //hintText: "1",
-                                                        hintStyle: TextStyle(
-                                                            color: HexColor(
-                                                                '#00cb39')),
-                                                        border:
-                                                            InputBorder.none,
-                                                        focusedBorder:
-                                                            InputBorder.none,
-                                                        enabledBorder:
-                                                            InputBorder.none,
-                                                        errorBorder:
-                                                            InputBorder.none,
-                                                        disabledBorder:
-                                                            InputBorder.none,
-                                                        // contentPadding:
-                                                        //     EdgeInsets.only(
-                                                        //         left: 15,
-                                                        //         bottom: 10,
-                                                        //         top: 0,
-                                                        //         right: 15),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
-                                            : Container(),
-                                        // ignore: unrelated_type_equality_checks
-                                        double.parse(GlobalParam
-                                                    .deliveryShowHisProduct[
-                                                        index]
-                                                    .iSSIZEQTY) !=
-                                                0
-                                            ? Expanded(
-                                                child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      left: 5.0, right: 5.0),
-                                                  height: 30.0,
-                                                  width: 80.0,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(5),
-                                                      topRight:
-                                                          Radius.circular(5),
-                                                      bottomLeft:
-                                                          Radius.circular(5),
-                                                      bottomRight:
-                                                          Radius.circular(5),
-                                                    ),
-                                                    border: Border.all(
-                                                        color: Colors.grey),
-                                                  ),
-                                                  child: Center(
-                                                    child: Padding(
-                                                      padding: const EdgeInsets
-                                                          .fromLTRB(0, 8, 0, 0),
-                                                      child: TextField(
-                                                        controller:
-                                                            sController[index],
-                                                        onChanged: (value) {
-                                                          int iLOSSPRO = 0;
-                                                          setState(() {
-                                                            if (value == '' ||
-                                                                value == null) {
-                                                              for (int j = 0;
-                                                                  j <
-                                                                      GlobalParam
-                                                                          .deliveryUnitList
-                                                                          .length;
-                                                                  j++) {
-                                                                if (GlobalParam
-                                                                            .deliveryUnitList[j]
-                                                                        [
-                                                                        "cPRODCD"] ==
-                                                                    GlobalParam
-                                                                        .deliveryShowHisProduct[
-                                                                            index]
-                                                                        .cPRODCD) {
-                                                                  if (GlobalParam
-                                                                              .deliveryUnitList[j]
-                                                                          [
-                                                                          "cUOMCD"] ==
-                                                                      GlobalParam
-                                                                          .deliveryShowHisProduct[
-                                                                              index]
-                                                                          .cSUOMCD) {
-                                                                    GlobalParam
-                                                                        .deliveryUnitList
-                                                                        .removeAt(
-                                                                            j);
-                                                                  }
-                                                                }
-                                                              }
-                                                            } else {
-                                                              iLOSSPRO =
-                                                                  int.parse(
-                                                                      value);
-                                                              var data = {
-                                                                "cPRODCD": GlobalParam
-                                                                    .deliveryShowHisProduct[
-                                                                        index]
-                                                                    .cPRODCD,
-                                                                "cUOMCD": GlobalParam
-                                                                    .deliveryShowHisProduct[
-                                                                        index]
-                                                                    .cSUOMCD,
-                                                                "cUOMNM": GlobalParam
-                                                                    .deliveryShowHisProduct[
-                                                                        index]
-                                                                    .cSUOMNM,
-                                                                "iPRICE": double
-                                                                    .parse(GlobalParam
-                                                                        .deliveryShowHisProduct[
-                                                                            index]
-                                                                        .iSUNITPRICE),
-                                                                "iTOTAL": double
-                                                                    .parse(
-                                                                        '$iLOSSPRO')
-                                                              };
-                                                              GlobalParam
-                                                                  .deliveryUnitList
-                                                                  .add(data);
-                                                            }
-                                                          });
-
-                                                          for (int i = 0;
-                                                              i <
-                                                                  GlobalParam
-                                                                      .deliveryHisProduct
                                                                       .length;
-                                                              i++) {
-                                                            // ignore: unrelated_type_equality_checks
+                                                              j++) {
                                                             if (GlobalParam
-                                                                    .deliveryHisProduct[
-                                                                        i]
-                                                                    .cPRODCD ==
-                                                                GlobalParam
-                                                                    .deliveryShowHisProduct[
-                                                                        index]
-                                                                    .cPRODCD) {
-                                                              GlobalParam
-                                                                      .deliveryHisProduct[
-                                                                          index]
-                                                                      .iSSIZEQTY =
-                                                                  '$iLOSSPRO';
-                                                            }
-                                                          }
-
-                                                          for (int i = 0;
-                                                              i <
-                                                                  GlobalParam
-                                                                      .totalProBadList
-                                                                      .length;
-                                                              i++) {
-                                                            if (GlobalParam
-                                                                    .deliveryShowHisProduct[
-                                                                        index]
-                                                                    .cPRODCD ==
-                                                                GlobalParam
-                                                                        .totalProBadList[i]
+                                                                        .deliveryUnitList[j]
                                                                     [
-                                                                    'proCode']) {
-                                                              GlobalParam.totalProBadList[
-                                                                          i][
-                                                                      'total'] =
-                                                                  '${iLOSSPRO * unitPrice}';
-                                                            }
-                                                          }
-
-                                                          for (int i = 0;
-                                                              i <
-                                                                  GlobalParam
-                                                                      .deliveryPodtList
-                                                                      .length;
-                                                              i++) {
-                                                            if (GlobalParam
-                                                                    .deliveryPodtList[
-                                                                        i]
-                                                                    .cPRODCD ==
+                                                                    "cPRODCD"] ==
                                                                 GlobalParam
                                                                     .deliveryShowHisProduct[
                                                                         index]
                                                                     .cPRODCD) {
                                                               if (GlobalParam
-                                                                      .deliveryPodtList[
-                                                                          i]
-                                                                      .cSUOMCD ==
+                                                                          .deliveryUnitList[j]
+                                                                      [
+                                                                      "cUOMCD"] ==
                                                                   GlobalParam
                                                                       .deliveryShowHisProduct[
                                                                           index]
-                                                                      .cSUOMCD)
+                                                                      .cLUOMCD) {
                                                                 GlobalParam
-                                                                    .deliveryPodtList[
-                                                                        index]
-                                                                    .iLOSSPRO = iLOSSPRO;
+                                                                    .deliveryUnitList
+                                                                    .removeAt(
+                                                                        j);
+                                                              }
                                                             }
                                                           }
-                                                          addReturnBad(
+                                                        } else {
+                                                          iLOSSPRO =
+                                                              int.parse(value);
+                                                          var data = {
+                                                            "cPRODCD": GlobalParam
+                                                                .deliveryShowHisProduct[
+                                                                    index]
+                                                                .cPRODCD,
+                                                            "cUOMCD": GlobalParam
+                                                                .deliveryShowHisProduct[
+                                                                    index]
+                                                                .cLUOMCD,
+                                                            "cUOMNM": GlobalParam
+                                                                .deliveryShowHisProduct[
+                                                                    index]
+                                                                .cLUOMNM,
+                                                            "iPRICE": double
+                                                                .parse(GlobalParam
+                                                                    .deliveryShowHisProduct[
+                                                                        index]
+                                                                    .iLUNITPRICE!),
+                                                            "iTOTAL":
+                                                                double.parse(
+                                                                    '$iLOSSPRO')
+                                                          };
+                                                          GlobalParam
+                                                              .deliveryUnitList
+                                                              .add(data);
+                                                        }
+                                                      });
+
+                                                      for (int i = 0;
+                                                          i <
+                                                              GlobalParam
+                                                                  .deliveryShowHisProduct
+                                                                  .length;
+                                                          i++) {
+                                                        // ignore: unrelated_type_equality_checks
+                                                        if (GlobalParam
+                                                                .deliveryHisProduct[
+                                                                    i]
+                                                                .cPRODCD ==
+                                                            GlobalParam
+                                                                .deliveryShowHisProduct[
+                                                                    index]
+                                                                .cPRODCD) {
+                                                          GlobalParam
+                                                                  .deliveryHisProduct[
+                                                                      index]
+                                                                  .iLSIZEQTY =
+                                                              '$iLOSSPRO';
+                                                        }
+                                                      }
+
+                                                      for (int i = 0;
+                                                          i <
+                                                              GlobalParam
+                                                                  .totalProBadList
+                                                                  .length;
+                                                          i++) {
+                                                        if (GlobalParam
+                                                                .deliveryShowHisProduct[
+                                                                    index]
+                                                                .cPRODCD ==
+                                                            GlobalParam
+                                                                    .totalProBadList[
+                                                                i]['proCode']) {
+                                                          GlobalParam.totalProBadList[
+                                                                  i]['total'] =
+                                                              '${iLOSSPRO * unitPrice}';
+                                                        }
+                                                      }
+
+                                                      for (int i = 0;
+                                                          i <
+                                                              GlobalParam
+                                                                  .deliveryPodtList
+                                                                  .length;
+                                                          i++) {
+                                                        if (GlobalParam
+                                                                .deliveryPodtList[
+                                                                    i]
+                                                                .cPRODCD ==
+                                                            GlobalParam
+                                                                .deliveryShowHisProduct[
+                                                                    index]
+                                                                .cPRODCD) {
+                                                          if (GlobalParam
+                                                                  .deliveryPodtList[
+                                                                      i]
+                                                                  .cLUOMCD ==
+                                                              GlobalParam
+                                                                  .deliveryShowHisProduct[
+                                                                      index]
+                                                                  .cLUOMCD)
+                                                            GlobalParam
+                                                                    .deliveryPodtList[
+                                                                        index]
+                                                                    .iLOSSPRO =
+                                                                iLOSSPRO;
+                                                        }
+                                                      }
+                                                      addReturnBad(
+                                                          GlobalParam
+                                                                  .deliveryPodtList[
+                                                              index],
+                                                          iLOSSPRO,
+                                                          "L");
+                                                    },
+                                                    enabled: GlobalParam
+                                                                .subMenuCode !=
+                                                            "003"
+                                                        ? true
+                                                        : false,
+                                                    keyboardType:
+                                                        TextInputType.number,
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      color:
+                                                          HexColor('#00cb39'),
+                                                      fontFamily: 'Prompt',
+                                                    ),
+                                                    cursorColor: Colors.black,
+                                                    decoration: InputDecoration(
+                                                      //hintText: "1",
+                                                      hintStyle: TextStyle(
+                                                          color: HexColor(
+                                                              '#00cb39')),
+                                                      border: InputBorder.none,
+                                                      focusedBorder:
+                                                          InputBorder.none,
+                                                      enabledBorder:
+                                                          InputBorder.none,
+                                                      errorBorder:
+                                                          InputBorder.none,
+                                                      disabledBorder:
+                                                          InputBorder.none,
+                                                      // contentPadding:
+                                                      //     EdgeInsets.only(
+                                                      //         left: 15,
+                                                      //         bottom: 10,
+                                                      //         top: 0,
+                                                      //         right: 15),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          : Container(),
+                                      // ignore: unrelated_type_equality_checks
+                                      double.parse(GlobalParam
+                                                  .deliveryShowHisProduct[index]
+                                                  .iMSIZEQTY!) !=
+                                              0
+                                          ? Expanded(
+                                              child: Container(
+                                                margin: const EdgeInsets.only(
+                                                    left: 5.0, right: 5.0),
+                                                height: 30.0,
+                                                width: 80.0,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft: Radius.circular(5),
+                                                    topRight:
+                                                        Radius.circular(5),
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    bottomRight:
+                                                        Radius.circular(5),
+                                                  ),
+                                                  border: Border.all(
+                                                      color: Colors.grey),
+                                                ),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          0, 8, 0, 0),
+                                                  child: TextField(
+                                                    controller:
+                                                        mController[index],
+                                                    onChanged: (value) {
+                                                      int iLOSSPRO = 0;
+                                                      setState(() {
+                                                        if (value == '' ||
+                                                            value == null) {
+                                                          for (int j = 0;
+                                                              j <
+                                                                  GlobalParam
+                                                                      .deliveryUnitList
+                                                                      .length;
+                                                              j++) {
+                                                            if (GlobalParam
+                                                                        .deliveryUnitList[j]
+                                                                    [
+                                                                    "cPRODCD"] ==
+                                                                GlobalParam
+                                                                    .deliveryShowHisProduct[
+                                                                        index]
+                                                                    .cPRODCD) {
+                                                              if (GlobalParam
+                                                                          .deliveryUnitList[j]
+                                                                      [
+                                                                      "cUOMCD"] ==
+                                                                  GlobalParam
+                                                                      .deliveryShowHisProduct[
+                                                                          index]
+                                                                      .cMUOMCD) {
+                                                                GlobalParam
+                                                                    .deliveryUnitList
+                                                                    .removeAt(
+                                                                        j);
+                                                              }
+                                                            }
+                                                          }
+                                                        } else {
+                                                          iLOSSPRO =
+                                                              int.parse(value);
+                                                          var data = {
+                                                            "cPRODCD": GlobalParam
+                                                                .deliveryShowHisProduct[
+                                                                    index]
+                                                                .cPRODCD,
+                                                            "cUOMCD": GlobalParam
+                                                                .deliveryShowHisProduct[
+                                                                    index]
+                                                                .cMUOMCD,
+                                                            "cUOMNM": GlobalParam
+                                                                .deliveryShowHisProduct[
+                                                                    index]
+                                                                .cMUOMNM,
+                                                            "iPRICE": double
+                                                                .parse(GlobalParam
+                                                                    .deliveryShowHisProduct[
+                                                                        index]
+                                                                    .iMUNITPRICE!),
+                                                            "iTOTAL":
+                                                                double.parse(
+                                                                    '$iLOSSPRO')
+                                                          };
+                                                          GlobalParam
+                                                              .deliveryUnitList
+                                                              .add(data);
+                                                        }
+                                                      });
+
+                                                      for (int i = 0;
+                                                          i <
+                                                              GlobalParam
+                                                                  .deliveryShowHisProduct
+                                                                  .length;
+                                                          i++) {
+                                                        // ignore: unrelated_type_equality_checks
+                                                        if (GlobalParam
+                                                                .deliveryHisProduct[
+                                                                    i]
+                                                                .cPRODCD ==
+                                                            GlobalParam
+                                                                .deliveryShowHisProduct[
+                                                                    index]
+                                                                .cPRODCD) {
+                                                          GlobalParam
+                                                                  .deliveryHisProduct[
+                                                                      index]
+                                                                  .iMSIZEQTY =
+                                                              '$iLOSSPRO';
+                                                        }
+                                                      }
+                                                      for (int i = 0;
+                                                          i <
+                                                              GlobalParam
+                                                                  .totalProBadList
+                                                                  .length;
+                                                          i++) {
+                                                        if (GlobalParam
+                                                                .deliveryShowHisProduct[
+                                                                    index]
+                                                                .cPRODCD ==
+                                                            GlobalParam
+                                                                    .totalProBadList[
+                                                                i]['proCode']) {
+                                                          GlobalParam.totalProBadList[
+                                                                  i]['total'] =
+                                                              '${iLOSSPRO * unitPrice}';
+                                                        }
+                                                      }
+
+                                                      for (int i = 0;
+                                                          i <
+                                                              GlobalParam
+                                                                  .deliveryPodtList
+                                                                  .length;
+                                                          i++) {
+                                                        if (GlobalParam
+                                                                .deliveryPodtList[
+                                                                    i]
+                                                                .cPRODCD ==
+                                                            GlobalParam
+                                                                .deliveryShowHisProduct[
+                                                                    index]
+                                                                .cPRODCD) {
+                                                          if (GlobalParam
+                                                                  .deliveryPodtList[
+                                                                      i]
+                                                                  .cMUOMCD ==
+                                                              GlobalParam
+                                                                  .deliveryShowHisProduct[
+                                                                      index]
+                                                                  .cMUOMCD)
+                                                            GlobalParam
+                                                                    .deliveryPodtList[
+                                                                        index]
+                                                                    .iLOSSPRO =
+                                                                iLOSSPRO;
+                                                        }
+                                                      }
+                                                      addReturnBad(
+                                                          GlobalParam
+                                                                  .deliveryPodtList[
+                                                              index],
+                                                          iLOSSPRO,
+                                                          "M");
+                                                    },
+                                                    enabled: GlobalParam
+                                                                .subMenuCode !=
+                                                            "003"
+                                                        ? true
+                                                        : false,
+                                                    keyboardType:
+                                                        TextInputType.number,
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      color:
+                                                          HexColor('#00cb39'),
+                                                      fontFamily: 'Prompt',
+                                                    ),
+                                                    cursorColor: Colors.black,
+                                                    decoration: InputDecoration(
+                                                      //hintText: "1",
+                                                      hintStyle: TextStyle(
+                                                          color: HexColor(
+                                                              '#00cb39')),
+                                                      border: InputBorder.none,
+                                                      focusedBorder:
+                                                          InputBorder.none,
+                                                      enabledBorder:
+                                                          InputBorder.none,
+                                                      errorBorder:
+                                                          InputBorder.none,
+                                                      disabledBorder:
+                                                          InputBorder.none,
+                                                      // contentPadding:
+                                                      //     EdgeInsets.only(
+                                                      //         left: 15,
+                                                      //         bottom: 10,
+                                                      //         top: 0,
+                                                      //         right: 15),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          : Container(),
+                                      // ignore: unrelated_type_equality_checks
+                                      double.parse(GlobalParam
+                                                  .deliveryShowHisProduct[index]
+                                                  .iSSIZEQTY!) !=
+                                              0
+                                          ? Expanded(
+                                              child: Container(
+                                                margin: const EdgeInsets.only(
+                                                    left: 5.0, right: 5.0),
+                                                height: 30.0,
+                                                width: 80.0,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft: Radius.circular(5),
+                                                    topRight:
+                                                        Radius.circular(5),
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    bottomRight:
+                                                        Radius.circular(5),
+                                                  ),
+                                                  border: Border.all(
+                                                      color: Colors.grey),
+                                                ),
+                                                child: Center(
+                                                  child: Padding(
+                                                    padding: const EdgeInsets
+                                                        .fromLTRB(0, 8, 0, 0),
+                                                    child: TextField(
+                                                      controller:
+                                                          sController[index],
+                                                      onChanged: (value) {
+                                                        int iLOSSPRO = 0;
+                                                        setState(() {
+                                                          if (value == '' ||
+                                                              value == null) {
+                                                            for (int j = 0;
+                                                                j <
+                                                                    GlobalParam
+                                                                        .deliveryUnitList
+                                                                        .length;
+                                                                j++) {
+                                                              if (GlobalParam
+                                                                          .deliveryUnitList[j]
+                                                                      [
+                                                                      "cPRODCD"] ==
+                                                                  GlobalParam
+                                                                      .deliveryShowHisProduct[
+                                                                          index]
+                                                                      .cPRODCD) {
+                                                                if (GlobalParam
+                                                                            .deliveryUnitList[j]
+                                                                        [
+                                                                        "cUOMCD"] ==
+                                                                    GlobalParam
+                                                                        .deliveryShowHisProduct[
+                                                                            index]
+                                                                        .cSUOMCD) {
+                                                                  GlobalParam
+                                                                      .deliveryUnitList
+                                                                      .removeAt(
+                                                                          j);
+                                                                }
+                                                              }
+                                                            }
+                                                          } else {
+                                                            iLOSSPRO =
+                                                                int.parse(
+                                                                    value);
+                                                            var data = {
+                                                              "cPRODCD": GlobalParam
+                                                                  .deliveryShowHisProduct[
+                                                                      index]
+                                                                  .cPRODCD,
+                                                              "cUOMCD": GlobalParam
+                                                                  .deliveryShowHisProduct[
+                                                                      index]
+                                                                  .cSUOMCD,
+                                                              "cUOMNM": GlobalParam
+                                                                  .deliveryShowHisProduct[
+                                                                      index]
+                                                                  .cSUOMNM,
+                                                              "iPRICE": double
+                                                                  .parse(GlobalParam
+                                                                      .deliveryShowHisProduct[
+                                                                          index]
+                                                                      .iSUNITPRICE!),
+                                                              "iTOTAL":
+                                                                  double.parse(
+                                                                      '$iLOSSPRO')
+                                                            };
+                                                            GlobalParam
+                                                                .deliveryUnitList
+                                                                .add(data);
+                                                          }
+                                                        });
+
+                                                        for (int i = 0;
+                                                            i <
+                                                                GlobalParam
+                                                                    .deliveryHisProduct
+                                                                    .length;
+                                                            i++) {
+                                                          // ignore: unrelated_type_equality_checks
+                                                          if (GlobalParam
+                                                                  .deliveryHisProduct[
+                                                                      i]
+                                                                  .cPRODCD ==
+                                                              GlobalParam
+                                                                  .deliveryShowHisProduct[
+                                                                      index]
+                                                                  .cPRODCD) {
+                                                            GlobalParam
+                                                                    .deliveryHisProduct[
+                                                                        index]
+                                                                    .iSSIZEQTY =
+                                                                '$iLOSSPRO';
+                                                          }
+                                                        }
+
+                                                        for (int i = 0;
+                                                            i <
+                                                                GlobalParam
+                                                                    .totalProBadList
+                                                                    .length;
+                                                            i++) {
+                                                          if (GlobalParam
+                                                                  .deliveryShowHisProduct[
+                                                                      index]
+                                                                  .cPRODCD ==
+                                                              GlobalParam
+                                                                      .totalProBadList[i]
+                                                                  ['proCode']) {
+                                                            GlobalParam.totalProBadList[
+                                                                        i]
+                                                                    ['total'] =
+                                                                '${iLOSSPRO * unitPrice}';
+                                                          }
+                                                        }
+
+                                                        for (int i = 0;
+                                                            i <
+                                                                GlobalParam
+                                                                    .deliveryPodtList
+                                                                    .length;
+                                                            i++) {
+                                                          if (GlobalParam
+                                                                  .deliveryPodtList[
+                                                                      i]
+                                                                  .cPRODCD ==
+                                                              GlobalParam
+                                                                  .deliveryShowHisProduct[
+                                                                      index]
+                                                                  .cPRODCD) {
+                                                            if (GlobalParam
+                                                                    .deliveryPodtList[
+                                                                        i]
+                                                                    .cSUOMCD ==
+                                                                GlobalParam
+                                                                    .deliveryShowHisProduct[
+                                                                        index]
+                                                                    .cSUOMCD)
                                                               GlobalParam
                                                                       .deliveryPodtList[
-                                                                  index],
-                                                              iLOSSPRO,
-                                                              "S");
-                                                        },
-                                                        enabled: GlobalParam
-                                                                    .subMenuCode !=
-                                                                "003"
-                                                            ? true
-                                                            : false,
-                                                        keyboardType:
-                                                            TextInputType
-                                                                .number,
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                          color: HexColor(
-                                                              '#00cb39'),
-                                                          fontFamily: 'Prompt',
-                                                        ),
-                                                        cursorColor:
-                                                            Colors.black,
-                                                        decoration:
-                                                            new InputDecoration(
-                                                          //hintText: "1",
-                                                          hintStyle: TextStyle(
-                                                              color: HexColor(
-                                                                  '#00cb39')),
-                                                          border:
-                                                              InputBorder.none,
-                                                          focusedBorder:
-                                                              InputBorder.none,
-                                                          enabledBorder:
-                                                              InputBorder.none,
-                                                          errorBorder:
-                                                              InputBorder.none,
-                                                          disabledBorder:
-                                                              InputBorder.none,
-                                                          // contentPadding:
-                                                          // EdgeInsets.only(
-                                                          //     left: 15,
-                                                          //     bottom: 10,โ
-                                                          //     top: 0,
-                                                          //     right: 15),
-                                                        ),
+                                                                          index]
+                                                                      .iLOSSPRO =
+                                                                  iLOSSPRO;
+                                                          }
+                                                        }
+                                                        addReturnBad(
+                                                            GlobalParam
+                                                                    .deliveryPodtList[
+                                                                index],
+                                                            iLOSSPRO,
+                                                            "S");
+                                                      },
+                                                      enabled: GlobalParam
+                                                                  .subMenuCode !=
+                                                              "003"
+                                                          ? true
+                                                          : false,
+                                                      keyboardType:
+                                                          TextInputType.number,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                        color:
+                                                            HexColor('#00cb39'),
+                                                        fontFamily: 'Prompt',
+                                                      ),
+                                                      cursorColor: Colors.black,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        //hintText: "1",
+                                                        hintStyle: TextStyle(
+                                                            color: HexColor(
+                                                                '#00cb39')),
+                                                        border:
+                                                            InputBorder.none,
+                                                        focusedBorder:
+                                                            InputBorder.none,
+                                                        enabledBorder:
+                                                            InputBorder.none,
+                                                        errorBorder:
+                                                            InputBorder.none,
+                                                        disabledBorder:
+                                                            InputBorder.none,
+                                                        // contentPadding:
+                                                        // EdgeInsets.only(
+                                                        //     left: 15,
+                                                        //     bottom: 10,โ
+                                                        //     top: 0,
+                                                        //     right: 15),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              )
-                                            : Container(),
-                                      ],
-                                    ),
+                                              ),
+                                            )
+                                          : Container(),
+                                    ],
                                   ),
-                                  // Container(
-                                  //     alignment: Alignment.centerRight,
-                                  //     width: widthScreen * 0.68,
-                                  //     child: SubstringPrice(
-                                  //       '$unitPrice',
-                                  //       14.0,
-                                  //       12.0,
-                                  //       Colors.black,
-                                  //       Colors.black,
-                                  //       'Prompt',
-                                  //       'Prompt',
-                                  //       FontWeight.bold,
-                                  //       FontWeight.bold,
-                                  //       '฿',
-                                  //       12.0,
-                                  //       Colors.black,
-                                  //       'Prompt',
-                                  //       FontWeight.bold,
-                                  //       FontStyle.normal,
-                                  //       FontStyle.normal,
-                                  //       FontStyle.normal,
-                                  //     )),
-                                ],
-                              ),
+                                ),
+                                // Container(
+                                //     alignment: Alignment.centerRight,
+                                //     width: widthScreen * 0.68,
+                                //     child: SubstringPrice(
+                                //       '$unitPrice',
+                                //       14.0,
+                                //       12.0,
+                                //       Colors.black,
+                                //       Colors.black,
+                                //       'Prompt',
+                                //       'Prompt',
+                                //       FontWeight.bold,
+                                //       FontWeight.bold,
+                                //       '฿',
+                                //       12.0,
+                                //       Colors.black,
+                                //       'Prompt',
+                                //       FontWeight.bold,
+                                //       FontStyle.normal,
+                                //       FontStyle.normal,
+                                //       FontStyle.normal,
+                                //     )),
+                              ],
                             ),
                           ),
                         ],
@@ -1638,15 +1611,15 @@ class _DeliveryStoreGetBadProductState
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-                      child: Container(
+                      child: SizedBox(
                         height: 24,
                         child: Row(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             Text(
                               'ต่อหน่วย ${formatNum.format(unitPrice)} ฿ รวม ${formatNum.format(double.parse(GlobalParam.totalProBadList[index]['total']))} ฿',
-                              style:
-                                  TextStyle(fontFamily: 'Prompt', fontSize: 14),
+                              style: const TextStyle(
+                                  fontFamily: 'Prompt', fontSize: 14),
                             ),
                             // Container(
                             //     alignment: Alignment.centerRight,
@@ -1674,7 +1647,7 @@ class _DeliveryStoreGetBadProductState
                         ),
                       ),
                     ),
-                    DottedLine(
+                    const DottedLine(
                       dashColor: Colors.grey,
                     ),
                   ],
@@ -1691,7 +1664,7 @@ class _DeliveryStoreGetBadProductState
 
     if (miss > 0) {
       if (size == "S") {
-        QueryPodtResp incom = new QueryPodtResp(
+        QueryPodtResp incom = QueryPodtResp(
             cGUID: data.cGUID,
             cPOCD: data.cPOCD,
             iSEQ: data.iSEQ,
@@ -1747,7 +1720,7 @@ class _DeliveryStoreGetBadProductState
       }
 
       if (size == "M") {
-        QueryPodtResp incom = new QueryPodtResp(
+        QueryPodtResp incom = QueryPodtResp(
             cGUID: data.cGUID,
             cPOCD: data.cPOCD,
             iSEQ: data.iSEQ,
@@ -1802,7 +1775,7 @@ class _DeliveryStoreGetBadProductState
         }
       }
       if (size == "L") {
-        QueryPodtResp incom = new QueryPodtResp(
+        QueryPodtResp incom = QueryPodtResp(
             cGUID: data.cGUID,
             cPOCD: data.cPOCD,
             iSEQ: data.iSEQ,
@@ -1861,20 +1834,20 @@ class _DeliveryStoreGetBadProductState
         // ignore: unrelated_type_equality_checks
         if (GlobalParam.deliveryReturnBadPro[i].cPRODCD == data.cPRODCD) {
           if (size == "S") {
-            if (double.parse(GlobalParam.deliveryReturnBadPro[i].iSSIZEQTY) >
+            if (double.parse(GlobalParam.deliveryReturnBadPro[i].iSSIZEQTY!) >
                 0) {
               GlobalParam.deliveryReturnBadPro.removeAt(i);
             }
           }
 
           if (size == "M") {
-            if (double.parse(GlobalParam.deliveryReturnBadPro[i].iMSIZEQTY) >
+            if (double.parse(GlobalParam.deliveryReturnBadPro[i].iMSIZEQTY!) >
                 0) {
               GlobalParam.deliveryReturnBadPro.removeAt(i);
             }
           }
           if (size == "L") {
-            if (double.parse(GlobalParam.deliveryReturnBadPro[i].iLSIZEQTY) >
+            if (double.parse(GlobalParam.deliveryReturnBadPro[i].iLSIZEQTY!) >
                 0) {
               GlobalParam.deliveryReturnBadPro.removeAt(i);
             }

@@ -29,20 +29,20 @@ class DeliveryMoneyDetail extends StatefulWidget {
 class _DeliveryMoneyDetailState extends State<DeliveryMoneyDetail> {
   String poDate = DateFormat('dd-MM-yy').format(DateTime.now());
   String newDate = DateFormat('dd-MM-yy HH:mm').format(DateTime.now());
-  PickedFile imageFile;
+  late PickedFile imageFile;
   // final ImagePicker _picker = ImagePicker();
-  File file;
+  late File file;
   bool imgIsNull = true;
-  File _image;
+  late File _image;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Color.fromRGBO(57, 203, 91, 1.0),
+        backgroundColor: const Color.fromRGBO(57, 203, 91, 1.0),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'รับชำระโอน',
           style: TextStyle(
             color: Colors.black,
@@ -50,7 +50,7 @@ class _DeliveryMoneyDetailState extends State<DeliveryMoneyDetail> {
           ),
         ),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),
@@ -65,7 +65,7 @@ class _DeliveryMoneyDetailState extends State<DeliveryMoneyDetail> {
             children: [
               Container(
                 child: IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.print,
                     color: Colors.black,
                   ),
@@ -119,14 +119,14 @@ class _DeliveryMoneyDetailState extends State<DeliveryMoneyDetail> {
               const SizedBox(
                 height: 10,
               ),
-              DottedLine(
+              const DottedLine(
                 dashColor: Colors.grey,
               ),
               const SizedBox(
                 height: 10,
               ),
-              Expanded(
-                child: Container(
+              const Expanded(
+                child: SizedBox(
                   height: 280.0,
                   child: MoneyDetailBody(),
                 ),
@@ -139,7 +139,7 @@ class _DeliveryMoneyDetailState extends State<DeliveryMoneyDetail> {
         onTap: () {
           openCamera();
         },
-        child: Container(
+        child: SizedBox(
           height: 64,
           child: savebutton(),
         ),
@@ -203,7 +203,7 @@ class _DeliveryMoneyDetailState extends State<DeliveryMoneyDetail> {
       alignment: Alignment.centerLeft,
       child: Text(
         yearThai(),
-        style: TextStyle(
+        style: const TextStyle(
           fontFamily: 'Prompt',
           fontSize: 16.0,
           fontWeight: FontWeight.bold,
@@ -215,7 +215,7 @@ class _DeliveryMoneyDetailState extends State<DeliveryMoneyDetail> {
 
   Widget label1() {
     return Container(
-      padding: EdgeInsets.fromLTRB(12, 0, 12, 0),
+      padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -224,7 +224,7 @@ class _DeliveryMoneyDetailState extends State<DeliveryMoneyDetail> {
           Container(
             child: Text(
               'No.$newDate',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color.fromRGBO(130, 145, 169, 1),
                 fontFamily: 'Prompt',
                 fontSize: 16,
@@ -296,21 +296,19 @@ class _DeliveryMoneyDetailState extends State<DeliveryMoneyDetail> {
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
 
       final bytes = File(imageFile.path).readAsBytesSync();
 
       String img64 = base64Encode(bytes);
       GlobalParam.deliveryAddSendMoney.cBILLPH = img64;
-      GlobalParam.deliveryAddSendMoney.cSERVER = '27.254.207.240:11110'; 
+      GlobalParam.deliveryAddSendMoney.cSERVER = '27.254.207.240:11110';
       GlobalParam.deliveryAddSendMoney.cCREABY = GlobalParam.userID;
       // print(img64.substring(0, 100));
       //EasyLoading.dismiss();
       // saveData();
-      if (GlobalParam.deliveryAddSendMoney.cCOSTPH == null) {
-        GlobalParam.deliveryAddSendMoney.cCOSTPH = '';
-      }
+      GlobalParam.deliveryAddSendMoney.cCOSTPH ??= '';
       if (GlobalParam.deliveryAddSendMoney.cCOSNM == null) {
         GlobalParam.deliveryAddSendMoney.cCOSNM = '';
       }
@@ -342,7 +340,7 @@ class _DeliveryMoneyDetailState extends State<DeliveryMoneyDetail> {
       var result = await proxy.addSendMoney(req);
       if (result.success == false) {
         wrongDialog(result.message);
-      }else{
+      } else {
         startStopWork();
       }
       // setState(() {});
@@ -354,7 +352,7 @@ class _DeliveryMoneyDetailState extends State<DeliveryMoneyDetail> {
     }
   }
 
-    startStopWork() async {
+  startStopWork() async {
     // if (cVEHINM == '') {
     try {
       // print("************** $nameOfRoute **************");
@@ -393,5 +391,4 @@ class _DeliveryMoneyDetailState extends State<DeliveryMoneyDetail> {
     //   wrongDialog('ข้อมูลผิดพลาด');
     // }
   }
-
 }

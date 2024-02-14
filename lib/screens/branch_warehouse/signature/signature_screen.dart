@@ -26,7 +26,12 @@ class Signature2 extends StatefulWidget {
   final int item;
   final double total;
   final String cREF;
-  Signature2({Key key, this.cVEHICD, this.item, this.total, this.cREF})
+  const Signature2(
+      {Key? key,
+      required this.cVEHICD,
+      required this.item,
+      required this.total,
+      required this.cREF})
       : super(key: key);
 
   @override
@@ -91,11 +96,13 @@ class _Signature2State extends State<Signature2> {
         child: Column(
           children: <Widget>[
             TopContainer(
-                size: size,
-                item: widget.item,
-                total: widget.total,
-                cREF: widget.cREF,
-                cVEHINM: receiver.isEmpty ? GetVehicleResp() : receiver[0]),
+              size: size,
+              item: widget.item,
+              total: widget.total,
+              cREF: widget.cREF,
+              cVEHINM: receiver.isEmpty ? GetVehicleResp() : receiver[0],
+              key: null,
+            ),
             //SIGNATURE CANVAS
             Container(
               color: Colors.grey[300],
@@ -174,7 +181,7 @@ class _Signature2State extends State<Signature2> {
                     );
                     return;
                   }
-                  final Uint8List data = await _controller.toPngBytes();
+                  final Uint8List? data = await _controller.toPngBytes();
                   if (data != null) {
                     String img64 = base64Encode(data);
                     saveData(img64);
@@ -238,7 +245,7 @@ class _Signature2State extends State<Signature2> {
             context,
             MaterialPageRoute(
               builder: (BuildContext context) => ConfirmPage(
-                  GlobalParam.typeMenuCode, "เซ็นรับ", "เรียบร้อยแล้ว"),
+                  GlobalParam.typeMenuCode ?? '', "เซ็นรับ", "เรียบร้อยแล้ว"),
             ),
           );
         } else {
@@ -326,8 +333,13 @@ class _Signature2State extends State<Signature2> {
 }
 
 class TopContainer extends StatelessWidget {
-  TopContainer(
-      {Key key, this.size, this.item, this.total, this.cREF, this.cVEHINM})
+  const TopContainer(
+      {required Key? key,
+      required this.size,
+      required this.item,
+      required this.total,
+      required this.cREF,
+      required this.cVEHINM})
       : super(key: key);
 
   final Size size;

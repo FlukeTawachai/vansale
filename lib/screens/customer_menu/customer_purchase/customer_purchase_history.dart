@@ -43,7 +43,7 @@ class _CustomerPurchaseHistoryState extends State<CustomerPurchaseHistory> {
         elevation: 0.0,
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'ประวัติการสั่ง',
           style: TextStyle(
             color: Colors.black,
@@ -53,90 +53,93 @@ class _CustomerPurchaseHistoryState extends State<CustomerPurchaseHistory> {
           ),
         ),
       ),
-      body: show == true?Container(
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.centerLeft,
-              color: HexColor('#6c7e9b'),
-              height: 60.0,
-              child: Container(
-                alignment: Alignment.center,
-                margin: const EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(5),
-                    topRight: Radius.circular(5),
-                    bottomLeft: Radius.circular(5),
-                    bottomRight: Radius.circular(5),
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.centerLeft,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100),
+      body: show == true
+          ? Container(
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    color: HexColor('#6c7e9b'),
+                    height: 60.0,
+                    child: Container(
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.all(10.0),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5),
+                          topRight: Radius.circular(5),
+                          bottomLeft: Radius.circular(5),
+                          bottomRight: Radius.circular(5),
                         ),
-                        child: TextField(
-                          controller: search,
-                          style: TextStyle(
-                            fontFamily: 'Prompt',
-                          ),
-                          onSubmitted: (value) {
-                            setState(() {
-                              search.text = value;
-                            });
-                            getCustomerPOHis(GetCustomerPOHisReq(
-                                cCUSTCD: GlobalParam.customer['cCUSTCD'],
-                                cPOCD: '%$value%'));
-                          },
-                          textInputAction: TextInputAction.search,
-                          decoration: InputDecoration(
-                            hintText: "ค้นหาเลขที่บิล",
-                            border: InputBorder.none,
-                            contentPadding:
-                                EdgeInsets.only(left: 5.0, top: 5.0),
-                            prefixIcon: RotatedBox(
-                              quarterTurns: 1,
-                              child: IconButton(
-                                icon: Icon(
-                                  Icons.search,
-                                  color: HexColor('#6c7e9b'),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                              child: TextField(
+                                controller: search,
+                                style: const TextStyle(
+                                  fontFamily: 'Prompt',
                                 ),
-                                onPressed: () {
+                                onSubmitted: (value) {
+                                  setState(() {
+                                    search.text = value;
+                                  });
                                   getCustomerPOHis(GetCustomerPOHisReq(
                                       cCUSTCD: GlobalParam.customer['cCUSTCD'],
-                                      cPOCD: '%${search.text}%'));
+                                      cPOCD: '%$value%'));
                                 },
-                                iconSize: 25.0,
+                                textInputAction: TextInputAction.search,
+                                decoration: InputDecoration(
+                                  hintText: "ค้นหาเลขที่บิล",
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.only(
+                                      left: 5.0, top: 5.0),
+                                  prefixIcon: RotatedBox(
+                                    quarterTurns: 1,
+                                    child: IconButton(
+                                      icon: Icon(
+                                        Icons.search,
+                                        color: HexColor('#6c7e9b'),
+                                      ),
+                                      onPressed: () {
+                                        getCustomerPOHis(GetCustomerPOHisReq(
+                                            cCUSTCD:
+                                                GlobalParam.customer['cCUSTCD'],
+                                            cPOCD: '%${search.text}%'));
+                                      },
+                                      iconSize: 25.0,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    child: RefreshIndicator(
+                      color: Colors.green,
+                      onRefresh: () async {
+                        return await Future.delayed(const Duration(seconds: 1));
+                      },
+                      child: CustomerListPurchaseHistory(widget.typeMenuCode),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            Expanded(
-              child: RefreshIndicator(
-                color: Colors.green,
-                onRefresh: () async {
-                  return await Future.delayed(Duration(seconds: 1));
-                },
-                child: CustomerListPurchaseHistory(widget.typeMenuCode),
-              ),
-            ),
-          ],
-        ),
-      ):Container(),
+            )
+          : Container(),
     );
   }
 
@@ -149,9 +152,9 @@ class _CustomerPurchaseHistoryState extends State<CustomerPurchaseHistory> {
 
       if (result.isNotEmpty) {
         for (int i = 0; i < result.length; i++) {
-          if (double.parse(result[i].iTOTAL) > 0) {
+          if (double.parse(result[i].iTOTAL ?? '0') > 0) {
             GlobalParam.customerPOHDList.add(result[i]);
-            getPodt(result[i].cPOCD);
+            getPodt(result[i].cPOCD ?? '');
           }
         }
       } else {
@@ -186,15 +189,15 @@ class _CustomerPurchaseHistoryState extends State<CustomerPurchaseHistory> {
           //     double.parse(result[i].iMSIZEQTY) +
           //     double.parse(result[i].iLSIZEQTY);
 
-          if (double.parse(result[i].iSSIZEQTY) > 0) {
+          if (double.parse(result[i].iSSIZEQTY ?? '0') > 0) {
             var data = {
               "cPRODCD": result[i].cPRODCD,
               "cUOMNM": result[i].cSUOMNM,
-              "iPRICE": double.parse(result[i].iSUNITPRICE),
-              "iTOTAL": double.parse(result[i].iSSIZEQTY)
+              "iPRICE": double.parse(result[i].iSUNITPRICE ?? '0'),
+              "iTOTAL": double.parse(result[i].iSSIZEQTY ?? '0')
             };
             unitList.add(data);
-            QueryPodtResp product = new QueryPodtResp(
+            QueryPodtResp product = QueryPodtResp(
               cBASKCD: result[i].cBASKCD,
               cBASKNM: result[i].cBASKNM,
               cBRNDCD: result[i].cBRNDCD,
@@ -213,9 +216,7 @@ class _CustomerPurchaseHistoryState extends State<CustomerPurchaseHistory> {
               cPHOTOPATH: result[i].cPHOTOPATH,
               cPHOTOSERV: result[i].cPHOTOSERV,
               cPOCD: result[i].cPOCD,
-              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                  ? 'N'
-                  : result[i].cPREPAIRSTATUS,
+              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
               cPRODCD: result[i].cPRODCD,
               cPRODNM: result[i].cPRODNM,
               cPROMO: result[i].cPROMO,
@@ -236,28 +237,25 @@ class _CustomerPurchaseHistoryState extends State<CustomerPurchaseHistory> {
               iLUNITPRICE: result[i].iLUNITPRICE,
               iMSIZEQTY: '0.0',
               iMUNITPRICE: result[i].iMUNITPRICE,
-              iNETTOTAL:
-                  result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                  ? '0'
-                  : result[i].iPREPAIRAMOUT,
+              iNETTOTAL: result[i].iNETTOTAL ?? '0',
+              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
               iSEQ: result[i].iSEQ,
               iSSIZEQTY: result[i].iSSIZEQTY,
               iSUNITPRICE: result[i].iSUNITPRICE,
               iTOTAL:
-                  "${double.parse(result[i].iSSIZEQTY) * double.parse(result[i].iSUNITPRICE)}",
+                  "${double.parse(result[i].iSSIZEQTY ?? '0') * double.parse(result[i].iSUNITPRICE ?? '0')}",
             );
 
             podtList.add(product);
           }
-          if (double.parse(result[i].iMSIZEQTY) > 0) {
+          if (double.parse(result[i].iMSIZEQTY ?? '0') > 0) {
             var data = {
               "cUOMNM": result[i].cMUOMNM,
-              "iPRICE": double.parse(result[i].iMUNITPRICE),
-              "iTOTAL": double.parse(result[i].iMSIZEQTY)
+              "iPRICE": double.parse(result[i].iMUNITPRICE ?? '0'),
+              "iTOTAL": double.parse(result[i].iMSIZEQTY ?? '0')
             };
             unitList.add(data);
-            QueryPodtResp product = new QueryPodtResp(
+            QueryPodtResp product = QueryPodtResp(
               cBASKCD: result[i].cBASKCD,
               cBASKNM: result[i].cBASKNM,
               cBRNDCD: result[i].cBRNDCD,
@@ -276,9 +274,7 @@ class _CustomerPurchaseHistoryState extends State<CustomerPurchaseHistory> {
               cPHOTOPATH: result[i].cPHOTOPATH,
               cPHOTOSERV: result[i].cPHOTOSERV,
               cPOCD: result[i].cPOCD,
-              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                  ? 'N'
-                  : result[i].cPREPAIRSTATUS,
+              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
               cPRODCD: result[i].cPRODCD,
               cPRODNM: result[i].cPRODNM,
               cPROMO: result[i].cPROMO,
@@ -299,28 +295,25 @@ class _CustomerPurchaseHistoryState extends State<CustomerPurchaseHistory> {
               iLUNITPRICE: result[i].iLUNITPRICE,
               iMSIZEQTY: result[i].iMSIZEQTY,
               iMUNITPRICE: result[i].iMUNITPRICE,
-              iNETTOTAL:
-                  result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                  ? '0'
-                  : result[i].iPREPAIRAMOUT,
+              iNETTOTAL: result[i].iNETTOTAL ?? '0',
+              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
               iSEQ: result[i].iSEQ,
               iSSIZEQTY: '0.0',
               iSUNITPRICE: result[i].iSUNITPRICE,
               iTOTAL:
-                  "${double.parse(result[i].iMSIZEQTY) * double.parse(result[i].iMUNITPRICE)}",
+                  "${double.parse(result[i].iMSIZEQTY ?? '0') * double.parse(result[i].iMUNITPRICE ?? '0')}",
             );
 
             podtList.add(product);
           }
-          if (double.parse(result[i].iLSIZEQTY) > 0) {
+          if (double.parse(result[i].iLSIZEQTY ?? '0') > 0) {
             var data = {
               "cUOMNM": result[i].cLUOMNM,
-              "iPRICE": double.parse(result[i].iLUNITPRICE),
-              "iTOTAL": double.parse(result[i].iLSIZEQTY)
+              "iPRICE": double.parse(result[i].iLUNITPRICE ?? '0'),
+              "iTOTAL": double.parse(result[i].iLSIZEQTY ?? '0')
             };
             unitList.add(data);
-            QueryPodtResp product = new QueryPodtResp(
+            QueryPodtResp product = QueryPodtResp(
               cBASKCD: result[i].cBASKCD,
               cBASKNM: result[i].cBASKNM,
               cBRNDCD: result[i].cBRNDCD,
@@ -339,9 +332,7 @@ class _CustomerPurchaseHistoryState extends State<CustomerPurchaseHistory> {
               cPHOTOPATH: result[i].cPHOTOPATH,
               cPHOTOSERV: result[i].cPHOTOSERV,
               cPOCD: result[i].cPOCD,
-              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                  ? 'N'
-                  : result[i].cPREPAIRSTATUS,
+              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
               cPRODCD: result[i].cPRODCD,
               cPRODNM: result[i].cPRODNM,
               cPROMO: result[i].cPROMO,
@@ -362,16 +353,13 @@ class _CustomerPurchaseHistoryState extends State<CustomerPurchaseHistory> {
               iLUNITPRICE: result[i].iLUNITPRICE,
               iMSIZEQTY: '0.0',
               iMUNITPRICE: result[i].iMUNITPRICE,
-              iNETTOTAL:
-                  result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                  ? '0'
-                  : result[i].iPREPAIRAMOUT,
+              iNETTOTAL: result[i].iNETTOTAL ?? '0',
+              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
               iSEQ: result[i].iSEQ,
               iSSIZEQTY: '0.0',
               iSUNITPRICE: result[i].iSUNITPRICE,
               iTOTAL:
-                  "${double.parse(result[i].iLSIZEQTY) * double.parse(result[i].iLUNITPRICE)}",
+                  "${double.parse(result[i].iLSIZEQTY ?? '0') * double.parse(result[i].iLUNITPRICE ?? '0')}",
             );
 
             podtList.add(product);

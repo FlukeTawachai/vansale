@@ -11,7 +11,6 @@ import 'package:vansale/api/class/request/mobile/getProductStockReq.dart';
 import 'package:vansale/api/class/response/routeMobile/queryPodtResp.dart';
 import 'package:vansale/function/substring_price.dart';
 
-
 class CustomerHistoryProduct extends StatefulWidget {
   //const CustomerHistory({ Key? key }) : super(key: key);
   final String typeMenuCode;
@@ -70,36 +69,45 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                     GlobalParam.deliveryPodtShow[index].iLSIZEQTY = '0';
                   }
                   if (double.parse(
-                          GlobalParam.deliveryPodtShow[index].iSSIZEQTY) >
+                          GlobalParam.deliveryPodtShow[index].iSSIZEQTY ??
+                              '0') >
                       0) {
                     qty = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iSSIZEQTY);
+                        GlobalParam.deliveryPodtShow[index].iSSIZEQTY ?? '0');
                     unitPrice = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iSUNITPRICE);
-                    unitName = GlobalParam.deliveryPodtShow[index].cSUOMNM;
-                    unitCode = GlobalParam.deliveryPodtShow[index].cSUOMCD;
+                        GlobalParam.deliveryPodtShow[index].iSUNITPRICE ?? '0');
+                    unitName =
+                        GlobalParam.deliveryPodtShow[index].cSUOMNM ?? '';
+                    unitCode =
+                        GlobalParam.deliveryPodtShow[index].cSUOMCD ?? '';
                     size = "S";
                   }
                   if (double.parse(
-                          GlobalParam.deliveryPodtShow[index].iMSIZEQTY) >
+                          GlobalParam.deliveryPodtShow[index].iMSIZEQTY ??
+                              '0') >
                       0) {
                     qty = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iMSIZEQTY);
+                        GlobalParam.deliveryPodtShow[index].iMSIZEQTY ?? '0');
                     unitPrice = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iMUNITPRICE);
-                    unitName = GlobalParam.deliveryPodtShow[index].cMUOMNM;
-                    unitCode = GlobalParam.deliveryPodtShow[index].cMUOMCD;
+                        GlobalParam.deliveryPodtShow[index].iMUNITPRICE ?? '0');
+                    unitName =
+                        GlobalParam.deliveryPodtShow[index].cMUOMNM ?? '';
+                    unitCode =
+                        GlobalParam.deliveryPodtShow[index].cMUOMCD ?? '';
                     size = "M";
                   }
                   if (double.parse(
-                          GlobalParam.deliveryPodtShow[index].iLSIZEQTY) >
+                          GlobalParam.deliveryPodtShow[index].iLSIZEQTY ??
+                              '0') >
                       0) {
                     qty = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iLSIZEQTY);
+                        GlobalParam.deliveryPodtShow[index].iLSIZEQTY ?? '0');
                     unitPrice = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iLUNITPRICE);
-                    unitName = GlobalParam.deliveryPodtShow[index].cLUOMNM;
-                    unitCode = GlobalParam.deliveryPodtShow[index].cLUOMCD;
+                        GlobalParam.deliveryPodtShow[index].iLUNITPRICE ?? '0');
+                    unitName =
+                        GlobalParam.deliveryPodtShow[index].cLUOMNM ?? '';
+                    unitCode =
+                        GlobalParam.deliveryPodtShow[index].cLUOMCD ?? '';
                     size = "L";
                   }
 
@@ -107,7 +115,7 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                     if (GlobalParam.deliveryPodtShow[index].cPRODCD ==
                         item.cPRODCD) {
                       if (item.cUOMCD == unitCode) {
-                        stock = double.parse(item.iQTY);
+                        stock = double.parse(item.iQTY ?? '0');
                       }
                     }
                   }
@@ -147,7 +155,7 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                                             fit: BoxFit.cover,
                                           ),
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.only(
+                                    borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(5),
                                       topRight: Radius.circular(5),
                                       bottomLeft: Radius.circular(5),
@@ -168,9 +176,11 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                                                 width: 128,
                                                 child: Text(
                                                   GlobalParam
-                                                      .customerPODTList[index]
-                                                      .cPRODNM,
-                                                  style: TextStyle(
+                                                          .customerPODTList[
+                                                              index]
+                                                          .cPRODNM ??
+                                                      '',
+                                                  style: const TextStyle(
                                                       fontFamily: 'Prompt',
                                                       fontSize: 18),
                                                   overflow:
@@ -180,7 +190,7 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                                             ),
                                             Container(
                                               child: IconButton(
-                                                icon: Icon(
+                                                icon: const Icon(
                                                   LineAwesomeIcons.trash,
                                                   color: Colors.red,
                                                 ),
@@ -205,7 +215,7 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                                           alignment: Alignment.centerLeft,
                                           child: Text(
                                             "สต็อก ${stock.toStringAsFixed(0)} ${unitName}",
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontFamily: 'Prompt',
                                                 fontSize: 14,
                                                 color: Colors.green),
@@ -226,7 +236,7 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                                                 width: 80.0,
                                                 // padding: const EdgeInsets.all(5.0),
                                                 alignment: Alignment.centerLeft,
-                                                child: Center(
+                                                child: const Center(
                                                   child: Text(
                                                     "ยอดสั่งซื้อ",
                                                     style: TextStyle(
@@ -240,7 +250,7 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                                               child: Container(
                                                 width: 80.0,
                                                 alignment: Alignment.centerLeft,
-                                                child: Center(
+                                                child: const Center(
                                                   child: Text(
                                                     "ลด",
                                                     style: TextStyle(
@@ -254,7 +264,7 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                                               child: Container(
                                                 width: 80.0,
                                                 alignment: Alignment.centerLeft,
-                                                child: Center(
+                                                child: const Center(
                                                   child: Text(
                                                     "เพิ่ม",
                                                     style: TextStyle(
@@ -296,7 +306,7 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                                                 decoration: BoxDecoration(
                                                     color: Colors.grey.shade400,
                                                     borderRadius:
-                                                        BorderRadius.only(
+                                                        const BorderRadius.only(
                                                       topLeft:
                                                           Radius.circular(5),
                                                       topRight:
@@ -311,7 +321,7 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                                                 child: Center(
                                                   child: Text(
                                                       '${qty.toStringAsFixed(0)}',
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           fontFamily: 'Prompt',
                                                           fontSize: 16)),
                                                 ),
@@ -327,7 +337,7 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                                                 decoration: BoxDecoration(
                                                     color: Colors.white,
                                                     borderRadius:
-                                                        BorderRadius.only(
+                                                        const BorderRadius.only(
                                                       topLeft:
                                                           Radius.circular(5),
                                                       topRight:
@@ -342,7 +352,7 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                                                 child: Center(
                                                   child: TextFormField(
                                                     textAlign: TextAlign.center,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.red),
                                                     controller:
                                                         incleaseCon[index],
@@ -357,7 +367,8 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                                                                 index]);
                                                       }
                                                     },
-                                                    decoration: InputDecoration(
+                                                    decoration:
+                                                        const InputDecoration(
                                                       border: InputBorder.none,
                                                       focusedBorder:
                                                           InputBorder.none,
@@ -389,7 +400,7 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                                                 decoration: BoxDecoration(
                                                     color: Colors.white,
                                                     borderRadius:
-                                                        BorderRadius.only(
+                                                        const BorderRadius.only(
                                                       topLeft:
                                                           Radius.circular(5),
                                                       topRight:
@@ -404,7 +415,7 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                                                 child: Center(
                                                   child: TextField(
                                                     textAlign: TextAlign.center,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.green),
                                                     controller:
                                                         decleaseCon[index],
@@ -419,7 +430,8 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                                                                 index]);
                                                       }
                                                     },
-                                                    decoration: InputDecoration(
+                                                    decoration:
+                                                        const InputDecoration(
                                                       border: InputBorder.none,
                                                       focusedBorder:
                                                           InputBorder.none,
@@ -456,7 +468,7 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                           alignment: Alignment.centerLeft,
                           child: Row(
                             children: [
-                              Expanded(
+                              const Expanded(
                                 child: Text(
                                   '',
                                   style: TextStyle(
@@ -490,7 +502,7 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
                             ],
                           ),
                         ),
-                        DottedLine(
+                        const DottedLine(
                           dashColor: Colors.grey,
                         ),
                       ],
@@ -573,13 +585,13 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
     if (size == "L") {
       for (var i = 0; i < GlobalParam.customerProductList.length; i++) {
         if (GlobalParam.customerProductList[i].cPOCD ==
-            GlobalParam.customerPOHDSelect.cPOCD) {
+            GlobalParam.customerPOHDSelect!.cPOCD) {
           if (GlobalParam.customerProductList[i].cPRODCD == product.cPRODCD) {
-            double sum =
-                double.parse(GlobalParam.customerProductList[i].iLSIZEQTY) +
-                    inclease;
+            double sum = double.parse(
+                    GlobalParam.customerProductList[i].iLSIZEQTY ?? '0') +
+                inclease;
             GlobalParam.customerProductList[i].iLSIZEQTY =
-                '${sum.toStringAsFixed(0)}';
+                sum.toStringAsFixed(0);
           }
         }
       }
@@ -588,10 +600,9 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
         if (GlobalParam.deliveryPodtList[i].cPRODCD == product.cPRODCD) {
           if (GlobalParam.deliveryPodtList[i].cLUOMCD != '') {
             double sum =
-                double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY) +
+                double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY ?? '0') +
                     inclease;
-            GlobalParam.deliveryPodtList[i].iLSIZEQTY =
-                '${sum.toStringAsFixed(0)}';
+            GlobalParam.deliveryPodtList[i].iLSIZEQTY = sum.toStringAsFixed(0);
           }
         }
       }
@@ -600,13 +611,13 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
     if (size == "M") {
       for (var i = 0; i < GlobalParam.customerProductList.length; i++) {
         if (GlobalParam.customerProductList[i].cPOCD ==
-            GlobalParam.customerPOHDSelect.cPOCD) {
+            GlobalParam.customerPOHDSelect!.cPOCD) {
           if (GlobalParam.customerProductList[i].cPRODCD == product.cPRODCD) {
-            double sum =
-                double.parse(GlobalParam.customerProductList[i].iMSIZEQTY) +
-                    inclease;
+            double sum = double.parse(
+                    GlobalParam.customerProductList[i].iMSIZEQTY ?? '0') +
+                inclease;
             GlobalParam.customerProductList[i].iMSIZEQTY =
-                '${sum.toStringAsFixed(0)}';
+                sum.toStringAsFixed(0);
           }
         }
       }
@@ -615,10 +626,9 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
         if (GlobalParam.deliveryPodtList[i].cPRODCD == product.cPRODCD) {
           if (GlobalParam.deliveryPodtList[i].cMUOMCD != '') {
             double sum =
-                double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY) +
+                double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY ?? '0') +
                     inclease;
-            GlobalParam.deliveryPodtList[i].iMSIZEQTY =
-                '${sum.toStringAsFixed(0)}';
+            GlobalParam.deliveryPodtList[i].iMSIZEQTY = sum.toStringAsFixed(0);
           }
         }
       }
@@ -627,13 +637,13 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
     if (size == "S") {
       for (var i = 0; i < GlobalParam.customerProductList.length; i++) {
         if (GlobalParam.customerProductList[i].cPOCD ==
-            GlobalParam.customerPOHDSelect.cPOCD) {
+            GlobalParam.customerPOHDSelect!.cPOCD) {
           if (GlobalParam.customerProductList[i].cPRODCD == product.cPRODCD) {
-            double sum =
-                double.parse(GlobalParam.customerProductList[i].iSSIZEQTY) +
-                    inclease;
+            double sum = double.parse(
+                    GlobalParam.customerProductList[i].iSSIZEQTY ?? '0') +
+                inclease;
             GlobalParam.customerProductList[i].iSSIZEQTY =
-                '${sum.toStringAsFixed(0)}';
+                sum.toStringAsFixed(0);
           }
         }
       }
@@ -642,10 +652,9 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
         if (GlobalParam.deliveryPodtList[i].cPRODCD == product.cPRODCD) {
           if (GlobalParam.deliveryPodtList[i].cSUOMCD != '') {
             double sum =
-                double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY) +
+                double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY ?? '0') +
                     inclease;
-            GlobalParam.deliveryPodtList[i].iSSIZEQTY =
-                '${sum.toStringAsFixed(0)}';
+            GlobalParam.deliveryPodtList[i].iSSIZEQTY = sum.toStringAsFixed(0);
           }
         }
       }
@@ -662,10 +671,10 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
     if (size == "L") {
       for (var i = 0; i < GlobalParam.customerProductList.length; i++) {
         if (GlobalParam.customerProductList[i].cPRODCD == product.cPRODCD) {
-          double sum =
-              double.parse(GlobalParam.customerProductList[i].iLSIZEQTY) -
-                  declease;
-          GlobalParam.customerProductList[i].iLSIZEQTY = '${sum}';
+          double sum = double.parse(
+                  GlobalParam.customerProductList[i].iLSIZEQTY ?? '0') -
+              declease;
+          GlobalParam.customerProductList[i].iLSIZEQTY = '$sum';
         }
       }
     }
@@ -673,10 +682,10 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
     if (size == "M") {
       for (var i = 0; i < GlobalParam.customerProductList.length; i++) {
         if (GlobalParam.customerProductList[i].cPRODCD == product.cPRODCD) {
-          double sum =
-              double.parse(GlobalParam.customerProductList[i].iMSIZEQTY) -
-                  declease;
-          GlobalParam.customerProductList[i].iMSIZEQTY = '${sum}';
+          double sum = double.parse(
+                  GlobalParam.customerProductList[i].iMSIZEQTY ?? '0') -
+              declease;
+          GlobalParam.customerProductList[i].iMSIZEQTY = '$sum';
         }
       }
     }
@@ -684,10 +693,10 @@ class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
     if (size == "S") {
       for (var i = 0; i < GlobalParam.customerProductList.length; i++) {
         if (GlobalParam.customerProductList[i].cPRODCD == product.cPRODCD) {
-          double sum =
-              double.parse(GlobalParam.customerProductList[i].iSSIZEQTY) -
-                  declease;
-          GlobalParam.customerProductList[i].iSSIZEQTY = '${sum}';
+          double sum = double.parse(
+                  GlobalParam.customerProductList[i].iSSIZEQTY ?? '0') -
+              declease;
+          GlobalParam.customerProductList[i].iSSIZEQTY = '$sum';
         }
       }
     }
