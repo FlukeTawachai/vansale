@@ -81,27 +81,28 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                 itemCount: listOfPodt.length,
                 itemBuilder: (BuildContext context, int index) {
                   var unitNM = '';
-                  if (double.parse(podtList[index].iSSIZEQTY) != 0) {
-                    unitNM = podtList[index].cSUOMNM;
+                  if (double.parse(podtList[index].iSSIZEQTY!) != 0) {
+                    unitNM = podtList[index].cSUOMNM!;
                   }
-                  if (double.parse(podtList[index].iMSIZEQTY) != 0) {
-                    unitNM = podtList[index].cMUOMNM;
+                  if (double.parse(podtList[index].iMSIZEQTY!) != 0) {
+                    unitNM = podtList[index].cMUOMNM!;
                   }
-                  if (double.parse(podtList[index].iLSIZEQTY) != 0) {
-                    unitNM = podtList[index].cLUOMNM;
+                  if (double.parse(podtList[index].iLSIZEQTY!) != 0) {
+                    unitNM = podtList[index].cLUOMNM!;
                   }
-                  double totalItem = double.parse(listOfPodt[index].iSSIZEQTY) +
-                      double.parse(listOfPodt[index].iMSIZEQTY) +
-                      double.parse(listOfPodt[index].iLSIZEQTY);
+                  double totalItem =
+                      double.parse(listOfPodt[index].iSSIZEQTY!) +
+                          double.parse(listOfPodt[index].iMSIZEQTY!) +
+                          double.parse(listOfPodt[index].iLSIZEQTY!);
 
                   int count_column = 0;
-                  if (double.parse(listOfPodt[index].iLSIZEQTY) > 0) {
+                  if (double.parse(listOfPodt[index].iLSIZEQTY!) > 0) {
                     count_column++;
                   }
-                  if (double.parse(listOfPodt[index].iMSIZEQTY) > 0) {
+                  if (double.parse(listOfPodt[index].iMSIZEQTY!) > 0) {
                     count_column++;
                   }
-                  if (double.parse(listOfPodt[index].iSSIZEQTY) > 0) {
+                  if (double.parse(listOfPodt[index].iSSIZEQTY!) > 0) {
                     count_column++;
                   }
                   // print(
@@ -120,31 +121,48 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Container(
-                                width: 100.0,
-                                height: 150.0,
-                                margin: const EdgeInsets.all(5.0),
-                                decoration: new BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(5),
-                                    topRight: Radius.circular(5),
-                                    bottomLeft: Radius.circular(5),
-                                    bottomRight: Radius.circular(5),
-                                  ),
-                                  image: DecorationImage(
-                                    image: listOfPodt[index].cPHOTOSERV == '' ||
-                                            listOfPodt[index].cPHOTOPATH == ''
-                                        ? new AssetImage(
+                              (podtList[index].cPHOTOSERV == '') ||
+                                      (podtList[index].cPHOTOPATH == '')
+                                  ? Container(
+                                      width: 100.0,
+                                      height: 150.0,
+                                      margin: const EdgeInsets.all(5.0),
+                                      decoration: new BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(5),
+                                          topRight: Radius.circular(5),
+                                          bottomLeft: Radius.circular(5),
+                                          bottomRight: Radius.circular(5),
+                                        ),
+                                        image: DecorationImage(
+                                          image: AssetImage(
                                             // order[index]['image'],
                                             "assets/images/no_image.png",
-                                          )
-                                        : NetworkImage(
-                                            'http://${listOfPodt[index].cPHOTOSERV}/${listOfPodt[index].cPHOTOPATH}'),
-                                    scale: 3.0,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
+                                          ),
+                                          scale: 3.0,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    )
+                                  : Container(
+                                      width: 100.0,
+                                      height: 150.0,
+                                      margin: const EdgeInsets.all(5.0),
+                                      decoration: new BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(5),
+                                          topRight: Radius.circular(5),
+                                          bottomLeft: Radius.circular(5),
+                                          bottomRight: Radius.circular(5),
+                                        ),
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                              'http://${podtList[index].cPHOTOSERV}/${podtList[index].cPHOTOPATH}'),
+                                          scale: 3.0,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
                               Expanded(
                                   child: Container(
                                 padding: EdgeInsets.only(
@@ -161,7 +179,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                                       child: Text(
                                         (index + 1).toString() +
                                             "." +
-                                            listOfPodt[index].cPRODNM,
+                                            listOfPodt[index].cPRODNM!,
                                         style: TextStyle(
                                           fontFamily: 'Prompt',
                                         ),
@@ -179,7 +197,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                                                 CrossAxisAlignment.center,
                                             children: [
                                               double.parse(listOfPodt[index]
-                                                          .iLSIZEQTY) >
+                                                          .iLSIZEQTY!) >
                                                       0
                                                   ? Container(
                                                       width: widthScreen *
@@ -191,7 +209,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                                                           Alignment.center,
                                                       child: AutoSizeText(
                                                         listOfPodt[index]
-                                                            .cLUOMNM,
+                                                            .cLUOMNM!,
                                                         maxLines: 1,
                                                         maxFontSize: 16,
                                                         minFontSize: 10,
@@ -202,7 +220,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                                                     )
                                                   : SizedBox(height: 0),
                                               double.parse(listOfPodt[index]
-                                                          .iMSIZEQTY) >
+                                                          .iMSIZEQTY!) >
                                                       0
                                                   ? Container(
                                                       width: widthScreen *
@@ -214,7 +232,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                                                           Alignment.center,
                                                       child: AutoSizeText(
                                                         listOfPodt[index]
-                                                            .cMUOMNM,
+                                                            .cMUOMNM!,
                                                         maxLines: 1,
                                                         maxFontSize: 16,
                                                         minFontSize: 10,
@@ -225,7 +243,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                                                     )
                                                   : SizedBox(height: 0),
                                               double.parse(listOfPodt[index]
-                                                          .iSSIZEQTY) >
+                                                          .iSSIZEQTY!) >
                                                       0
                                                   ? Container(
                                                       width: widthScreen *
@@ -237,7 +255,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                                                           Alignment.center,
                                                       child: AutoSizeText(
                                                         listOfPodt[index]
-                                                            .cSUOMNM,
+                                                            .cSUOMNM!,
                                                         maxLines: 1,
                                                         maxFontSize: 16,
                                                         minFontSize: 10,
@@ -279,7 +297,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                                                         child: Container(
                                                           margin:
                                                               const EdgeInsets
-                                                                      .only(
+                                                                  .only(
                                                                   left: 5.0,
                                                                   right: 5.0),
                                                           height: 30.0,
@@ -346,7 +364,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                                                 CrossAxisAlignment.center,
                                             children: [
                                               double.parse(listOfPodt[index]
-                                                          .iLSIZEQTY) >
+                                                          .iLSIZEQTY!) >
                                                       0
                                                   ? Container(
                                                       width: widthScreen *
@@ -359,7 +377,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                                                       child: AutoSizeText(
                                                         double.parse(listOfPodt[
                                                                     index]
-                                                                .iLSIZEQTY)
+                                                                .iLSIZEQTY!)
                                                             .toStringAsFixed(0),
                                                         maxLines: 1,
                                                         maxFontSize: 16,
@@ -371,7 +389,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                                                     )
                                                   : Container(),
                                               double.parse(listOfPodt[index]
-                                                          .iMSIZEQTY) >
+                                                          .iMSIZEQTY!) >
                                                       0
                                                   ? Container(
                                                       width: widthScreen *
@@ -384,7 +402,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                                                       child: AutoSizeText(
                                                         double.parse(listOfPodt[
                                                                     index]
-                                                                .iMSIZEQTY)
+                                                                .iMSIZEQTY!)
                                                             .toStringAsFixed(0),
                                                         maxLines: 1,
                                                         maxFontSize: 16,
@@ -396,7 +414,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                                                     )
                                                   : Container(),
                                               double.parse(listOfPodt[index]
-                                                          .iSSIZEQTY) >
+                                                          .iSSIZEQTY!) >
                                                       0
                                                   ? Container(
                                                       width: widthScreen *
@@ -409,7 +427,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                                                       child: AutoSizeText(
                                                         double.parse(listOfPodt[
                                                                     index]
-                                                                .iSSIZEQTY)
+                                                                .iSSIZEQTY!)
                                                             .toStringAsFixed(0),
                                                         maxLines: 1,
                                                         maxFontSize: 16,
@@ -785,8 +803,8 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                       setState(() {
                         // print(
                         //     '======================== update cPREPAIRSTATUS ========================');
-                        updatePodtTable(listOfPodt.cPOCD, listOfPodt.iSEQ, 'Y',
-                            double.parse(listOfPodt.iTOTAL));
+                        updatePodtTable(listOfPodt.cPOCD!, listOfPodt.iSEQ!, 'Y',
+                            double.parse(listOfPodt.iTOTAL!));
                       });
                       Navigator.of(context).pop();
                     } else {
@@ -794,7 +812,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                         // print(
                         //     '======================== update cPREPAIRSTATUS ========================');
                         updatePodtTable(
-                            listOfPodt.cPOCD, listOfPodt.iSEQ, 'N', 0.00);
+                            listOfPodt.cPOCD!, listOfPodt.iSEQ!, 'N', 0.00);
                       });
                       Navigator.of(context).pop();
                     }
@@ -872,9 +890,9 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
             podtListNstatus.clear();
             for (int i = 0; i < result.length; i++) {
               print(result[i].cPREPAIRSTATUS);
-              sumItem += double.parse(result[i].iSSIZEQTY) +
-                  double.parse(result[i].iMSIZEQTY) +
-                  double.parse(result[i].iLSIZEQTY);
+              sumItem += double.parse(result[i].iSSIZEQTY!) +
+                  double.parse(result[i].iMSIZEQTY!) +
+                  double.parse(result[i].iLSIZEQTY!);
               podtList.add(result[i]);
               if (result[i].cPREPAIRSTATUS == 'N' ||
                   result[i].cPREPAIRSTATUS == null) {
@@ -883,29 +901,29 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
             }
 
             for (int i = 0; i < result.length; i++) {
-              sumItem += double.parse(result[i].iSSIZEQTY) +
-                  double.parse(result[i].iMSIZEQTY) +
-                  double.parse(result[i].iLSIZEQTY);
+              sumItem += double.parse(result[i].iSSIZEQTY!) +
+                  double.parse(result[i].iMSIZEQTY!) +
+                  double.parse(result[i].iLSIZEQTY!);
 
-              if (double.parse(result[i].iSSIZEQTY) != 0.0) {
+              if (double.parse(result[i].iSSIZEQTY!) != 0.0) {
                 var data = {
                   "cUOMNM": result[i].cSUOMNM,
-                  "iPRICE": double.parse(result[i].iSUNITPRICE),
-                  "iTOTAL": double.parse(result[i].iSSIZEQTY)
+                  "iPRICE": double.parse(result[i].iSUNITPRICE!),
+                  "iTOTAL": double.parse(result[i].iSSIZEQTY!)
                 };
                 unitList.add(data);
-              } else if (double.parse(result[i].iMSIZEQTY) != 0.0) {
+              } else if (double.parse(result[i].iMSIZEQTY!) != 0.0) {
                 var data = {
                   "cUOMNM": result[i].cMUOMNM,
-                  "iPRICE": double.parse(result[i].iMUNITPRICE),
-                  "iTOTAL": double.parse(result[i].iMSIZEQTY)
+                  "iPRICE": double.parse(result[i].iMUNITPRICE!),
+                  "iTOTAL": double.parse(result[i].iMSIZEQTY!)
                 };
                 unitList.add(data);
-              } else if (double.parse(result[i].iLSIZEQTY) != 0.0) {
+              } else if (double.parse(result[i].iLSIZEQTY!) != 0.0) {
                 var data = {
                   "cUOMNM": result[i].cLUOMNM,
-                  "iPRICE": double.parse(result[i].iLUNITPRICE),
-                  "iTOTAL": double.parse(result[i].iLSIZEQTY)
+                  "iPRICE": double.parse(result[i].iLUNITPRICE!),
+                  "iTOTAL": double.parse(result[i].iLSIZEQTY!)
                 };
                 unitList.add(data);
               } else {
@@ -998,7 +1016,7 @@ class _WarehousePrepareProductState extends State<WarehousePrepareProduct> {
                 'success: ${result.success}\nmessage: ${result.message}\nresult: ${result.result}');
             Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
-                    builder: (context) => HomePage(GlobalParam.typeMenuCode)),
+                    builder: (context) => HomePage(GlobalParam.typeMenuCode!)),
                 (Route<dynamic> route) => false);
           } else {
             print(

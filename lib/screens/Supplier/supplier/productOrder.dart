@@ -4,14 +4,14 @@ import 'package:vansale/screens/Supplier/models/supOrder.dart';
 import 'package:vansale/screens/Supplier/supplier/widgets/supplierCard.dart';
 
 class ProductOrder extends StatefulWidget {
-  const ProductOrder({Key key}) : super(key: key);
+  const ProductOrder({Key? key}) : super(key: key);
 
   @override
   State<ProductOrder> createState() => _ProductOrderState();
 }
 
 class _ProductOrderState extends State<ProductOrder> {
-  DateTime _dateTime;
+  DateTime _dateTime = DateTime.now();
 
   List<SupplierOrder> virtualOrder = [
     SupplierOrder(id: 1, date: DateTime.now().toIso8601String()),
@@ -92,7 +92,7 @@ class _ProductOrderState extends State<ProductOrder> {
                                   ),
                                 ),
                               ),
-                              child: child,
+                              child: child!,
                             );
                           },
                           context: context,
@@ -102,7 +102,7 @@ class _ProductOrderState extends State<ProductOrder> {
                           lastDate: DateTime(2100),
                         ).then((date) {
                           setState(() {
-                            _dateTime = date;
+                            _dateTime = date!;
                           });
                         });
                       },

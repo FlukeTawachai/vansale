@@ -9,7 +9,7 @@ import 'package:vansale/api/class/response/routeMobile/getSupplierResp.dart';
 import 'package:vansale/screens/stocks/stoeck_return/stock_return_basket.dart';
 
 class SupplierList extends StatefulWidget {
-  const SupplierList({Key key}) : super(key: key);
+  const SupplierList({Key? key}) : super(key: key);
 
   @override
   State<SupplierList> createState() => _SupplierListState();
@@ -52,7 +52,7 @@ class _SupplierListState extends State<SupplierList> {
                     GlobalParam.stockSupSelect = supplierList[index];
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => StockBasketReturn(
-                            typeMenuCode: GlobalParam.typeMenuCode,
+                            typeMenuCode: GlobalParam.typeMenuCode!,
                             supplier: supplierList[index])));
                   },
                   child: Container(
@@ -66,7 +66,7 @@ class _SupplierListState extends State<SupplierList> {
                           height: 24,
                           alignment: Alignment.topLeft,
                           child: Text(
-                            supplierList[index].cSUPNM,
+                            supplierList[index].cSUPNM!,
                             style: TextStyle(
                               fontFamily: 'Prompt',
                               fontWeight: FontWeight.bold,

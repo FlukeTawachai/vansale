@@ -6,8 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:vansale/screens/Supplier/supplier/productOrderDetail.dart';
 
 class OrderOrderCard extends StatelessWidget {
-  final SupplierOrder supOrder;
-  const OrderOrderCard({ Key key , this.supOrder}) : super(key: key);
+  final SupplierOrder? supOrder;
+  const OrderOrderCard({ Key? key , this.supOrder}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +23,12 @@ class OrderOrderCard extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => SupOrderDetail(
-                            supOrder.date, supOrder.id)));
+                            supOrder!.date!, supOrder!.id!)));
                   },
                   icon: Icon(Icons.navigate_next),
                   iconSize: 48,
                 ),
-                title: Text("วันที่: ${dateFormat.format(DateTime.parse(supOrder.date))}")),
+                title: Text("วันที่: ${dateFormat.format(DateTime.parse(supOrder!.date!))}")),
             SizedBox(
               height: 12,
             ),

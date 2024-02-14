@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class StoreHistory extends StatefulWidget {
-  const StoreHistory({ Key key }) : super(key: key);
+  const StoreHistory({ Key? key }) : super(key: key);
 
   @override
   State<StoreHistory> createState() => _StoreHistoryState();

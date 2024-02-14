@@ -1,8 +1,5 @@
 import 'dart:io';
 
-import 'package:blue_print_pos/models/blue_device.dart';
-import 'package:blue_print_pos/models/connection_status.dart';
-import 'package:blue_print_pos/receipt/receipt.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -24,11 +21,9 @@ import 'package:vansale/screens/Supplier/models/delayTime.dart';
 import 'package:vansale/screens/delivery/delivery_scanner.dart';
 import 'package:vansale/screens/home/home.dart';
 import 'package:blue_print_pos/blue_print_pos.dart';
-import 'package:vansale/screens/stocks/stoeck_return/stock_return_img.dart';
-import 'package:vansale/screens/stocks/stoeck_return/stock_return_proMiss.dart';
 
 class StockTransferBasketReturn extends StatefulWidget {
-  const StockTransferBasketReturn({Key key}) : super(key: key);
+  const StockTransferBasketReturn({Key? key}) : super(key: key);
 
   @override
   State<StockTransferBasketReturn> createState() =>
@@ -204,7 +199,7 @@ class _StockTransferBasketReturnState extends State<StockTransferBasketReturn> {
                           for (var k = 0; k < stockList.length; k++) {
                             if (stockList[k].cBASKCD ==
                                 GlobalParam.deliveryBasketShow[index].cBASKCD) {
-                              stock = double.parse(stockList[k].iBKQTY);
+                              stock = double.parse(stockList[k].iBKQTY!);
                             }
                           }
                           return Container(
@@ -276,7 +271,7 @@ class _StockTransferBasketReturnState extends State<StockTransferBasketReturn> {
                                                         GlobalParam
                                                             .deliveryBasketShow[
                                                                 index]
-                                                            .cBASKNM,
+                                                            .cBASKNM!,
                                                         style: TextStyle(
                                                             fontFamily:
                                                                 'Prompt',
@@ -425,7 +420,7 @@ class _StockTransferBasketReturnState extends State<StockTransferBasketReturn> {
                                                               !GlobalParam
                                                                   .deliveryBasketShow[
                                                                       index]
-                                                                  .cCheck;
+                                                                  .cCheck!;
                                                         });
                                                       },
                                                       child: GlobalParam
@@ -858,7 +853,7 @@ class _StockTransferBasketReturnState extends State<StockTransferBasketReturn> {
                                                     Container(
                                                       width: widthScreen * 0.2,
                                                       child: Text(
-                                                        "${formatNum.format(double.parse(GlobalParam.deliveryBasketShow[index].iPRICE))} ฿",
+                                                        "${formatNum.format(double.parse(GlobalParam.deliveryBasketShow[index].iPRICE!))} ฿",
                                                         style: TextStyle(
                                                             fontFamily:
                                                                 'Prompt',
@@ -929,11 +924,11 @@ class _StockTransferBasketReturnState extends State<StockTransferBasketReturn> {
     String basketName = '';
 
     for (var i = 0; i < orderList.length; i++) {
-      double qty = orderList[i].iQTY;
-      double price = orderList[i].iTOTAL / orderList[i].iQTY;
+      double qty = orderList[i].iQTY!;
+      double price = orderList[i].iTOTAL! / orderList[i].iQTY!;
       for (var j = 0; j < GlobalParam.deliveryBasketList.length; j++) {
         if (GlobalParam.deliveryBasketList[j].cBASKCD == orderList[i].cBASKCD) {
-          basketName = GlobalParam.deliveryBasketList[j].cBASKNM;
+          basketName = GlobalParam.deliveryBasketList[j].cBASKNM!;
         }
       }
       if (qty > 0) {
@@ -1335,11 +1330,11 @@ class _StockTransferBasketReturnState extends State<StockTransferBasketReturn> {
         for (var j = 0; j < GlobalParam.deliveryBasketList.length; j++) {
           if (returnList[i].cBASKCD ==
               GlobalParam.deliveryBasketList[j].cBASKCD) {
-            basketName = GlobalParam.deliveryBasketList[j].cBASKNM;
+            basketName = GlobalParam.deliveryBasketList[j].cBASKNM!;
           }
         }
 
-        if (returnList[i].iQTY > 0) {
+        if (returnList[i].iQTY! > 0) {
           reqList.add(AddBasketStockCardReq(
             cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
             cWH: "TP",
@@ -1348,7 +1343,7 @@ class _StockTransferBasketReturnState extends State<StockTransferBasketReturn> {
             cUOMCD: "B0001",
             cREFDOC: '${returnList[i].cREFDOC}',
             iRECEIVEQTY: "0",
-            iISSUEQTY: "${returnList[i].iQTY.toStringAsFixed(0)}",
+            iISSUEQTY: "${returnList[i].iQTY!.toStringAsFixed(0)}",
             cREMARK: "transfer stock to branch stock",
             cCREABY: GlobalParam.userData.cUSRNM,
           ));
@@ -1360,7 +1355,7 @@ class _StockTransferBasketReturnState extends State<StockTransferBasketReturn> {
             cBASKNM: basketName,
             cUOMCD: "B0001",
             cREFDOC: '${returnList[i].cREFDOC}',
-            iRECEIVEQTY: "${returnList[i].iQTY.toStringAsFixed(0)}",
+            iRECEIVEQTY: "${returnList[i].iQTY!.toStringAsFixed(0)}",
             iISSUEQTY: "0",
             cREMARK: "transfer stock to branch stock",
             cCREABY: GlobalParam.userData.cUSRNM,
@@ -1428,7 +1423,7 @@ class _StockTransferBasketReturnState extends State<StockTransferBasketReturn> {
     setState(() {
       for (var i = 0; i < totalList.length; i++) {
         if (totalList[i]['cBASKCD'] == basket.cBASKCD) {
-          totalList[i]['total'] = value * double.parse(basket.iPRICE);
+          totalList[i]['total'] = value * double.parse(basket.iPRICE!);
         }
       }
 
@@ -1438,7 +1433,7 @@ class _StockTransferBasketReturnState extends State<StockTransferBasketReturn> {
         cRECEIVER: GlobalParam.stockSupSelect.cSUPCD,
         cBASKCD: basket.cBASKCD,
         iQTY: value,
-        iTOTAL: value * double.parse(basket.iPRICE),
+        iTOTAL: value * double.parse(basket.iPRICE!),
         cTYPE: "BTS",
         cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
         cVEHICD: "",
@@ -1474,7 +1469,7 @@ class _StockTransferBasketReturnState extends State<StockTransferBasketReturn> {
               GlobalParam.deliveryBasketShow[index].cDCUL = false;
             }
             basketToStockReqList[i].iTRUEQTY =
-                '${double.parse(basketToStockReqList[i].iQTY) + value}';
+                '${double.parse(basketToStockReqList[i].iQTY!) + value}';
           } else if (type == 'decrease') {
             if (value == 0) {
               GlobalParam.deliveryBasketShow[index].cICUK = true;
@@ -1483,7 +1478,7 @@ class _StockTransferBasketReturnState extends State<StockTransferBasketReturn> {
               GlobalParam.deliveryBasketShow[index].cICUK = false;
             }
             basketToStockReqList[i].iTRUEQTY =
-                '${double.parse(basketToStockReqList[i].iQTY) - value}';
+                '${double.parse(basketToStockReqList[i].iQTY!) - value}';
           }
         }
       }
@@ -1508,7 +1503,7 @@ class _StockTransferBasketReturnState extends State<StockTransferBasketReturn> {
       if (check == basketToStockReqList.length) {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-                builder: (context) => HomePage(GlobalParam.typeMenuCode)),
+                builder: (context) => HomePage(GlobalParam.typeMenuCode!)),
             (Route route) => false);
       }
     } on SocketException catch (e) {
@@ -1527,7 +1522,7 @@ class _StockTransferBasketReturnState extends State<StockTransferBasketReturn> {
     } else {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
-              builder: (context) => HomePage(GlobalParam.typeMenuCode)),
+              builder: (context) => HomePage(GlobalParam.typeMenuCode!)),
           (Route route) => false);
     }
   }

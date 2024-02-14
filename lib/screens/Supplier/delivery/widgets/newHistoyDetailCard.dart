@@ -22,9 +22,9 @@ class _NewHistoryDetailCardState extends State<NewHistoryDetailCard> {
   int OriginValue = 20;
   int inclease = 0;
   int declease = 0;
-  int valueFinal;
-  String sam, sam2;
-  String airFlowText, velocityText, finalText;
+  int valueFinal = 0;
+  String sam = "", sam2 = "";
+  String airFlowText = "", velocityText = "", finalText = "";
 
   @override
   void initState() {
@@ -67,7 +67,7 @@ class _NewHistoryDetailCardState extends State<NewHistoryDetailCard> {
                 Container(
                   margin: const EdgeInsets.all(5.0),
                   child: Image.asset(
-                    widget.product.img,
+                    widget.product.img!,
                     fit: BoxFit.cover,
                     width: 100.0,
                     height: 150.0,
@@ -85,7 +85,7 @@ class _NewHistoryDetailCardState extends State<NewHistoryDetailCard> {
                                 child: Container(
                                   width: 128,
                                   child: Text(
-                                    widget.product.name,
+                                    widget.product.name!,
                                     style: TextStyle(
                                         fontFamily: 'Prompt', fontSize: 18),
                                     overflow: TextOverflow.ellipsis,
@@ -421,7 +421,7 @@ class _NewHistoryDetailCardState extends State<NewHistoryDetailCard> {
                       )
                     : Expanded(
                         child: Text(
-                          widget.product.promo,
+                          widget.product.promo!,
                           style: TextStyle(
                             color: Colors.red,
                             fontFamily: 'Prompt',

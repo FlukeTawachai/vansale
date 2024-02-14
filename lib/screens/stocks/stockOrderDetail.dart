@@ -22,7 +22,6 @@ import 'package:vansale/screens/delivery/delivery_scanner.dart';
 import 'package:vansale/screens/delivery/delivery_store/delivery_store_shipping/delivery_Store_filter.dart';
 import 'package:vansale/screens/stocks/supplierFooter.dart';
 import 'package:vansale/screens/stocks/stockImages.dart';
-import 'package:vansale/screens/stocks/stockProduckList.dart';
 
 DelayTime delay = new DelayTime();
 
@@ -33,7 +32,7 @@ class StockOrderDetail extends StatefulWidget {
 }
 
 class _StockOrderDetailState extends State<StockOrderDetail> {
-  double widthScreen;
+  double widthScreen = 0;
   var proItem = 0;
   var proTotal = 0.0;
   List<GetSPOrderDTResp> products = [];
@@ -43,9 +42,9 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
   var search = TextEditingController();
 
   // ignore: deprecated_member_use
-  List<TextEditingController> incomCon = new List();
+  List<TextEditingController> incomCon = [];
   // ignore: deprecated_member_use
-  List<TextEditingController> plusCon = new List();
+  List<TextEditingController> plusCon = [];
 
   String total = '0.0';
   List<double> itemTotalList = [];
@@ -62,20 +61,20 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
     if (GlobalParam.deliveryRegetPODT == true) {
       for (int i = 0; i < GlobalParam.supplierOrProductShowList.length; i++) {
         if (GlobalParam.supplierOrProductShowList[i].cPOCD ==
-            GlobalParam.supplierSelectOrder.cPOCD) {
+            GlobalParam.supplierSelectOrder!.cPOCD) {
           proTotal +=
-              double.parse(GlobalParam.supplierOrProductShowList[i].iNETPRICE);
+              double.parse(GlobalParam.supplierOrProductShowList[i].iNETPRICE!);
           proItem++;
           products.add(GlobalParam.supplierOrProductShowList[i]);
           itemTotalList.add(
-              double.parse(GlobalParam.supplierOrProductShowList[i].iPURCHASE));
+              double.parse(GlobalParam.supplierOrProductShowList[i].iPURCHASE!));
 
           GlobalParam.supplierCheckProList.add(false);
         }
       }
     }
 
-    products.sort((a, b) => a.iSEQ.compareTo(b.iSEQ));
+    products.sort((a, b) => a.iSEQ!.compareTo(b.iSEQ!));
 
     for (int i = 0; i < products.length; i++) {
       incomCon.add(new TextEditingController());
@@ -85,9 +84,9 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
     }
 
     for (int i = 0; i < products.length; i++) {
-      sumItem += double.parse(products[i].iSSTOCK) +
-          double.parse(products[i].iMSTOCK) +
-          double.parse(products[i].iLSTOCK);
+      sumItem += double.parse(products[i].iSSTOCK!) +
+          double.parse(products[i].iMSTOCK!) +
+          double.parse(products[i].iLSTOCK!);
 
       // if (double.parse(products[i].iSSTOCK) != 0.0) {
       //   var data = {
@@ -106,11 +105,11 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
       //   };
       //   unitList.add(data);
       // }
-      if (double.parse(products[i].iPURCHASE) != 0.0) {
+      if (double.parse(products[i].iPURCHASE!) != 0.0) {
         var data = {
           "cUOMNM": products[i].cLUOMNM,
-          "iPRICE": double.parse(products[i].iLUNITPRICE),
-          "iTOTAL": double.parse(products[i].iPURCHASE)
+          "iPRICE": double.parse(products[i].iLUNITPRICE!),
+          "iTOTAL": double.parse(products[i].iPURCHASE!)
         };
         unitList.add(data);
       } else {
@@ -199,13 +198,13 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
                                                       .supplierOrProductList[i]
                                                       .cPOCD ==
                                                   GlobalParam
-                                                      .supplierSelectOrder
+                                                      .supplierSelectOrder!
                                                       .cPOCD) {
                                                 proTotal += double.parse(
                                                     GlobalParam
                                                         .supplierOrProductList[
                                                             i]
-                                                        .iNETPRICE);
+                                                        .iNETPRICE!);
                                                 proItem++;
                                                 products.add(GlobalParam
                                                     .supplierOrProductList[i]);
@@ -214,7 +213,7 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
                                           } else {
                                             getSPOrderDTShow(
                                                 GlobalParam
-                                                    .supplierSelectOrder.cPOCD,
+                                                    .supplierSelectOrder!.cPOCD!,
                                                 '${search.text}',
                                                 '');
                                           }
@@ -249,13 +248,13 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
                                                               i]
                                                           .cPOCD ==
                                                       GlobalParam
-                                                          .supplierSelectOrder
-                                                          .cPOCD) {
+                                                          .supplierSelectOrder!
+                                                          .cPOCD!) {
                                                     proTotal += double.parse(
                                                         GlobalParam
                                                             .supplierOrProductList[
                                                                 i]
-                                                            .iNETPRICE);
+                                                            .iNETPRICE!);
                                                     proItem++;
                                                     products.add(GlobalParam
                                                         .supplierOrProductList[i]);
@@ -264,8 +263,8 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
                                               } else {
                                                 getSPOrderDTShow(
                                                     GlobalParam
-                                                        .supplierSelectOrder
-                                                        .cPOCD,
+                                                        .supplierSelectOrder!
+                                                        .cPOCD!,
                                                     '${search.text}',
                                                     '');
                                               }
@@ -353,23 +352,23 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
 
                         // incomCon[index].text = '0';
                         // plusCon[index].text = '0';
-                        if (double.parse(products[index].iPURCHASE) != 0) {
-                          item = double.parse(products[index].iPURCHASE);
-                          unitPrice = double.parse(products[index].iLUNITPRICE);
+                        if (double.parse(products[index].iPURCHASE!) != 0) {
+                          item = double.parse(products[index].iPURCHASE!);
+                          unitPrice = double.parse(products[index].iLUNITPRICE!);
                           if (products[index].cLUOMCD != '' &&
                               products[index].cLUOMCD != null) {
-                            unitNM = products[index].cLUOMNM;
-                            unitCD = products[index].cLUOMCD;
+                            unitNM = products[index].cLUOMNM!;
+                            unitCD = products[index].cLUOMCD!;
                           } else {
                             if (products[index].cMUOMCD != '' &&
                                 products[index].cMUOMCD != null) {
-                              unitNM = products[index].cMUOMNM;
-                              unitCD = products[index].cMUOMCD;
+                              unitNM = products[index].cMUOMNM!;
+                              unitCD = products[index].cMUOMCD!;
                             } else {
                               if (products[index].cSUOMCD != '' &&
                                   products[index].cSUOMCD != null) {
-                                unitNM = products[index].cSUOMNM;
-                                unitCD = products[index].cSUOMCD;
+                                unitNM = products[index].cSUOMNM!;
+                                unitCD = products[index].cSUOMCD!;
                               }
                             }
                           }
@@ -430,7 +429,7 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
                                                   // width: widthScreen * 0.48,
                                                   height: 24,
                                                   child: Text(
-                                                    products[index].cPRODNM,
+                                                    products[index].cPRODNM!,
                                                     style: TextStyle(
                                                       fontFamily: 'Prompt',
                                                       fontWeight:
@@ -1193,9 +1192,9 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
             // print(
             // '++++++++++++++++ ${GlobalParam.supplierIncomProList.length}');
             // for (int i = 0; i < GlobalParam.supplierIncomProList.length; i++) {}
-            if (GlobalParam.supplierSelectOrder.cPOSTATUS != '3' ||
-                GlobalParam.supplierSelectOrder.cPOSTATUS != '4' ||
-                GlobalParam.supplierSelectOrder.cPOSTATUS != '5') {
+            if (GlobalParam.supplierSelectOrder!.cPOSTATUS != '3' ||
+                GlobalParam.supplierSelectOrder!.cPOSTATUS != '4' ||
+                GlobalParam.supplierSelectOrder!.cPOSTATUS != '5') {
               for (int i = 0; i < products.length; i++) {
                 print('$i-----------------${products[i].cCHECK}');
                 if (products[i].cCHECK == false) {
@@ -1259,9 +1258,9 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
         // print('$i+++++++++++++${INCOMQTY}');
         if (INCOMQTY > 0) {
           var result = await proxy.addSupplierCredit(AddSupplierCreditReq(
-              cSUPPCD: GlobalParam.supplierSelectOrder.cSUPPCD,
-              cSUPPNM: GlobalParam.supplierSelectOrder.cSUPPNM,
-              cREFDOC: GlobalParam.supplierSelectOrder.cPOCD,
+              cSUPPCD: GlobalParam.supplierSelectOrder!.cSUPPCD,
+              cSUPPNM: GlobalParam.supplierSelectOrder!.cSUPPNM,
+              cREFDOC: GlobalParam.supplierSelectOrder!.cPOCD,
               cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
               cBRANNM: GlobalParam.VEHICLE['cBRANNM'],
               cPRODCD: GlobalParam.supplierIncomProList[i]["cPRODCD"],
@@ -1304,12 +1303,12 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
       AllApiProxyMobile proxy = AllApiProxyMobile();
 
       var result = await proxy.addSupplierReceiveHD(AddSupplierReceiveHDReq(
-          cREFDOC: GlobalParam.supplierSelectOrder.cPOCD,
+          cREFDOC: GlobalParam.supplierSelectOrder!.cPOCD,
           cRECEIVEBY: GlobalParam.userID,
-          iBEFOREVAT: GlobalParam.supplierSelectOrder.iBEFOREVAT,
-          iVATVAL: GlobalParam.supplierSelectOrder.iVATVAL,
-          iSKIPVAT: GlobalParam.supplierSelectOrder.iSKIPVAT,
-          iTOTAL: GlobalParam.supplierSelectOrder.iTOTAL,
+          iBEFOREVAT: GlobalParam.supplierSelectOrder!.iBEFOREVAT,
+          iVATVAL: GlobalParam.supplierSelectOrder!.iVATVAL,
+          iSKIPVAT: GlobalParam.supplierSelectOrder!.iSKIPVAT,
+          iTOTAL: GlobalParam.supplierSelectOrder!.iTOTAL,
           cREMARK: "",
           cCREABY: GlobalParam.userID));
 
@@ -1380,7 +1379,7 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
       AllApiProxyMobile proxy = AllApiProxyMobile();
       for (int i = 0; i < products.length; i++) {
         var result = await proxy.supplierCreditPay(SupplierCreditPayReq(
-            cSUPPCD: GlobalParam.supplierSelectOrder.cSUPPCD,
+            cSUPPCD: GlobalParam.supplierSelectOrder!.cSUPPCD,
             cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
             cPRODCD: products[i].cPRODCD,
             cCREABY: GlobalParam.userID));
@@ -1411,17 +1410,17 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
         double qty = 0;
         double proQTY = 0;
 
-        if (double.parse(products[i].iPURCHASE) != 0) {
-          proQTY = double.parse(products[i].iPURCHASE);
+        if (double.parse(products[i].iPURCHASE!) != 0) {
+          proQTY = double.parse(products[i].iPURCHASE!);
           qty = proQTY;
           if (products[i].cLUOMCD != '' && products[i].cLUOMCD != null) {
-            cUOMCD = products[i].cLUOMCD;
+            cUOMCD = products[i].cLUOMCD!;
           } else {
             if (products[i].cMUOMCD != '' && products[i].cMUOMCD != null) {
-              cUOMCD = products[i].cMUOMCD;
+              cUOMCD = products[i].cMUOMCD!;
             } else {
               if (products[i].cSUOMCD != '' && products[i].cSUOMCD != null) {
-                cUOMCD = products[i].cSUOMCD;
+                cUOMCD = products[i].cSUOMCD!;
               }
             }
           }
@@ -1448,7 +1447,7 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
               cPRODCD: products[i].cPRODCD,
               cUOMCD: cUOMCD,
               cWH: 'FG',
-              cREFDOC: GlobalParam.supplierSelectOrder.cPOCD,
+              cREFDOC: GlobalParam.supplierSelectOrder!.cPOCD,
               iRECEIVEQTY: '${qty.toStringAsFixed(0)}',
               iISSUEQTY: '0',
               cREMARK: '',
@@ -1467,7 +1466,7 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
         var basketQty = 0.0;
         for (int j = 0; j < products.length; j++) {
           if (uniquelist[i] == products[j].cBASKCD) {
-            basketQty += double.parse(products[j].iPURCHASE);
+            basketQty += double.parse(products[j].iPURCHASE!);
           }
         }
 
@@ -1495,7 +1494,7 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
             cBASKNM: uniqueBasketData[i]['cBASKNM'],
             iISSUEQTY: '0',
             cCREABY: GlobalParam.userID,
-            cREFDOC: GlobalParam.supplierSelectOrder.cPOCD,
+            cREFDOC: GlobalParam.supplierSelectOrder!.cPOCD,
             cWH: 'BR',
             cREMARK: ''));
       }
@@ -1549,7 +1548,7 @@ class _StockOrderDetailState extends State<StockOrderDetail> {
       AllApiProxyMobile proxy = AllApiProxyMobile();
 
       var result = await proxy.updateStatusAPPOHD(UpdateStatusAPPOHDReq(
-          cPOCD: GlobalParam.supplierSelectOrder.cPOCD,
+          cPOCD: GlobalParam.supplierSelectOrder!.cPOCD,
           cCREABY: GlobalParam.userID));
       if (result.success == false) {
         wrongDialog(result.message);

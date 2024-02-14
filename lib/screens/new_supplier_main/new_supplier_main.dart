@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:vansale/screens/delivery/delivery_show_map.dart';
@@ -25,9 +24,8 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
   TextEditingController line = TextEditingController();
   TextEditingController credit = TextEditingController();
   TextEditingController limit = TextEditingController();
+  TextEditingController storeTax = TextEditingController();
 
-  MaskedTextController storeTax =
-      MaskedTextController(mask: '0-0000-00000-00-0');
   String dropdownValue = 'ร้านค้าส่ง';
   String dropdownGroup = 'เงินสด';
   String dropdownProvince = 'กรุงเทพ';
@@ -426,9 +424,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     color: HexColor("#a8a8a8"),
                     fontFamily: "Prompt",
                   ),
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      dropdownProvince = newValue;
+                      dropdownProvince = newValue!;
                     });
                   },
                   items: <String>['กรุงเทพ', 'กาญจนบุรี']
@@ -480,9 +478,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     color: HexColor("#a8a8a8"),
                     fontFamily: "Prompt",
                   ),
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      dropdownDistrict = newValue;
+                      dropdownDistrict = newValue!;
                     });
                   },
                   items: <String>['บางกะปิ', 'วังทองหลาง']
@@ -534,9 +532,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     color: HexColor("#a8a8a8"),
                     fontFamily: "Prompt",
                   ),
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      dropdownSubDistrict = newValue;
+                      dropdownSubDistrict = newValue!;
                     });
                   },
                   items: <String>['หัวหมาก', 'วังทองหลาง']
@@ -848,9 +846,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     color: HexColor("#a8a8a8"),
                     fontFamily: "Prompt",
                   ),
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      dropdownBranch = newValue;
+                      dropdownBranch = newValue!;
                     });
                   },
                   items: <String>['สำนักงานใหญ่', 'สาขา ราชบุรี']
@@ -902,9 +900,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     color: HexColor("#a8a8a8"),
                     fontFamily: "Prompt",
                   ),
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      dropdownStoreType = newValue;
+                      dropdownStoreType = newValue!;
                     });
                   },
                   items: <String>['เงินสด', 'เงินเชื่อ']
@@ -1042,9 +1040,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     color: HexColor("#a8a8a8"),
                     fontFamily: "Prompt",
                   ),
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      dropdownBasket = newValue;
+                      dropdownBasket = newValue!;
                     });
                   },
                   items: <String>['มัดจำ', 'ไม่มัดจำ']
@@ -1096,9 +1094,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     color: HexColor("#a8a8a8"),
                     fontFamily: "Prompt",
                   ),
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      dropdownstoreGroup = newValue;
+                      dropdownstoreGroup = newValue!;
                     });
                   },
                   items: <String>['ขายส่ง', 'ขายปลีก']
@@ -1150,9 +1148,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     color: HexColor("#a8a8a8"),
                     fontFamily: "Prompt",
                   ),
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      dropdownPriceTable = newValue;
+                      dropdownPriceTable = newValue!;
                     });
                   },
                   items: <String>['001', '002']
@@ -1204,9 +1202,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     color: HexColor("#a8a8a8"),
                     fontFamily: "Prompt",
                   ),
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      dropdownStoreAsset = newValue;
+                      dropdownStoreAsset = newValue!;
                     });
                   },
                   items: <String>['ทรัพย์สิน1', 'ทรัพย์สิน2']
@@ -1247,9 +1245,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     checkColor: Colors.white,
                     activeColor: HexColor("#4e73be"),
                     value: isMon,
-                    onChanged: (bool value) {
+                    onChanged: (value) {
                       setState(() {
-                        isMon = value;
+                        isMon = value!;
                       });
                     },
                   ),
@@ -1284,9 +1282,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                             color: HexColor("#a8a8a8"),
                             fontFamily: "Prompt",
                           ),
-                          onChanged: (String newValue) {
+                          onChanged: (newValue) {
                             setState(() {
-                              dropdownMon = newValue;
+                              dropdownMon = newValue!;
                             });
                           },
                           items: <String>['สาย1', 'สาย2']
@@ -1313,9 +1311,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     checkColor: Colors.white,
                     activeColor: HexColor("#4e73be"),
                     value: isTue,
-                    onChanged: (bool value) {
+                    onChanged: (value) {
                       setState(() {
-                        isTue = value;
+                        isTue = value!;
                       });
                     },
                   ),
@@ -1350,9 +1348,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                             color: HexColor("#a8a8a8"),
                             fontFamily: "Prompt",
                           ),
-                          onChanged: (String newValue) {
+                          onChanged: (newValue) {
                             setState(() {
-                              dropdownTue = newValue;
+                              dropdownTue = newValue!;
                             });
                           },
                           items: <String>['สาย1', 'สาย2']
@@ -1379,9 +1377,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     checkColor: Colors.white,
                     activeColor: HexColor("#4e73be"),
                     value: isWed,
-                    onChanged: (bool value) {
+                    onChanged: (value) {
                       setState(() {
-                        isWed = value;
+                        isWed = value!;
                       });
                     },
                   ),
@@ -1416,9 +1414,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                             color: HexColor("#a8a8a8"),
                             fontFamily: "Prompt",
                           ),
-                          onChanged: (String newValue) {
+                          onChanged: (newValue) {
                             setState(() {
-                              dropdownWed = newValue;
+                              dropdownWed = newValue!;
                             });
                           },
                           items: <String>['สาย1', 'สาย2']
@@ -1445,9 +1443,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     checkColor: Colors.white,
                     activeColor: HexColor("#4e73be"),
                     value: isThu,
-                    onChanged: (bool value) {
+                    onChanged: (value) {
                       setState(() {
-                        isThu = value;
+                        isThu = value!;
                       });
                     },
                   ),
@@ -1482,9 +1480,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                             color: HexColor("#a8a8a8"),
                             fontFamily: "Prompt",
                           ),
-                          onChanged: (String newValue) {
+                          onChanged: (newValue) {
                             setState(() {
-                              dropdownThu = newValue;
+                              dropdownThu = newValue!;
                             });
                           },
                           items: <String>['สาย1', 'สาย2']
@@ -1511,9 +1509,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     checkColor: Colors.white,
                     activeColor: HexColor("#4e73be"),
                     value: isFri,
-                    onChanged: (bool value) {
+                    onChanged: (value) {
                       setState(() {
-                        isFri = value;
+                        isFri = value!;
                       });
                     },
                   ),
@@ -1548,9 +1546,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                             color: HexColor("#a8a8a8"),
                             fontFamily: "Prompt",
                           ),
-                          onChanged: (String newValue) {
+                          onChanged: (newValue) {
                             setState(() {
-                              dropdownFri = newValue;
+                              dropdownFri = newValue!;
                             });
                           },
                           items: <String>['สาย1', 'สาย2']
@@ -1577,9 +1575,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     checkColor: Colors.white,
                     activeColor: HexColor("#4e73be"),
                     value: isSat,
-                    onChanged: (bool value) {
+                    onChanged: (value) {
                       setState(() {
-                        isSat = value;
+                        isSat = value!;
                       });
                     },
                   ),
@@ -1614,9 +1612,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                             color: HexColor("#a8a8a8"),
                             fontFamily: "Prompt",
                           ),
-                          onChanged: (String newValue) {
+                          onChanged: (newValue) {
                             setState(() {
-                              dropdownSat = newValue;
+                              dropdownSat = newValue!;
                             });
                           },
                           items: <String>['สาย1', 'สาย2']
@@ -1643,9 +1641,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                     checkColor: Colors.white,
                     activeColor: HexColor("#4e73be"),
                     value: isSun,
-                    onChanged: (bool value) {
+                    onChanged: (value) {
                       setState(() {
-                        isSun = value;
+                        isSun = value!;
                       });
                     },
                   ),
@@ -1680,9 +1678,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                             color: HexColor("#a8a8a8"),
                             fontFamily: "Prompt",
                           ),
-                          onChanged: (String newValue) {
+                          onChanged: (newValue) {
                             setState(() {
-                              dropdownSun = newValue;
+                              dropdownSun = newValue!;
                             });
                           },
                           items: <String>['สาย1', 'สาย2']
@@ -1726,9 +1724,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                   child: Radio<Status>(
                     value: Status.active,
                     groupValue: _data,
-                    onChanged: (Status value) {
+                    onChanged: (value) {
                       setState(() {
-                        _data = value;
+                        _data = value!;
                       });
                     },
                   ),
@@ -1747,9 +1745,9 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
                   child: Radio<Status>(
                     value: Status.inactive,
                     groupValue: _data,
-                    onChanged: (Status value) {
+                    onChanged: (value) {
                       setState(() {
-                        _data = value;
+                        _data = value!;
                       });
                     },
                   ),

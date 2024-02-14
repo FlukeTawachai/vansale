@@ -5,26 +5,26 @@ import 'package:vansale/screens/branch_warehouse/branch_warehouse_transfer/batch
 import 'package:vansale/screens/sale/sale_transfer_product/sale_batch_transfer.dart';
 
 class SaleTransferProdMain extends StatefulWidget {
-  const SaleTransferProdMain({Key key}) : super(key: key);
+  const SaleTransferProdMain({Key? key}) : super(key: key);
 
   @override
   State<SaleTransferProdMain> createState() => _SaleTransferProdMainState();
 }
 
 class _SaleTransferProdMainState extends State<SaleTransferProdMain> {
-  BranchWarehouse selectedBranch;
+  BranchWarehouse? selectedBranch;
   List<BranchWarehouse> branchWarehouses = <BranchWarehouse>[
     const BranchWarehouse("BCH002", 'สาขา ราชบุรี'),
     const BranchWarehouse("BCH003", 'สาขา หาดใหญ่')
   ];
 
-  Vehicle selectedVehicle;
+  Vehicle? selectedVehicle;
   List<Vehicle> vehicles = <Vehicle>[
     const Vehicle("V001", 'หมายเลขรถ 0001'),
     const Vehicle("V002", 'หมายเลขรถ 0002')
   ];
 
-  WHTransfer selectedWHTransfer;
+  WHTransfer? selectedWHTransfer;
   List<WHTransfer> whTransfers = <WHTransfer>[
     const WHTransfer("001", 'โอนธรรมดา'),
     const WHTransfer("002", 'โอนเป็นชุด')
@@ -102,9 +102,9 @@ class _SaleTransferProdMainState extends State<SaleTransferProdMain> {
                     color: HexColor('#000000'),
                     // fontFamily: "Prompt",
                   ),
-                  onChanged: (BranchWarehouse newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      selectedBranch = newValue;
+                      selectedBranch = newValue!;
                     });
                   },
                   selectedItemBuilder: (BuildContext context) {
@@ -190,9 +190,9 @@ class _SaleTransferProdMainState extends State<SaleTransferProdMain> {
                     color: HexColor('#000000'),
                     // fontFamily: "Prompt",
                   ),
-                  onChanged: (Vehicle newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      selectedVehicle = newValue;
+                      selectedVehicle = newValue!;
                     });
                   },
                   selectedItemBuilder: (BuildContext context) {
@@ -278,7 +278,7 @@ class _SaleTransferProdMainState extends State<SaleTransferProdMain> {
                     color: HexColor('#000000'),
                     // fontFamily: "Prompt",
                   ),
-                  onChanged: (WHTransfer newValue) {
+                  onChanged: (newValue) {
                     setState(() {
                       selectedWHTransfer = newValue;
                     });
@@ -341,7 +341,7 @@ class _SaleTransferProdMainState extends State<SaleTransferProdMain> {
                   } else if (selectedWHTransfer == null) {
                     wrongDialog("กรุณาเลือกการโอน");
                   } else {
-                    switch (selectedWHTransfer.code) {
+                    switch (selectedWHTransfer!.code) {
                       case "001":
                         break;
                       case "002":

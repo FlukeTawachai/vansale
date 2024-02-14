@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:vansale/api/class/globalparam.dart';
 
 class Body_CashTransfer extends StatefulWidget {
-  const Body_CashTransfer({Key key}) : super(key: key);
+  const Body_CashTransfer({Key? key}) : super(key: key);
 
   @override
   State<Body_CashTransfer> createState() => _Body_CashTransferState();
@@ -308,7 +308,7 @@ class _Body_CashTransferState extends State<Body_CashTransfer> {
   }
 
   Widget label3() {
-    double total = double.parse(GlobalParam.deliveryStoreSum.iTOTAL) - money;
+    double total = double.parse(GlobalParam.deliveryStoreSum.iTOTAL!) - money;
     String totalCashCheck = '$total';
     return Container(
       width: 360,

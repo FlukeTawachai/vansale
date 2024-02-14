@@ -28,14 +28,14 @@ class StockReturnImage extends StatefulWidget {
 }
 
 class _StockReturnImageState extends State<StockReturnImage> {
-  PickedFile imageFile;
+  PickedFile? imageFile;
   // final ImagePicker _picker = ImagePicker();
-  File file;
-  Timer timer;
+  File? file;
+  Timer? timer;
   bool imgIsNull = true;
   List<File> imageList = [];
-  double widthScreen;
-  File _image;
+  double widthScreen = 0;
+  File? _image;
 
   @override
   void initState() {
@@ -228,16 +228,16 @@ class _StockReturnImageState extends State<StockReturnImage> {
         source: ImageSource.camera, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
       imageFile = image;
-      _image = File(imageFile.path);
-      GlobalParam.deliveryImage = File(imageFile.path);
+      _image = File(imageFile!.path);
+      GlobalParam.deliveryImage = File(imageFile!.path);
       //EasyLoading.dismiss();
       // saveData();
       imgIsNull = false;
       if (imageList.length <= 5) {
-        GlobalParam.imageStoreList.add(_image);
+        GlobalParam.imageStoreList.add(_image!);
       } else {
         GlobalParam.imageStoreList.removeAt(0);
-        GlobalParam.imageStoreList.add(_image);
+        GlobalParam.imageStoreList.add(_image!);
       }
     });
   }
@@ -249,16 +249,16 @@ class _StockReturnImageState extends State<StockReturnImage> {
         source: ImageSource.gallery, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
       imageFile = image;
-      _image = File(imageFile.path);
-      GlobalParam.deliveryImage = File(imageFile.path);
+      _image = File(imageFile!.path);
+      GlobalParam.deliveryImage = File(imageFile!.path);
       // EasyLoading.dismiss();
       // saveData();
       imgIsNull = false;
       if (imageList.length <= 5) {
-        GlobalParam.imageStoreList.add(_image);
+        GlobalParam.imageStoreList.add(_image!);
       } else {
         GlobalParam.imageStoreList.removeAt(0);
-        GlobalParam.imageStoreList.add(_image);
+        GlobalParam.imageStoreList.add(_image!);
       }
     });
   }
@@ -331,7 +331,7 @@ class _StockReturnImageState extends State<StockReturnImage> {
             //         StockReturnMissPro(GlobalParam.typeMenuCode, true)));
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => StockBasketReturnSignature(
-                      cVEHICD: GlobalParam.stockSupSelect.cSUPCD,
+                      cVEHICD: GlobalParam.stockSupSelect.cSUPCD!,
                       item: GlobalParam.stockReturnBasketItem,
                       total: GlobalParam.stockReturnBasketTotal,
                       cREF: widget.cREFDOC,
@@ -340,12 +340,12 @@ class _StockReturnImageState extends State<StockReturnImage> {
           if (widget.code == '02') {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) =>
-                    StockReturnBadPro(GlobalParam.typeMenuCode, true)));
+                    StockReturnBadPro(GlobalParam.typeMenuCode!, true)));
           }
           if (widget.code == '03') {
             Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
-                    builder: (context) => HomePage(GlobalParam.typeMenuCode)),
+                    builder: (context) => HomePage(GlobalParam.typeMenuCode!)),
                 (Route route) => false);
           }
         }

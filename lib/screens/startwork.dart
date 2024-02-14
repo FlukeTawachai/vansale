@@ -326,7 +326,7 @@ class _StartWorkState extends State<StartWork> {
                                   width: 500,
                                   height: 300,
                                   child: Image.file(
-                                    File(_image.path),
+                                    File(_image!.path),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -577,19 +577,19 @@ class _StartWorkState extends State<StartWork> {
     );
   }
 
-  PickedFile imageFile;
-  File _image;
+  PickedFile? imageFile;
+  File? _image;
   Future<void> _openCamera() async {
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
       imageFile = image;
-      _image = File(imageFile.path);
-      GlobalParam.deliveryImage = File(imageFile.path);
+      _image = File(imageFile!.path);
+      GlobalParam.deliveryImage = File(imageFile!.path);
       //EasyLoading.dismiss();
       // saveData();
       GlobalParam.imageStoreList = [];
-      GlobalParam.imageStoreList.add(_image);
+      GlobalParam.imageStoreList.add(_image!);
     });
   }
 
@@ -666,7 +666,7 @@ class _StartWorkState extends State<StartWork> {
         });
 
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => HomePage(GlobalParam.typeMenuCode)));
+            builder: (context) => HomePage(GlobalParam.typeMenuCode!)));
       }
     } on SocketException catch (e) {
       wrongDialog(e.message);
@@ -717,7 +717,7 @@ class _StartWorkState extends State<StartWork> {
             context,
             MaterialPageRoute(
               builder: (BuildContext context) =>
-                  HomePage(GlobalParam.typeMenuCode),
+                  HomePage(GlobalParam.typeMenuCode!),
             ),
           );
         }

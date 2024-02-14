@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:vansale/api/allApiProxyMobile.dart';
-import 'package:vansale/api/class/globalparam.dart';
-import 'package:vansale/api/class/request/mobile/queryPodtReq.dart';
 import 'package:vansale/api/class/response/routeMobile/getSaleStoreOrderResp.dart';
 import 'package:vansale/ic_vp_icons.dart';
 import 'package:vansale/screens/Supplier/PayForBasketReturn/pay_main_for_basketReturn.dart';
 import 'package:vansale/screens/Supplier/shipping/BasketsReturnForBkReturn.dart';
-import 'package:vansale/screens/Supplier/supplier/confirmPages.dart';
-import 'package:vansale/screens/Supplier/supplier/getGoodProductsCheck.dart';
-import 'package:vansale/screens/delivery/delivery_store/delivery_store_shipping/delivery_store_shipping_home.dart';
-import 'package:vansale/screens/home/home.dart';
 import 'package:vansale/screens/sale/survey/sale_saleSelect.dart';
-import 'package:vansale/screens/stocks/stoeck_return/stock_return_basket.dart';
 
 class SaleStoreMainMenu extends StatefulWidget {
   final String typeMenuCode;
@@ -24,55 +16,28 @@ class SaleStoreMainMenu extends StatefulWidget {
 }
 
 class _SaleStoreMainMenuState extends State<SaleStoreMainMenu> {
-  List<Map<String, String>> storemenu = [];
-  Icvp aaa;
+  List<SaleStoreMainMenuModel> storemenu = [];
+  Icvp? aaa;
   @override
   Widget build(BuildContext context) {
     storemenu = [
-      {
-        "name": "ขายสินค้า",
-        "menu": "ST001",
-      },
-      {
-        "name": "ประวัติ",
-        "menu": "ST002",
-      },
-      {
-        "name": "จองสินค้า",
-        "menu": "ST003",
-      },
-      {
-        "name": "สินค้าดี",
-        "menu": "ST004",
-      },
-      {
-        "name": "สินค้าเสีย",
-        "menu": "ST005",
-      },
+      SaleStoreMainMenuModel("ขายสินค้า", "ST001"),
+      SaleStoreMainMenuModel("ประวัติ", "ST002"),
+      SaleStoreMainMenuModel("จองสินค้า", "ST003"),
+      SaleStoreMainMenuModel("สินค้าดี", "ST004"),
+      SaleStoreMainMenuModel("สินค้าเสีย", "ST005"),
     ];
 
-    if (widget.store.cPOCD.isNotEmpty) {
+    if (widget.store.cPOCD!.isNotEmpty) {
       storemenu.addAll([
-        {
-          "name": "ตระกร้า",
-          "menu": "ST006",
-        },
-        {
-          "name": "ชำระเงิน",
-          "menu": "ST007",
-        }
+        SaleStoreMainMenuModel("ตระกร้า", "ST006"),
+        SaleStoreMainMenuModel("ชำระเงิน", "ST007"),
       ]);
     }
 
     storemenu.addAll([
-      {
-        "name": "เอกสาร",
-        "menu": "ST008",
-      },
-      {
-        "name": "เยียม",
-        "menu": "ST009",
-      },
+      SaleStoreMainMenuModel("เอกสาร", "ST008"),
+      SaleStoreMainMenuModel("เยียม", "ST009"),
     ]);
     return GridView.builder(
       shrinkWrap: true,
@@ -107,7 +72,7 @@ class _SaleStoreMainMenuState extends State<SaleStoreMainMenu> {
                   child: Container(
                     alignment: Alignment.center,
                     child: Text(
-                      storemenu[index]['name'],
+                      storemenu[index].name,
                       style: TextStyle(fontSize: 14.0),
                     ),
                   ),
@@ -121,7 +86,7 @@ class _SaleStoreMainMenuState extends State<SaleStoreMainMenu> {
   }
 
   _gotoPage(index) async {
-    switch (storemenu[index]["menu"]) {
+    switch (storemenu[index].menu) {
       case "ST001":
         return Navigator.push(
           context,
@@ -180,8 +145,13 @@ class _SaleStoreMainMenuState extends State<SaleStoreMainMenu> {
   }
 
   Widget menuicon(index) {
-    Widget menuicon;
-    switch (storemenu[index]['menu']) {
+    Widget menuicon = Icon(
+      LineAwesomeIcons.dolly,
+      color: Colors.green,
+      size: 35.0,
+    );
+    ;
+    switch (storemenu[index].menu) {
       case "ST001":
         return menuicon = Icon(
           LineAwesomeIcons.dolly,
@@ -236,8 +206,13 @@ class _SaleStoreMainMenuState extends State<SaleStoreMainMenu> {
   }
 
   Widget newMenuIcon(index) {
-    Widget menuicon;
-    switch (storemenu[index]['menu']) {
+    Widget menuicon = Icon(
+      LineAwesomeIcons.dolly,
+      color: Colors.green,
+      size: 35.0,
+    );
+    ;
+    switch (storemenu[index].menu) {
       case "ST001":
         return menuicon = Icon(
           LineAwesomeIcons.dolly,
@@ -304,4 +279,10 @@ class _SaleStoreMainMenuState extends State<SaleStoreMainMenu> {
     }
     return menuicon;
   }
+}
+
+class SaleStoreMainMenuModel {
+  String name;
+  String menu;
+  SaleStoreMainMenuModel(this.name, this.menu);
 }

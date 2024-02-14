@@ -9,8 +9,8 @@ import 'package:vansale/screens/Supplier/models/orderBranch.dart';
 import 'package:vansale/screens/home/home.dart';
 
 class BasketCard extends StatelessWidget {
-  final OrderBranchModel orderBranch;
-  const BasketCard({Key key, this.orderBranch}) : super(key: key);
+  final OrderBranchModel? orderBranch;
+  const BasketCard({Key? key, this.orderBranch}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class BasketCard extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    "วันที่: ${dateFormat.format(DateTime.parse(orderBranch.date))}",
+                                    "วันที่: ${dateFormat.format(DateTime.parse(orderBranch!.date!))}",
                                     style: TextStyle(
                                         fontFamily: 'Prompt', fontSize: 16),
                                   ),
@@ -84,7 +84,7 @@ class BasketCard extends StatelessWidget {
                                   width: 154,
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    orderBranch.branchName,
+                                    orderBranch!.branchName!,
                                     style: TextStyle(
                                         fontFamily: 'Prompt', fontSize: 16),
                                     overflow: TextOverflow.ellipsis,

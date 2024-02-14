@@ -7,9 +7,7 @@ import 'package:vansale/api/class/globalparam.dart';
 import 'package:vansale/common_screen.dart/appbar.dart';
 import 'package:vansale/function/substring_price.dart';
 import 'package:vansale/screens/Supplier/delivery/deliveryCheckIn.dart';
-import 'package:vansale/screens/Supplier/delivery/deliveryDesMap.dart';
 import 'package:vansale/screens/Supplier/delivery/models/store.dart';
-import 'package:vansale/screens/googleMap/currentLocation.dart';
 
 class DeliveryCard extends StatefulWidget {
   //const DeliveryListToday({ Key? key }) : super(key: key);
@@ -48,7 +46,7 @@ class _DeliveryCardState extends State<DeliveryCard> {
                             color: Colors.grey,
                             image: DecorationImage(
                               image: new AssetImage(
-                                widget.store.image,
+                                widget.store.image!,
                               ),
                               scale: 1.0,
                               fit: BoxFit.cover,
@@ -66,7 +64,7 @@ class _DeliveryCardState extends State<DeliveryCard> {
                                 Container(
                                   alignment: Alignment.topLeft,
                                   child: Text(
-                                    widget.store.name,
+                                    widget.store.name!,
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                       fontWeight: FontWeight.bold,
@@ -81,7 +79,7 @@ class _DeliveryCardState extends State<DeliveryCard> {
                                   child: Container(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      widget.store.address,
+                                      widget.store.address!,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                         fontFamily: 'Prompt',
@@ -147,7 +145,7 @@ class _DeliveryCardState extends State<DeliveryCard> {
                                 Container(
                                   alignment: Alignment.topLeft,
                                   child: Text(
-                                    widget.store.addressname,
+                                    widget.store.addressname!,
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                       fontWeight: FontWeight.bold,
@@ -162,7 +160,7 @@ class _DeliveryCardState extends State<DeliveryCard> {
                                   child: Container(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      widget.store.time,
+                                      widget.store.time!,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                         fontFamily: 'Prompt',
@@ -190,7 +188,7 @@ class _DeliveryCardState extends State<DeliveryCard> {
                                     builder: (BuildContext context) =>
                                         // CurrentLocation(openMap: true),
                                         DeliveryCheckIn(
-                                            GlobalParam.typeMenuCode, true)),
+                                            GlobalParam.typeMenuCode!, true)),
                               );
                             },
                             iconSize: 20.0,
@@ -229,7 +227,7 @@ class _DeliveryCardState extends State<DeliveryCard> {
                                 Container(
                                   alignment: Alignment.topLeft,
                                   child: Text(
-                                    widget.store.contact,
+                                    widget.store.contact!,
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                       fontWeight: FontWeight.bold,
@@ -244,7 +242,7 @@ class _DeliveryCardState extends State<DeliveryCard> {
                                   child: Container(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      widget.store.phone,
+                                      widget.store.phone!,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                         fontFamily: 'Prompt',
@@ -306,7 +304,7 @@ class _DeliveryCardState extends State<DeliveryCard> {
                                 Container(
                                   alignment: Alignment.topLeft,
                                   child: Text(
-                                    widget.store.total,
+                                    widget.store.total!,
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                       fontWeight: FontWeight.bold,
@@ -321,7 +319,7 @@ class _DeliveryCardState extends State<DeliveryCard> {
                                   child: Container(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      widget.store.no,
+                                      widget.store.no!,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                         fontFamily: 'Prompt',

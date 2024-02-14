@@ -5,8 +5,8 @@ import 'package:vansale/screens/Supplier/models/product.dart';
 import 'package:vansale/screens/Supplier/supplier/widgets/pickImageBox.dart';
 
 class BadProductCheckCard extends StatefulWidget {
-  final String mode;
-  final ProductsModel product;
+  final String? mode;
+  final ProductsModel? product;
   BadProductCheckCard({this.mode, this.product});
   @override
   _BadProductCheckCardState createState() => _BadProductCheckCardState();
@@ -30,7 +30,7 @@ class _BadProductCheckCardState extends State<BadProductCheckCard> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                PickImageBox(product: widget.product),
+                PickImageBox(product: widget.product!),
                 //----------------------1
                 Expanded(
                   child: Container(
@@ -43,7 +43,7 @@ class _BadProductCheckCardState extends State<BadProductCheckCard> {
                                 child: Container(
                                   width: widthScreen * 0.42,
                                   child: Text(
-                                    widget.product.name,
+                                    widget.product!.name!,
                                     style: TextStyle(
                                         fontFamily: 'Prompt', fontSize: 18),
                                     overflow: TextOverflow.ellipsis,
@@ -64,7 +64,7 @@ class _BadProductCheckCardState extends State<BadProductCheckCard> {
                                   padding: const EdgeInsets.all(5.0),
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    "   ${widget.product.uom1}",
+                                    "   ${widget.product!.uom1}",
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                     ),
@@ -75,7 +75,7 @@ class _BadProductCheckCardState extends State<BadProductCheckCard> {
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    "      ${widget.product.uom2}",
+                                    "      ${widget.product!.uom2}",
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                       color: Colors.green,
@@ -87,7 +87,7 @@ class _BadProductCheckCardState extends State<BadProductCheckCard> {
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    "    ${widget.product.uom3}",
+                                    "    ${widget.product!.uom3}",
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                       color: Colors.red,

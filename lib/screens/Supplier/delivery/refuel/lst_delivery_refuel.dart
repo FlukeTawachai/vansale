@@ -5,7 +5,7 @@ import 'package:vansale/api/class/utility.dart';
 import 'package:vansale/screens/Supplier/delivery/refuel/delivery_refuel_lst_detail.dart';
 
 class ListRefuel extends StatefulWidget {
-  const ListRefuel({Key key}) : super(key: key);
+  const ListRefuel({Key? key}) : super(key: key);
 
   @override
   State<ListRefuel> createState() => _ListRefuelState();
@@ -165,7 +165,7 @@ class _ListRefuelState extends State<ListRefuel> {
           children: [
             Container(
               child: Text(
-                refuels[index]['name'],
+                refuels[index]['name']!,
                 style: TextStyle(
                   fontSize: 14.0,
                   color: Colors.grey,
@@ -176,7 +176,7 @@ class _ListRefuelState extends State<ListRefuel> {
             ),
             Container(
               child: Text(
-                refuels[index]['total'],
+                refuels[index]['total']!,
                 style: TextStyle(
                   fontSize: 16.0,
                   color: Colors.black,
@@ -202,7 +202,7 @@ class _ListRefuelState extends State<ListRefuel> {
           children: [
             Container(
               child: Text(
-                refuels[index]['date'],
+                refuels[index]['date']!,
                 style: TextStyle(
                   fontSize: 14.0,
                   color: Colors.grey,
@@ -218,14 +218,14 @@ class _ListRefuelState extends State<ListRefuel> {
                 children: [
                   Container(
                     child: Utility.formateNumberBK(
-                        double.parse(refuels[index]['price'])),
+                        double.parse(refuels[index]['price']!)),
                   ),
                   SizedBox(
                     width: 5.0,
                   ),
                   Container(
                     child: Text(
-                      refuels[index]['unit'],
+                      refuels[index]['unit']!,
                       style: TextStyle(
                         fontSize: 12.0,
                         color: Colors.grey,

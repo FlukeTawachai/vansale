@@ -7,8 +7,8 @@ import 'package:vansale/function/substring_price.dart';
 import 'package:vansale/screens/Supplier/models/product.dart';
 
 class DeliveryAddProductCard extends StatefulWidget {
-  final String mode;
-  final ProductsModel product;
+  final String? mode;
+  final ProductsModel? product;
   DeliveryAddProductCard({this.mode, this.product});
   @override
   _DeliveryAddProductCardState createState() => _DeliveryAddProductCardState();
@@ -86,7 +86,7 @@ class _DeliveryAddProductCardState extends State<DeliveryAddProductCard> {
                 Container(
                   margin: const EdgeInsets.all(5.0),
                   child: Image.asset(
-                    widget.product.img,
+                    widget.product!.img!,
                     fit: BoxFit.cover,
                     width: 100.0,
                     height: 150.0,
@@ -104,7 +104,7 @@ class _DeliveryAddProductCardState extends State<DeliveryAddProductCard> {
                                 child: Container(
                                   width: 136,
                                   child: Text(
-                                    widget.product.name,
+                                    widget.product!.name!,
                                     style: TextStyle(
                                         fontFamily: 'Prompt', fontSize: 18),
                                     overflow: TextOverflow.ellipsis,
@@ -182,7 +182,7 @@ class _DeliveryAddProductCardState extends State<DeliveryAddProductCard> {
                                         padding: const EdgeInsets.all(5.0),
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          widget.product.uom1,
+                                          widget.product!.uom1!,
                                           style: TextStyle(
                                             fontFamily: 'Prompt',
                                           ),
@@ -194,7 +194,7 @@ class _DeliveryAddProductCardState extends State<DeliveryAddProductCard> {
                                         padding: const EdgeInsets.all(5.0),
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "      ${widget.product.uom1}",
+                                          "      ${widget.product!.uom1}",
                                           style: TextStyle(
                                             fontFamily: 'Prompt',
                                           ),
@@ -205,7 +205,7 @@ class _DeliveryAddProductCardState extends State<DeliveryAddProductCard> {
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    "       ${widget.product.uom2}",
+                                    "       ${widget.product!.uom2}",
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                     ),
@@ -216,7 +216,7 @@ class _DeliveryAddProductCardState extends State<DeliveryAddProductCard> {
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    "       ${widget.product.uom3}",
+                                    "       ${widget.product!.uom3}",
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                     ),
@@ -231,7 +231,7 @@ class _DeliveryAddProductCardState extends State<DeliveryAddProductCard> {
                             ? Container(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  widget.product.promo,
+                                  widget.product!.promo!,
                                   style: TextStyle(
                                     color: Colors.black54,
                                     fontFamily: 'Prompt',
@@ -384,7 +384,7 @@ class _DeliveryAddProductCardState extends State<DeliveryAddProductCard> {
                     alignment: Alignment.centerRight,
                     width: 150.0,
                     child: SubstringPrice(
-                      widget.product.price.toString(),
+                      widget.product!.price.toString(),
                       14.0,
                       12.0,
                       Colors.black,

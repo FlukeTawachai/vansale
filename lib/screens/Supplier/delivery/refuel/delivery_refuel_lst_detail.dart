@@ -7,7 +7,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class RefuelListDetail extends StatefulWidget {
-  const RefuelListDetail({Key key}) : super(key: key);
+  const RefuelListDetail({Key? key}) : super(key: key);
 
   @override
   State<RefuelListDetail> createState() =>

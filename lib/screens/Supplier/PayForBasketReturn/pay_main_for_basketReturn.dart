@@ -15,9 +15,9 @@ import 'package:vansale/screens/Supplier/PayForBasketReturn/storeName_for_basket
 import 'package:vansale/screens/sale/survey/sale_storeDetail.dart';
 
 class SupPayBasketReturn extends StatefulWidget {
-  final GetSaleStoreOrderResp store;
-  final PoHDAndPoDTResp poHDAndPoDTResp;
-  const SupPayBasketReturn({Key key, this.store, this.poHDAndPoDTResp})
+  final GetSaleStoreOrderResp? store;
+  final PoHDAndPoDTResp? poHDAndPoDTResp;
+  const SupPayBasketReturn({Key? key, this.store, this.poHDAndPoDTResp})
       : super(key: key);
   @override
   _SupPayBasketReturnState createState() => _SupPayBasketReturnState();
@@ -31,7 +31,7 @@ class _SupPayBasketReturnState extends State<SupPayBasketReturn> {
     // TODO: implement initState
     super.initState();
     var data = widget.poHDAndPoDTResp;
-    if (data.cPOCD != "" &&
+    if (data!.cPOCD != "" &&
         data.cCUSTCD != "" &&
         data.cPOCD != null &&
         data.cCUSTCD != null) {
@@ -67,9 +67,9 @@ class _SupPayBasketReturnState extends State<SupPayBasketReturn> {
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => SaleStoreHome(
-                      GlobalParam.deliverySelectStore.cCUSTNM,
-                      GlobalParam.typeMenuCode,
-                      widget.store)));
+                      GlobalParam.deliverySelectStore.cCUSTNM!,
+                      GlobalParam.typeMenuCode!,
+                      widget.store!)));
             });
           },
         ),
@@ -205,16 +205,23 @@ class _SupPayBasketReturnState extends State<SupPayBasketReturn> {
         children: [
           _dateHD(),
           Container(
-            child: Text(
-              GlobalParam.PoHDAndPoDT.isEmpty
-                  ? ''
-                  : GlobalParam.PoHDAndPoDT[0]?.cPOCD,
-              style: TextStyle(
-                color: Color.fromRGBO(130, 145, 169, 1),
-                fontFamily: 'Prompt',
-                fontSize: 16,
-              ),
-            ),
+            child: GlobalParam.PoHDAndPoDT.isEmpty == true
+                ? Text(
+                    '',
+                    style: TextStyle(
+                      color: Color.fromRGBO(130, 145, 169, 1),
+                      fontFamily: 'Prompt',
+                      fontSize: 16,
+                    ),
+                  )
+                : Text(
+                    GlobalParam.PoHDAndPoDT[0].cPOCD!,
+                    style: TextStyle(
+                      color: Color.fromRGBO(130, 145, 169, 1),
+                      fontFamily: 'Prompt',
+                      fontSize: 16,
+                    ),
+                  ),
           ),
         ],
       ),
@@ -280,20 +287,20 @@ class _SupPayBasketReturnState extends State<SupPayBasketReturn> {
       EasyLoading.show();
       AllApiProxyMobile proxy = AllApiProxyMobile();
 
-      var result = await proxy.getBaskets(widget.poHDAndPoDTResp.cCUSTCD,
-          widget.poHDAndPoDTResp.cPOCD, "%%", "%%");
+      var result = await proxy.getBaskets(widget.poHDAndPoDTResp!.cCUSTCD!,
+          widget.poHDAndPoDTResp!.cPOCD!, "%%", "%%");
 
       if (result.isNotEmpty == true) {
         GlobalParam.PoHDAndPoDT = [];
         GlobalParam.PoHDAndPoDT = result;
         var newData = PoHDAndPoDTResp(
-            cCUSTCD: widget.poHDAndPoDTResp.cCUSTCD,
-            cPOCD: widget.poHDAndPoDTResp.cPOCD);
-            double iitems = 0;
-            double ibasket = 0;
+            cCUSTCD: widget.poHDAndPoDTResp!.cCUSTCD,
+            cPOCD: widget.poHDAndPoDTResp!.cPOCD);
+        double iitems = 0;
+        double ibasket = 0;
         for (var i = 0; i < result.length; i++) {
-          iitems += double.parse(result[i].iitems);
-          ibasket += double.parse(result[i].ibasket);
+          iitems += double.parse(result[i].iitems!);
+          ibasket += double.parse(result[i].ibasket!);
         }
         newData.iitems = iitems.toStringAsFixed(2);
         newData.ibasket = ibasket.toStringAsFixed(2);

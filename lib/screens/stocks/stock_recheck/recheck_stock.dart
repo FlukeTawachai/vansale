@@ -11,8 +11,6 @@ import 'package:vansale/api/allApiProxyMobile.dart';
 import 'package:vansale/api/class/globalparam.dart';
 import 'package:vansale/api/class/request/mobile/addCustomerOrderReq.dart';
 import 'package:vansale/api/class/request/mobile/addRecheckStockProductReq.dart';
-import 'package:vansale/api/class/request/mobile/addReturnDTReq.dart';
-import 'package:vansale/api/class/request/mobile/addReturnHDReq.dart';
 import 'package:vansale/api/class/request/mobile/addStockCardReq.dart';
 import 'package:vansale/api/class/request/mobile/getProductBranchReq.dart';
 import 'package:vansale/api/class/request/mobile/getProductOrBasketStockReq.dart';
@@ -22,12 +20,9 @@ import 'package:vansale/api/class/response/routeMobile/getProductBranchResp.dart
 import 'package:vansale/api/class/response/routeMobile/getProductOrBasketStockResp.dart';
 import 'package:vansale/function/substring_price.dart';
 
-import 'package:vansale/screens/customer_menu/customer_purchase/customerConfirm.dart';
 import 'package:vansale/screens/customer_menu/custommer_Order/customer_order_filter.dart';
 import 'package:vansale/screens/delivery/delivery_scanner.dart';
 import 'package:vansale/screens/home/home.dart';
-// import 'package:vansale/screens/stocks/stock_recheck/StockPrinter.dart';
-import 'package:vansale/screens/stocks/stoeck_return/stock_return_img.dart';
 import 'package:pdf/Widgets.dart' as pw;
 import 'package:open_file/open_file.dart';
 
@@ -42,7 +37,7 @@ class RecheckProductStock extends StatefulWidget {
 
 class _RecheckProductStockState extends State<RecheckProductStock> {
   String total = '3200.00';
-  double widthScreen;
+  double widthScreen = 0;
   List<TextEditingController> sController = [];
   List<TextEditingController> mController = [];
   List<TextEditingController> lController = [];
@@ -208,7 +203,7 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                                                     builder: (context) =>
                                                         RecheckProductStock(
                                                             GlobalParam
-                                                                .typeMenuCode,
+                                                                .typeMenuCode!,
                                                             false)));
                                           },
                                         )));
@@ -274,7 +269,7 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                 if (priceTable[k].cPRODCD ==
                     GlobalParam
                         .customerShowRecheckPROStockList[index].cPRODCD) {
-                  unitPrice = double.parse(priceTable[k].iCOSTVAT);
+                  unitPrice = double.parse(priceTable[k].iCOSTVAT!);
                 }
               }
 
@@ -301,17 +296,17 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                   if (stockList[k].cUOMCD ==
                       GlobalParam
                           .customerShowRecheckPROStockList[index].cSUOMCD) {
-                    stockS = double.parse(stockList[k].iPROQTY);
+                    stockS = double.parse(stockList[k].iPROQTY!);
                   }
                   if (stockList[k].cUOMCD ==
                       GlobalParam
                           .customerShowRecheckPROStockList[index].cMUOMCD) {
-                    stockM = double.parse(stockList[k].iPROQTY);
+                    stockM = double.parse(stockList[k].iPROQTY!);
                   }
                   if (stockList[k].cUOMCD ==
                       GlobalParam
                           .customerShowRecheckPROStockList[index].cLUOMCD) {
-                    stockL = double.parse(stockList[k].iPROQTY);
+                    stockL = double.parse(stockList[k].iPROQTY!);
                   }
                 }
               }
@@ -374,7 +369,7 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                                       GlobalParam
                                           .customerShowRecheckPROStockList[
                                               index]
-                                          .cPRODNM,
+                                          .cPRODNM!,
                                       style: TextStyle(
                                         fontFamily: 'Prompt',
                                         fontWeight: FontWeight.bold,
@@ -496,7 +491,7 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                                                       GlobalParam
                                                           .customerShowRecheckPROStockList[
                                                               index]
-                                                          .cLUOMNM,
+                                                          .cLUOMNM!,
                                                       style: TextStyle(
                                                         fontFamily: 'Prompt',
                                                         color: Colors.black,
@@ -521,7 +516,7 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                                                       GlobalParam
                                                           .customerShowRecheckPROStockList[
                                                               index]
-                                                          .cMUOMNM,
+                                                          .cMUOMNM!,
                                                       style: TextStyle(
                                                         fontFamily: 'Prompt',
                                                         color: Colors.black,
@@ -549,7 +544,7 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                                                       GlobalParam
                                                           .customerShowRecheckPROStockList[
                                                               index]
-                                                          .cSUOMNM,
+                                                          .cSUOMNM!,
                                                       style: TextStyle(
                                                           fontFamily: 'Prompt',
                                                           fontSize: 14),
@@ -617,7 +612,7 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                                                                   GlobalParam
                                                                       .customerShowRecheckPROStockList[
                                                                           index]
-                                                                      .iLUNITPRICE) *
+                                                                      .iLUNITPRICE!) *
                                                               double.parse(
                                                                   value);
                                                         }
@@ -707,7 +702,7 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                                                                   GlobalParam
                                                                       .customerShowRecheckPROStockList[
                                                                           index]
-                                                                      .iMUNITPRICE) *
+                                                                      .iMUNITPRICE!) *
                                                               double.parse(
                                                                   value);
                                                         }
@@ -939,12 +934,12 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
     double productTotal = 0;
 
     for (var i = 0; i < orderList.length; i++) {
-      double sQty = double.parse(orderList[i].iSSIZEQTY);
-      double mQty = double.parse(orderList[i].iMSIZEQTY);
-      double lQty = double.parse(orderList[i].iLSIZEQTY);
-      double sPrice = double.parse(orderList[i].iSUNITPRICE);
-      double mPrice = double.parse(orderList[i].iMUNITPRICE);
-      double lPrice = double.parse(orderList[i].iLUNITPRICE);
+      double sQty = double.parse(orderList[i].iSSIZEQTY!);
+      double mQty = double.parse(orderList[i].iMSIZEQTY!);
+      double lQty = double.parse(orderList[i].iLSIZEQTY!);
+      double sPrice = double.parse(orderList[i].iSUNITPRICE!);
+      double mPrice = double.parse(orderList[i].iMUNITPRICE!);
+      double lPrice = double.parse(orderList[i].iLUNITPRICE!);
       if ((sQty + mQty + lQty) > 0) {
         showData.add(orderList[i]);
         productTotal += (sQty * sPrice) + (mQty * mPrice) + (lQty * lPrice);
@@ -952,24 +947,24 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
           var data = {
             "cPRODCD": orderList[i].cPRODCD,
             "cUOMNM": orderList[i].cSUOMNM,
-            "iPRICE": double.parse(orderList[i].iSUNITPRICE),
-            "iTOTAL": double.parse(orderList[i].iSSIZEQTY)
+            "iPRICE": double.parse(orderList[i].iSUNITPRICE!),
+            "iTOTAL": double.parse(orderList[i].iSSIZEQTY!)
           };
           unitList.add(data);
         }
         if (mQty > 0) {
           var data = {
             "cUOMNM": orderList[i].cMUOMNM,
-            "iPRICE": double.parse(orderList[i].iMUNITPRICE),
-            "iTOTAL": double.parse(orderList[i].iMSIZEQTY)
+            "iPRICE": double.parse(orderList[i].iMUNITPRICE!),
+            "iTOTAL": double.parse(orderList[i].iMSIZEQTY!)
           };
           unitList.add(data);
         }
         if (lQty > 0) {
           var data = {
             "cUOMNM": orderList[i].cLUOMNM,
-            "iPRICE": double.parse(orderList[i].iLUNITPRICE),
-            "iTOTAL": double.parse(orderList[i].iLSIZEQTY)
+            "iPRICE": double.parse(orderList[i].iLUNITPRICE!),
+            "iTOTAL": double.parse(orderList[i].iLSIZEQTY!)
           };
           unitList.add(data);
         }
@@ -1380,8 +1375,8 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                 cSUBCATECD:
                     GlobalParam.customerRecheckPROStockList[j].cSUBCATECD,
                 cBRNDCD: GlobalParam.customerRecheckPROStockList[j].cBRNDCD,
-                iSTCQTY: double.parse(result[i].iPROQTY),
-                iSTCWEIGHT: double.parse(result[i].iWEIGHT),
+                iSTCQTY: double.parse(result[i].iPROQTY!),
+                iSTCWEIGHT: double.parse(result[i].iWEIGHT!),
                 iRECQTY: 0,
                 iRECWEIGHT: 0,
                 cSALETYPE: "Q",
@@ -1417,17 +1412,17 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
 
             double unitPrice = 0;
             if (totalList[j]['cPRODCD'] == result[i].cPRODCD) {
-              unitPrice = double.parse(result[i].iCOSTVAT);
+              unitPrice = double.parse(result[i].iCOSTVAT!);
               totalList[j]['price'] = unitPrice;
-              for (var k = 0; k < result[i].tPRICEDT.length; k++) {
-                if (result[i].tPRICEDT[k].cTYPE == 'L') {
-                  lQty = double.parse(result[i].tPRICEDT[k].iQTY);
+              for (var k = 0; k < result[i].tPRICEDT!.length; k++) {
+                if (result[i].tPRICEDT![k].cTYPE == 'L') {
+                  lQty = double.parse(result[i].tPRICEDT![k].iQTY!);
                 }
-                if (result[i].tPRICEDT[k].cTYPE == 'M') {
-                  mQty = double.parse(result[i].tPRICEDT[k].iQTY);
+                if (result[i].tPRICEDT![k].cTYPE == 'M') {
+                  mQty = double.parse(result[i].tPRICEDT![k].iQTY!);
                 }
-                if (result[i].tPRICEDT[k].cTYPE == 'S') {
-                  sQty = double.parse(result[i].tPRICEDT[k].iQTY);
+                if (result[i].tPRICEDT![k].cTYPE == 'S') {
+                  sQty = double.parse(result[i].tPRICEDT![k].iQTY!);
                 }
               }
 
@@ -1443,17 +1438,17 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                     if (stockList[k].cUOMCD ==
                         GlobalParam
                             .customerShowRecheckPROStockList[l].cSUOMCD) {
-                      stockS = double.parse(stockList[k].iPROQTY);
+                      stockS = double.parse(stockList[k].iPROQTY!);
                     }
                     if (stockList[k].cUOMCD ==
                         GlobalParam
                             .customerShowRecheckPROStockList[l].cMUOMCD) {
-                      stockM = double.parse(stockList[k].iPROQTY);
+                      stockM = double.parse(stockList[k].iPROQTY!);
                     }
                     if (stockList[k].cUOMCD ==
                         GlobalParam
                             .customerShowRecheckPROStockList[l].cLUOMCD) {
-                      stockL = double.parse(stockList[k].iPROQTY);
+                      stockL = double.parse(stockList[k].iPROQTY!);
                     }
                   }
                 }
@@ -1610,7 +1605,7 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
 
       if (loopCheck == reqRecheckStock.length) {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => HomePage(GlobalParam.typeMenuCode)));
+            builder: (context) => HomePage(GlobalParam.typeMenuCode!)));
       }
     } on SocketException catch (e) {
       wrongDialog(e.message);
@@ -1640,7 +1635,7 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
       for (var k = 0; k < stockList.length; k++) {
         if (stockList[k].cPRODCD == data.cPRODCD) {
           if (stockList[k].cUOMCD == data.cUOMCD) {
-            stock = double.parse(stockList[k].iPROQTY);
+            stock = double.parse(stockList[k].iPROQTY!);
           }
         }
       }
@@ -1648,13 +1643,13 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
         recheckStock.iRECEIVEQTY = '0';
         recheckStock.iISSUEQTY = '${stock.toStringAsFixed(0)}';
       } else {
-        if ((data.iRECQTY - stock) != 0) {
-          if ((data.iRECQTY - stock) > 0) {
-            recheckStock.iRECEIVEQTY = '${data.iRECQTY.toStringAsFixed(0)}';
+        if ((data.iRECQTY! - stock) != 0) {
+          if ((data.iRECQTY! - stock) > 0) {
+            recheckStock.iRECEIVEQTY = '${data.iRECQTY!.toStringAsFixed(0)}';
             recheckStock.iISSUEQTY = '0';
           } else {
             recheckStock.iRECEIVEQTY = '0';
-            recheckStock.iISSUEQTY = '${data.iRECQTY.toStringAsFixed(0)}';
+            recheckStock.iISSUEQTY = '${data.iRECQTY!.toStringAsFixed(0)}';
           }
         }
       }
@@ -1789,16 +1784,16 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
           for (var l = 0; l < priceTable.length; l++) {
             if (priceTable[l].cPRODCD ==
                 GlobalParam.customerShowRecheckPROStockList[i].cPRODCD) {
-              unitPrice = double.parse(priceTable[l].iCOSTVAT);
-              for (var m = 0; m < priceTable[l].tPRICEDT.length; m++) {
-                if (priceTable[l].tPRICEDT[m].cTYPE == "S") {
-                  sQty = double.parse(priceTable[l].tPRICEDT[m].iQTY);
+              unitPrice = double.parse(priceTable[l].iCOSTVAT!);
+              for (var m = 0; m < priceTable[l].tPRICEDT!.length; m++) {
+                if (priceTable[l].tPRICEDT![m].cTYPE == "S") {
+                  sQty = double.parse(priceTable[l].tPRICEDT![m].iQTY!);
                 }
-                if (priceTable[l].tPRICEDT[m].cTYPE == "M") {
-                  mQty = double.parse(priceTable[l].tPRICEDT[m].iQTY);
+                if (priceTable[l].tPRICEDT![m].cTYPE == "M") {
+                  mQty = double.parse(priceTable[l].tPRICEDT![m].iQTY!);
                 }
-                if (priceTable[l].tPRICEDT[m].cTYPE == "L") {
-                  lQty = double.parse(priceTable[l].tPRICEDT[m].iQTY);
+                if (priceTable[l].tPRICEDT![m].cTYPE == "L") {
+                  lQty = double.parse(priceTable[l].tPRICEDT![m].iQTY!);
                 }
               }
             }
@@ -1806,26 +1801,26 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
           if (totalList[k]['cPRODCD'] ==
               GlobalParam.customerRecheckPROStockList[i].cPRODCD) {
             var s = double.parse(
-                GlobalParam.customerRecheckPROStockList[i].iSSIZEQTY);
+                GlobalParam.customerRecheckPROStockList[i].iSSIZEQTY!);
             var m = double.parse(
-                GlobalParam.customerRecheckPROStockList[i].iMSIZEQTY);
+                GlobalParam.customerRecheckPROStockList[i].iMSIZEQTY!);
             var l = double.parse(
-                GlobalParam.customerRecheckPROStockList[i].iLSIZEQTY);
+                GlobalParam.customerRecheckPROStockList[i].iLSIZEQTY!);
             totalList[k]['checkTotal'] = (s * sQty) + (m * mQty) + (l * lQty);
             totalList[k]['netTotal'] =
                 totalList[k]['checkTotal'] - totalList[k]['total'];
           }
         }
       }
-      for (var j = 0; j < addRequest.aPRODUCT.length; j++) {
+      for (var j = 0; j < addRequest.aPRODUCT!.length; j++) {
         if (GlobalParam.customerRecheckPROStockList[i].cPRODCD ==
-            addRequest.aPRODUCT[j].cPRODCD) {
-          addRequest.aPRODUCT[j].iSSIZEQTY = double.parse(
-              GlobalParam.customerRecheckPROStockList[i].iSSIZEQTY);
-          addRequest.aPRODUCT[j].iMSIZEQTY = double.parse(
-              GlobalParam.customerRecheckPROStockList[i].iMSIZEQTY);
-          addRequest.aPRODUCT[j].iLSIZEQTY = double.parse(
-              GlobalParam.customerRecheckPROStockList[i].iLSIZEQTY);
+            addRequest.aPRODUCT![j].cPRODCD) {
+          addRequest.aPRODUCT![j].iSSIZEQTY = double.parse(
+              GlobalParam.customerRecheckPROStockList[i].iSSIZEQTY!);
+          addRequest.aPRODUCT![j].iMSIZEQTY = double.parse(
+              GlobalParam.customerRecheckPROStockList[i].iMSIZEQTY!);
+          addRequest.aPRODUCT![j].iLSIZEQTY = double.parse(
+              GlobalParam.customerRecheckPROStockList[i].iLSIZEQTY!);
         }
       }
     }
@@ -1833,7 +1828,7 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
   }
 
   checkProduct(GetProductBranchResp data, int index) {
-    GlobalParam.customerShowRecheckPROStockList[index].cCHECK = !data.cCHECK;
+    GlobalParam.customerShowRecheckPROStockList[index].cCHECK = !data.cCHECK!;
 
     if (data.cCHECK == false) {
       isCheck--;
@@ -1891,42 +1886,42 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
             GlobalParam.customerRecheckPROStockList[j].cPRODCD) {
           if (stockList[k].cUOMCD ==
               GlobalParam.customerRecheckPROStockList[j].cSUOMCD) {
-            stockS = double.parse(stockList[k].iPROQTY);
+            stockS = double.parse(stockList[k].iPROQTY!);
             trueS = double.parse(
-                GlobalParam.customerRecheckPROStockList[j].iSSIZEQTY);
+                GlobalParam.customerRecheckPROStockList[j].iSSIZEQTY!);
             sS = '${stockS.toStringAsFixed(0)}';
             tS = '${trueS.toStringAsFixed(0)}';
             double amonut = trueS - stockS;
             aS = '${amonut.toStringAsFixed(0)}';
             total += amonut *
                 double.parse(
-                    GlobalParam.customerRecheckPROStockList[j].iSUNITPRICE);
+                    GlobalParam.customerRecheckPROStockList[j].iSUNITPRICE!);
           }
           if (stockList[k].cUOMCD ==
               GlobalParam.customerRecheckPROStockList[j].cMUOMCD) {
-            stockM = double.parse(stockList[k].iPROQTY);
+            stockM = double.parse(stockList[k].iPROQTY!);
             trueM = double.parse(
-                GlobalParam.customerRecheckPROStockList[j].iMSIZEQTY);
+                GlobalParam.customerRecheckPROStockList[j].iMSIZEQTY!);
             sM = '${stockM.toStringAsFixed(0)}';
             tM = '${trueM.toStringAsFixed(0)}';
             double amonut = trueM - stockM;
             aM = '${amonut.toStringAsFixed(0)}';
             total += amonut *
                 double.parse(
-                    GlobalParam.customerRecheckPROStockList[j].iMUNITPRICE);
+                    GlobalParam.customerRecheckPROStockList[j].iMUNITPRICE!);
           }
           if (stockList[k].cUOMCD ==
               GlobalParam.customerRecheckPROStockList[j].cLUOMCD) {
-            stockL = double.parse(stockList[k].iPROQTY);
+            stockL = double.parse(stockList[k].iPROQTY!);
             trueL = double.parse(
-                GlobalParam.customerRecheckPROStockList[j].iLSIZEQTY);
+                GlobalParam.customerRecheckPROStockList[j].iLSIZEQTY!);
             sL = '${stockL.toStringAsFixed(0)}';
             tL = '${trueL.toStringAsFixed(0)}';
             double amonut = trueL - stockL;
             aL = '${amonut.toStringAsFixed(0)}';
             total += amonut *
                 double.parse(
-                    GlobalParam.customerRecheckPROStockList[j].iLUNITPRICE);
+                    GlobalParam.customerRecheckPROStockList[j].iLUNITPRICE!);
           }
         }
       }
@@ -2057,9 +2052,9 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                   GlobalParam.customerRecheckPROStockList[j].cPRODCD) {
                 if (stockList[k].cUOMCD ==
                     GlobalParam.customerRecheckPROStockList[j].cSUOMCD) {
-                  stockS = double.parse(stockList[k].iPROQTY);
+                  stockS = double.parse(stockList[k].iPROQTY!);
                   trueS = double.parse(
-                      GlobalParam.customerRecheckPROStockList[j].iSSIZEQTY);
+                      GlobalParam.customerRecheckPROStockList[j].iSSIZEQTY!);
                   sS = '${stockS.toStringAsFixed(0)}';
                   tS = '${trueS.toStringAsFixed(0)}';
                   double amonut = trueS - stockS;
@@ -2067,9 +2062,9 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                 }
                 if (stockList[k].cUOMCD ==
                     GlobalParam.customerRecheckPROStockList[j].cMUOMCD) {
-                  stockM = double.parse(stockList[k].iPROQTY);
+                  stockM = double.parse(stockList[k].iPROQTY!);
                   trueM = double.parse(
-                      GlobalParam.customerRecheckPROStockList[j].iMSIZEQTY);
+                      GlobalParam.customerRecheckPROStockList[j].iMSIZEQTY!);
                   sM = '${stockM.toStringAsFixed(0)}';
                   tM = '${trueM.toStringAsFixed(0)}';
                   double amonut = trueM - stockM;
@@ -2077,9 +2072,9 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                 }
                 if (stockList[k].cUOMCD ==
                     GlobalParam.customerRecheckPROStockList[j].cLUOMCD) {
-                  stockL = double.parse(stockList[k].iPROQTY);
+                  stockL = double.parse(stockList[k].iPROQTY!);
                   trueL = double.parse(
-                      GlobalParam.customerRecheckPROStockList[j].iLSIZEQTY);
+                      GlobalParam.customerRecheckPROStockList[j].iLSIZEQTY!);
                   sL = '${stockL.toStringAsFixed(0)}';
                   tL = '${trueL.toStringAsFixed(0)}';
                   double amonut = trueL - stockL;
@@ -2163,9 +2158,9 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                   GlobalParam.customerRecheckPROStockList[j].cPRODCD) {
                 if (stockList[k].cUOMCD ==
                     GlobalParam.customerRecheckPROStockList[j].cSUOMCD) {
-                  stockS = double.parse(stockList[k].iPROQTY);
+                  stockS = double.parse(stockList[k].iPROQTY!);
                   trueS = double.parse(
-                      GlobalParam.customerRecheckPROStockList[j].iSSIZEQTY);
+                      GlobalParam.customerRecheckPROStockList[j].iSSIZEQTY!);
                   sS = '${stockS.toStringAsFixed(0)}';
                   tS = '${trueS.toStringAsFixed(0)}';
                   double amonut = trueS - stockS;
@@ -2173,9 +2168,9 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                 }
                 if (stockList[k].cUOMCD ==
                     GlobalParam.customerRecheckPROStockList[j].cMUOMCD) {
-                  stockM = double.parse(stockList[k].iPROQTY);
+                  stockM = double.parse(stockList[k].iPROQTY!);
                   trueM = double.parse(
-                      GlobalParam.customerRecheckPROStockList[j].iMSIZEQTY);
+                      GlobalParam.customerRecheckPROStockList[j].iMSIZEQTY!);
                   sM = '${stockM.toStringAsFixed(0)}';
                   tM = '${trueM.toStringAsFixed(0)}';
                   double amonut = trueM - stockM;
@@ -2183,9 +2178,9 @@ class _RecheckProductStockState extends State<RecheckProductStock> {
                 }
                 if (stockList[k].cUOMCD ==
                     GlobalParam.customerRecheckPROStockList[j].cLUOMCD) {
-                  stockL = double.parse(stockList[k].iPROQTY);
+                  stockL = double.parse(stockList[k].iPROQTY!);
                   trueL = double.parse(
-                      GlobalParam.customerRecheckPROStockList[j].iLSIZEQTY);
+                      GlobalParam.customerRecheckPROStockList[j].iLSIZEQTY!);
                   sL = '${stockL.toStringAsFixed(0)}';
                   tL = '${trueL.toStringAsFixed(0)}';
                   double amonut = trueL - stockL;

@@ -34,7 +34,7 @@ class _NewWarehouse3StoreCardState extends State<NewWarehouse3StoreCard> {
   @override
   void initState() {
     setState(() {
-      getPocdOfcustomer(widget.store.cCUSTCD);
+      getPocdOfcustomer(widget.store.cCUSTCD!);
     });
     super.initState();
   }
@@ -88,7 +88,7 @@ class _NewWarehouse3StoreCardState extends State<NewWarehouse3StoreCard> {
                             width: widthScreen * 0.55,
                             alignment: Alignment.topLeft,
                             child: Text(
-                              widget.store.cCUSTNM,
+                              widget.store.cCUSTNM!,
                               style: TextStyle(
                                 fontFamily: 'Prompt',
                                 fontWeight: FontWeight.bold,
@@ -100,7 +100,7 @@ class _NewWarehouse3StoreCardState extends State<NewWarehouse3StoreCard> {
                             width: widthScreen * 0.55,
                             alignment: Alignment.topLeft,
                             child: Text(
-                              widget.store.cADDRESS,
+                              widget.store.cADDRESS!,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontFamily: 'Prompt',
@@ -130,7 +130,7 @@ class _NewWarehouse3StoreCardState extends State<NewWarehouse3StoreCard> {
                                           widget.store.cCUSTTYPE == "Wholesale"
                                               ? true
                                               : false,
-                                          sumBaskets.cPOCD),
+                                          sumBaskets.cPOCD!),
                                 ),
                               );
                             } else if (widget.typeMenuCode == 'T001') {
@@ -284,7 +284,7 @@ class _NewWarehouse3StoreCardState extends State<NewWarehouse3StoreCard> {
             setState(() {
               pocdResp = result;
             });
-            getBasketsofCustomer(pocdResp.cCUSTCD, pocdResp.cPOCD);
+            getBasketsofCustomer(pocdResp.cCUSTCD!, pocdResp.cPOCD!);
           } else {
             // print("+++++++++++++++++ null +++++++++++++++++");
             setState(() {
@@ -312,9 +312,9 @@ class _NewWarehouse3StoreCardState extends State<NewWarehouse3StoreCard> {
           if ((result.isNotEmpty)) {
             // print("+++++++++++++++++ ${result.cPOCD} +++++++++++++++++");
             for (int i = 0; i < result.length; i++) {
-              itemNum += double.parse(result[i].iitems);
-              basketNum += double.parse(result[i].ibasket);
-              amount += double.parse(result[i].iTOTAL);
+              itemNum += double.parse(result[i].iitems!);
+              basketNum += double.parse(result[i].ibasket!);
+              amount += double.parse(result[i].iTOTAL!);
             }
             setState(() {
               sumBaskets = PoHDAndPoDTResp(

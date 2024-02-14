@@ -6,18 +6,18 @@ import 'package:vansale/screens/Supplier/delivery/widgets/sliderCard.dart';
 import 'package:vansale/screens/Supplier/delivery/widgets/unitSlider.dart';
 
 class SupplierOrderFooter extends StatelessWidget {
-  final Function navigated1;
-  final Function navigated2;
-  final Icon icon1;
-  final Icon icon2;
-  final String title1;
-  final String title2;
-  final String item;
-  final String total;
-  final String check;
-  final String unCheck;
+  final Function? navigated1;
+  final Function? navigated2;
+  final Icon? icon1;
+  final Icon? icon2;
+  final String? title1;
+  final String? title2;
+  final String? item;
+  final String? total;
+  final String? check;
+  final String? unCheck;
   const SupplierOrderFooter(
-      {Key key,
+      {Key? key,
       this.navigated1,
       this.navigated2,
       this.title1,
@@ -227,7 +227,7 @@ class SupplierOrderFooter extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    navigated1();
+                    navigated1!();
                   },
                   child: Container(
                     child: Row(
@@ -264,7 +264,7 @@ class SupplierOrderFooter extends StatelessWidget {
                     ? Container()
                     : InkWell(
                         onTap: () {
-                          navigated2();
+                          navigated2!();
                         },
                         child: Container(
                           child: Row(

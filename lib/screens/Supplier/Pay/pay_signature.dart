@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
@@ -13,21 +12,18 @@ import 'package:vansale/api/allApiProxyMobile.dart';
 import 'package:vansale/api/apiexception.dart';
 import 'package:vansale/api/class/globalparam.dart';
 import 'package:vansale/api/class/request/mobile/addSupplierReceivBillReq.dart';
-import 'package:vansale/api/class/request/mobile/getVehicleResp.dart';
 import 'package:vansale/api/class/response/routeMobile/routeCusResp.dart';
 import 'package:vansale/common_screen.dart/confirm_page.dart';
 import 'dart:typed_data';
 
 import 'package:vansale/function/substring_price.dart';
-import 'package:vansale/screens/home/home.dart';
-import 'package:vansale/screens/namo/show_signature.dart';
 
 class PaySignature extends StatefulWidget {
-  final int item;
-  final double total;
-  final double cash;
-  final String cREF;
-  PaySignature({Key key, this.item, this.total, this.cash, this.cREF})
+  final int? item;
+  final double? total;
+  final double? cash;
+  final String? cREF;
+  PaySignature({Key? key, this.item, this.total, this.cash, this.cREF})
       : super(key: key);
 
   @override
@@ -93,11 +89,11 @@ class _PaySignatureState extends State<PaySignature> {
           children: <Widget>[
             TopContainer(
               size: size,
-              item: widget.item,
-              total: widget.total,
-              cREF: widget.cREF,
+              item: widget.item!,
+              total: widget.total!,
+              cREF: widget.cREF!,
               cVEHINM: store,
-              cash: widget.cash,
+              cash: widget.cash!,
             ),
             //SIGNATURE CANVAS
             Container(
@@ -110,7 +106,7 @@ class _PaySignatureState extends State<PaySignature> {
                       children: [
                         Container(
                           padding: EdgeInsets.only(top: 10, bottom: 10),
-                          child: Text(
+                          child: const Text(
                             'เซ็นรับสินค้า',
                             style: TextStyle(
                               fontSize: 14.0,
@@ -177,7 +173,7 @@ class _PaySignatureState extends State<PaySignature> {
                     );
                     return;
                   }
-                  final Uint8List data = await _controller.toPngBytes();
+                  final Uint8List? data = await _controller.toPngBytes();
                   if (data != null) {
                     String img64 = base64Encode(data);
                     saveData(img64);
@@ -241,7 +237,7 @@ class _PaySignatureState extends State<PaySignature> {
             context,
             MaterialPageRoute(
               builder: (BuildContext context) => ConfirmPage(
-                  GlobalParam.typeMenuCode, "เซ็นรับ", "เรียบร้อยแล้ว"),
+                  GlobalParam.typeMenuCode!, "เซ็นรับ", "เรียบร้อยแล้ว"),
             ),
           );
         } else {
@@ -309,7 +305,7 @@ class _PaySignatureState extends State<PaySignature> {
 
 class TopContainer extends StatelessWidget {
   TopContainer(
-      {Key key,
+      {Key? key,
       this.size,
       this.item,
       this.total,
@@ -318,12 +314,12 @@ class TopContainer extends StatelessWidget {
       this.cash})
       : super(key: key);
 
-  final Size size;
-  final int item;
-  final double total;
-  final double cash;
-  final String cREF;
-  final RouteCusResp cVEHINM;
+  final Size? size;
+  final int? item;
+  final double? total;
+  final double? cash;
+  final String? cREF;
+  final RouteCusResp? cVEHINM;
 
   @override
   Widget build(BuildContext context) {
@@ -393,13 +389,13 @@ class TopContainer extends StatelessWidget {
                               //color: Colors.amber,
                               width: 70.0,
                               height: 70.0,
-                              decoration: new BoxDecoration(
+                              decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.grey,
-                                image: cVEHINM.cPHOTOPATH != ''
+                                image: cVEHINM!.cPHOTOPATH != ''
                                     ? DecorationImage(
                                         image: new NetworkImage(
-                                          'http://${cVEHINM.cPHOTOSERV}/${cVEHINM.cPHOTOPATH}',
+                                          'http://${cVEHINM!.cPHOTOSERV}/${cVEHINM!.cPHOTOPATH}',
                                         ),
                                         scale: 1.0,
                                         fit: BoxFit.cover,
@@ -431,7 +427,7 @@ class TopContainer extends StatelessWidget {
                                     padding: const EdgeInsets.all(3.0),
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      cVEHINM.cCUSTNM ?? "",
+                                      cVEHINM!.cCUSTNM ?? "",
                                       style: TextStyle(
                                         fontFamily: 'Prompt',
                                         color: Colors.black,
@@ -486,7 +482,7 @@ class TopContainer extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: size.width / 2,
+                    width: size!.width / 2,
                     padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -529,7 +525,7 @@ class TopContainer extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        width: size.width / 2,
+                        width: size!.width / 2,
                         padding: const EdgeInsets.only(
                             left: 15.0, right: 15.0, bottom: 10.0),
                         child: Row(
@@ -631,7 +627,7 @@ class TopContainer extends StatelessWidget {
                         child: Container(
                           alignment: Alignment.centerRight,
                           child: SubstringPrice(
-                            cash.toStringAsFixed(2),
+                            cash!.toStringAsFixed(2),
                             14.0,
                             12.0,
                             Colors.green,
@@ -680,7 +676,7 @@ class TopContainer extends StatelessWidget {
                         child: Container(
                           alignment: Alignment.centerRight,
                           child: SubstringPrice(
-                            cVEHINM.iCREDTERM.toStringAsFixed(2),
+                            cVEHINM!.iCREDTERM!.toStringAsFixed(2),
                             14.0,
                             12.0,
                             Colors.red,

@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:vansale/function/substring_price.dart';
-import 'package:vansale/screens/Supplier/delivery/widgets/newHistoyDetailCard.dart';
-import 'package:vansale/screens/Supplier/delivery/widgets/sliderCard.dart';
 import 'package:vansale/screens/Supplier/delivery/widgets/unitSlider.dart';
 import 'package:vansale/screens/Supplier/models/delayTime.dart';
 import 'package:vansale/screens/Supplier/models/product.dart';

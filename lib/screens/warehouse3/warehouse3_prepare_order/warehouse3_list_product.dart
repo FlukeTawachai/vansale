@@ -11,10 +11,10 @@ import 'package:vansale/api/class/response/routeMobile/queryPodtResp.dart';
 
 class Warehouse3ListProduct extends StatefulWidget {
   get mode => null;
-  final bool isCheck;
-  final String pocd;
+  final bool? isCheck;
+  final String? pocd;
 
-  const Warehouse3ListProduct({Key key, this.isCheck, this.pocd})
+  const Warehouse3ListProduct({Key? key, this.isCheck, this.pocd})
       : super(key: key);
 
   @override
@@ -28,7 +28,7 @@ class _Warehouse3ListProductState extends State<Warehouse3ListProduct> {
 
   @override
   void initState() {
-    getPodt(widget.pocd);
+    getPodt(widget.pocd!);
     super.initState();
   }
 
@@ -41,18 +41,18 @@ class _Warehouse3ListProductState extends State<Warehouse3ListProduct> {
       itemCount: podtList.length,
       itemBuilder: (BuildContext context, int index) {
         var unitNM = '';
-        if (double.parse(podtList[index].iSSIZEQTY) != 0) {
-          unitNM = podtList[index].cSUOMNM;
+        if (double.parse(podtList[index].iSSIZEQTY!) != 0) {
+          unitNM = podtList[index].cSUOMNM!;
         }
-        if (double.parse(podtList[index].iMSIZEQTY) != 0) {
-          unitNM = podtList[index].cMUOMNM;
+        if (double.parse(podtList[index].iMSIZEQTY!) != 0) {
+          unitNM = podtList[index].cMUOMNM!;
         }
-        if (double.parse(podtList[index].iLSIZEQTY) != 0) {
-          unitNM = podtList[index].cLUOMNM;
+        if (double.parse(podtList[index].iLSIZEQTY!) != 0) {
+          unitNM = podtList[index].cLUOMNM!;
         }
-        double totalItem = double.parse(podtList[index].iSSIZEQTY) +
-            double.parse(podtList[index].iMSIZEQTY) +
-            double.parse(podtList[index].iLSIZEQTY);
+        double totalItem = double.parse(podtList[index].iSSIZEQTY!) +
+            double.parse(podtList[index].iMSIZEQTY!) +
+            double.parse(podtList[index].iLSIZEQTY!);
 
         return Container(
           color: HexColor("#F2F3F4"),
@@ -67,31 +67,48 @@ class _Warehouse3ListProductState extends State<Warehouse3ListProduct> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      width: 100.0,
-                      height: 150.0,
-                      margin: const EdgeInsets.all(5.0),
-                      decoration: new BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(5),
-                          topRight: Radius.circular(5),
-                          bottomLeft: Radius.circular(5),
-                          bottomRight: Radius.circular(5),
-                        ),
-                        image: DecorationImage(
-                          image: podtList[index].cPHOTOSERV == '' ||
-                                  podtList[index].cPHOTOPATH == ''
-                              ? new AssetImage(
+                    (podtList[index].cPHOTOSERV == '') ||
+                            (podtList[index].cPHOTOPATH == '')
+                        ? Container(
+                            width: 100.0,
+                            height: 150.0,
+                            margin: const EdgeInsets.all(5.0),
+                            decoration: new BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(5),
+                                topRight: Radius.circular(5),
+                                bottomLeft: Radius.circular(5),
+                                bottomRight: Radius.circular(5),
+                              ),
+                              image: DecorationImage(
+                                image: AssetImage(
                                   // order[index]['image'],
                                   "assets/images/no_image.png",
-                                )
-                              : NetworkImage(
-                                  'http://${podtList[index].cPHOTOSERV}/${podtList[index].cPHOTOPATH}'),
-                          scale: 3.0,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
+                                ),
+                                scale: 3.0,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          )
+                        : Container(
+                            width: 100.0,
+                            height: 150.0,
+                            margin: const EdgeInsets.all(5.0),
+                            decoration: new BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(5),
+                                topRight: Radius.circular(5),
+                                bottomLeft: Radius.circular(5),
+                                bottomRight: Radius.circular(5),
+                              ),
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                    'http://${podtList[index].cPHOTOSERV}/${podtList[index].cPHOTOPATH}'),
+                                scale: 3.0,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
 
                     //----------------------1
                     Expanded(
@@ -106,7 +123,7 @@ class _Warehouse3ListProductState extends State<Warehouse3ListProduct> {
                                       child: Text(
                                         (index + 1).toString() +
                                             "." +
-                                            podtList[index].cPRODNM,
+                                            podtList[index].cPRODNM!,
                                         style: TextStyle(
                                             fontFamily: 'Prompt',
                                             fontWeight: FontWeight.bold),
@@ -155,18 +172,18 @@ class _Warehouse3ListProductState extends State<Warehouse3ListProduct> {
                                           // print(
                                           //     '======================== update cPREPAIRSTATUS ========================');
                                           updatePodtTable(
-                                              podtList[index].cPOCD,
-                                              podtList[index].iSEQ,
+                                              podtList[index].cPOCD!,
+                                              podtList[index].iSEQ!,
                                               'Y',
                                               double.parse(
-                                                  podtList[index].iTOTAL));
+                                                  podtList[index].iTOTAL!));
                                         });
                                       } else {
                                         setState(() {
                                           // print(
                                           //     '======================== update cPREPAIRSTATUS ========================');
-                                          updatePodtTable(podtList[index].cPOCD,
-                                              podtList[index].iSEQ, 'N', 0.00);
+                                          updatePodtTable(podtList[index].cPOCD!,
+                                              podtList[index].iSEQ!, 'N', 0.00);
                                         });
                                       }
                                     },
@@ -288,9 +305,9 @@ class _Warehouse3ListProductState extends State<Warehouse3ListProduct> {
             //  print('+++++++++++++++++++ query TBT_PODT success +++++++++++++++++++');
             podtList.clear();
             for (int i = 0; i < result.length; i++) {
-              sumItem += double.parse(result[i].iSSIZEQTY) +
-                  double.parse(result[i].iMSIZEQTY) +
-                  double.parse(result[i].iLSIZEQTY);
+              sumItem += double.parse(result[i].iSSIZEQTY!) +
+                  double.parse(result[i].iMSIZEQTY!) +
+                  double.parse(result[i].iLSIZEQTY!);
               podtList.add(result[i]);
               if (result[i].cPREPAIRSTATUS == 'N') {
                 podtListNstatus.add(result[i]);
@@ -339,7 +356,7 @@ class _Warehouse3ListProductState extends State<Warehouse3ListProduct> {
         } on Exception catch (e) {
           wrongDialog(e.toString());
         }
-        getPodt(widget.pocd);
+        getPodt(widget.pocd!);
         setState(() {});
       }
     } else {

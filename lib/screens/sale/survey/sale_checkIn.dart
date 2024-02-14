@@ -8,7 +8,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:fdottedline/fdottedline.dart';
 import 'package:location/location.dart';
 import 'package:vansale/api/allApiProxyMobile.dart';
 import 'package:vansale/api/class/globalparam.dart';
@@ -42,11 +41,11 @@ class _SaleCheckInState extends State<SaleCheckIn> {
   String Name = "";
 
   Location _locationTracker = Location();
-  StreamSubscription _locationSubscription;
+  StreamSubscription? _locationSubscription;
   bool discoverStores = true;
-  Marker marker;
-  Circle circle;
-  GoogleMapController _controller;
+  Marker? marker;
+  Circle? circle;
+  GoogleMapController? _controller;
 
   @override
   void initState() {
@@ -60,7 +59,7 @@ class _SaleCheckInState extends State<SaleCheckIn> {
   @override
   void dispose() {
     if (_locationSubscription != null) {
-      _locationSubscription.cancel();
+      _locationSubscription!.cancel();
     }
     super.dispose();
   }
@@ -178,14 +177,14 @@ class _SaleCheckInState extends State<SaleCheckIn> {
                         if (widget.code == '01') {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => SaleStoreHome(
-                                  GlobalParam.deliverySelectStore.cCUSTNM,
-                                  GlobalParam.typeMenuCode,
+                                  GlobalParam.deliverySelectStore.cCUSTNM!,
+                                  GlobalParam.typeMenuCode!,
                                   widget.store)));
                         } else if (widget.code == '02') {
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      HomePage(GlobalParam.typeMenuCode)),
+                                      HomePage(GlobalParam.typeMenuCode!)),
                               (Route<dynamic> route) => false);
                         }
                         // Navigator.of(context).pushAndRemoveUntil(
@@ -235,14 +234,14 @@ class _SaleCheckInState extends State<SaleCheckIn> {
     );
   }
 
-  PickedFile imageFile;
-  File _image;
+  PickedFile? imageFile;
+  File? _image;
   Future<void> _openCamera() async {
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 1000.0, maxWidth: 1000.0);
     setState(() {
       imageFile = image;
-      _image = File(imageFile.path);
+      _image = File(imageFile!.path);
     });
   }
 
@@ -260,16 +259,16 @@ class _SaleCheckInState extends State<SaleCheckIn> {
       updateMarkerAndCircle(location, imageData);
 
       if (_locationSubscription != null) {
-        _locationSubscription.cancel();
+        _locationSubscription!.cancel();
       }
 
       _locationSubscription =
           _locationTracker.onLocationChanged.listen((newLocalData) {
         if (_controller != null) {
-          _controller.animateCamera(CameraUpdate.newCameraPosition(
-              new CameraPosition(
+          _controller!.animateCamera(CameraUpdate.newCameraPosition(
+              CameraPosition(
                   bearing: 192.8334901395799,
-                  target: LatLng(newLocalData.latitude, newLocalData.longitude),
+                  target: LatLng(newLocalData.latitude!, newLocalData.longitude!),
                   tilt: 0,
                   zoom: 18.00)));
           updateMarkerAndCircle(newLocalData, imageData);
@@ -291,8 +290,8 @@ class _SaleCheckInState extends State<SaleCheckIn> {
     // final double lat = desPoint['geometry']['location']['lat'];
     // final double lng = desPoint['geometry']['location']['lng'];
 
-    double lat = GlobalParam.deliveryLocationStoreLatitude;
-    double lng = GlobalParam.deliveryLocationStoreLongitude;
+    double lat = GlobalParam.deliveryLocationStoreLatitude!;
+    double lng = GlobalParam.deliveryLocationStoreLongitude!;
 
     await LocationServices().openGoogleMap(lat, lng);
   }
@@ -302,15 +301,15 @@ class _SaleCheckInState extends State<SaleCheckIn> {
       AllApiProxyMobile proxy = AllApiProxyMobile();
 
       var result =
-          await proxy.getLocationStore(GlobalParam.deliverySelectStore.cCUSTCD);
+          await proxy.getLocationStore(GlobalParam.deliverySelectStore.cCUSTCD!);
       if (result.cLATITUDE != '' && result.cLONGTITUDE != '') {
         discoverStores = true;
         print(
             '----------- Location Store: ${result.cLATITUDE},${result.cLONGTITUDE} -----------');
         GlobalParam.deliveryLocationStoreLatitude =
-            double.parse(result.cLATITUDE);
+            double.parse(result.cLATITUDE!);
         GlobalParam.deliveryLocationStoreLongitude =
-            double.parse(result.cLONGTITUDE);
+            double.parse(result.cLONGTITUDE!);
         if (widget.openMap == true) {
           openMaps();
         }
@@ -332,8 +331,8 @@ class _SaleCheckInState extends State<SaleCheckIn> {
 
       var result = await proxy.addAndUpdateCheckIn(AddCheckInReq(
         cREFDOC: "",
-        iCHELAT: GlobalParam.currentLocationCheckIn.latitude,
-        iCHELNG: GlobalParam.currentLocationCheckIn.longitude,
+        iCHELAT: GlobalParam.currentLocationCheckIn!.latitude,
+        iCHELNG: GlobalParam.currentLocationCheckIn!.longitude,
         cCHINTYPE: "SL",
         cCREABY: GlobalParam.userID,
       ));
@@ -390,12 +389,12 @@ class _SaleCheckInState extends State<SaleCheckIn> {
   }
 
   void updateMarkerAndCircle(LocationData newLocalData, Uint8List imageData) {
-    LatLng latlng = LatLng(newLocalData.latitude, newLocalData.longitude);
+    LatLng latlng = LatLng(newLocalData.latitude!, newLocalData.longitude!);
     this.setState(() {
       marker = Marker(
           markerId: MarkerId("home"),
           position: latlng,
-          rotation: newLocalData.heading,
+          rotation: newLocalData.heading!,
           draggable: false,
           zIndex: 2,
           flat: true,
@@ -403,7 +402,7 @@ class _SaleCheckInState extends State<SaleCheckIn> {
           icon: BitmapDescriptor.fromBytes(imageData));
       circle = Circle(
           circleId: CircleId("car"),
-          radius: newLocalData.accuracy,
+          radius: newLocalData.accuracy!,
           zIndex: 1,
           strokeColor: Colors.blue,
           center: latlng,
@@ -438,11 +437,11 @@ class _SaleCheckInState extends State<SaleCheckIn> {
       if (result.isNotEmpty) {
         GlobalParam.deliveryHisBasket = result;
         GlobalParam.deliveryDebt =
-            double.parse(GlobalParam.deliveryStoreDetail.iTOTAL) -
-                double.parse(GlobalParam.deliveryStoreDetail.iPAID);
+            double.parse(GlobalParam.deliveryStoreDetail.iTOTAL!) -
+                double.parse(GlobalParam.deliveryStoreDetail.iPAID!);
         GlobalParam.deliveryRemainCredit =
-            double.parse(GlobalParam.deliveryStoreDetail.iCREDLIM) -
-                double.parse(GlobalParam.deliveryStoreDetail.iCREDTERM);
+            double.parse(GlobalParam.deliveryStoreDetail.iCREDLIM!) -
+                double.parse(GlobalParam.deliveryStoreDetail.iCREDTERM!);
         // print(result[0].iTOTAL);
       }
     } on SocketException catch (e) {

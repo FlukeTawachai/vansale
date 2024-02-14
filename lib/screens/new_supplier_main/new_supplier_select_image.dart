@@ -17,10 +17,10 @@ class NewSupplierSelectImage extends StatefulWidget {
 }
 
 class _NewSupplierSelectImageState extends State<NewSupplierSelectImage> {
-  PickedFile imageFile;
+  late PickedFile imageFile;
   // final ImagePicker _picker = ImagePicker();
-  File file;
-  Timer timer;
+  late File file;
+  late Timer timer;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -179,14 +179,14 @@ class _NewSupplierSelectImageState extends State<NewSupplierSelectImage> {
     EasyLoading.dismiss();
   }*/
 
-  File _image;
+  late File _image;
   Future<void> openCamera() async {
     //EasyLoading.show();
     // ignore: invalid_use_of_visible_for_testing_member
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
       GlobalParam.deliveryImage = File(imageFile.path);
       //EasyLoading.dismiss();
@@ -199,7 +199,7 @@ class _NewSupplierSelectImageState extends State<NewSupplierSelectImage> {
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.gallery, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
       GlobalParam.deliveryImage = File(imageFile.path);
       // EasyLoading.dismiss();

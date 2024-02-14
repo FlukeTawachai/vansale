@@ -11,9 +11,9 @@ import 'package:vansale/screens/home/home.dart';
 DelayTime delay = new DelayTime();
 
 class BadProductCard extends StatelessWidget {
-  final OrderBranchModel orderBranch;
+  final OrderBranchModel? orderBranch;
   const BadProductCard({
-    Key key,
+    Key? key,
     this.orderBranch,
   }) : super(key: key);
 
@@ -88,7 +88,7 @@ class BadProductCard extends StatelessWidget {
                                   width: widthScreen * 0.42,
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    orderBranch.branchName,
+                                    orderBranch!.branchName!,
                                     style: TextStyle(
                                         fontFamily: 'Prompt', fontSize: 16),
                                     overflow: TextOverflow.ellipsis,

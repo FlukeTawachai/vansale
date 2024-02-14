@@ -16,10 +16,10 @@ class StockProductList extends StatefulWidget {
 
 class _StockProductListState extends State<StockProductList> {
   // ignore: deprecated_member_use
-  List<TextEditingController> incomCon = new List();
+  List<TextEditingController> incomCon = [];
   // ignore: deprecated_member_use
-  List<TextEditingController> plusCon = new List();
-  double widthScreen;
+  List<TextEditingController> plusCon = [];
+  double widthScreen = 0;
   String total = '0.0';
   final formatNum = new NumberFormat("#,###.##", "en_US");
   var totalProGoodList = [];
@@ -34,11 +34,11 @@ class _StockProductListState extends State<StockProductList> {
     GlobalParam.supplierIncomProList = [];
     for (int i = 0; i < GlobalParam.supplierOrProductShowList.length; i++) {
       if (GlobalParam.supplierOrProductShowList[i].cPOCD ==
-          GlobalParam.supplierSelectOrder.cPOCD) {
+          GlobalParam.supplierSelectOrder!.cPOCD) {
         products.add(GlobalParam.supplierOrProductShowList[i]);
       }
     }
-    products.sort((a, b) => a.iSEQ.compareTo(b.iSEQ));
+    products.sort((a, b) => a.iSEQ!.compareTo(b.iSEQ!));
 
     for (int i = 0; i < products.length; i++) {
       incomCon.add(new TextEditingController());
@@ -65,23 +65,23 @@ class _StockProductListState extends State<StockProductList> {
 
           // incomCon[index].text = '0';
           // plusCon[index].text = '0';
-          if (double.parse(products[index].iPURCHASE) != 0) {
-            item = double.parse(products[index].iPURCHASE);
-            unitPrice = double.parse(products[index].iLUNITPRICE);
+          if (double.parse(products[index].iPURCHASE!) != 0) {
+            item = double.parse(products[index].iPURCHASE!);
+            unitPrice = double.parse(products[index].iLUNITPRICE!);
             if (products[index].cLUOMCD != '' &&
                 products[index].cLUOMCD != null) {
-              unitNM = products[index].cLUOMNM;
-              unitCD = products[index].cLUOMCD;
+              unitNM = products[index].cLUOMNM!;
+              unitCD = products[index].cLUOMCD!;
             } else {
               if (products[index].cMUOMCD != '' &&
                   products[index].cMUOMCD != null) {
-                unitNM = products[index].cMUOMNM;
-                unitCD = products[index].cMUOMCD;
+                unitNM = products[index].cMUOMNM!;
+                unitCD = products[index].cMUOMCD!;
               } else {
                 if (products[index].cSUOMCD != '' &&
                     products[index].cSUOMCD != null) {
-                  unitNM = products[index].cSUOMNM;
-                  unitCD = products[index].cSUOMCD;
+                  unitNM = products[index].cSUOMNM!;
+                  unitCD = products[index].cSUOMCD!;
                 }
               }
             }
@@ -140,7 +140,7 @@ class _StockProductListState extends State<StockProductList> {
                                     // width: widthScreen * 0.48,
                                     height: 24,
                                     child: Text(
-                                      products[index].cPRODNM,
+                                      products[index].cPRODNM!,
                                       style: TextStyle(
                                         fontFamily: 'Prompt',
                                         fontWeight: FontWeight.bold,

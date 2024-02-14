@@ -9,17 +9,17 @@ import 'package:vansale/screens/Supplier/delivery/widgets/deliveryAddProductCard
 import 'package:vansale/screens/Supplier/models/product.dart';
 
 class QrScanner extends StatefulWidget {
-  const QrScanner({Key key}) : super(key: key);
+  const QrScanner({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _QrScannerState();
 }
 
 class _QrScannerState extends State<QrScanner> {
-  Barcode result;
-  QRViewController controller;
+  Barcode? result;
+  QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  BuildContext scaffoldContext;
+  BuildContext? scaffoldContext;
   bool discovered = false;
 
   // In order to get hot reload to work we need to pause the camera if the platform
@@ -111,9 +111,9 @@ class _QrScannerState extends State<QrScanner> {
   void reassemble() {
     super.reassemble();
     if (Platform.isAndroid) {
-      controller.pauseCamera();
+      controller!.pauseCamera();
     }
-    controller.resumeCamera();
+    controller!.resumeCamera();
   }
 
   @override

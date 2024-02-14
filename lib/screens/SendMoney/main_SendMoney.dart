@@ -394,10 +394,21 @@ class _SendMoneyState extends State<SendMoney> {
                     color: HexColor('#00cb39'),
                   ),
                 ),
-                Container(
-                  //alignment: Alignment.centerLeft,
-                  // ignore: deprecated_member_use
-                  child: FlatButton(
+                InkWell(
+                  onTap: () {
+                    setState(
+                      () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => RecordCashDetails(),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: Container(
+                    //alignment: Alignment.centerLeft,
+                    // ignore: deprecated_member_use
                     child: Text(
                       'ยืนยันการส่งเงิน',
                       style: TextStyle(
@@ -407,17 +418,6 @@ class _SendMoneyState extends State<SendMoney> {
                         fontFamily: 'Prompt',
                       ),
                     ),
-                    onPressed: () {
-                      setState(
-                        () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => RecordCashDetails(),
-                            ),
-                          );
-                        },
-                      );
-                    },
                   ),
                 ),
               ],

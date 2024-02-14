@@ -10,9 +10,9 @@ import 'package:vansale/screens/home/home.dart';
 import 'package:vansale/screens/Supplier/shipping/widgets/productCard.dart';
 
 class TransferConfirm extends StatefulWidget {
-  final String typeMenuCode;
-  final String hearderTitle;
-  const TransferConfirm({Key key, this.typeMenuCode, this.hearderTitle})
+  final String? typeMenuCode;
+  final String? hearderTitle;
+  const TransferConfirm({Key? key, this.typeMenuCode, this.hearderTitle})
       : super(key: key);
 
   @override
@@ -115,7 +115,7 @@ class _TransferConfirmState extends State<TransferConfirm> {
           backgroundColor: Colors.green,
           centerTitle: true,
           title: Text(
-            widget.hearderTitle,
+            widget.hearderTitle!,
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'Prompt',

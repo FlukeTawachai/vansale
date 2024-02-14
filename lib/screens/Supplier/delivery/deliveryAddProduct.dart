@@ -22,7 +22,7 @@ class DeliveryAddProduct extends StatefulWidget {
 
 class _DeliveryAddProductState extends State<DeliveryAddProduct> {
   String total = '3200.00';
-  double widthScreen;
+  double widthScreen = 0;
   List<ProductsModel> virtualProduct = [
     ProductsModel(
       id: 0,

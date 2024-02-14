@@ -9,8 +9,8 @@ class SupOrderFields {
 }
 
 class SupplierOrder {
-  final int id;
-  final String date;
+  final int? id;
+  final String? date;
 
   SupplierOrder({this.id, this.date});
 
@@ -25,8 +25,8 @@ class SupplierOrder {
 
   Map<String, Object> toMap() {
     return {
-      'id': id,
-      'date': date,
+      'id': id!,
+      'date': date!,
     };
   }
 }

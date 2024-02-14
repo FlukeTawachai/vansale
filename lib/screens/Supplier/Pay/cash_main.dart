@@ -152,7 +152,7 @@ class _CashState extends State<Cash> {
                     dDOCDATE: date,
                     cTRANSCD: "AR",
                     cCONTACTCD: GlobalParam.deliveryStoreSum.cCUSTCD,
-                    iDEBIT: double.parse(GlobalParam.deliveryStoreSum.iTOTAL),
+                    iDEBIT: double.parse(GlobalParam.deliveryStoreSum.iTOTAL!),
                     iCREDIT: 0,
                     cCREABY: GlobalParam.userID,
                     cRECTYPE: "CH",
@@ -218,14 +218,14 @@ class _CashState extends State<Cash> {
 
         if (GlobalParam.deliveryPodtList[i].iINCOMPRO != 0) {
           String cUOMCD = '';
-          if (double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cSUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cSUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cMUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cMUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cLUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cLUOMCD!;
           }
           StockCardReq inCom = StockCardReq(
               cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
@@ -256,14 +256,14 @@ class _CashState extends State<Cash> {
           //   print(stockCardReqList[i].cLOTNO);
           // }
           String cUOMCD = '';
-          if (double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cSUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cSUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cMUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cMUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cLUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cLUOMCD!;
           }
           StockCardReq cancel = StockCardReq(
               cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
@@ -285,14 +285,14 @@ class _CashState extends State<Cash> {
       for (int i = 0; i < GlobalParam.deliveryHisProduct.length; i++) {
         if (GlobalParam.deliveryHisProduct[i].iINCOMPRO != 0) {
           String cUOMCD = '';
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryHisProduct[i].cSUOMCD;
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryHisProduct[i].cSUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iMSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryHisProduct[i].cMUOMCD;
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iMSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryHisProduct[i].cMUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iLSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryHisProduct[i].cLUOMCD;
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iLSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryHisProduct[i].cLUOMCD!;
           }
           StockCardReq reGood = StockCardReq(
               cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
@@ -311,14 +311,14 @@ class _CashState extends State<Cash> {
 
         if (GlobalParam.deliveryHisProduct[i].iLOSSPRO != 0) {
           String cUOMCD = '';
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryHisProduct[i].cSUOMCD;
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryHisProduct[i].cSUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iMSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryHisProduct[i].cMUOMCD;
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iMSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryHisProduct[i].cMUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iLSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryHisProduct[i].cLUOMCD;
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iLSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryHisProduct[i].cLUOMCD!;
           }
           StockCardReq reBad = StockCardReq(
               cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
@@ -430,7 +430,7 @@ class _CashState extends State<Cash> {
           _dateHD(),
           Container(
             child: Text(
-              GlobalParam.deliveryStoreSum.cPOCD,
+              GlobalParam.deliveryStoreSum.cPOCD!,
               style: TextStyle(
                 color: Color.fromRGBO(130, 145, 169, 1),
                 fontFamily: 'Prompt',

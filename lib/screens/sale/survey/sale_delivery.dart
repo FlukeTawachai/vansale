@@ -1,17 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:vansale/api/allApiProxyMobile.dart';
 import 'package:vansale/api/class/globalparam.dart';
 import 'package:vansale/api/class/request/mobile/getSaleStoreOrderReq.dart';
-import 'package:vansale/api/class/response/province/addressiteminfo.dart';
 import 'package:vansale/api/class/response/routeMobile/MapRouteResp.dart';
 import 'package:vansale/api/class/response/routeMobile/getSaleStoreOrderResp.dart';
-import 'package:vansale/api/webapiproxy.dart';
 import 'package:vansale/screens/sale/survey/sale_listSale.dart';
 
 class SaleDelivery extends StatefulWidget {
@@ -96,7 +92,7 @@ class _SaleDeliveryState extends State<SaleDelivery> {
                               fontSize: 16,
                               color: HexColor('#000000'),
                             ),
-                            onChanged: (String newValue) async {
+                            onChanged: (newValue) async {
                               print(newValue);
                               var dataselect = MapRoute(
                                   cBRANCD: '',
@@ -126,7 +122,7 @@ class _SaleDeliveryState extends State<SaleDelivery> {
                                   dPODATE: DateFormat('yyyy-MM-dd')
                                       .format(new DateTime.now())));
                               setState(() {
-                                dropdownProvince = newValue;
+                                dropdownProvince = newValue!;
                               });
                             },
                             selectedItemBuilder: (BuildContext context) {
@@ -136,7 +132,7 @@ class _SaleDeliveryState extends State<SaleDelivery> {
                                   color = '#68879A';
                                 }
                                 return Text(
-                                  value.cRTENM,
+                                  value.cRTENM!,
                                   style: TextStyle(
                                       color: HexColor('$color'),
                                       fontFamily: "Prompt",
@@ -150,7 +146,7 @@ class _SaleDeliveryState extends State<SaleDelivery> {
                               return DropdownMenuItem<String>(
                                 value: value.cRTENM,
                                 child: Text(
-                                  value.cRTENM,
+                                  value.cRTENM!,
                                   // style: TextStyle(
                                   //     color: HexColor('${dropdownProvinceColor}')),
                                 ),
@@ -184,7 +180,7 @@ class _SaleDeliveryState extends State<SaleDelivery> {
                                   if (value != "") {
                                     for (var i = 0; i < saleList.length; i++) {
                                       if (saleList[i]
-                                              .cCUSTNM
+                                              .cCUSTNM!
                                               .startsWith(value) ==
                                           true) {
                                         listSale.add(saleList[i]);
@@ -195,7 +191,7 @@ class _SaleDeliveryState extends State<SaleDelivery> {
                                         i < notSaleList.length;
                                         i++) {
                                       if (notSaleList[i]
-                                              .cCUSTNM
+                                              .cCUSTNM!
                                               .startsWith(value) ==
                                           true) {
                                         listNotSale.add(notSaleList[i]);
@@ -300,11 +296,11 @@ class _SaleDeliveryState extends State<SaleDelivery> {
       GlobalParam.customerShowRecheckPROStockList = [];
       if (result.isNotEmpty) {
         for (var i = 0; i < result.length; i++) {
-          if (result[i].cPOCD.isNotEmpty) {
+          if (result[i].cPOCD!.isNotEmpty) {
             var status = false;
-            for (var arr in result[i].cPOCD) {
+            for (var arr in result[i].cPOCD!) {
               if (arr != '') {
-                result[i].cPOCD[0] = arr;
+                result[i].cPOCD![0] = arr;
                 status = true;
                 break;
               }
@@ -340,10 +336,10 @@ class _SaleDeliveryState extends State<SaleDelivery> {
       // print(outputDate);
 
       var result = await proxy.getRouteTransfer(
-          GlobalParam.deliveryRouteToday['cRTECD'],
+          GlobalParam.deliveryRouteToday['cRTECD']!,
           outputDate,
-          GlobalParam.deliveryRouteToday['cGRPCD'],
-          GlobalParam.deliveryRouteToday['cBRANCD'],
+          GlobalParam.deliveryRouteToday['cGRPCD']!,
+          GlobalParam.deliveryRouteToday['cBRANCD']!,
           true);
       // var result = await proxy.getRouteTransfer('RBR013', '2022-11-28',
       //     'GRMON', GlobalParam.deliveryRouteToday['cBRANCD'], true);

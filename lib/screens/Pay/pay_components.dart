@@ -85,25 +85,10 @@ class PayManu extends StatefulWidget {
 }
 
 class _PayManuState extends State<PayManu> {
-  var menus = [
-    {
-      "icon": FontAwesomeIcons.dollarSign,
-      "name": "เงินสด",
-      "size": 28.0,
-      "menu": Cash(),
-    },
-    {
-      "icon": FontAwesomeIcons.warehouse,
-      "name": " โอน",
-      "size": 28.0,
-      "menu": CashTransfer(),
-    },
-    {
-      "icon": FontAwesomeIcons.creditCard,
-      "name": " เช็ค",
-      "size": 28.0,
-      "menu": CashCheck(),
-    },
+  List<PayManuModel> menus = [
+    PayManuModel(FontAwesomeIcons.dollarSign, "เงินสด", 28.0, Cash()),
+    PayManuModel(FontAwesomeIcons.warehouse, " โอน", 28.0, CashTransfer()),
+    PayManuModel(FontAwesomeIcons.creditCard, " เช็ค", 28.0, CashCheck()),
   ];
   @override
   Widget build(BuildContext context) {
@@ -127,12 +112,13 @@ class _PayManuState extends State<PayManu> {
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 margin: const EdgeInsets.all(5.0),
+                // ignore: unnecessary_new
                 child: new InkWell(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext context) => menus[index]['menu'],
+                        builder: (BuildContext context) => menus[index].menu!,
                       ),
                     );
                   },
@@ -142,9 +128,9 @@ class _PayManuState extends State<PayManu> {
                     children: [
                       Container(
                         child: Icon(
-                          menus[index]['icon'],
+                          menus[index].icon,
                           color: Colors.green,
-                          size: menus[index]['size'],
+                          size: menus[index].size,
                         ),
                       ),
                       const SizedBox(
@@ -153,8 +139,8 @@ class _PayManuState extends State<PayManu> {
                       Container(
                         //padding: const EdgeInsets.all(5.0),
                         child: Text(
-                          menus[index]['name'],
-                          style: TextStyle(
+                          menus[index].name!,
+                          style: const TextStyle(
                             fontFamily: 'Prompt',
                             color: Colors.green,
                           ),
@@ -170,4 +156,12 @@ class _PayManuState extends State<PayManu> {
       ),
     );
   }
+}
+
+class PayManuModel {
+  IconData? icon;
+  String? name;
+  double? size;
+  Widget? menu;
+  PayManuModel(this.icon, this.name, this.size, this.menu);
 }

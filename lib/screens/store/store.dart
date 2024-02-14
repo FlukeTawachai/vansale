@@ -96,7 +96,7 @@ class _StoreState extends State<Store> {
                                     borderRadius: BorderRadius.circular(270.0),
                                   ),*/
                                   child: CircleAvatar(
-                                    backgroundImage: new FileImage(_image),
+                                    backgroundImage: new FileImage(_image!),
                                     radius: 150.0,
                                   ),
                                 ),
@@ -1010,14 +1010,14 @@ class _StoreState extends State<Store> {
     );
   }
 
-  PickedFile imageFile;
-  File _image;
+  PickedFile? imageFile;
+  File? _image;
   Future<void> _openCamera() async {
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 200.0, maxWidth: 200.0);
     setState(() {
       imageFile = image;
-      _image = File(imageFile.path);
+      _image = File(imageFile!.path);
     });
   }
 
@@ -1026,7 +1026,7 @@ class _StoreState extends State<Store> {
         source: ImageSource.gallery, maxHeight: 200.0, maxWidth: 200.0);
     setState(() {
       imageFile = image;
-      _image = File(imageFile.path);
+      _image = File(imageFile!.path);
     });
   }
 }

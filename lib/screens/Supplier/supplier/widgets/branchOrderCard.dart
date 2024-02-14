@@ -5,10 +5,10 @@ import 'package:vansale/function/substring_price.dart';
 import 'package:vansale/screens/Supplier/models/product.dart';
 
 class ProductList extends StatelessWidget {
-  final String mode;
-  final ProductsModel product;
-  final bool checkBox;
-  const ProductList({Key key, this.mode, this.product, this.checkBox})
+  final String? mode;
+  final ProductsModel? product;
+  final bool? checkBox;
+  const ProductList({Key? key, this.mode, this.product, this.checkBox})
       : super(key: key);
 
   @override
@@ -31,7 +31,7 @@ class ProductList extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.all(5.0),
                   child: Image.asset(
-                    product.img,
+                    product!.img!,
                     fit: BoxFit.cover,
                     width: 100.0,
                     height: 150.0,
@@ -50,7 +50,7 @@ class ProductList extends StatelessWidget {
                               Container(
                                 width: widthScreen * 0.58,
                                 child: Text(
-                                  product.name,
+                                  product!.name!,
                                   style: TextStyle(
                                       fontFamily: 'Prompt', fontSize: 18),
                                   overflow: TextOverflow.ellipsis,
@@ -60,7 +60,7 @@ class ProductList extends StatelessWidget {
                                   ? Container(
                                       alignment: Alignment.centerRight,
                                       // width: 150.0,
-                                      child: (product.check == true)
+                                      child: (product!.check == true)
                                           ? Icon(Icons.check_box_outlined,
                                               color: Colors.green)
                                           : Icon(Icons.check_box_outline_blank,
@@ -80,7 +80,7 @@ class ProductList extends StatelessWidget {
                                   padding: const EdgeInsets.all(5.0),
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    product.uom1,
+                                    product!.uom1!,
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                     ),
@@ -92,7 +92,7 @@ class ProductList extends StatelessWidget {
                                       child: Container(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          product.uom2,
+                                          product!.uom2!,
                                           style: TextStyle(
                                             fontFamily: 'Prompt',
                                           ),
@@ -103,7 +103,7 @@ class ProductList extends StatelessWidget {
                                       child: Container(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          product.uom2,
+                                          product!.uom2!,
                                           style: TextStyle(
                                             fontFamily: 'Prompt',
                                           ),
@@ -114,7 +114,7 @@ class ProductList extends StatelessWidget {
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    product.uom3,
+                                    product!.uom3!,
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                     ),
@@ -127,7 +127,7 @@ class ProductList extends StatelessWidget {
                         //----------------------------3
                         Container(
                             alignment: Alignment.centerLeft,
-                            child: Text(product.orderno))
+                            child: Text(product!.orderno!))
                       ],
                     ),
                   ),
@@ -146,7 +146,7 @@ class ProductList extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     width: 150.0,
                     child: SubstringPrice(
-                      product.price.toString(),
+                      product!.price.toString(),
                       14.0,
                       12.0,
                       Colors.black,

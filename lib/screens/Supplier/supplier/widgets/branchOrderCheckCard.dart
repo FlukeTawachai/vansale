@@ -6,8 +6,8 @@ import 'package:vansale/function/substring_price.dart';
 import 'package:vansale/screens/Supplier/models/product.dart';
 
 class ProductCheckList extends StatefulWidget {
-  final String mode;
-  final ProductsModel product;
+  final String? mode;
+  final ProductsModel? product;
   ProductCheckList({this.mode, this.product});
   @override
   _ProductCheckListState createState() => _ProductCheckListState();
@@ -32,7 +32,7 @@ class _ProductCheckListState extends State<ProductCheckList> {
                 Container(
                   margin: const EdgeInsets.all(5.0),
                   child: Image.asset(
-                    widget.product.img,
+                    widget.product!.img!,
                     fit: BoxFit.cover,
                     width: 100.0,
                     height: 150.0,
@@ -50,14 +50,14 @@ class _ProductCheckListState extends State<ProductCheckList> {
                                 child: Container(
                                   width: 136,
                                   child: Text(
-                                    widget.product.name,
+                                    widget.product!.name!,
                                     style: TextStyle(
                                         fontFamily: 'Prompt', fontSize: 18),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
                               ),
-                              widget.product.check == true
+                              widget.product!.check == true
                                   ? ElevatedButton(
                                       child: Text(
                                         'ตรวจแล้ว',
@@ -103,7 +103,7 @@ class _ProductCheckListState extends State<ProductCheckList> {
                                         padding: const EdgeInsets.all(5.0),
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          widget.product.uom1,
+                                          widget.product!.uom1!,
                                           style: TextStyle(
                                             fontFamily: 'Prompt',
                                           ),
@@ -115,7 +115,7 @@ class _ProductCheckListState extends State<ProductCheckList> {
                                         padding: const EdgeInsets.all(5.0),
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          widget.product.uom1,
+                                          widget.product!.uom1!,
                                           style: TextStyle(
                                             fontFamily: 'Prompt',
                                           ),
@@ -126,7 +126,7 @@ class _ProductCheckListState extends State<ProductCheckList> {
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    widget.product.uom2,
+                                    widget.product!.uom2!,
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                     ),
@@ -137,7 +137,7 @@ class _ProductCheckListState extends State<ProductCheckList> {
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    widget.product.uom3,
+                                    widget.product!.uom3!,
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                     ),
@@ -152,7 +152,7 @@ class _ProductCheckListState extends State<ProductCheckList> {
                             ? Container(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  widget.product.promo,
+                                  widget.product!.promo!,
                                   style: TextStyle(
                                     color: Colors.black54,
                                     fontFamily: 'Prompt',
@@ -302,7 +302,7 @@ class _ProductCheckListState extends State<ProductCheckList> {
                     alignment: Alignment.centerRight,
                     width: 150.0,
                     child: SubstringPrice(
-                      widget.product.price.toString(),
+                      widget.product!.price.toString(),
                       14.0,
                       12.0,
                       Colors.black,

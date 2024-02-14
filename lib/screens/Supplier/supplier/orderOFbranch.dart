@@ -4,7 +4,7 @@ import 'package:vansale/screens/Supplier/models/orderBranch.dart';
 import 'package:vansale/screens/Supplier/supplier/widgets/orderOFbranchCard.dart';
 
 class OrderOfBranch extends StatefulWidget {
-  const OrderOfBranch({Key key}) : super(key: key);
+  const OrderOfBranch({Key? key}) : super(key: key);
 
   @override
   State<OrderOfBranch> createState() => _OrderOfBranchState();

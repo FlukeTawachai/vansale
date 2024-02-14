@@ -9,23 +9,22 @@ import 'package:vansale/screens/Supplier/models/product.dart';
 GetImage picker = new GetImage();
 
 class PickImageBox extends StatefulWidget {
-  final ProductsModel product;
-  const PickImageBox({Key key, this.product}) : super(key: key);
+  final ProductsModel? product;
+  const PickImageBox({Key? key, this.product}) : super(key: key);
 
   @override
   State<PickImageBox> createState() => _PickImageBoxState();
 }
 
 class _PickImageBoxState extends State<PickImageBox> {
-  DateTime date;
-  List<File> imgList;
-  bool firstPickcer;
+  DateTime date = DateTime.now();
+  List<File> imgList = [];
+  bool firstPickcer = true;
 
   @override
   void initState() {
     super.initState();
     imgList = picker.getImageFileList();
-    firstPickcer = true;
   }
 
   @override
@@ -35,35 +34,9 @@ class _PickImageBoxState extends State<PickImageBox> {
         child: firstPickcer
             ? InkWell(
                 onTap: () {
-                  picker.pickImage(ImageSource.camera).then((value) => {
-                        setState(() {
-                          imgList = picker.getImageFileList();
-                          firstPickcer = false;
-                        })
-                      });
-                },
-                child: (imgList.length == 0)
-                    ? Icon(
-                        LineAwesomeIcons.camera,
-                        size: 96,
-                      )
-                    : (widget.product.id < imgList.length)
-                        ? Image.file(
-                            imgList[widget.product.id],
-                            fit: BoxFit.cover,
-                            width: 100.0,
-                            height: 150.0,
-                          )
-                        : Icon(
-                            LineAwesomeIcons.camera,
-                            size: 96,
-                          ),
-              )
-            : InkWell(
-                onTap: () {
-                  picker
-                      .pickInserImage(ImageSource.camera, widget.product.id)
-                      .then((image) => {
+                  ImagePicker.platform
+                      .pickImage(source: ImageSource.camera)
+                      .then((value) => {
                             setState(() {
                               imgList = picker.getImageFileList();
                               firstPickcer = false;
@@ -75,9 +48,37 @@ class _PickImageBoxState extends State<PickImageBox> {
                         LineAwesomeIcons.camera,
                         size: 96,
                       )
-                    : (widget.product.id < imgList.length)
+                    : (widget.product!.id! < imgList.length)
                         ? Image.file(
-                            imgList[widget.product.id],
+                            imgList[widget.product!.id!],
+                            fit: BoxFit.cover,
+                            width: 100.0,
+                            height: 150.0,
+                          )
+                        : Icon(
+                            LineAwesomeIcons.camera,
+                            size: 96,
+                          ),
+              )
+            : InkWell(
+                onTap: () {
+                  // picker
+                  //     .pickInserImage(ImageSource.camera, widget.product.id)
+                  //     .then((image) => {
+                  //           setState(() {
+                  //             imgList = picker.getImageFileList();
+                  //             firstPickcer = false;
+                  //           })
+                  //         });
+                },
+                child: (imgList.length == 0)
+                    ? Icon(
+                        LineAwesomeIcons.camera,
+                        size: 96,
+                      )
+                    : (widget.product!.id! < imgList.length)
+                        ? Image.file(
+                            imgList[widget.product!.id!],
                             fit: BoxFit.cover,
                             width: 100.0,
                             height: 150.0,

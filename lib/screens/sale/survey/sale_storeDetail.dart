@@ -60,8 +60,8 @@ class _SaleStoreHomeState extends State<SaleStoreHome> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    if (widget.store.cPOCD.isNotEmpty) {
-      if (widget.store.cPOCD[0] != '') {
+    if (widget.store.cPOCD!.isNotEmpty) {
+      if (widget.store.cPOCD![0] != '') {
         loadData();
       }
     }
@@ -98,7 +98,7 @@ class _SaleStoreHomeState extends State<SaleStoreHome> {
           onPressed: () {
             Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
-                  builder: (context) => HomePage(GlobalParam.typeMenuCode),
+                  builder: (context) => HomePage(GlobalParam.typeMenuCode!),
                 ),
                 (Route<dynamic> route) => false);
           },
@@ -211,7 +211,7 @@ class _SaleStoreHomeState extends State<SaleStoreHome> {
                 children: [
                   Container(
                     child: AutoSizeText(
-                      '${formatNum.format(double.parse(deliveryStoreSum.iitems))} รายการ ,${formatNum.format(double.parse(deliveryStoreSum.ibasket))} ตระกร้า',
+                      '${formatNum.format(double.parse(deliveryStoreSum.iitems!))} รายการ ,${formatNum.format(double.parse(deliveryStoreSum.ibasket!))} ตระกร้า',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
@@ -222,7 +222,7 @@ class _SaleStoreHomeState extends State<SaleStoreHome> {
                   ),
                   Container(
                     child: Text(
-                      deliveryStoreSum.cPOCD,
+                      deliveryStoreSum.cPOCD!,
                       style: TextStyle(
                         fontFamily: 'Prompt',
                         fontSize: 12.0,
@@ -237,7 +237,7 @@ class _SaleStoreHomeState extends State<SaleStoreHome> {
           ),
           Container(
             child: Utility.formateNumberGN18(
-              double.parse(deliveryStoreSum.iTOTAL),
+              double.parse(deliveryStoreSum.iTOTAL!),
               18,
             ),
           ),
@@ -291,7 +291,8 @@ class _SaleStoreHomeState extends State<SaleStoreHome> {
               children: [
                 Container(
                   child: Utility.formateNumberOR18(
-                      GlobalParam.basketReturn['basketReturnPrice'], 18),
+                      GlobalParam.basketReturn['basketReturnPrice']!.toDouble(),
+                      18),
                 ),
                 Container(
                   padding: const EdgeInsets.only(right: 5.0),
@@ -384,15 +385,15 @@ class _SaleStoreHomeState extends State<SaleStoreHome> {
       AllApiProxyMobile proxy = AllApiProxyMobile();
 
       var result = await proxy.getBaskets(
-          widget.store.cCUSTCD, widget.store.cPOCD[0], "%%", "%%");
+          widget.store.cCUSTCD!, widget.store.cPOCD![0], "%%", "%%");
       double iitems = 0;
       double ibasket = 0;
       double iTOTAL = 0;
       if (result.isNotEmpty) {
         for (var i = 0; i < result.length; i++) {
-          iitems += double.parse(result[i].iitems);
-          ibasket += double.parse(result[i].ibasket);
-          iTOTAL += double.parse(result[i].iTOTAL);
+          iitems += double.parse(result[i].iitems!);
+          ibasket += double.parse(result[i].ibasket!);
+          iTOTAL += double.parse(result[i].iTOTAL!);
         }
         GlobalParam.PoHDAndPoDT = result;
         deliveryStoreSum = PoHDAndPoDTResp(
@@ -433,16 +434,19 @@ class _SaleStoreHomeState extends State<SaleStoreHome> {
         // end set pay //
         GlobalParam.basketReturn['basketReturnCount'] = result.length;
         for (var i = 0; i < result.length; i++) {
-          GlobalParam.basketReturn['basketReturnTotaliQTY'] += result[i].iQTY;
-          GlobalParam.basketReturn['basketReturnPrice'] +=
-              double.tryParse(result[i].iTOTAL) ?? 0.0;
+          GlobalParam.basketReturn['basketReturnTotaliQTY'] =
+              GlobalParam.basketReturn['basketReturnTotaliQTY']! +
+                  result[i].iQTY!;
+          GlobalParam.basketReturn['basketReturnPrice'] =
+              GlobalParam.basketReturn['basketReturnPrice']! +
+                  (double.tryParse(result[i].iTOTAL!) ?? 0.0);
         }
       }
       GlobalParam.basketReturn['xbasketReturnTotaliQTY'] =
-          (double.parse(deliveryStoreSum.ibasket).toInt() -
-              GlobalParam.basketReturn['basketReturnTotaliQTY'].toInt());
+          (double.parse(deliveryStoreSum.ibasket!).toInt() -
+              GlobalParam.basketReturn['basketReturnTotaliQTY']!.toInt());
       print(
-          '${double.parse(deliveryStoreSum.ibasket).toInt()} - ${GlobalParam.basketReturn['basketReturnTotaliQTY'].toInt()} = ${GlobalParam.basketReturn['xbasketReturnTotaliQTY']}');
+          '${double.parse(deliveryStoreSum.ibasket!).toInt()} - ${GlobalParam.basketReturn['basketReturnTotaliQTY']!.toInt()} = ${GlobalParam.basketReturn['xbasketReturnTotaliQTY']}');
       // print('$basketReturnCount $basketReturnTotaliQTY $basketReturnPrice');
     } on SocketException catch (e) {
       wrongDialog(e.message);

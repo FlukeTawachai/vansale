@@ -64,9 +64,9 @@ class _MoneyNewState extends State<MoneyNew> {
                     fontFamily: "Prompt",
                     color: HexColor("#a8a8a8"),
                   ),
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      dropdownName = newValue;
+                      dropdownName = newValue!;
                     });
                   },
                   items: <String>['ค่าซ่อมรถ', 'ค่า...']

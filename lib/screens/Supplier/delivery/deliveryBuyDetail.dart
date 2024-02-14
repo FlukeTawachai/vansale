@@ -10,8 +10,8 @@ import 'package:vansale/screens/Supplier/supplier/widgets/branchOrderCard.dart';
 import 'package:vansale/screens/home/home.dart';
 
 class DeliveryBuyDetail extends StatefulWidget {
-  final VoidCallback navigated;
-  const DeliveryBuyDetail({Key key, this.navigated}) : super(key: key);
+  final VoidCallback? navigated;
+  const DeliveryBuyDetail({Key? key, this.navigated}) : super(key: key);
 
   @override
   State<DeliveryBuyDetail> createState() => _DeliveryBuyDetailState();
@@ -203,7 +203,7 @@ class _DeliveryBuyDetailState extends State<DeliveryBuyDetail> {
                           Container(
                             child: InkWell(
                                 onTap: () {
-                                  widget.navigated();
+                                  widget.navigated!();
 
                                   // Navigator.of(context).push(MaterialPageRoute(
                                   //     builder: (context) =>

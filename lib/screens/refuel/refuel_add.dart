@@ -7,7 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:vansale/common_screen.dart/appbar.dart';
 import 'package:vansale/screens/confirm_page2.dart';
-
+import 'package:flutter/src/widgets/basic.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
 class RefuelAdd extends StatefulWidget {
   //const RefuelAdd({ Key? key }) : super(key: key);
@@ -37,18 +38,17 @@ class _RefuelAddState extends State<RefuelAdd> {
               child: Row(
                 children: [
                   Expanded(
-                    child: Container(
-                      child: FlatButton(
-                        color: HexColor('#6c7e9b'),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  AppbarPage(4.toString(), widget.typeMenuCode),
-                            ),
-                          );
-                        },
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                AppbarPage(4.toString(), widget.typeMenuCode),
+                          ),
+                        );
+                      },
+                      child: Container(
                         child: Container(
                           height: 40.0,
                           child: Row(
@@ -173,7 +173,7 @@ class _RefuelAddState extends State<RefuelAdd> {
                                   ),*/
                                           child: CircleAvatar(
                                             backgroundImage:
-                                                new FileImage(_image),
+                                                FileImage(_image!),
                                             radius: 150.0,
                                           ),
                                         ),
@@ -971,14 +971,14 @@ class _RefuelAddState extends State<RefuelAdd> {
     );
   }
 
-  PickedFile imageFile;
-  File _image;
+  PickedFile? imageFile;
+  File? _image;
   Future<void> _openCamera() async {
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 200.0, maxWidth: 200.0);
     setState(() {
       imageFile = image;
-      _image = File(imageFile.path);
+      _image = File(imageFile!.path);
     });
   }
 
@@ -987,7 +987,7 @@ class _RefuelAddState extends State<RefuelAdd> {
         source: ImageSource.gallery, maxHeight: 200.0, maxWidth: 200.0);
     setState(() {
       imageFile = image;
-      _image = File(imageFile.path);
+      _image = File(imageFile!.path);
     });
   }
 

@@ -15,19 +15,19 @@ import 'package:vansale/screens/googleMap/locationServices.dart';
 import 'package:vansale/screens/home/home.dart';
 
 class NewCheckIn extends StatefulWidget {
-  NewCheckIn({Key key, this.openMap}) : super(key: key);
-  final bool openMap;
+  NewCheckIn({Key? key, this.openMap}) : super(key: key);
+  final bool? openMap;
 
   @override
   _NewCheckInState createState() => _NewCheckInState();
 }
 
 class _NewCheckInState extends State<NewCheckIn> {
-  StreamSubscription _locationSubscription;
+  StreamSubscription? _locationSubscription;
   Location _locationTracker = Location();
-  Marker marker;
-  Circle circle;
-  GoogleMapController _controller;
+  Marker? marker;
+  Circle? circle;
+  GoogleMapController? _controller;
   bool discoverStores = true;
 
   static final CameraPosition initialLocation = CameraPosition(
@@ -42,12 +42,12 @@ class _NewCheckInState extends State<NewCheckIn> {
   }
 
   void updateMarkerAndCircle(LocationData newLocalData, Uint8List imageData) {
-    LatLng latlng = LatLng(newLocalData.latitude, newLocalData.longitude);
+    LatLng latlng = LatLng(newLocalData.latitude!, newLocalData.longitude!);
     setState(() {
       marker = Marker(
           markerId: MarkerId("home"),
           position: latlng,
-          rotation: newLocalData.heading,
+          rotation: newLocalData.heading!,
           draggable: false,
           zIndex: 2,
           flat: true,
@@ -55,7 +55,7 @@ class _NewCheckInState extends State<NewCheckIn> {
           icon: BitmapDescriptor.fromBytes(imageData));
       circle = Circle(
           circleId: CircleId("car"),
-          radius: newLocalData.accuracy,
+          radius: newLocalData.accuracy!,
           zIndex: 1,
           strokeColor: Colors.blue,
           center: latlng,
@@ -71,18 +71,18 @@ class _NewCheckInState extends State<NewCheckIn> {
       updateMarkerAndCircle(location, imageData);
 
       if (_locationSubscription != null) {
-        _locationSubscription.cancel();
+        _locationSubscription!.cancel();
       }
 
       _locationSubscription =
           _locationTracker.onLocationChanged.listen((newLocalData) {
         if (_controller != null) {
           GlobalParam.currentLocationCheckIn =
-              LatLng(newLocalData.latitude, newLocalData.longitude);
-          _controller.animateCamera(CameraUpdate.newCameraPosition(
+              LatLng(newLocalData.latitude!, newLocalData.longitude!);
+          _controller!.animateCamera(CameraUpdate.newCameraPosition(
               new CameraPosition(
                   bearing: 192.8334901395799,
-                  target: LatLng(newLocalData.latitude, newLocalData.longitude),
+                  target: LatLng(newLocalData.latitude!, newLocalData.longitude!),
                   tilt: 0,
                   zoom: 18.00)));
           updateMarkerAndCircle(newLocalData, imageData);
@@ -112,8 +112,8 @@ class _NewCheckInState extends State<NewCheckIn> {
     // final double lat = desPoint['geometry']['location']['lat'];
     // final double lng = desPoint['geometry']['location']['lng'];
 
-    double lat = GlobalParam.deliveryLocationStoreLatitude;
-    double lng = GlobalParam.deliveryLocationStoreLongitude;
+    double lat = GlobalParam.deliveryLocationStoreLatitude!;
+    double lng = GlobalParam.deliveryLocationStoreLongitude!;
 
     await LocationServices().openGoogleMap(lat, lng);
   }
@@ -121,7 +121,7 @@ class _NewCheckInState extends State<NewCheckIn> {
   @override
   void dispose() {
     if (_locationSubscription != null) {
-      _locationSubscription.cancel();
+      _locationSubscription!.cancel();
     }
     super.dispose();
   }
@@ -134,8 +134,8 @@ class _NewCheckInState extends State<NewCheckIn> {
         child: GoogleMap(
           mapType: MapType.normal,
           initialCameraPosition: initialLocation,
-          markers: Set.of((marker != null) ? [marker] : []),
-          circles: Set.of((circle != null) ? [circle] : []),
+          markers: Set.of((marker != null) ? [marker!] : []),
+          circles: Set.of((circle != null) ? [circle!] : []),
           onMapCreated: (GoogleMapController controller) {
             _controller = controller;
           },
@@ -170,9 +170,9 @@ class _NewCheckInState extends State<NewCheckIn> {
         print(
             '----------- Location Store: ${result.cLATITUDE},${result.cLONGTITUDE} -----------');
         GlobalParam.deliveryLocationStoreLatitude =
-            double.parse(result.cLATITUDE);
+            double.parse(result.cLATITUDE!);
         GlobalParam.deliveryLocationStoreLongitude =
-            double.parse(result.cLONGTITUDE);
+            double.parse(result.cLONGTITUDE!);
         if (widget.openMap == true) {
           openMaps();
         }

@@ -24,14 +24,14 @@ class StockBillImage extends StatefulWidget {
 }
 
 class _StockBillImageState extends State<StockBillImage> {
-  PickedFile imageFile;
+  PickedFile? imageFile;
   // final ImagePicker _picker = ImagePicker();
-  File file;
-  Timer timer;
+  File? file;
+  Timer? timer;
   bool imgIsNull = true;
   List<File> imageList = [];
-  double widthScreen;
-  File _image;
+  double widthScreen = 0;
+  File? _image;
 
   // @override
   // void initState() {
@@ -226,16 +226,16 @@ class _StockBillImageState extends State<StockBillImage> {
         source: ImageSource.camera, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
       imageFile = image;
-      _image = File(imageFile.path);
-      GlobalParam.deliveryImage = File(imageFile.path);
+      _image = File(imageFile!.path);
+      GlobalParam.deliveryImage = File(imageFile!.path);
       //EasyLoading.dismiss();
       // saveData();
       imgIsNull = false;
       if (imageList.length <= 5) {
-        GlobalParam.imageStoreList.add(_image);
+        GlobalParam.imageStoreList.add(_image!);
       } else {
         GlobalParam.imageStoreList.removeAt(0);
-        GlobalParam.imageStoreList.add(_image);
+        GlobalParam.imageStoreList.add(_image!);
       }
     });
   }
@@ -247,16 +247,16 @@ class _StockBillImageState extends State<StockBillImage> {
         source: ImageSource.gallery, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
       imageFile = image;
-      _image = File(imageFile.path);
-      GlobalParam.deliveryImage = File(imageFile.path);
+      _image = File(imageFile!.path);
+      GlobalParam.deliveryImage = File(imageFile!.path);
       // EasyLoading.dismiss();
       // saveData();
       imgIsNull = false;
       if (imageList.length <= 5) {
-        GlobalParam.imageStoreList.add(_image);
+        GlobalParam.imageStoreList.add(_image!);
       } else {
         GlobalParam.imageStoreList.removeAt(0);
-        GlobalParam.imageStoreList.add(_image);
+        GlobalParam.imageStoreList.add(_image!);
       }
     });
   }
@@ -290,7 +290,7 @@ class _StockBillImageState extends State<StockBillImage> {
                   iSEQ: "${i + 1}",
                   cSERVER: "27.254.207.240:11110",
                   cIB64: base64Image,
-                  cREFDOC: GlobalParam.supplierSelectOrder.cPOCD,
+                  cREFDOC: GlobalParam.supplierSelectOrder!.cPOCD,
                   cTYPE: "BRPFS",
                   cCREABY: GlobalParam.userID));
           EasyLoading.dismiss();
@@ -316,7 +316,7 @@ class _StockBillImageState extends State<StockBillImage> {
             context,
             MaterialPageRoute(
               builder: (BuildContext context) =>
-                  HomePage(GlobalParam.typeMenuCode),
+                  HomePage(GlobalParam.typeMenuCode!),
             ),
           );
         }

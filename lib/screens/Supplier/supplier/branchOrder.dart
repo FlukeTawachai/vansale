@@ -5,8 +5,8 @@ import 'package:vansale/screens/Supplier/models/product.dart';
 import 'package:vansale/screens/Supplier/supplier/widgets/branchOrderCard.dart';
 
 class BranchOrder extends StatefulWidget {
-  final VoidCallback navigated;
-  const BranchOrder({Key key, this.navigated}) : super(key: key);
+  final VoidCallback? navigated;
+  const BranchOrder({Key? key, this.navigated}) : super(key: key);
 
   @override
   State<BranchOrder> createState() => _BranchOrderState();
@@ -196,7 +196,7 @@ class _BranchOrderState extends State<BranchOrder> {
                           Container(
                             child: InkWell(
                                 onTap: () {
-                                  widget.navigated();
+                                  widget.navigated!();
 
                                   // Navigator.of(context).push(MaterialPageRoute(
                                   //     builder: (context) =>

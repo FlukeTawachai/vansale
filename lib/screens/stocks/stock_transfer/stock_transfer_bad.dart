@@ -8,8 +8,6 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:vansale/api/allApiProxyMobile.dart';
 import 'package:vansale/api/class/globalparam.dart';
 import 'package:vansale/api/class/request/mobile/addCustomerOrderReq.dart';
-import 'package:vansale/api/class/request/mobile/addReturnDTReq.dart';
-import 'package:vansale/api/class/request/mobile/addReturnHDReq.dart';
 import 'package:vansale/api/class/request/mobile/addReturnProductToStockReq.dart';
 import 'package:vansale/api/class/request/mobile/addStockCardReq.dart';
 import 'package:vansale/api/class/request/mobile/getProductBranchReq.dart';
@@ -19,13 +17,9 @@ import 'package:vansale/api/class/response/routeMobile/getProductOrBasketStockRe
 import 'package:vansale/api/class/response/routeMobile/getProductReturnOfRouteResp.dart';
 import 'package:vansale/function/substring_price.dart';
 
-import 'package:vansale/screens/customer_menu/custommer_Order/customer_order_filter.dart';
 import 'package:vansale/screens/delivery/delivery_scanner.dart';
 import 'package:vansale/screens/stocks/stock_transfer/product_bad_filter.dart';
 import 'package:vansale/screens/stocks/stock_transfer/stock_transfer_barket.dart';
-
-import 'package:vansale/screens/stocks/stock_transfer/stock_transfer_miss.dart';
-import 'package:vansale/screens/stocks/stoeck_return/stock_return_img.dart';
 
 class StockTransferReturnBadPro extends StatefulWidget {
   //const MoreItem({ Key? key }) : super(key: key);
@@ -38,7 +32,7 @@ class StockTransferReturnBadPro extends StatefulWidget {
 
 class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
   String total = '3200.00';
-  double widthScreen;
+  double widthScreen = 0;
   List<TextEditingController> inController = [];
   List<TextEditingController> deController = [];
   final formatNum = new NumberFormat("#,###.##", "en_US");
@@ -47,7 +41,7 @@ class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
       cCREABY: GlobalParam.userData.cUSRNM,
       aPRODUCT: []);
   List<GetProductBranchResp> basketProduct = [];
-  List<GetProductReturnOfRouteResp> returnProList;
+  List<GetProductReturnOfRouteResp> returnProList = [];
   String search = '';
   var totalList = [];
   List<GetProductOrBasketStockResp> stockList = [];
@@ -254,11 +248,11 @@ class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
               deController.add(new TextEditingController());
               inController.add(new TextEditingController());
               double sQty = double.parse(
-                  GlobalParam.customerShowBadProList[index].iSSIZEQTY);
+                  GlobalParam.customerShowBadProList[index].iSSIZEQTY!);
               double mQty = double.parse(
-                  GlobalParam.customerShowBadProList[index].iMSIZEQTY);
+                  GlobalParam.customerShowBadProList[index].iMSIZEQTY!);
               double lQty = double.parse(
-                  GlobalParam.customerShowBadProList[index].iLSIZEQTY);
+                  GlobalParam.customerShowBadProList[index].iLSIZEQTY!);
               double qty = 0;
               double unitPrice = 0.0;
               String unitName = '';
@@ -269,8 +263,8 @@ class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
                 size = 'S';
                 qty = sQty;
                 unitPrice = double.parse(
-                    GlobalParam.customerShowBadProList[index].iSUNITPRICE);
-                unitName = GlobalParam.customerShowBadProList[index].cSUOMNM;
+                    GlobalParam.customerShowBadProList[index].iSUNITPRICE!);
+                unitName = GlobalParam.customerShowBadProList[index].cSUOMNM!;
                 for (var k = 0; k < totalList.length; k++) {
                   if (totalList[k]['cPRODCD'] ==
                           GlobalParam.customerShowBadProList[index].cPRODCD &&
@@ -283,8 +277,8 @@ class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
                 size = 'S';
                 qty = mQty;
                 unitPrice = double.parse(
-                    GlobalParam.customerShowBadProList[index].iMUNITPRICE);
-                unitName = GlobalParam.customerShowBadProList[index].cMUOMNM;
+                    GlobalParam.customerShowBadProList[index].iMUNITPRICE!);
+                unitName = GlobalParam.customerShowBadProList[index].cMUOMNM!;
                 for (var k = 0; k < totalList.length; k++) {
                   if (totalList[k]['cPRODCD'] ==
                           GlobalParam.customerShowBadProList[index].cPRODCD &&
@@ -297,8 +291,8 @@ class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
                 size = 'S';
                 qty = lQty;
                 unitPrice = double.parse(
-                    GlobalParam.customerShowBadProList[index].iLUNITPRICE);
-                unitName = GlobalParam.customerShowBadProList[index].cLUOMNM;
+                    GlobalParam.customerShowBadProList[index].iLUNITPRICE!);
+                unitName = GlobalParam.customerShowBadProList[index].cLUOMNM!;
                 for (var k = 0; k < totalList.length; k++) {
                   if (totalList[k]['cPRODCD'] ==
                           GlobalParam.customerShowBadProList[index].cPRODCD &&
@@ -362,7 +356,7 @@ class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
                                     height: 24,
                                     child: Text(
                                       GlobalParam.customerShowBadProList[index]
-                                          .cPRODNM,
+                                          .cPRODNM!,
                                       style: TextStyle(
                                         fontFamily: 'Prompt',
                                         fontWeight: FontWeight.bold,
@@ -406,7 +400,7 @@ class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
                                                   !GlobalParam
                                                       .customerShowBadProList[
                                                           index]
-                                                      .cCHECK;
+                                                      .cCHECK!;
                                             });
                                           },
                                           child: GlobalParam
@@ -624,7 +618,7 @@ class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
                                                             GlobalParam
                                                                 .customerShowBadProList[
                                                                     index]
-                                                                .iMUNITPRICE) *
+                                                                .iMUNITPRICE!) *
                                                         double.parse(value);
                                                   }
                                                 },
@@ -838,12 +832,12 @@ class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
     double productTotal = 0;
 
     for (var i = 0; i < orderList.length; i++) {
-      double sQty = double.parse(orderList[i].iSSIZEQTY);
-      double mQty = double.parse(orderList[i].iMSIZEQTY);
-      double lQty = double.parse(orderList[i].iLSIZEQTY);
-      double sPrice = double.parse(orderList[i].iSUNITPRICE);
-      double mPrice = double.parse(orderList[i].iMUNITPRICE);
-      double lPrice = double.parse(orderList[i].iLUNITPRICE);
+      double sQty = double.parse(orderList[i].iSSIZEQTY!);
+      double mQty = double.parse(orderList[i].iMSIZEQTY!);
+      double lQty = double.parse(orderList[i].iLSIZEQTY!);
+      double sPrice = double.parse(orderList[i].iSUNITPRICE!);
+      double mPrice = double.parse(orderList[i].iMUNITPRICE!);
+      double lPrice = double.parse(orderList[i].iLUNITPRICE!);
       if ((sQty + mQty + lQty) > 0) {
         showData.add(orderList[i]);
         productTotal += (sQty * sPrice) + (mQty * mPrice) + (lQty * lPrice);
@@ -851,24 +845,24 @@ class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
           var data = {
             "cPRODCD": orderList[i].cPRODCD,
             "cUOMNM": orderList[i].cSUOMNM,
-            "iPRICE": double.parse(orderList[i].iSUNITPRICE),
-            "iTOTAL": double.parse(orderList[i].iSSIZEQTY)
+            "iPRICE": double.parse(orderList[i].iSUNITPRICE!),
+            "iTOTAL": double.parse(orderList[i].iSSIZEQTY!)
           };
           unitList.add(data);
         }
         if (mQty > 0) {
           var data = {
             "cUOMNM": orderList[i].cMUOMNM,
-            "iPRICE": double.parse(orderList[i].iMUNITPRICE),
-            "iTOTAL": double.parse(orderList[i].iMSIZEQTY)
+            "iPRICE": double.parse(orderList[i].iMUNITPRICE!),
+            "iTOTAL": double.parse(orderList[i].iMSIZEQTY!)
           };
           unitList.add(data);
         }
         if (lQty > 0) {
           var data = {
             "cUOMNM": orderList[i].cLUOMNM,
-            "iPRICE": double.parse(orderList[i].iLUNITPRICE),
-            "iTOTAL": double.parse(orderList[i].iLSIZEQTY)
+            "iPRICE": double.parse(orderList[i].iLUNITPRICE!),
+            "iTOTAL": double.parse(orderList[i].iLSIZEQTY!)
           };
           unitList.add(data);
         }
@@ -1178,9 +1172,9 @@ class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
             if (result[i].cPRODCD == returnProList[j].cPRODCD) {
               if (returnProList[j].cRETYP == 'RB') {
                 result[i].cRETCD = returnProList[j].cRETCD;
-                double returnS = double.parse(returnProList[j].iSSIZEQTY);
-                double returnM = double.parse(returnProList[j].iMSIZEQTY);
-                double returnL = double.parse(returnProList[j].iLSIZEQTY);
+                double returnS = double.parse(returnProList[j].iSSIZEQTY!);
+                double returnM = double.parse(returnProList[j].iMSIZEQTY!);
+                double returnL = double.parse(returnProList[j].iLSIZEQTY!);
                 cRETCD = '${returnProList[j].cRETCD}';
                 if (returnS > 0) {
                   GetProductBranchResp proData = GetProductBranchResp(
@@ -1425,12 +1419,12 @@ class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
       List<GetProductBranchResp> productReturn = [];
       productReturn.addAll(GlobalParam.customerBadProList);
       for (int i = 0; i < productReturn.length; i++) {
-        double sQty = double.parse(productReturn[i].iSSIZEQTY);
-        double mQty = double.parse(productReturn[i].iMSIZEQTY);
-        double lQty = double.parse(productReturn[i].iLSIZEQTY);
-        double sPrice = double.parse(productReturn[i].iSUNITPRICE);
-        double mPrice = double.parse(productReturn[i].iMUNITPRICE);
-        double lPrice = double.parse(productReturn[i].iLUNITPRICE);
+        double sQty = double.parse(productReturn[i].iSSIZEQTY!);
+        double mQty = double.parse(productReturn[i].iMSIZEQTY!);
+        double lQty = double.parse(productReturn[i].iLSIZEQTY!);
+        double sPrice = double.parse(productReturn[i].iSUNITPRICE!);
+        double mPrice = double.parse(productReturn[i].iMUNITPRICE!);
+        double lPrice = double.parse(productReturn[i].iLUNITPRICE!);
         if ((sQty + mQty + lQty) > 0) {
           if (sQty > 0) {
             StockCardReq transferOut = StockCardReq(
@@ -1689,17 +1683,17 @@ class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
 
         for (var k = 0; k < totalList.length; k++) {
           double sQty =
-              double.parse(GlobalParam.customerBadProList[i].iSSIZEQTY);
+              double.parse(GlobalParam.customerBadProList[i].iSSIZEQTY!);
           double mQty =
-              double.parse(GlobalParam.customerBadProList[i].iMSIZEQTY);
+              double.parse(GlobalParam.customerBadProList[i].iMSIZEQTY!);
           double lQty =
-              double.parse(GlobalParam.customerBadProList[i].iLSIZEQTY);
+              double.parse(GlobalParam.customerBadProList[i].iLSIZEQTY!);
           double sPrice =
-              double.parse(GlobalParam.customerBadProList[i].iSUNITPRICE);
+              double.parse(GlobalParam.customerBadProList[i].iSUNITPRICE!);
           double mPrice =
-              double.parse(GlobalParam.customerBadProList[i].iMUNITPRICE);
+              double.parse(GlobalParam.customerBadProList[i].iMUNITPRICE!);
           double lPrice =
-              double.parse(GlobalParam.customerBadProList[i].iLUNITPRICE);
+              double.parse(GlobalParam.customerBadProList[i].iLUNITPRICE!);
           if (totalList[k]['cPRODCD'] ==
                   GlobalParam.customerBadProList[i].cPRODCD &&
               totalList[k]['size'] == size) {
@@ -1724,7 +1718,7 @@ class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
               GlobalParam.customerShowBadProList[index].cDCUL = false;
             }
             returnProToStock[i].iTRUEQTY =
-                '${double.parse(returnProToStock[i].iQTY) + double.parse(value)}';
+                '${double.parse(returnProToStock[i].iQTY!) + double.parse(value)}';
           } else if (type == 'decrease') {
             if (value == '0.0') {
               GlobalParam.customerShowBadProList[index].cICUL = true;
@@ -1733,7 +1727,7 @@ class _StockTransferReturnBadProState extends State<StockTransferReturnBadPro> {
               GlobalParam.customerShowBadProList[index].cICUL = false;
             }
             returnProToStock[i].iTRUEQTY =
-                '${double.parse(returnProToStock[i].iQTY) - double.parse(value)}';
+                '${double.parse(returnProToStock[i].iQTY!) - double.parse(value)}';
           }
         }
       }

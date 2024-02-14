@@ -18,17 +18,17 @@ class ProductsFields {
 }
 
 class ProductsModel {
-  final int id;
-  final String name;
-  final String uom1;
-  final String uom2;
-  final String uom3;
-  final String promo;
-  final double price;
-  final double amount;
-  final String orderno;
-  final String img;
-  final bool check;
+  final int? id;
+  final String? name;
+  final String? uom1;
+  final String? uom2;
+  final String? uom3;
+  final String? promo;
+  final double? price;
+  final double? amount;
+  final String? orderno;
+  final String? img;
+  final bool? check;
 
   ProductsModel({
     this.id,
@@ -73,17 +73,17 @@ class ProductsModel {
 
   Map<String, Object> toMap() {
     return {
-      'id': id,
-      'name': name,
-      'uom1': uom1,
-      'uom2': uom2,
-      'uom3': uom3,
-      'promo': promo,
-      'price': price,
-      'amount': amount,
-      'orderno': orderno,
-      'img': img,
-      'check': check,
+      'id': id!,
+      'name': name!,
+      'uom1': uom1!,
+      'uom2': uom2!,
+      'uom3': uom3!,
+      'promo': promo!,
+      'price': price!,
+      'amount': amount!,
+      'orderno': orderno!,
+      'img': img!,
+      'check': check!,
     };
   }
 }

@@ -8,8 +8,8 @@ import 'package:vansale/screens/Supplier/shipping/widgets/Footer3Layout.dart';
 import 'package:vansale/screens/Supplier/shipping/widgets/productCard.dart';
 
 class BuyConfirm extends StatefulWidget {
-  final String typeMenuCode;
-  const BuyConfirm({Key key, this.typeMenuCode}) : super(key: key);
+  final String? typeMenuCode;
+  const BuyConfirm({Key? key, this.typeMenuCode}) : super(key: key);
 
   @override
   State<BuyConfirm> createState() => _BuyConfirmState();

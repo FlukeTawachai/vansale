@@ -1,5 +1,5 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -555,7 +555,7 @@ class _ShippingStoreDetailState extends State<ShippingStoreDetail> {
       autoplay: false,
       itemCount: storeDetail.length,
       //pagination: new SwiperPagination(),
-      control: new SwiperControl(
+      control:SwiperControl(
         color: Colors.black,
         size: 20.0,
       ),

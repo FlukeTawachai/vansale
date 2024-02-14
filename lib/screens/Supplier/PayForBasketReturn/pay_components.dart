@@ -91,53 +91,39 @@ class _PayManuState extends State<PayManu> {
 
   @override
   Widget build(BuildContext context) {
-    var menus = [
-      {
-        "icon": FontAwesomeIcons.dollarSign,
-        "name": "เงินสด",
-        "size": 28.0,
-        "menu": Cash(() {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (comtext) =>
-                  ConfirmPages(GlobalParam.typeMenuCode, "ชำระเงิน")));
-          Future.delayed(Duration(seconds: delay.getTimeDelay()), () {
-            Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(
-                    builder: (context) => HomePage(GlobalParam.typeMenuCode)),
-                (Route<dynamic> route) => false);
-          });
-        }),
-      },
-      {
-        "icon": FontAwesomeIcons.warehouse,
-        "name": " โอน",
-        "size": 28.0,
-        "menu": CashTransfer(() {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (comtext) =>
-                  ConfirmPages(GlobalParam.typeMenuCode, "โอนเงิน")));
-          Future.delayed(Duration(seconds: delay.getTimeDelay()), () {
-            Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(
-                    builder: (context) => HomePage(GlobalParam.typeMenuCode)),
-                (Route<dynamic> route) => false);
-          });
-        }),
-      },
-      {
-        "icon": FontAwesomeIcons.creditCard,
-        "name": " เช็ค",
-        "size": 28.0,
-        "menu": CashCheck(navigated: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (comtext) => ConfirmPages("T002", "ชำระ")));
-          Future.delayed(Duration(seconds: delay.getTimeDelay()), () {
-            Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => HomePage("T002")),
-                (Route<dynamic> route) => false);
-          });
-        }),
-      },
+    List<PayManuModel> menus = [
+      PayManuModel(FontAwesomeIcons.dollarSign, "เงินสด", 28.0, Cash(() {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (comtext) =>
+                ConfirmPages(GlobalParam.typeMenuCode!, "ชำระเงิน")));
+        Future.delayed(Duration(seconds: delay.getTimeDelay()), () {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (context) => HomePage(GlobalParam.typeMenuCode!)),
+              (Route<dynamic> route) => false);
+        });
+      })),
+      PayManuModel(FontAwesomeIcons.warehouse, " โอน", 28.0, CashTransfer(() {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (comtext) =>
+                ConfirmPages(GlobalParam.typeMenuCode!, "โอนเงิน")));
+        Future.delayed(Duration(seconds: delay.getTimeDelay()), () {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (context) => HomePage(GlobalParam.typeMenuCode!)),
+              (Route<dynamic> route) => false);
+        });
+      })),
+      PayManuModel(FontAwesomeIcons.creditCard, " เช็ค", 28.0,
+          CashCheck(navigated: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (comtext) => ConfirmPages("T002", "ชำระ")));
+        Future.delayed(Duration(seconds: delay.getTimeDelay()), () {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => HomePage("T002")),
+              (Route<dynamic> route) => false);
+        });
+      })),
     ];
 
     return Container(
@@ -160,13 +146,13 @@ class _PayManuState extends State<PayManu> {
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 margin: const EdgeInsets.all(5.0),
-                child: new InkWell(
+                child: InkWell(
                   onTap: () {
                     GlobalParam.deliveryPayReq.iDEBIT = 0.0;
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext context) => menus[index]['menu'],
+                        builder: (BuildContext context) => menus[index].menu!,
                       ),
                     );
                   },
@@ -176,9 +162,9 @@ class _PayManuState extends State<PayManu> {
                     children: [
                       Container(
                         child: Icon(
-                          menus[index]['icon'],
+                          menus[index].icon,
                           color: Colors.green,
-                          size: menus[index]['size'],
+                          size: menus[index].size,
                         ),
                       ),
                       const SizedBox(
@@ -187,7 +173,7 @@ class _PayManuState extends State<PayManu> {
                       Container(
                         //padding: const EdgeInsets.all(5.0),
                         child: Text(
-                          menus[index]['name'],
+                          menus[index].name!,
                           style: TextStyle(
                             fontFamily: 'Prompt',
                             color: Colors.green,
@@ -204,4 +190,12 @@ class _PayManuState extends State<PayManu> {
       ),
     );
   }
+}
+
+class PayManuModel {
+  IconData? icon;
+  String? name;
+  double? size;
+  Widget? menu;
+  PayManuModel(this.icon, this.name, this.size, this.menu);
 }

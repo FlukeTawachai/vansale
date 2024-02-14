@@ -25,8 +25,8 @@ import 'package:vansale/screens/Supplier/shipping/widgets/Footer3Layout.dart';
 import 'package:blue_print_pos/blue_print_pos.dart';
 
 class BasketReturn extends StatefulWidget {
-  final String typeMenuCode;
-  const BasketReturn({Key key, this.typeMenuCode}) : super(key: key);
+  final String? typeMenuCode;
+  const BasketReturn({Key? key, this.typeMenuCode}) : super(key: key);
 
   @override
   State<BasketReturn> createState() => _BasketReturnState();
@@ -244,7 +244,7 @@ class _BasketReturnState extends State<BasketReturn> {
                                                     GlobalParam
                                                         .deliveryBasketShow[
                                                             index]
-                                                        .cBASKNM,
+                                                        .cBASKNM!,
                                                     style: TextStyle(
                                                         fontFamily: 'Prompt',
                                                         fontSize: 16,
@@ -539,7 +539,7 @@ class _BasketReturnState extends State<BasketReturn> {
                       j++) {
                     if (GlobalParam.deliveryBasketReq[i].cBASKCD ==
                         GlobalParam.deliveryBasketList[j].cBASKCD) {
-                      basketName = GlobalParam.deliveryBasketList[j].cBASKNM;
+                      basketName = GlobalParam.deliveryBasketList[j].cBASKNM!;
                     }
                   }
                   if (oldBasketList[i] == true) {
@@ -573,11 +573,11 @@ class _BasketReturnState extends State<BasketReturn> {
               } else {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (comtext) =>
-                        ConfirmPages(widget.typeMenuCode, "คืนตะกร้า")));
+                        ConfirmPages(widget.typeMenuCode!, "คืนตะกร้า")));
                 Future.delayed(Duration(seconds: delay.getTimeDelay()), () {
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
-                          builder: (context) => HomePage(widget.typeMenuCode)),
+                          builder: (context) => HomePage(widget.typeMenuCode!)),
                       (Route<dynamic> route) => false);
                 });
               }
@@ -606,7 +606,7 @@ class _BasketReturnState extends State<BasketReturn> {
         for (int i = 0; i < GlobalParam.deliveryProductList.length; i++) {
           if (GlobalParam.deliveryProductList[i].cBASKCD ==
               GlobalParam.deliveryBasketList[j].cBASKCD) {
-            increase += int.parse(GlobalParam.deliveryProductList[i].ibasket);
+            increase += int.parse(GlobalParam.deliveryProductList[i].ibasket!);
           }
         }
 
@@ -616,7 +616,7 @@ class _BasketReturnState extends State<BasketReturn> {
             GlobalParam.deliveryBasketShow
                 .add(GlobalParam.deliveryBasketList[j]);
             data['total'] =
-                '${GlobalParam.deliveryHisBasket[i].iTOTAL - GlobalParam.deliveryHisBasket[i].iRETURN}';
+                '${GlobalParam.deliveryHisBasket[i].iTOTAL! - GlobalParam.deliveryHisBasket[i].iRETURN!}';
             data['increase'] = '${increase}';
             print(data);
             list.add(data);
@@ -755,7 +755,7 @@ class _BasketReturnState extends State<BasketReturn> {
     // box.put('test', 'test');
     bool checkRepeat = false;
 
-    final BlueDevice blueDevice = GlobalParam.selectDevice;
+    final BlueDevice blueDevice = GlobalParam.selectDevice!;
     _bluePrintPos.connect(blueDevice).then((ConnectionStatus status) {});
   }
 
@@ -772,12 +772,12 @@ class _BasketReturnState extends State<BasketReturn> {
           GlobalParam.deliveryBasketReq[i].iQTY = value;
           GlobalParam.deliveryBasketReq[i].iTOTAL =
               int.parse(value.toStringAsFixed(0)) *
-                  double.parse(GlobalParam.deliveryBasketList[i].iPRICE);
+                  double.parse(GlobalParam.deliveryBasketList[i].iPRICE!);
         }
       }
       item += int.parse(
-          '${GlobalParam.deliveryBasketReq[i].iQTY.toStringAsFixed(0)}');
-      total += GlobalParam.deliveryBasketReq[i].iTOTAL;
+          '${GlobalParam.deliveryBasketReq[i].iQTY!.toStringAsFixed(0)}');
+      total += GlobalParam.deliveryBasketReq[i].iTOTAL!;
     }
     setState(() {
       GlobalParam.deliveryBasketSum['item'] = '$item';
@@ -812,25 +812,25 @@ class _BasketReturnState extends State<BasketReturn> {
 
     // locationStore
     receipt01.addLeftRightText(
-      GlobalParam.deliverySelectStore.cCUSTNM,
+      GlobalParam.deliverySelectStore.cCUSTNM!,
       '',
       leftSize: ReceiptTextSizeType.medium,
       leftStyle: ReceiptTextStyleType.bold,
     );
     receipt01.addLeftRightText(
-      GlobalParam.deliverySelectStore.cADDRESS,
+      GlobalParam.deliverySelectStore.cADDRESS!,
       '',
       leftSize: ReceiptTextSizeType.medium,
       leftStyle: ReceiptTextStyleType.bold,
     );
     receipt01.addLeftRightText(
-      GlobalParam.deliverySelectStore.cSUBDIST,
+      GlobalParam.deliverySelectStore.cSUBDIST!,
       '',
       leftSize: ReceiptTextSizeType.medium,
       leftStyle: ReceiptTextStyleType.bold,
     );
     receipt01.addLeftRightText(
-      GlobalParam.deliverySelectStore.cDISTRICT,
+      GlobalParam.deliverySelectStore.cDISTRICT!,
       '',
       leftSize: ReceiptTextSizeType.medium,
       leftStyle: ReceiptTextStyleType.bold,
@@ -872,25 +872,25 @@ class _BasketReturnState extends State<BasketReturn> {
       double qty = 0, prince = 0;
       // ignore: unrelated_type_equality_checks
       if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
-        qty = double.parse(GlobalParam.deliveryPodtList[index].iSSIZEQTY);
-        prince = double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE);
-        unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM;
+        qty = double.parse(GlobalParam.deliveryPodtList[index].iSSIZEQTY!);
+        prince = double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE!);
+        unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM!;
         // ignore: unrelated_type_equality_checks
       }
       if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
-        qty = double.parse(GlobalParam.deliveryPodtList[index].iMSIZEQTY);
-        prince = double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE);
-        unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM;
+        qty = double.parse(GlobalParam.deliveryPodtList[index].iMSIZEQTY!);
+        prince = double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE!);
+        unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM!;
         // ignore: unrelated_type_equality_checks
       }
       if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
-        qty = double.parse(GlobalParam.deliveryPodtList[index].iLSIZEQTY);
-        prince = double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE);
-        unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM;
+        qty = double.parse(GlobalParam.deliveryPodtList[index].iLSIZEQTY!);
+        prince = double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE!);
+        unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM!;
       }
 
       receipt01.addLeftRightText(
-        GlobalParam.deliveryPodtList[index].cPRODNM,
+        GlobalParam.deliveryPodtList[index].cPRODNM!,
         '',
         leftSize: ReceiptTextSizeType.medium,
         leftStyle: ReceiptTextStyleType.bold,
@@ -927,31 +927,31 @@ class _BasketReturnState extends State<BasketReturn> {
         GlobalParam.deliveryPodtList[index].iINCOMPRO = 0;
       }
       String unitNM = '';
-      int qty = GlobalParam.deliveryPodtList[index].iINCOMPRO;
+      int qty = GlobalParam.deliveryPodtList[index].iINCOMPRO!;
       double prince = 0;
       // ignore: unrelated_type_equality_checks
       if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != '0' &&
           GlobalParam.deliveryPodtList[index].iSSIZEQTY != null) {
         prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE);
-        unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM;
+            qty * double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE!);
+        unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM!;
         // ignore: unrelated_type_equality_checks
       } else if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != '0' &&
           GlobalParam.deliveryPodtList[index].iMSIZEQTY != null) {
         prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE);
-        unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM;
+            qty * double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE!);
+        unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM!;
         // ignore: unrelated_type_equality_checks
       } else if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != '0' &&
           GlobalParam.deliveryPodtList[index].iLSIZEQTY != null) {
         prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE);
-        unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM;
+            qty * double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE!);
+        unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM!;
       }
       if (GlobalParam.deliveryPodtList[index].iINCOMPRO != 0 &&
           GlobalParam.deliveryPodtList[index].iINCOMPRO != null) {
         receipt01.addLeftRightText(
-          GlobalParam.deliveryPodtList[index].cPRODNM,
+          GlobalParam.deliveryPodtList[index].cPRODNM!,
           '',
           leftSize: ReceiptTextSizeType.medium,
           leftStyle: ReceiptTextStyleType.bold,
@@ -986,27 +986,27 @@ class _BasketReturnState extends State<BasketReturn> {
         GlobalParam.deliveryPodtList[index].iCANCLEPRO = 0;
       }
       String unitNM = '';
-      int qty = GlobalParam.deliveryPodtList[index].iCANCLEPRO;
+      int qty = GlobalParam.deliveryPodtList[index].iCANCLEPRO!;
       double prince = 0;
       // ignore: unrelated_type_equality_checks
       if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
         prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE);
-        unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM;
+            qty * double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE!);
+        unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM!;
         // ignore: unrelated_type_equality_checks
       } else if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
         prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE);
-        unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM;
+            qty * double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE!);
+        unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM!;
         // ignore: unrelated_type_equality_checks
       } else if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
         prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE);
-        unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM;
+            qty * double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE!);
+        unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM!;
       }
       if (GlobalParam.deliveryPodtList[index].iCANCLEPRO != 0) {
         receipt01.addLeftRightText(
-          GlobalParam.deliveryPodtList[index].cPRODNM,
+          GlobalParam.deliveryPodtList[index].cPRODNM!,
           '',
           leftSize: ReceiptTextSizeType.medium,
           leftStyle: ReceiptTextStyleType.bold,
@@ -1042,28 +1042,28 @@ class _BasketReturnState extends State<BasketReturn> {
         GlobalParam.deliveryPodtList[index].iLOSSPRO = 0;
       }
       String unitNM = '';
-      int qty = GlobalParam.deliveryPodtList[index].iLOSSPRO;
+      int qty = GlobalParam.deliveryPodtList[index].iLOSSPRO!;
       double prince = 0;
       // ignore: unrelated_type_equality_checks
       if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
         print(GlobalParam.deliveryPodtList[index].iSUNITPRICE);
         prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE);
-        unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM;
+            qty * double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE!);
+        unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM!;
         // ignore: unrelated_type_equality_checks
       } else if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
         prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE);
-        unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM;
+            qty * double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE!);
+        unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM!;
         // ignore: unrelated_type_equality_checks
       } else if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
         prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE);
-        unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM;
+            qty * double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE!);
+        unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM!;
       }
       if (GlobalParam.deliveryPodtList[index].iLOSSPRO != 0) {
         receipt01.addText(
-          GlobalParam.deliveryPodtList[index].cPRODNM,
+          GlobalParam.deliveryPodtList[index].cPRODNM!,
           size: ReceiptTextSizeType.medium,
         );
         receipt01.addLeftRightText(
@@ -1096,9 +1096,9 @@ class _BasketReturnState extends State<BasketReturn> {
       for (int i = 0; i < GlobalParam.deliveryBasketList.length; i++) {
         if (GlobalParam.deliveryBasketList[i].cBASKCD ==
             GlobalParam.deliveryBasketReq[index].cBASKCD) {
-          basName = GlobalParam.deliveryBasketList[i].cBASKNM;
-          basTotal = GlobalParam.deliveryBasketReq[index].iQTY *
-              double.parse(GlobalParam.deliveryBasketList[i].iPRICE);
+          basName = GlobalParam.deliveryBasketList[i].cBASKNM!;
+          basTotal = GlobalParam.deliveryBasketReq[index].iQTY! *
+              double.parse(GlobalParam.deliveryBasketList[i].iPRICE!);
         }
       }
       if (GlobalParam.deliveryBasketReq[index].iQTY != 0) {
@@ -1148,7 +1148,7 @@ class _BasketReturnState extends State<BasketReturn> {
 
     receipt01.addLeftRightText(
       'รวมทั้งหมด',
-      '${formatNum.format(double.parse(GlobalParam.deliveryStoreSum.iTOTAL))}',
+      '${formatNum.format(double.parse(GlobalParam.deliveryStoreSum.iTOTAL!))}',
       leftSize: ReceiptTextSizeType.medium,
       leftStyle: ReceiptTextStyleType.bold,
     );
@@ -1191,13 +1191,13 @@ class _BasketReturnState extends State<BasketReturn> {
     );
 
     receipt01.addLeftRightText(
-      '${GlobalParam.selectDevice.name}',
+      '${GlobalParam.selectDevice!.name}',
       '',
       leftSize: ReceiptTextSizeType.medium,
       leftStyle: ReceiptTextStyleType.bold,
     );
     receipt01.addLeftRightText(
-      '${GlobalParam.selectDevice.address}',
+      '${GlobalParam.selectDevice!.address}',
       '',
       leftSize: ReceiptTextSizeType.medium,
       leftStyle: ReceiptTextStyleType.bold,

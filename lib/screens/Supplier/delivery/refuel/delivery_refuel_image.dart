@@ -19,10 +19,10 @@ class RefuelImage extends StatefulWidget {
 }
 
 class _RefuelImageState extends State<RefuelImage> {
-  PickedFile imageFile;
+  PickedFile? imageFile;
   // final ImagePicker _picker = ImagePicker();
-  File file;
-  Timer timer;
+  File? file;
+  Timer? timer;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +64,7 @@ class _RefuelImageState extends State<RefuelImage> {
               fit: BoxFit.cover,
             )
           : Image.file(
-              File(_image.path),
+              File(_image!.path),
               fit: BoxFit.cover,
             ),
     );
@@ -195,7 +195,7 @@ class _RefuelImageState extends State<RefuelImage> {
     EasyLoading.dismiss();
   }*/
 
-  File _image;
+  File? _image;
   Future<void> openCamera() async {
     //EasyLoading.show();
     // ignore: invalid_use_of_visible_for_testing_member
@@ -203,8 +203,8 @@ class _RefuelImageState extends State<RefuelImage> {
         source: ImageSource.camera, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
       imageFile = image;
-      _image = File(imageFile.path);
-      GlobalParam.deliveryImage = File(imageFile.path);
+      _image = File(imageFile!.path);
+      GlobalParam.deliveryImage = File(imageFile!.path);
       //EasyLoading.dismiss();
     });
   }
@@ -216,8 +216,8 @@ class _RefuelImageState extends State<RefuelImage> {
         source: ImageSource.gallery, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
       imageFile = image;
-      _image = File(imageFile.path);
-      GlobalParam.deliveryImage = File(imageFile.path);
+      _image = File(imageFile!.path);
+      GlobalParam.deliveryImage = File(imageFile!.path);
       // EasyLoading.dismiss();
     });
   }

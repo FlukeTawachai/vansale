@@ -97,13 +97,13 @@ class _GridMenuDeliveryState extends State<GridMenuDelivery> {
       itemBuilder: (BuildContext context, int index) {
         return Card(
           //margin: const EdgeInsets.all(5.0),
-          child: new InkWell(
+          child:  InkWell(
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (BuildContext context) =>
-                      showmenu(storemanu[index]['menu']),
+                      showmenu(storemanu[index]['menu']!),
                 ),
               );
             },
@@ -126,11 +126,11 @@ class _GridMenuDeliveryState extends State<GridMenuDelivery> {
                     child: Icon(
                       IconData(
                           int.parse(
-                            storemanu[index]['icon'],
+                            storemanu[index]['icon']!,
                           ),
                           fontFamily: 'vp_custom'),
                       color: Colors.green,
-                      size: double.parse(storemanu[index]['icon_size']),
+                      size: double.parse(storemanu[index]['icon_size']!),
                     ),
                   ),
                 ),
@@ -138,10 +138,10 @@ class _GridMenuDeliveryState extends State<GridMenuDelivery> {
                   child: Container(
                     alignment: Alignment.center,
                     child: Text(
-                      storemanu[index]['name'],
+                      storemanu[index]['name']!,
                       style: TextStyle(
                         fontFamily: 'Prompt',
-                        fontSize: double.parse(storemanu[index]['font_size']),
+                        fontSize: double.parse(storemanu[index]['font_size']!),
                       ),
                     ),
                   ),

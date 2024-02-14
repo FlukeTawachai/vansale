@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class StoreCredit extends StatefulWidget {
-  const StoreCredit({ Key key }) : super(key: key);
+  const StoreCredit({ Key? key }) : super(key: key);
 
   @override
   State<StoreCredit> createState() => _StoreCreditState();

@@ -82,7 +82,7 @@ class BodyCashPay extends StatelessWidget {
                   child: Expanded(
                     child: Container(
                       alignment: Alignment.center,
-                      child: substringpaymentAmount(GlobalParam.deliveryStoreSum.iTOTAL),
+                      child: substringpaymentAmount(GlobalParam.deliveryStoreSum.iTOTAL!),
                     ),
                   ),
                 ),
@@ -139,7 +139,7 @@ class BodyCashPay extends StatelessWidget {
   }
 
   Widget label1() {
-    String total1 = GlobalParam.deliveryStoreSum.iTOTAL;
+    String total1 = GlobalParam.deliveryStoreSum.iTOTAL!;
     return Container(
       width: 360,
       child: Row(
@@ -216,7 +216,7 @@ class BodyCashPay extends StatelessWidget {
   }
 
   Widget label2() {
-    String total2 = GlobalParam.deliveryStoreSum.iTOTAL;
+    String total2 = GlobalParam.deliveryStoreSum.iTOTAL!;
     return Container(
       width: 360,
       child: Row(

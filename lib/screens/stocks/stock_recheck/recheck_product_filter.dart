@@ -3,22 +3,23 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:vansale/api/class/globalparam.dart';
 import 'package:vansale/api/class/response/routeMobile/getProductBranchResp.dart';
+import 'package:vansale/api/class/response/routeMobile/proTypeResp.dart';
 import 'package:vansale/screens/stocks/stock_recheck/recheck_stock.dart';
 import 'package:vansale/screens/stocks/stock_transfer/stock_transfer_bad.dart';
 import 'package:vansale/screens/stocks/stock_transfer/stock_transfer_good.dart';
 
 class RecheckProductStockFilter extends StatefulWidget {
-  final String pageNumber;
-  const RecheckProductStockFilter({Key key, this.pageNumber}) : super(key: key);
+  final String? pageNumber;
+  const RecheckProductStockFilter({Key? key, this.pageNumber}) : super(key: key);
 
   @override
   State<RecheckProductStockFilter> createState() => _RecheckProductStockFilterState();
 }
 
 class _RecheckProductStockFilterState extends State<RecheckProductStockFilter> {
-  var subType = [];
+  List<Category> subType = [];
   List filter = [];
-  double widthScreen;
+  double widthScreen = 0;
   var typeCodeNum = '';
 
   @override
@@ -28,19 +29,19 @@ class _RecheckProductStockFilterState extends State<RecheckProductStockFilter> {
     for (int i = 0; i < GlobalParam.deliveryProType.length; i++) {
       // type[i]['onClick'] = false;
       GlobalParam.deliveryProType[i].onClick = false;
-      for (int j = 0; j < GlobalParam.deliveryProType[i].category.length; j++) {
-        GlobalParam.deliveryProType[i].category[j].onSelect = false;
+      for (int j = 0; j < GlobalParam.deliveryProType[i].category!.length; j++) {
+        GlobalParam.deliveryProType[i].category![j].onSelect = false;
         for (int k = 0;
-            k < GlobalParam.deliveryProType[i].category[j].subCategory.length;
+            k < GlobalParam.deliveryProType[i].category![j].subCategory!.length;
             k++) {
-          GlobalParam.deliveryProType[i].category[j].subCategory[k].click =
+          GlobalParam.deliveryProType[i].category![j].subCategory![k].click =
               false;
           for (int l = 0;
               l <
-                  GlobalParam.deliveryProType[i].category[j].subCategory[k]
-                      .brand.length;
+                  GlobalParam.deliveryProType[i].category![j].subCategory![k]
+                      .brand!.length;
               l++) {
-            GlobalParam.deliveryProType[i].category[j].subCategory[k].brand[l]
+            GlobalParam.deliveryProType[i].category![j].subCategory![k].brand![l]
                 .click = false;
           }
         }
@@ -75,10 +76,10 @@ class _RecheckProductStockFilterState extends State<RecheckProductStockFilter> {
                         }
 
                         setState(() {
-                          subType = GlobalParam.deliveryProType[index].category;
+                          subType = GlobalParam.deliveryProType[index].category!;
                           GlobalParam.deliveryProType[index].onClick = true;
                           typeCodeNum =
-                              GlobalParam.deliveryProType[index].typeCD;
+                              GlobalParam.deliveryProType[index].typeCD!;
                           // print(proType[index]['category']);
                         });
                       },
@@ -121,7 +122,7 @@ class _RecheckProductStockFilterState extends State<RecheckProductStockFilter> {
                                   onTap: () {
                                     setState(() {
                                       subType[index].hight = 48 *
-                                          subType[index].subCategory.length;
+                                          subType[index].subCategory!.length;
                                       if (subType[index].onSelect == true) {
                                         subType[index].onSelect = false;
                                       } else {
@@ -155,7 +156,7 @@ class _RecheckProductStockFilterState extends State<RecheckProductStockFilter> {
                                             '${subType[index].hight}'),
                                         child: ListView.builder(
                                             itemCount: subType[index]
-                                                .subCategory
+                                                .subCategory!
                                                 .length,
                                             itemBuilder:
                                                 (BuildContext context, int j) {
@@ -169,36 +170,36 @@ class _RecheckProductStockFilterState extends State<RecheckProductStockFilter> {
                                                           setState(() {
                                                             int oldHeight =
                                                                 subType[index]
-                                                                    .hight;
+                                                                    .hight!;
                                                             int brandLength =
                                                                 subType[index]
-                                                                    .subCategory[
+                                                                    .subCategory![
                                                                         j]
-                                                                    .brand
+                                                                    .brand!
                                                                     .length;
                                                             int itemLength =
                                                                 subType[index]
-                                                                    .subCategory
+                                                                    .subCategory!
                                                                     .length;
 
                                                             if (subType[index]
-                                                                    .subCategory[
+                                                                    .subCategory![
                                                                         j]
                                                                     .click ==
                                                                 true) {
                                                               subType[index]
-                                                                  .subCategory[
+                                                                  .subCategory![
                                                                       j]
                                                                   .click = false;
                                                             } else {
                                                               subType[index]
-                                                                  .subCategory[
+                                                                  .subCategory![
                                                                       j]
                                                                   .click = true;
                                                             }
 
                                                             if (subType[index]
-                                                                    .subCategory[
+                                                                    .subCategory![
                                                                         j]
                                                                     .click ==
                                                                 true) {
@@ -236,7 +237,7 @@ class _RecheckProductStockFilterState extends State<RecheckProductStockFilter> {
                                                               border: Border(
                                                                   bottom: BorderSide(
                                                             color: subType[index]
-                                                                        .subCategory[
+                                                                        .subCategory![
                                                                             j]
                                                                         .click ==
                                                                     true
@@ -248,13 +249,13 @@ class _RecheckProductStockFilterState extends State<RecheckProductStockFilter> {
                                                               .centerLeft,
                                                           height: 48,
                                                           child: Text(
-                                                            '  ${subType[index].subCategory[j].subCatNM}',
+                                                            '  ${subType[index].subCategory![j].subCatNM}',
                                                             style: TextStyle(
                                                                 fontSize: 16,
                                                                 fontFamily:
                                                                     'Prompt',
                                                                 color: subType[index]
-                                                                            .subCategory[
+                                                                            .subCategory![
                                                                                 j]
                                                                             .click ==
                                                                         true
@@ -268,37 +269,37 @@ class _RecheckProductStockFilterState extends State<RecheckProductStockFilter> {
                                                           ),
                                                         )),
                                                     subType[index]
-                                                                .subCategory[j]
+                                                                .subCategory![j]
                                                                 .click ==
                                                             true
                                                         ? Container(
                                                             height: subType[
                                                                         index]
-                                                                    .subCategory[
+                                                                    .subCategory![
                                                                         j]
-                                                                    .brand
+                                                                    .brand!
                                                                     .length *
                                                                 48.0,
                                                             child: ListView
                                                                 .builder(
                                                                     itemCount: subType[
                                                                             index]
-                                                                        .subCategory[
+                                                                        .subCategory![
                                                                             j]
-                                                                        .brand
+                                                                        .brand!
                                                                         .length,
                                                                     itemBuilder:
                                                                         (BuildContext
                                                                                 context,
                                                                             int i) {
-                                                                      return subType[index].subCategory[j].brand.length !=
+                                                                      return subType[index].subCategory![j].brand!.length !=
                                                                               0
                                                                           ? Row(
                                                                               children: [
                                                                                 Container(
                                                                                   width: widthScreen * 0.5,
                                                                                   child: Text(
-                                                                                    '    แบรนด์ - ${subType[index].subCategory[j].brand[i].brandNM}',
+                                                                                    '    แบรนด์ - ${subType[index].subCategory![j].brand![i].brandNM}',
                                                                                     style: TextStyle(fontSize: 16, fontFamily: 'Prompt', color: subType[index].onSelect == true ? Colors.green : Colors.grey, overflow: TextOverflow.ellipsis),
                                                                                   ),
                                                                                 ),
@@ -308,10 +309,10 @@ class _RecheckProductStockFilterState extends State<RecheckProductStockFilter> {
                                                                                     child: Checkbox(
                                                                                       checkColor: Colors.white,
                                                                                       activeColor: Colors.green,
-                                                                                      value: subType[index].subCategory[j].brand[i].click,
-                                                                                      onChanged: (bool value) {
+                                                                                      value: subType[index].subCategory![j].brand![i].click,
+                                                                                      onChanged: (value) {
                                                                                         setState(() {
-                                                                                          subType[index].subCategory[j].brand[i].click = value;
+                                                                                          subType[index].subCategory![j].brand![i].click = value;
                                                                                         });
                                                                                       },
                                                                                     )),
@@ -355,21 +356,21 @@ class _RecheckProductStockFilterState extends State<RecheckProductStockFilter> {
             for (int i = 0; i < type.length; i++) {
               var cate = type[i].category;
               if (type[i].onClick == true) {
-                typeCodeNum = type[i].typeCD;
+                typeCodeNum = type[i].typeCD!;
               }
 
-              for (int j = 0; j < cate.length; j++) {
+              for (int j = 0; j < cate!.length; j++) {
                 var subCate = cate[j].subCategory;
                 if (cate[j].onSelect == true) {
                   catCodeList.add(cate[j].catCD);
                 }
-                for (int k = 0; k < subCate.length; k++) {
+                for (int k = 0; k < subCate!.length; k++) {
                   var bra = subCate[k].brand;
                   if (subCate[k].click == true) {
                     subCatCodeList.add(subCate[k].subCatCD);
                   }
 
-                  for (int l = 0; l < bra.length; l++) {
+                  for (int l = 0; l < bra!.length; l++) {
                     if (bra[l].click == true) {
                       brandCodeList.add(bra[l].brandCD);
                     }
@@ -510,7 +511,7 @@ class _RecheckProductStockFilterState extends State<RecheckProductStockFilter> {
             }
 
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => RecheckProductStock(GlobalParam.typeMenuCode,false)));
+                builder: (context) => RecheckProductStock(GlobalParam.typeMenuCode!,false)));
           },
           child: Container(
               // width: 96,

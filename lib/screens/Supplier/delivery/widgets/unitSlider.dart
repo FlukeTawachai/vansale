@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class UnitSlider extends StatelessWidget {
-  final int item;
-  final int unit;
-  final String unitName;
+  final int? item;
+  final int? unit;
+  final String? unitName;
   const UnitSlider({
-    Key key,
+    Key? key,
     this.item,
     this.unit,
     this.unitName

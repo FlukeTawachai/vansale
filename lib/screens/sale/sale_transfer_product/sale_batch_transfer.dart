@@ -4,7 +4,7 @@ import 'package:vansale/function/substring_price.dart';
 import 'package:vansale/screens/sale/sale_transfer_product/sale_lst_batch.dart';
 
 class SaleBatchTransfer extends StatefulWidget {
-  const SaleBatchTransfer({Key key}) : super(key: key);
+  const SaleBatchTransfer({Key? key}) : super(key: key);
 
   @override
   State<SaleBatchTransfer> createState() => _SaleBatchTransferState();

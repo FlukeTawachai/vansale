@@ -19,18 +19,18 @@ class StoreFields {
 }
 
 class StoreModel {
-  final int id;
-  final String image;
-  final String name;
-  final String address;
-  final String addressname;
-  final String time;
-  final String contact;
-  final String phone;
-  final String total;
-  final String no;
-  final double amount;
-  final bool wholesaleStore;
+  final int? id;
+  final String? image;
+  final String? name;
+  final String? address;
+  final String? addressname;
+  final String? time;
+  final String? contact;
+  final String? phone;
+  final String? total;
+  final String? no;
+  final double? amount;
+  final bool? wholesaleStore;
 
   StoreModel({
     this.id,
@@ -78,18 +78,18 @@ class StoreModel {
 
   Map<String, Object> toMap() {
     return {
-      'id': id,
-      'image': image,
-      'name': name,
-      'address': address,
-      'addressname': addressname,
-      'time': time,
-      'contact': contact,
-      'phone': phone,
-      'total': total,
-      'no': no,
-      'amount': amount,
-      'wholesaleStore' : wholesaleStore
+      'id': id!,
+      'image': image!,
+      'name': name!,
+      'address': address!,
+      'addressname': addressname!,
+      'time': time!,
+      'contact': contact!,
+      'phone': phone!,
+      'total': total!,
+      'no': no!,
+      'amount': amount!,
+      'wholesaleStore' : wholesaleStore!
     };
   }
 }
