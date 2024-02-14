@@ -85,7 +85,7 @@ class _SubstringPriceState extends State<SubstringPrice> {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              beforedot == '' ? 0 : '${formatNum.format(int.parse(beforedot))}',
+              beforedot == '' ? "0" : '${formatNum.format(int.parse(beforedot))}',
               style: TextStyle(
                 fontSize: sizeb == '' ? 16.0 : sizeb,
                 color: colorb == '' ? Colors.black : colorb,
@@ -111,7 +111,7 @@ class _SubstringPriceState extends State<SubstringPrice> {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              afterdot == '' ? 0 : afterdot,
+              afterdot == '' ? "0" : afterdot,
               style: TextStyle(
                 fontSize: sizeaf == '' ? 14.0 : sizeaf,
                 color: coloraf == '' ? Colors.black : coloraf,
