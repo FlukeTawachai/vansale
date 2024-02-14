@@ -70,7 +70,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              beforedot == '' ? 0 : '${formatNum.format(int.parse(beforedot))}',
+              beforedot == '' ? "0": '${formatNum.format(int.parse(beforedot))}',
               style: TextStyle(
                 fontSize: 14.0,
                 color: Colors.orange,
@@ -92,7 +92,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              afterdot == '' ? 00 : afterdot,
+              afterdot == '' ? "00" : afterdot,
               style: TextStyle(
                 fontSize: 12.0,
                 color: Colors.orange,
@@ -124,7 +124,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              beforedot == '' ? 0 : '${formatNum.format(int.parse(beforedot))}',
+              beforedot == '' ? "0" : '${formatNum.format(int.parse(beforedot))}',
               style: TextStyle(
                 fontSize: 14.0,
                 color: Colors.orange,
@@ -146,7 +146,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              afterdot == '' ? 00 : afterdot,
+              afterdot == '' ? "00" : afterdot,
               style: TextStyle(
                 fontSize: 12.0,
                 color: Colors.orange,
@@ -191,7 +191,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              beforedot == '' ? 0 : '${formatNum.format(int.parse(beforedot))}',
+              beforedot == '' ? "0" : '${formatNum.format(int.parse(beforedot))}',
               style: TextStyle(
                 fontSize: 14.0,
                 color: Colors.orange,
@@ -213,7 +213,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              afterdot == '' ? 00 : afterdot,
+              afterdot == '' ? "00" : afterdot,
               style: TextStyle(
                 fontSize: 12.0,
                 color: Colors.orange,
@@ -258,7 +258,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              beforedot == '' ? 0 : '${formatNum.format(int.parse(beforedot))}',
+              beforedot == '' ? "0" : '${formatNum.format(int.parse(beforedot))}',
               style: TextStyle(
                 fontSize: 14.0,
                 color: Colors.black,
@@ -280,7 +280,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              afterdot == '' ? 00 : afterdot,
+              afterdot == '' ? "00" : afterdot,
               style: TextStyle(
                 fontSize: 12.0,
                 color: Colors.black,
@@ -325,7 +325,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              beforedot == '' ? 0 : '${formatNum.format(int.parse(beforedot))}',
+              beforedot == '' ? "0" : '${formatNum.format(int.parse(beforedot))}',
               style: TextStyle(
                 fontSize: 14.0,
                 color: Colors.black,
@@ -347,7 +347,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              afterdot == '' ? 00 : afterdot,
+              afterdot == '' ? "00" : afterdot,
               style: TextStyle(
                 fontSize: 12.0,
                 color: Colors.black,
@@ -392,7 +392,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              beforedot == '' ? 0 : '${formatNum.format(int.parse(beforedot))}',
+              beforedot == '' ? "0" : '${formatNum.format(int.parse(beforedot))}',
               style: TextStyle(
                 fontSize: 14.0,
                 color: Colors.black,
@@ -414,7 +414,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              afterdot == '' ? 00 : afterdot,
+              afterdot == '' ? "00" : afterdot,
               style: TextStyle(
                 fontSize: 12.0,
                 color: Colors.black,
@@ -446,7 +446,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              beforedot == '' ? 0 : '${formatNum.format(int.parse(beforedot))}',
+              beforedot == '' ? "0" : '${formatNum.format(int.parse(beforedot))}',
               style: TextStyle(
                 fontSize: fontsize,
                 color: Colors.green,
@@ -468,7 +468,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              afterdot == '' ? 00 : afterdot,
+              afterdot == '' ? "00" : afterdot,
               style: TextStyle(
                 fontSize: 14.0,
                 color: Colors.green,
@@ -500,7 +500,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              beforedot == '' ? 0 : '${formatNum.format(int.parse(beforedot))}',
+              beforedot == '' ? "0" : '${formatNum.format(int.parse(beforedot))}',
               style: TextStyle(
                 fontSize: fontsize,
                 color: Colors.orange,
@@ -522,7 +522,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              afterdot == '' ? 00 : afterdot,
+              afterdot == '' ? "00" : afterdot,
               style: TextStyle(
                 fontSize: 14.0,
                 color: Colors.orange,
@@ -555,7 +555,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              beforedot == '' ? 0 : '${formatNum.format(int.parse(beforedot))}',
+              beforedot == '' ? "0" : '${formatNum.format(int.parse(beforedot))}',
               style: TextStyle(
                 fontSize: 14.0,
                 color: Colors.green,
@@ -577,7 +577,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              afterdot == '' ? 00 : afterdot,
+              afterdot == '' ? "00" : afterdot,
               style: TextStyle(
                 fontSize: 12.0,
                 color: Colors.green,
@@ -622,7 +622,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              beforedot == '' ? 0 : '${formatNum.format(int.parse(beforedot))}',
+              beforedot == '' ? "0" : '${formatNum.format(int.parse(beforedot))}',
               style: TextStyle(
                 fontSize: 14.0,
                 color: Colors.green,
@@ -644,7 +644,7 @@ class Utility {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              afterdot == '' ? 00 : afterdot,
+              afterdot == '' ? "00" : afterdot,
               style: TextStyle(
                 fontSize: 12.0,
                 color: Colors.green,
@@ -765,14 +765,14 @@ class Utility {
 
   static LatLngBound boundsFromLatLngList(List<LatLng> list) {
     assert(list.isNotEmpty);
-    double x0, x1, y0, y1;
+    double? x0, x1, y0, y1;
     if (list.length > 1) {
       LatLng pos1 = list[0];
       double maxDistance = 0;
       for (int i = 1; i < list.length; i++) {
         LatLng pos2 = list[i];
         double distance =
-            getDistanceFromLatLng(pos1.lat, pos1.lon, pos2.lat, pos2.lon);
+            getDistanceFromLatLng(pos1.lat!, pos1.lon!, pos2.lat!, pos2.lon!);
         if (maxDistance == 0 || distance > maxDistance) {
           maxDistance = distance;
         }
@@ -786,10 +786,10 @@ class Utility {
           x0 = x1 = posBound.minLat;
           y0 = y1 = posBound.minLon;
         } else {
-          if (posBound.maxLat > x1) x1 = posBound.maxLat;
-          if (posBound.minLat < x0) x0 = posBound.minLat;
-          if (posBound.maxLon > y1) y1 = posBound.maxLon;
-          if (posBound.minLon < y0) y0 = posBound.minLon;
+          if (posBound.maxLat! > x1!) x1 = posBound.maxLat;
+          if (posBound.minLat! < x0) x0 = posBound.minLat;
+          if (posBound.maxLon! > y1!) y1 = posBound.maxLon;
+          if (posBound.minLon! < y0!) y0 = posBound.minLon;
         }
       }
     } else {
@@ -807,8 +807,8 @@ class Utility {
     // Bounding box surrounding the point at given coordinates,
     // assuming local approximation of Earth surface as a sphere
     // of radius given by WGS84
-    var lat = deg2rad(point.lat);
-    var lon = deg2rad(point.lon);
+    var lat = deg2rad(point.lat!);
+    var lon = deg2rad(point.lon!);
     var halfSide = 1000 * halfSideInKm;
 
     // Radius of Earth at given latitude
@@ -850,10 +850,10 @@ class Utility {
 }
 
 class LatLngBound {
-  double minLon = 0;
-  double maxLon = 0;
-  double minLat = 0;
-  double maxLat = 0;
+  double? minLon = 0;
+  double? maxLon = 0;
+  double? minLat = 0;
+  double? maxLat = 0;
 
   LatLngBound({this.maxLat, this.minLat, this.maxLon, this.minLon});
 
@@ -862,8 +862,8 @@ class LatLngBound {
 }
 
 class LatLng {
-  double lat = 0;
-  double lon = 0;
+  double? lat = 0;
+  double? lon = 0;
 
   LatLng({this.lat, this.lon});
 }

@@ -39,10 +39,10 @@ class GlobalParam {
   static String appVersion = "V.5.1";
   static String userID = "VP-DEV-0001";
   //Delivery image
-  static File deliveryImage;
+  static File? deliveryImage;
   static List<File> imageStoreList = [];
-  static String typeMenuCode;
-  static String subMenuCode;
+  static String? typeMenuCode;
+  static String? subMenuCode;
   static var VEHICLE = {
     'cVEHINM': 'หมายเลขรถ 1001',
     'cPLATE': 'บย 5826',
@@ -53,9 +53,9 @@ class GlobalParam {
     'cPPROVINCE': "เพชรบุรี"
   };
 
-  static double deliveryLocationStoreLatitude;
-  static double deliveryLocationStoreLongitude;
-  static LatLng currentLocationCheckIn;
+  static double? deliveryLocationStoreLatitude;
+  static double? deliveryLocationStoreLongitude;
+  static LatLng? currentLocationCheckIn;
   static var deliveryRouteToday = {
     "cRTECD": "",
     "cRTENM": "",
@@ -72,7 +72,7 @@ class GlobalParam {
   static List<RouteCusResp> deliveryListStores = [];
   static RouteCusResp deliverySelectStore = RouteCusResp();
   static PoHDAndPoDTResp deliveryStoreSum = PoHDAndPoDTResp();
-  static PoHDAndPoDTResp deliveryStoreReturn;
+  static PoHDAndPoDTResp? deliveryStoreReturn;
   static List<QueryPodtResp> deliveryPodtList = [];
   static List<PoHDAndPoDTResp> deliveryProductList = [];
   static List<QueryPodtResp> deliveryPodtShow = [];
@@ -115,17 +115,17 @@ class GlobalParam {
   static AddSendMoneyReq deliveryAddSendMoney =
       AddSendMoneyReq(iTOTAL: 0.0, iCOST: 0.0);
   static GetSumMoneyResp sumSendMony = GetSumMoneyResp();
-  static List<ProTypeResp> deliveryProType;
+  static List<ProTypeResp> deliveryProType = [];
   static String deliveryReturnProRef = '';
   static bool bluetoothConnect = false;
-  static BlueDevice selectDevice;
+  static BlueDevice? selectDevice;
   static List<BluetoothDevice> blueListDevice = [];
   static var totalProGoodList = [];
   static var totalProBadList = [];
   static List<GetSupplierOrderResp> supplierOrderList = [];
   static List<GetSPOrderDTResp> supplierOrProductList = [];
   static List<GetSPOrderDTResp> supplierOrProductShowList = [];
-  static GetSupplierOrderResp supplierSelectOrder;
+  static GetSupplierOrderResp? supplierSelectOrder;
   static var supplierCheckProList = [];
   static int supplierCheckCounter = 0;
   static var supplierIncomProList = [];
@@ -137,7 +137,7 @@ class GlobalParam {
     "cPRICECD": "007",
     "cCUSTTYPE": "Retail"
   };
-  static GetCustomerPOHisResp customerPOHDSelect;
+  static GetCustomerPOHisResp? customerPOHDSelect;
   static List<GetCustomerPOHisResp> customerPOHDList = [];
   static List<QueryPodtResp> customerPODTList = [];
   static List<QueryPodtResp> customerProductList = [];

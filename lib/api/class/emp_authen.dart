@@ -1,6 +1,6 @@
 class EmpAuthen {
-  String username;
-  String password;
+  String? username;
+  String? password;
 
   EmpAuthen({this.username, this.password});
 
