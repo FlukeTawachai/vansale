@@ -1,24 +1,24 @@
 class SearchRefuelResp {
-  String cGUID;
-  String cBRANCD;
-  String dINVENTDT;
-  String cVEHICD;
-  String cVEHINM;
-  String cPLATE;
-  String cPROVINCE;
-  String cLOCATION;
-  String cFUELNM;
-  String iMILEAGE;
-  String iKM;
-  String iFUELRATE;
-  String iLITER;
-  String iPRICE;
-  String iTOTAL;
-  String cCREABY;
-  String cUPDABY;
-  String dCREADT;
-  String dUPDADT;
-  String cREFDOC;
+  String? cGUID;
+  String? cBRANCD;
+  String? dINVENTDT;
+  String? cVEHICD;
+  String? cVEHINM;
+  String? cPLATE;
+  String? cPROVINCE;
+  String? cLOCATION;
+  String? cFUELNM;
+  String? iMILEAGE;
+  String? iKM;
+  String? iFUELRATE;
+  String? iLITER;
+  String? iPRICE;
+  String? iTOTAL;
+  String? cCREABY;
+  String? cUPDABY;
+  String? dCREADT;
+  String? dUPDADT;
+  String? cREFDOC;
 
   SearchRefuelResp(
       {this.cGUID,

@@ -1,8 +1,8 @@
 class MapRoute {
-  String cRTECD;
-  String cRTENM;
-  String cGRPCD;
-  String cBRANCD;
+  String? cRTECD;
+  String? cRTENM;
+  String? cGRPCD;
+  String? cBRANCD;
 
   MapRoute({this.cRTECD, this.cRTENM, this.cGRPCD, this.cBRANCD});
 

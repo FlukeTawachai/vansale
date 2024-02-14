@@ -1,19 +1,19 @@
 class UserDataResp {
-  String cGUID;
-  String cUSRNM;
-  String cEMPNM;
-  String cPASSWRD;
-  String cPHOTOSERV;
-  String cPHOTOPATH;
-  String cISPHOTO;
-  String cBRANCD;
-  String cPOSNM;
-  String cPMSCD;
-  String cSTATUS;
-  String dCREADT;
-  String cCREABY;
-  String dUPDADT;
-  String cUPDABY;
+  String? cGUID;
+  String? cUSRNM;
+  String? cEMPNM;
+  String? cPASSWRD;
+  String? cPHOTOSERV;
+  String? cPHOTOPATH;
+  String? cISPHOTO;
+  String? cBRANCD;
+  String? cPOSNM;
+  String? cPMSCD;
+  String? cSTATUS;
+  String? dCREADT;
+  String? cCREABY;
+  String? dUPDADT;
+  String? cUPDABY;
 
   UserDataResp(
       {this.cGUID,

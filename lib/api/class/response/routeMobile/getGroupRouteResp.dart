@@ -1,18 +1,18 @@
 class GetGroupRouteResp {
-  String cGUID;
-  String cRTECD;
-  String cRTENM;
-  String cGRPCD;
-  String iCOST;
-  String cTYPE;
-  String cBRANCD;
-  String iWAGE;
-  String cUNIT;
-  String cSTATUS;
-  String dCREADT;
-  String cCREABY;
-  String dUPDADT;
-  String cUPDABY;
+  String? cGUID;
+  String? cRTECD;
+  String? cRTENM;
+  String? cGRPCD;
+  String? iCOST;
+  String? cTYPE;
+  String? cBRANCD;
+  String? iWAGE;
+  String? cUNIT;
+  String? cSTATUS;
+  String? dCREADT;
+  String? cCREABY;
+  String? dUPDADT;
+  String? cUPDABY;
 
   GetGroupRouteResp(
       {this.cGUID,

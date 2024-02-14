@@ -1,16 +1,16 @@
 class GetSumMoneyResp {
-  String cBRANCD;
-  String cGRPCD;
-  String cRTECD;
-  String dSHIPDATE;
-  String iTOTAL;
-  String iCASH;
-  String iTRANSFER;
-  String iCHECK;
-  String iWAGE;
-  String iTOTALWAGE;
-  String iOLEWAGE;
-  String iNEWWAGE;
+  String? cBRANCD;
+  String? cGRPCD;
+  String? cRTECD;
+  String? dSHIPDATE;
+  String? iTOTAL;
+  String? iCASH;
+  String? iTRANSFER;
+  String? iCHECK;
+  String? iWAGE;
+  String? iTOTALWAGE;
+  String? iOLEWAGE;
+  String? iNEWWAGE;
 
   GetSumMoneyResp(
       {this.cBRANCD,

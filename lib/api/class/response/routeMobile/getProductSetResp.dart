@@ -1,19 +1,19 @@
 class GetProductSetResp {
-  String cGUID;
-  String cSETCD;
-  String cSETNM;
-  String cBRANCD;
-  String cBRANNM;
-  String cCUSTTYPE;
-  String iSSIZEQTY;
-  String iMSIZEQTY;
-  String iLSIZEQTY;
-  String cSTATUS;
-  String cCREABY;
-  String cUPDABY;
-  String dCREADT;
-  String dUPDADT;
-  List<APRODUCTGetProductSet> aPRODUCT;
+  String? cGUID;
+  String? cSETCD;
+  String? cSETNM;
+  String? cBRANCD;
+  String? cBRANNM;
+  String? cCUSTTYPE;
+  String? iSSIZEQTY;
+  String? iMSIZEQTY;
+  String? iLSIZEQTY;
+  String? cSTATUS;
+  String? cCREABY;
+  String? cUPDABY;
+  String? dCREADT;
+  String? dUPDADT;
+  List<APRODUCTGetProductSet>? aPRODUCT;
 
   GetProductSetResp(
       {this.cGUID,
@@ -50,7 +50,7 @@ class GetProductSetResp {
     if (json['aPRODUCT'] != null) {
       aPRODUCT = <APRODUCTGetProductSet>[];
       json['aPRODUCT'].forEach((v) {
-        aPRODUCT.add(new APRODUCTGetProductSet.fromJson(v));
+        aPRODUCT?.add(new APRODUCTGetProductSet.fromJson(v));
       });
     }
   }
@@ -72,55 +72,56 @@ class GetProductSetResp {
     data['dCREADT'] = this.dCREADT;
     data['dUPDADT'] = this.dUPDADT;
     if (this.aPRODUCT != null) {
-      data['aPRODUCT'] = this.aPRODUCT.map((v) => v.toJson()).toList();
+      data['aPRODUCT'] = this.aPRODUCT?.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
+
 class APRODUCTGetProductSet {
-  String cGUID;
-  String cSETCD;
-  int iSEQ;
-  String cPRODCD;
-  String cPRODNM;
-  String cBRNDCD;
-  String cBRNDNM;
-  String iSSIZEQTY;
-  String iMSIZEQTY;
-  String iLSIZEQTY;
-  String cSUOMCD;
-  String cSUOMNM;
-  String iSUOMQTY;
-  String cMUOMCD;
-  String cMUOMNM;
-  String iMUOMQTY;
-  String cLUOMCD;
-  String cLUOMNM;
-  String iLUOMQTY;
-  String cBASKCD;
-  String cBASKNM;
-  String dCREADT;
-  String cCREABY;
-  String dUPDADT;
-  String cUPDABY;
-  String iCOST;
-  String iCOSTVAT;
-  String cPRODEX;
-  String iGENVAT;
-  String iEXCVAT;
-  String cTYPE;
-  String cMCATE;
-  String cSCATE;
-  String cCOLOR;
-  String cDIMENS;
-  String iWEIGHT;
-  String cSUPCD;
-  String cSHARE;
-  String iMINSTK;
-  String iMAXSTK;
-  String iSUomPrice;
-  String iMUomPrice;
-  String iLUomPrice;
+  String? cGUID;
+  String? cSETCD;
+  int? iSEQ;
+  String? cPRODCD;
+  String? cPRODNM;
+  String? cBRNDCD;
+  String? cBRNDNM;
+  String? iSSIZEQTY;
+  String? iMSIZEQTY;
+  String? iLSIZEQTY;
+  String? cSUOMCD;
+  String? cSUOMNM;
+  String? iSUOMQTY;
+  String? cMUOMCD;
+  String? cMUOMNM;
+  String? iMUOMQTY;
+  String? cLUOMCD;
+  String? cLUOMNM;
+  String? iLUOMQTY;
+  String? cBASKCD;
+  String? cBASKNM;
+  String? dCREADT;
+  String? cCREABY;
+  String? dUPDADT;
+  String? cUPDABY;
+  String? iCOST;
+  String? iCOSTVAT;
+  String? cPRODEX;
+  String? iGENVAT;
+  String? iEXCVAT;
+  String? cTYPE;
+  String? cMCATE;
+  String? cSCATE;
+  String? cCOLOR;
+  String? cDIMENS;
+  String? iWEIGHT;
+  String? cSUPCD;
+  String? cSHARE;
+  String? iMINSTK;
+  String? iMAXSTK;
+  String? iSUomPrice;
+  String? iMUomPrice;
+  String? iLUomPrice;
 
   APRODUCTGetProductSet(
       {this.cGUID,

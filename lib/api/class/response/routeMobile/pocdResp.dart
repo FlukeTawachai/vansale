@@ -1,8 +1,8 @@
 class PocdResp {
-  String cCUSTCD;
-  String cPOCD;
-  String dPODATE;
-  String dSHIPDATE;
+  String? cCUSTCD;
+  String? cPOCD;
+  String? dPODATE;
+  String? dSHIPDATE;
 
   PocdResp({this.cCUSTCD, this.cPOCD, this.dPODATE, this.dSHIPDATE});
 

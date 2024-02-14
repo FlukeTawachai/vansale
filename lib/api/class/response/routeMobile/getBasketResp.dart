@@ -1,19 +1,19 @@
 class GetBasketResp {
-  String cGUID;
-  String cBASKCD;
-  String cBASKNM;
-  String iPRICE;
-  String cPHOTOSERV;
-  String cPHOTOPATH;
-  String cPHOTONM;
-  String cSTATUS;
-  String dCREADT;
-  String cCREABY;
-  String dUPDADT;
-  String cUPDABY;
-  bool cCheck;
-  bool cICUK;
-  bool cDCUL;
+  String? cGUID;
+  String? cBASKCD;
+  String? cBASKNM;
+  String? iPRICE;
+  String? cPHOTOSERV;
+  String? cPHOTOPATH;
+  String? cPHOTONM;
+  String? cSTATUS;
+  String? dCREADT;
+  String? cCREABY;
+  String? dUPDADT;
+  String? cUPDABY;
+  bool? cCheck;
+  bool? cICUK;
+  bool? cDCUL;
 
   GetBasketResp(
       {this.cGUID,

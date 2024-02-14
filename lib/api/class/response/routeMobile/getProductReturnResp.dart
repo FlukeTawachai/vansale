@@ -1,20 +1,20 @@
 class GetProductReturnResp {
-  String cGUID;
-  String cPOCD;
-  String cCUSTCD;
-  String cPRODCD;
-  int iQTY;
-  String iTOTAL;
-  String cSTATUS;
-  String cRTS;
-  String cCREABY;
-  String cUPDABY;
-  String dCREADT;
-  String dUPDADT;
-  String cBRANCD;
-  String cRTBSTOCK;
-  String cUOMCD;
-  String cUOMNM;
+  String? cGUID;
+  String? cPOCD;
+  String? cCUSTCD;
+  String? cPRODCD;
+  int? iQTY;
+  String? iTOTAL;
+  String? cSTATUS;
+  String? cRTS;
+  String? cCREABY;
+  String? cUPDABY;
+  String? dCREADT;
+  String? dUPDADT;
+  String? cBRANCD;
+  String? cRTBSTOCK;
+  String? cUOMCD;
+  String? cUOMNM;
 
   GetProductReturnResp(
       {this.cGUID,

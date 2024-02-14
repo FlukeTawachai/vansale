@@ -1,22 +1,22 @@
 class BasketReturnResp {
-  String cGUID;
-  String cREFDOC;
-  String cBASKCD;
-  String dREDATE;
-  int iQTY;
-  String iTOTAL;
-  String cTYPE;
-  String cSENDER;
-  String cRECEIVER;
-  String cCREABY;
-  String cUPDABY;
-  String dCREADT;
-  String dUPDADT;
-  String cBRANCD;
-  String cVEHICD;
-  String cGRPCD;
-  String cRTECD;
-  String cSTATUS;
+  String? cGUID;
+  String? cREFDOC;
+  String? cBASKCD;
+  String? dREDATE;
+  int? iQTY;
+  String? iTOTAL;
+  String? cTYPE;
+  String? cSENDER;
+  String? cRECEIVER;
+  String? cCREABY;
+  String? cUPDABY;
+  String? dCREADT;
+  String? dUPDADT;
+  String? cBRANCD;
+  String? cVEHICD;
+  String? cGRPCD;
+  String? cRTECD;
+  String? cSTATUS;
 
   BasketReturnResp(
       {this.cGUID,

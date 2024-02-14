@@ -1,9 +1,9 @@
 class GetHisBasketResp {
-  String cBASKCD;
-  String cBASKNM;
-  String iBPU;
-  int iTOTAL;
-  int iRETURN;
+  String? cBASKCD;
+  String? cBASKNM;
+  String? iBPU;
+  int? iTOTAL;
+  int? iRETURN;
 
   GetHisBasketResp(
       {this.cBASKCD, this.cBASKNM, this.iBPU, this.iTOTAL, this.iRETURN});

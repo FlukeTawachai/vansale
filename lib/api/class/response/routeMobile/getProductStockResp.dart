@@ -1,21 +1,21 @@
 class GetProductStockResp {
-  String cGUID;
-  String cBRANCD;
-  String cWH;
-  String cPRODCD;
-  String cUOMCD;
-  String cPRODNM;
-  String cTYPE;
-  String cCATECD;
-  String cSUBCATECD;
-  String cBRNDCD;
-  String iQTY;
-  String iWEIGHT;
-  String cSTATUS;
-  String dCREADT;
-  String cCREABY;
-  String dUPDADT;
-  String cUPDABY;
+  String? cGUID;
+  String? cBRANCD;
+  String? cWH;
+  String? cPRODCD;
+  String? cUOMCD;
+  String? cPRODNM;
+  String? cTYPE;
+  String? cCATECD;
+  String? cSUBCATECD;
+  String? cBRNDCD;
+  String? iQTY;
+  String? iWEIGHT;
+  String? cSTATUS;
+  String? dCREADT;
+  String? cCREABY;
+  String? dUPDADT;
+  String? cUPDABY;
 
   GetProductStockResp(
       {this.cGUID,

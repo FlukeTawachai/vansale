@@ -1,23 +1,23 @@
 class GetBasketReturnOfRouteResp {
-  String cGUID;
-  String cREFDOC;
-  String cBASKCD;
-  String dREDATE;
-  int iQTY;
-  String iTOTAL;
-  String cTYPE;
-  String cSENDER;
-  String cRECEIVER;
-  String cCREABY;
-  String cUPDABY;
-  String dCREADT;
-  String dUPDADT;
-  String cBRANCD;
-  String cVEHICD;
-  String cGRPCD;
-  String cRTECD;
-  String cSTATUS;
-  bool cCHECK;
+  String? cGUID;
+  String? cREFDOC;
+  String? cBASKCD;
+  String? dREDATE;
+  int? iQTY;
+  String? iTOTAL;
+  String? cTYPE;
+  String? cSENDER;
+  String? cRECEIVER;
+  String? cCREABY;
+  String? cUPDABY;
+  String? dCREADT;
+  String? dUPDADT;
+  String? cBRANCD;
+  String? cVEHICD;
+  String? cGRPCD;
+  String? cRTECD;
+  String? cSTATUS;
+  bool? cCHECK;
 
   GetBasketReturnOfRouteResp(
       {this.cGUID,

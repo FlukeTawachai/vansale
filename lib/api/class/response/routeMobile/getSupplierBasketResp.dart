@@ -1,19 +1,19 @@
 class GetSupplierBasketResp {
-  String cGUID;
-  String cSUPCD;
-  String cBASKCD;
-  int iSEQ;
-  String iCOST;
-  String cSTATUS;
-  String dCREADT;
-  String cCREABY;
-  String dUPDADT;
-  String cUPDABY;
-  String cBASKNM;
-  String iPRICE;
-  String cPHOTOSERV;
-  String cPHOTOPATH;
-  String cPHOTONM;
+  String? cGUID;
+  String? cSUPCD;
+  String? cBASKCD;
+  int? iSEQ;
+  String? iCOST;
+  String? cSTATUS;
+  String? dCREADT;
+  String? cCREABY;
+  String? dUPDADT;
+  String? cUPDABY;
+  String? cBASKNM;
+  String? iPRICE;
+  String? cPHOTOSERV;
+  String? cPHOTOPATH;
+  String? cPHOTONM;
 
   GetSupplierBasketResp(
       {this.cGUID,

@@ -1,19 +1,19 @@
 class RouteInfo {
-  String routeCode;
-  String routeName;
-  String groupCode;
-  String branch;
-  String branchName;
-  String type;
-  double wage;
-  double cost;
-  String unit;
-  String guid;
-  String status;
-  String createDate;
-  String createBy;
-  String updateDate;
-  String updateBy;
+  String? routeCode;
+  String? routeName;
+  String? groupCode;
+  String? branch;
+  String? branchName;
+  String? type;
+  double? wage;
+  double? cost;
+  String? unit;
+  String? guid;
+  String? status;
+  String? createDate;
+  String? createBy;
+  String? updateDate;
+  String? updateBy;
 
   RouteInfo(
       {this.routeCode,

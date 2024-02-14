@@ -1,10 +1,10 @@
 class LocationStoreResp {
-  String cGUID;
-  String cCUSTCD;
-  String cLATITUDE;
-  String cLONGTITUDE;
-  String dUPDADT;
-  String cUPDABY;
+  String? cGUID;
+  String? cCUSTCD;
+  String? cLATITUDE;
+  String? cLONGTITUDE;
+  String? dUPDADT;
+  String? cUPDABY;
 
   LocationStoreResp(
       {this.cGUID,

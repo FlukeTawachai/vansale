@@ -1,8 +1,8 @@
 class getRouteTodayResp {
-  String cBRANCD;
-  String cGRPCD;
-  String cRTECD;
-  String cRTENM;
+  String? cBRANCD;
+  String? cGRPCD;
+  String? cRTECD;
+  String? cRTENM;
 
   getRouteTodayResp({this.cBRANCD, this.cGRPCD, this.cRTECD, this.cRTENM});
 

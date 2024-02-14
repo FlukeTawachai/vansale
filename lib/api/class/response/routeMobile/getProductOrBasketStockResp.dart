@@ -1,19 +1,19 @@
 class GetProductOrBasketStockResp {
-  String cBRANCD;
-  String cWH;
-  String cPRODCD;
-  String cUOMCD;
-  String cPRODNM;
-  String cTYPE;
-  String cCATECD;
-  String cSUBCATECD;
-  String cBRNDCD;
-  String iPROQTY;
-  String iWEIGHT;
-  String cSTATUS;
-  String cBASKCD;
-  String cBASKNM;
-  String iBKQTY;
+  String? cBRANCD;
+  String? cWH;
+  String? cPRODCD;
+  String? cUOMCD;
+  String? cPRODNM;
+  String? cTYPE;
+  String? cCATECD;
+  String? cSUBCATECD;
+  String? cBRNDCD;
+  String? iPROQTY;
+  String? iWEIGHT;
+  String? cSTATUS;
+  String? cBASKCD;
+  String? cBASKNM;
+  String? iBKQTY;
 
   GetProductOrBasketStockResp(
       {this.cBRANCD,

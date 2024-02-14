@@ -1,20 +1,20 @@
 class GetCustForSortingResp {
-  String cBRANCD;
-  String cBRANNM;
-  String cGRPCD;
-  String cVEHICD;
-  String cVEHINM;
-  String cRTECD;
-  String cRTENM;
-  String cCUSTCD;
-  String cCUSTNM;
-  String cADDRESS;
-  String cSUBDIST;
-  String cDISTRICT;
-  String cPROVINCE;
-  String cPOSTCD;
-  String cDISTANCS;
-  int iSEQROUTE;
+  String? cBRANCD;
+  String? cBRANNM;
+  String? cGRPCD;
+  String? cVEHICD;
+  String? cVEHINM;
+  String? cRTECD;
+  String? cRTENM;
+  String? cCUSTCD;
+  String? cCUSTNM;
+  String? cADDRESS;
+  String? cSUBDIST;
+  String? cDISTRICT;
+  String? cPROVINCE;
+  String? cPOSTCD;
+  String? cDISTANCS;
+  int? iSEQROUTE;
 
   GetCustForSortingResp(
       {this.cBRANCD,

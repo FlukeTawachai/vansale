@@ -1,8 +1,8 @@
 class ProTypeResp {
-  bool onClick;
-  String typeName;
-  String typeCD;
-  List<Category> category;
+  bool? onClick;
+  String? typeName;
+  String? typeCD;
+  List<Category>? category;
 
   ProTypeResp({this.onClick, this.typeName, this.typeCD, this.category});
 
@@ -13,7 +13,7 @@ class ProTypeResp {
     if (json['category'] != null) {
       category = <Category>[];
       json['category'].forEach((v) {
-        category.add(new Category.fromJson(v));
+        category?.add(new Category.fromJson(v));
       });
     }
   }
@@ -24,18 +24,18 @@ class ProTypeResp {
     data['typeName'] = this.typeName;
     data['typeCD'] = this.typeCD;
     if (this.category != null) {
-      data['category'] = this.category.map((v) => v.toJson()).toList();
+      data['category'] = this.category?.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Category {
-  String catNM;
-  String catCD;
-  bool onSelect;
-  int hight;
-  List<SubCategory> subCategory;
+  String? catNM;
+  String? catCD;
+  bool? onSelect;
+  int? hight;
+  List<SubCategory>? subCategory;
 
   Category(
       {this.catNM, this.catCD, this.onSelect, this.hight, this.subCategory});
@@ -48,7 +48,7 @@ class Category {
     if (json['subCategory'] != null) {
       subCategory = <SubCategory>[];
       json['subCategory'].forEach((v) {
-        subCategory.add(new SubCategory.fromJson(v));
+        subCategory?.add(new SubCategory.fromJson(v));
       });
     }
   }
@@ -60,17 +60,17 @@ class Category {
     data['onSelect'] = this.onSelect;
     data['hight'] = this.hight;
     if (this.subCategory != null) {
-      data['subCategory'] = this.subCategory.map((v) => v.toJson()).toList();
+      data['subCategory'] = this.subCategory?.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class SubCategory {
-  bool click;
-  String subCatNM;
-  String subCatCD;
-  List<Brand> brand;
+  bool? click;
+  String? subCatNM;
+  String? subCatCD;
+  List<Brand>? brand;
 
   SubCategory({this.click, this.subCatNM, this.subCatCD, this.brand});
 
@@ -81,7 +81,7 @@ class SubCategory {
     if (json['brand'] != null) {
       brand = <Brand>[];
       json['brand'].forEach((v) {
-        brand.add(new Brand.fromJson(v));
+        brand?.add(new Brand.fromJson(v));
       });
     }
   }
@@ -92,18 +92,18 @@ class SubCategory {
     data['subCatNM'] = this.subCatNM;
     data['subCatCD'] = this.subCatCD;
     if (this.brand != null) {
-      data['brand'] = this.brand.map((v) => v.toJson()).toList();
+      data['brand'] = this.brand?.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Brand {
-  bool click;
-  String brandNM;
-  String brandCD;
+  bool? click;
+  String? brandNM;
+  String? brandCD;
 
-  Brand({this.click, this.brandNM,this.brandCD});
+  Brand({this.click, this.brandNM, this.brandCD});
 
   Brand.fromJson(Map<String, dynamic> json) {
     click = json['click'];

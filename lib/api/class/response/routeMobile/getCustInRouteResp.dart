@@ -1,21 +1,21 @@
 class GetCustInRouteResp {
-  String cCUSTCD;
-  String cCUSTNM;
-  String cADDRESS;
-  String cSUBDIST;
-  String cDISTRICT;
-  String cPROVINCE;
-  String cPOSTCD;
-  String cBRANCD;
-  String cGRPCD;
-  String cRTECD;
-  String cRTENM;
-  String cLATITUDE;
-  String cLONGTITUDE;
-  String cPHOTOSERV;
-  String cPHOTOPATH;
-  String cDISTANCS;
-  String cCONTACTTEL;
+  String? cCUSTCD;
+  String? cCUSTNM;
+  String? cADDRESS;
+  String? cSUBDIST;
+  String? cDISTRICT;
+  String? cPROVINCE;
+  String? cPOSTCD;
+  String? cBRANCD;
+  String? cGRPCD;
+  String? cRTECD;
+  String? cRTENM;
+  String? cLATITUDE;
+  String? cLONGTITUDE;
+  String? cPHOTOSERV;
+  String? cPHOTOPATH;
+  String? cDISTANCS;
+  String? cCONTACTTEL;
 
   GetCustInRouteResp(
       {this.cCUSTCD,

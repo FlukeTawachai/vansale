@@ -1,14 +1,14 @@
 class PoHDAndPoDTResp {
-  String cCUSTCD;
-  String cTYPE;
-  String cPOCD;
-  String cPRODCD;
-  String cPRODNM;
-  String cBASKCD;
-  String cBASKNM;
-  String iitems;
-  String ibasket;
-  String iTOTAL;
+  String? cCUSTCD;
+  String? cTYPE;
+  String? cPOCD;
+  String? cPRODCD;
+  String? cPRODNM;
+  String? cBASKCD;
+  String? cBASKNM;
+  String? iitems;
+  String? ibasket;
+  String? iTOTAL;
 
   PoHDAndPoDTResp(
       {this.cCUSTCD,

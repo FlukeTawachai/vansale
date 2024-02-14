@@ -1,5 +1,5 @@
 class CommonResp {
-  bool success;
+  bool? success;
   var message;
   var result;
 

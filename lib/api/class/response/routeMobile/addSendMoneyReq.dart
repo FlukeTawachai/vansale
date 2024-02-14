@@ -1,18 +1,18 @@
 class AddSendMoneyReq {
-  String cBRANCD;
-  String cGRPCD;
-  String cRTECD;
-  String cVEHICD;
-  String cDRIVER;
-  double iTOTAL;
-  double iCOST;
-  String cBILLPH;
-  String cCOSTPH;
-  String cCOSNM;
-  String cREMARK;
-  double iREFUEL;
-  String cCREABY;
-  String cSERVER;
+  String? cBRANCD;
+  String? cGRPCD;
+  String? cRTECD;
+  String? cVEHICD;
+  String? cDRIVER;
+  double? iTOTAL;
+  double? iCOST;
+  String? cBILLPH;
+  String? cCOSTPH;
+  String? cCOSNM;
+  String? cREMARK;
+  double? iREFUEL;
+  String? cCREABY;
+  String? cSERVER;
 
   AddSendMoneyReq(
       {this.cBRANCD,

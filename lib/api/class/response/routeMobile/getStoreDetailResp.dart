@@ -1,13 +1,13 @@
 class GetStoreDetailResp {
-  String cCUSTCD;
-  String cPOCD;
-  String iTOTAL;
-  String dSUCCDT;
-  String dCANDT;
-  String iCREDTERM;
-  String iCREDLIM;
-  String iPAID;
-  String iPOTOTAL;
+  String? cCUSTCD;
+  String? cPOCD;
+  String? iTOTAL;
+  String? dSUCCDT;
+  String? dCANDT;
+  String? iCREDTERM;
+  String? iCREDLIM;
+  String? iPAID;
+  String? iPOTOTAL;
 
   GetStoreDetailResp(
       {this.cCUSTCD,

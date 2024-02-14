@@ -1,13 +1,13 @@
 class GetCustomerGroupResp {
-  String cGUID;
-  String cCUSTCD;
-  String cGRPCD;
-  String cRTECD;
-  String dCREADT;
-  String cCREABY;
-  String dUPDADT;
-  String cUPDABY;
-  int iSEQROUTE;
+  String? cGUID;
+  String? cCUSTCD;
+  String? cGRPCD;
+  String? cRTECD;
+  String? dCREADT;
+  String? cCREABY;
+  String? dUPDADT;
+  String? cUPDABY;
+  int? iSEQROUTE;
 
   GetCustomerGroupResp(
       {this.cGUID,

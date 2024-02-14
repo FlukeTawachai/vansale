@@ -1,25 +1,25 @@
 class GetRefuelResp {
-  String cGUID;
-  String cBRANCD;
-  String dINVENTDT;
-  String cVEHICD;
-  String cVEHINM;
-  String cPLATE;
-  String cPROVINCE;
-  String cLOCATION;
-  String cFUELNM;
-  String iMILEAGE;
-  String iKM;
-  String iFUELRATE;
-  String iLITER;
-  String iPRICE;
-  String iTOTAL;
-  String cCREABY;
-  String cUPDABY;
-  String dCREADT;
-  String dUPDADT;
-  String cREFDOC;
-  List<ARFIMAGE> aRFIMAGE;
+  String? cGUID;
+  String? cBRANCD;
+  String? dINVENTDT;
+  String? cVEHICD;
+  String? cVEHINM;
+  String? cPLATE;
+  String? cPROVINCE;
+  String? cLOCATION;
+  String? cFUELNM;
+  String? iMILEAGE;
+  String? iKM;
+  String? iFUELRATE;
+  String? iLITER;
+  String? iPRICE;
+  String? iTOTAL;
+  String? cCREABY;
+  String? cUPDABY;
+  String? dCREADT;
+  String? dUPDADT;
+  String? cREFDOC;
+  List<ARFIMAGE>? aRFIMAGE;
 
   GetRefuelResp(
       {this.cGUID,
@@ -68,7 +68,7 @@ class GetRefuelResp {
     if (json['aRFIMAGE'] != null) {
       aRFIMAGE = <ARFIMAGE>[];
       json['aRFIMAGE'].forEach((v) {
-        aRFIMAGE.add(new ARFIMAGE.fromJson(v));
+        aRFIMAGE?.add(new ARFIMAGE.fromJson(v));
       });
     }
   }
@@ -96,26 +96,26 @@ class GetRefuelResp {
     data['dUPDADT'] = this.dUPDADT;
     data['cREFDOC'] = this.cREFDOC;
     if (this.aRFIMAGE != null) {
-      data['aRFIMAGE'] = this.aRFIMAGE.map((v) => v.toJson()).toList();
+      data['aRFIMAGE'] = this.aRFIMAGE?.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class ARFIMAGE {
-  String cGUID;
-  String cRECEIVENO;
-  String dINVENTDT;
-  int iSEQ;
-  String cREFDOC;
-  String cTYPE;
-  String cPHOTOSERV;
-  String cPHOTOPATH;
-  String cPHOTONM;
-  String cCREABY;
-  String cUPDABY;
-  String dCREADT;
-  String dUPDADT;
+  String? cGUID;
+  String? cRECEIVENO;
+  String? dINVENTDT;
+  int? iSEQ;
+  String? cREFDOC;
+  String? cTYPE;
+  String? cPHOTOSERV;
+  String? cPHOTOPATH;
+  String? cPHOTONM;
+  String? cCREABY;
+  String? cUPDABY;
+  String? dCREADT;
+  String? dUPDADT;
 
   ARFIMAGE(
       {this.cGUID,

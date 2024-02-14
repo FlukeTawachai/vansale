@@ -1,18 +1,18 @@
 class GetStartWorkResp {
-  String cGUID;
-  String cBRANCD;
-  String cBRANNM;
-  String cUSRNM;
-  String cEMPNM;
-  String dINVENTDT;
-  String cSTATUS;
-  String cSECTION;
-  String cREFCD;
-  String dSTAMP;
-  String cCREABY;
-  String cUPDABY;
-  String dCREADT;
-  String dUPDADT;
+  String? cGUID;
+  String? cBRANCD;
+  String? cBRANNM;
+  String? cUSRNM;
+  String? cEMPNM;
+  String? dINVENTDT;
+  String? cSTATUS;
+  String? cSECTION;
+  String? cREFCD;
+  String? dSTAMP;
+  String? cCREABY;
+  String? cUPDABY;
+  String? dCREADT;
+  String? dUPDADT;
 
   GetStartWorkResp(
       {this.cGUID,
