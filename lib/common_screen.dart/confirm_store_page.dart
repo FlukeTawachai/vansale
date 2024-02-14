@@ -14,26 +14,43 @@ class ConfirmStorePage extends StatefulWidget {
 }
 
 class _ConfirmStorePageState extends State<ConfirmStorePage> {
-  Timer _timer;
+  // Timer _timer;
 
-  _ConfirmStorePageState() {
-    _timer = new Timer(const Duration(seconds: 1), () {
+  // _ConfirmStorePageState() {
+  //   _timer = new Timer(const Duration(seconds: 1), () {
+  //     setState(() {
+  //       Navigator.pushReplacement(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (BuildContext context) =>
+  //               DeliveryStoreHome(widget.typeMenuCode,"A Store"),
+  //         ),
+  //       );
+  //     });
+  //   });
+  // }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    Timer(const Duration(seconds: 1), () {
       setState(() {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (BuildContext context) =>
-                DeliveryStoreHome(widget.typeMenuCode,"A Store"),
+                DeliveryStoreHome(widget.typeMenuCode, "A Store"),
           ),
         );
       });
     });
+    super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _timer.cancel();
+    // _timer.cancel();
   }
 
   @override

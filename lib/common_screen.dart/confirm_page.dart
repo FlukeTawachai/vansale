@@ -15,10 +15,25 @@ class ConfirmPage extends StatefulWidget {
 }
 
 class _ConfirmPageState extends State<ConfirmPage> {
-  Timer _timer;
+  // Timer _timer;
 
-  _ConfirmPageState() {
-    _timer = new Timer(const Duration(seconds: 1), () {
+  // _ConfirmPageState() {
+  //   _timer = new Timer(const Duration(seconds: 1), () {
+  //     setState(() {
+  //       Navigator.pushReplacement(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (BuildContext context) => HomePage(widget.typeMenuCode),
+  //         ),
+  //       );
+  //     });
+  //   });
+  // }
+
+@override
+  void initState() {
+    // TODO: implement initState
+    Timer(const Duration(seconds: 1), () {
       setState(() {
         Navigator.pushReplacement(
           context,
@@ -28,12 +43,12 @@ class _ConfirmPageState extends State<ConfirmPage> {
         );
       });
     });
+    super.initState();
   }
-
   @override
   void dispose() {
     super.dispose();
-    _timer.cancel();
+    // _timer.cancel();
   }
 
   @override

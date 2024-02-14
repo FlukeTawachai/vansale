@@ -1,8 +1,8 @@
 class BluetoothDevice {
-  int id;
-  String name;
-  String address;
-  String createDT;
+  int? id;
+  String? name;
+  String? address;
+  String? createDT;
 
   BluetoothDevice({this.id, this.name, this.address, this.createDT});
 
