@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:fdottedline_nullsafety/fdottedline__nullsafety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:fdottedline/fdottedline.dart';
 import 'package:vansale/api/allApiProxyMobile.dart';
 import 'package:vansale/api/apiexception.dart';
 import 'package:vansale/api/class/globalparam.dart';
@@ -308,7 +308,7 @@ class _StartWorkState extends State<StartWork> {
                   padding: const EdgeInsets.only(left: 30.0, right: 30.0),
                   alignment: Alignment.topCenter,
                   child: FDottedLine(
-                      color: Colors.grey[600],
+                      color: Colors.grey,
                       strokeWidth: 2.0,
                       dottedLength: 10.0,
                       space: 2.0,

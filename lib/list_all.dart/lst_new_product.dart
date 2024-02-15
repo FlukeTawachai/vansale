@@ -57,7 +57,7 @@ class _ListNewProductState extends State<ListNewProduct> {
             children: [
               Container(
                 child: Image.asset(
-                  newproduct[index]['image'],
+                  newproduct[index]['image']!,
                   fit: BoxFit.cover,
                   width: 100.0,
                   height: 100.0,
@@ -78,7 +78,7 @@ class _ListNewProductState extends State<ListNewProduct> {
                 child: SizedBox(
                   width: 100.0,
                   child: Text(
-                    newproduct[index]['name'],
+                    newproduct[index]['name']!,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     softWrap: false,
@@ -101,7 +101,7 @@ class _ListNewProductState extends State<ListNewProduct> {
                     ),
                     Container(
                       child: Text(
-                        newproduct[index]['date'],
+                        newproduct[index]['date']!,
                         style: TextStyle(
                           fontFamily: 'Prompt',
                           fontSize: 10.0,

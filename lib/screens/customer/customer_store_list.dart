@@ -1,5 +1,6 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+
 import 'package:hexcolor/hexcolor.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:vansale/list_all.dart/lst_basket.dart';

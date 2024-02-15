@@ -102,7 +102,7 @@ class _ListReOrderState extends State<ListReOrder> {
                     Container(
                       margin: const EdgeInsets.all(5.0),
                       child: Image.asset(
-                        reorder[index]['image'],
+                        reorder[index]['image']!,
                         fit: BoxFit.cover,
                         width: 100.0,
                         height: 150.0,
@@ -119,7 +119,7 @@ class _ListReOrderState extends State<ListReOrder> {
                                   Expanded(
                                     child: Container(
                                       child: Text(
-                                        reorder[index]['name'],
+                                        reorder[index]['name']!,
                                         style: TextStyle(
                                           fontFamily: 'Prompt',
                                         ),
@@ -151,7 +151,7 @@ class _ListReOrderState extends State<ListReOrder> {
                                       alignment: Alignment.center,
                                       child: reorder[index]['promo'] != ""
                                           ? Text(
-                                              reorder[index]['total'],
+                                              reorder[index]['total']!,
                                               style: TextStyle(
                                                 color: Colors.red,
                                                 fontFamily: 'Prompt',
@@ -159,7 +159,7 @@ class _ListReOrderState extends State<ListReOrder> {
                                               ),
                                             )
                                           : Text(
-                                              reorder[index]['total'],
+                                              reorder[index]['total']!,
                                               style: TextStyle(
                                                 fontFamily: 'Prompt',
                                                 fontSize: 12.0,
@@ -172,7 +172,7 @@ class _ListReOrderState extends State<ListReOrder> {
                                       alignment: Alignment.center,
                                       child: reorder[index]['promo'] != ""
                                           ? Text(
-                                              reorder[index]['down'],
+                                              reorder[index]['down']!,
                                               style: TextStyle(
                                                 color: Colors.red,
                                                 fontFamily: 'Prompt',
@@ -180,7 +180,7 @@ class _ListReOrderState extends State<ListReOrder> {
                                               ),
                                             )
                                           : Text(
-                                              reorder[index]['down'],
+                                              reorder[index]['down']!,
                                               style: TextStyle(
                                                 fontFamily: 'Prompt',
                                                 fontSize: 12.0,
@@ -193,7 +193,7 @@ class _ListReOrderState extends State<ListReOrder> {
                                       alignment: Alignment.center,
                                       child: reorder[index]['promo'] != ""
                                           ? Text(
-                                              reorder[index]['up'],
+                                              reorder[index]['up']!,
                                               style: TextStyle(
                                                 color: Colors.red,
                                                 fontFamily: 'Prompt',
@@ -201,7 +201,7 @@ class _ListReOrderState extends State<ListReOrder> {
                                               ),
                                             )
                                           : Text(
-                                              reorder[index]['up'],
+                                              reorder[index]['up']!,
                                               style: TextStyle(
                                                 fontFamily: 'Prompt',
                                                 fontSize: 12.0,
@@ -214,7 +214,7 @@ class _ListReOrderState extends State<ListReOrder> {
                                       alignment: Alignment.center,
                                       child: reorder[index]['promo'] != ""
                                           ? Text(
-                                              reorder[index]['order'],
+                                              reorder[index]['order']!,
                                               style: TextStyle(
                                                 color: Colors.blue,
                                                 fontFamily: 'Prompt',
@@ -222,7 +222,7 @@ class _ListReOrderState extends State<ListReOrder> {
                                               ),
                                             )
                                           : Text(
-                                              reorder[index]['order'],
+                                              reorder[index]['order']!,
                                               style: TextStyle(
                                                 fontFamily: 'Prompt',
                                                 fontSize: 12.0,
@@ -413,7 +413,7 @@ class _ListReOrderState extends State<ListReOrder> {
                   children: [
                     Expanded(
                       child: Text(
-                        reorder[index]['promo'],
+                        reorder[index]['promo']!,
                         style: TextStyle(
                           color: Colors.red,
                           fontFamily: 'Prompt',
@@ -424,7 +424,7 @@ class _ListReOrderState extends State<ListReOrder> {
                       alignment: Alignment.centerRight,
                       width: 150.0,
                       child: Text(
-                        reorder[index]['price'] + " " + "฿",
+                        reorder[index]['price']! + " " + "฿",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 14.0,

@@ -77,7 +77,7 @@ class _ListShippingState extends State<ListShipping> {
                     Container(
                       margin: const EdgeInsets.all(5.0),
                       child: Image.asset(
-                        item[index]['image'],
+                        item[index]['image']!,
                         fit: BoxFit.cover,
                         width: 100.0,
                         height: 150.0,
@@ -101,7 +101,7 @@ class _ListShippingState extends State<ListShipping> {
                                   Container(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      item[index]['name'],
+                                      item[index]['name']!,
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontFamily: 'Prompt',
@@ -112,7 +112,7 @@ class _ListShippingState extends State<ListShipping> {
                                   Container(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      item[index]['basket'],
+                                      item[index]['basket']!,
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontFamily: 'Prompt',
@@ -123,7 +123,7 @@ class _ListShippingState extends State<ListShipping> {
                                   Container(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      item[index]['po'],
+                                      item[index]['po']!,
                                       style: TextStyle(
                                           color: Colors.grey,
                                           fontFamily: 'Prompt',

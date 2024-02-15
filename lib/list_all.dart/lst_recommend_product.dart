@@ -58,7 +58,7 @@ class _ListRecommendProductState extends State<ListRecommendProduct> {
             children: [
               Container(
                 child: Image.asset(
-                  recommend[index]['image'],
+                  recommend[index]['image']!,
                   fit: BoxFit.cover,
                   width: 100.0,
                   height: 100.0,
@@ -79,7 +79,7 @@ class _ListRecommendProductState extends State<ListRecommendProduct> {
                 child: SizedBox(
                   width: 100.0,
                   child: Text(
-                    recommend[index]['name'],
+                    recommend[index]['name']!,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     softWrap: false,
@@ -102,7 +102,7 @@ class _ListRecommendProductState extends State<ListRecommendProduct> {
                     ),
                     Container(
                       child: Text(
-                        recommend[index]['date'],
+                        recommend[index]['date']!,
                         style: TextStyle(
                           fontFamily: 'Prompt',
                           fontSize: 10.0,

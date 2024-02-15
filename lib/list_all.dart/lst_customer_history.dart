@@ -145,9 +145,9 @@ class _ListCustomerHistoryState extends State<ListCustomerHistory> {
                                   child: Container(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      history[index]['date'] +
+                                      history[index]['date']! +
                                           " " +
-                                          history[index]['group'],
+                                          history[index]['group']!,
                                       style: TextStyle(
                                         fontSize: 14.0,
                                         color: Colors.black,
@@ -160,7 +160,7 @@ class _ListCustomerHistoryState extends State<ListCustomerHistory> {
                                 Container(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    history[index]['status'],
+                                    history[index]['status']!,
                                     style: TextStyle(
                                       fontSize: 14.0,
                                       color: Colors.black,

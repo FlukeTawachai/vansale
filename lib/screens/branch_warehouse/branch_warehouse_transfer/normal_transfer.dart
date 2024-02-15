@@ -13,18 +13,10 @@ import 'package:vansale/api/class/request/mobile/getProductOrBasketStockReq.dart
 import 'package:vansale/api/class/response/routeMobile/getProductBranchResp.dart';
 import 'package:vansale/api/class/response/routeMobile/getProductOrBasketStockResp.dart';
 import 'package:vansale/function/substring_price.dart';
-import 'package:vansale/screens/Supplier/delivery/widgets/newHistoyDetailCard.dart';
-import 'package:vansale/screens/Supplier/models/product.dart';
-import 'package:vansale/screens/Supplier/delivery/widgets/footerAddProduct.dart';
-import 'package:vansale/screens/Supplier/supplier/confirmPages.dart';
-import 'package:vansale/screens/Supplier/supplier/scanner.dart';
 import 'package:vansale/screens/branch_warehouse/signature/signature_screen.dart';
 import 'package:vansale/screens/customer_menu/customer_purchase/customerConfirm.dart';
 import 'package:vansale/screens/customer_menu/custommer_Order/customer_order_filter.dart';
 import 'package:vansale/screens/delivery/delivery_scanner.dart';
-import 'package:vansale/screens/delivery/delivery_store/delivery_store_shipping/delivery_Store_bad_product.dart';
-import 'package:vansale/screens/delivery/delivery_store/delivery_store_shipping/delivery_Store_filter.dart';
-import 'package:vansale/screens/delivery/delivery_store_footer.dart';
 import 'package:vansale/screens/home/home.dart';
 
 class NormalTransfer extends StatefulWidget {
@@ -1014,7 +1006,8 @@ class _NormalTransferState extends State<NormalTransfer> {
                     // addCustomerOrder(addRequest);
                     await Navigator.of(context)
                         .push(MaterialPageRoute(
-                            builder: (context) => Signature2()))
+                            builder: (context) => const Signature2(
+                                cVEHICD: "", item: 0, total: 0, cREF: "")))
                         .then((_) {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) =>

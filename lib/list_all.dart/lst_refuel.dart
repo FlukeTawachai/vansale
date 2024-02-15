@@ -141,7 +141,7 @@ class _ListRefuelState extends State<ListRefuel> {
                             children: [
                               Container(
                                 child: Text(
-                                  refuels[index]['name'],
+                                  refuels[index]['name']!,
                                   style: TextStyle(
                                     fontSize: 14.0,
                                     color: Colors.grey,
@@ -152,7 +152,7 @@ class _ListRefuelState extends State<ListRefuel> {
                               ),
                               Container(
                                 child: Text(
-                                  refuels[index]['total'],
+                                  refuels[index]['total']!,
                                   style: TextStyle(
                                     fontSize: 16.0,
                                     color: Colors.black,
@@ -175,7 +175,7 @@ class _ListRefuelState extends State<ListRefuel> {
                             children: [
                               Container(
                                 child: Text(
-                                  refuels[index]['date'],
+                                  refuels[index]['date']!,
                                   style: TextStyle(
                                     fontSize: 14.0,
                                     color: Colors.grey,
@@ -190,14 +190,14 @@ class _ListRefuelState extends State<ListRefuel> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Container(
-                                      child: substring(refuels[index]['price']),
+                                      child: substring(refuels[index]['price']!),
                                     ),
                                     SizedBox(
                                       width: 5.0,
                                     ),
                                     Container(
                                       child: Text(
-                                        refuels[index]['unit'],
+                                        refuels[index]['unit']!,
                                         style: TextStyle(
                                           fontSize: 12.0,
                                           color: Colors.grey,

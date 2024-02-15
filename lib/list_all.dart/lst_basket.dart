@@ -39,7 +39,7 @@ class _ListBasketState extends State<ListBasket> {
               Expanded(
                 child: Container(
                   child: Text(
-                    basket[index]['store'],
+                    basket[index]['store']!,
                     style: TextStyle(
                       fontSize: 14.0,
                       color: basket[index]['store'] == "ทั้งหมด"
@@ -54,7 +54,7 @@ class _ListBasketState extends State<ListBasket> {
               Expanded(
                 child: Container(
                   child: Text(
-                    basket[index]['total'],
+                    basket[index]['total']!,
                     style: TextStyle(
                       fontSize: 14.0,
                       color: basket[index]['store'] == "ทั้งหมด"
@@ -69,7 +69,7 @@ class _ListBasketState extends State<ListBasket> {
               Expanded(
                 child: Container(
                   child: Text(
-                    basket[index]['unit'],
+                    basket[index]['unit']!,
                     style: TextStyle(
                       fontSize: 14.0,
                       color: basket[index]['store'] == "ทั้งหมด"

@@ -95,7 +95,7 @@ class _ListOrderState extends State<ListOrder> {
                     Container(
                       margin: const EdgeInsets.all(5.0),
                       child: Image.asset(
-                        order[index]['image'],
+                        order[index]['image']!,
                         fit: BoxFit.cover,
                         width: 100.0,
                         height: 150.0,
@@ -112,7 +112,7 @@ class _ListOrderState extends State<ListOrder> {
                                   Expanded(
                                     child: Container(
                                       child: Text(
-                                        order[index]['name'],
+                                        order[index]['name']!,
                                         style: TextStyle(
                                           fontFamily: 'Prompt',
                                         ),
@@ -144,7 +144,7 @@ class _ListOrderState extends State<ListOrder> {
                                             padding: const EdgeInsets.all(5.0),
                                             alignment: Alignment.centerLeft,
                                             child: Text(
-                                              order[index]['uom1'],
+                                              order[index]['uom1']!,
                                               style: TextStyle(
                                                 fontFamily: 'Prompt',
                                               ),
@@ -157,14 +157,14 @@ class _ListOrderState extends State<ListOrder> {
                                             alignment: Alignment.centerLeft,
                                             child: order[index]['promo'] != ""
                                                 ? Text(
-                                                    order[index]['uom1'],
+                                                    order[index]['uom1']!,
                                                     style: TextStyle(
                                                       color: Colors.red,
                                                       fontFamily: 'Prompt',
                                                     ),
                                                   )
                                                 : Text(
-                                                    order[index]['uom1'],
+                                                    order[index]['uom1']!,
                                                     style: TextStyle(
                                                       fontFamily: 'Prompt',
                                                     ),
@@ -176,7 +176,7 @@ class _ListOrderState extends State<ListOrder> {
                                           child: Container(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
-                                              order[index]['uom2'],
+                                              order[index]['uom2']!,
                                               style: TextStyle(
                                                 fontFamily: 'Prompt',
                                               ),
@@ -188,14 +188,14 @@ class _ListOrderState extends State<ListOrder> {
                                             alignment: Alignment.centerLeft,
                                             child: order[index]['promo'] != ""
                                                 ? Text(
-                                                    order[index]['uom2'],
+                                                    order[index]['uom2']!,
                                                     style: TextStyle(
                                                       color: Colors.red,
                                                       fontFamily: 'Prompt',
                                                     ),
                                                   )
                                                 : Text(
-                                                    order[index]['uom2'],
+                                                    order[index]['uom2']!,
                                                     style: TextStyle(
                                                       fontFamily: 'Prompt',
                                                     ),
@@ -207,7 +207,7 @@ class _ListOrderState extends State<ListOrder> {
                                           child: Container(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
-                                              order[index]['uom3'],
+                                              order[index]['uom3']!,
                                               style: TextStyle(
                                                 fontFamily: 'Prompt',
                                               ),
@@ -219,14 +219,14 @@ class _ListOrderState extends State<ListOrder> {
                                             alignment: Alignment.centerLeft,
                                             child: order[index]['promo'] != ""
                                                 ? Text(
-                                                    order[index]['uom3'],
+                                                    order[index]['uom3']!,
                                                     style: TextStyle(
                                                       color: Colors.red,
                                                       fontFamily: 'Prompt',
                                                     ),
                                                   )
                                                 : Text(
-                                                    order[index]['uom3'],
+                                                    order[index]['uom3']!,
                                                     style: TextStyle(
                                                       fontFamily: 'Prompt',
                                                     ),
@@ -241,7 +241,7 @@ class _ListOrderState extends State<ListOrder> {
                                 ? Container(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      order[index]['orderno'],
+                                      order[index]['orderno']!,
                                       style: TextStyle(
                                         color: Colors.black54,
                                         fontFamily: 'Prompt',
@@ -392,7 +392,7 @@ class _ListOrderState extends State<ListOrder> {
                           )
                         : Expanded(
                             child: Text(
-                              order[index]['promo'],
+                              order[index]['promo']!,
                               style: TextStyle(
                                 color: Colors.red,
                                 fontFamily: 'Prompt',

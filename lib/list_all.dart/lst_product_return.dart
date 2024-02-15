@@ -109,7 +109,7 @@ class _ListProductReturnState extends State<ListProductReturn> {
                                   Expanded(
                                     child: Container(
                                       child: Text(
-                                        menus[index]['name'],
+                                        menus[index]['name']!,
                                         style: TextStyle(
                                           fontFamily: 'Prompt',
                                         ),
@@ -120,7 +120,7 @@ class _ListProductReturnState extends State<ListProductReturn> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       color: checkType(index),
-                                      child: Text(menus[index]['type'],
+                                      child: Text(menus[index]['type']!,
                                           style: TextStyle(
                                             fontFamily: 'Prompt',
                                           )),
@@ -143,7 +143,7 @@ class _ListProductReturnState extends State<ListProductReturn> {
                                         padding: const EdgeInsets.all(5.0),
                                         alignment: Alignment.center,
                                         child: Text(
-                                          menus[index]['uom1'],
+                                          menus[index]['uom1']!,
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontFamily: 'Prompt',
@@ -154,7 +154,7 @@ class _ListProductReturnState extends State<ListProductReturn> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: Text(
-                                        menus[index]['uom2'],
+                                        menus[index]['uom2']!,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontFamily: 'Prompt',
@@ -166,7 +166,7 @@ class _ListProductReturnState extends State<ListProductReturn> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: Text(
-                                        menus[index]['uom3'],
+                                        menus[index]['uom3']!,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontFamily: 'Prompt',
@@ -362,14 +362,14 @@ class _ListProductReturnState extends State<ListProductReturn> {
     }
   }
 
-  PickedFile imageFile;
-  File image_;
+  PickedFile? imageFile;
+  File? image_;
   Future<void> _openCamera() async {
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 200.0, maxWidth: 200.0);
     setState(() {
       imageFile = image;
-      image_ = File(imageFile.path);
+      image_ = File(imageFile!.path);
     });
   }
 }

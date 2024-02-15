@@ -57,7 +57,7 @@ class _ListPromotionState extends State<ListPromotion> {
             children: [
               Container(
                 child: Image.asset(
-                  promotion[index]['image'],
+                  promotion[index]['image']!,
                   fit: BoxFit.cover,
                   width: 100.0,
                   height: 100.0,
@@ -78,7 +78,7 @@ class _ListPromotionState extends State<ListPromotion> {
                 child: SizedBox(
                   width: 100.0,
                   child: Text(
-                    promotion[index]['name'],
+                    promotion[index]['name']!,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     softWrap: false,
@@ -101,7 +101,7 @@ class _ListPromotionState extends State<ListPromotion> {
                     ),
                     Container(
                       child: Text(
-                        promotion[index]['date'],
+                        promotion[index]['date']!,
                         style: TextStyle(
                           fontFamily: 'Prompt',
                           fontSize: 10.0,

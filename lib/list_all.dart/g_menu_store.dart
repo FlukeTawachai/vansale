@@ -70,7 +70,7 @@ class _GridMenuStoreState extends State<GridMenuStore> {
       itemBuilder: (BuildContext context, int index) {
         return Card(
           //margin: const EdgeInsets.all(5.0),
-          child: new InkWell(
+          child: InkWell(
             onTap: () {
               Navigator.push(
                 context,
@@ -93,7 +93,7 @@ class _GridMenuStoreState extends State<GridMenuStore> {
                   child: Container(
                     alignment: Alignment.center,
                     child: Text(
-                      storemenu[index]['name'],
+                      storemenu[index]['name']!,
                       style: TextStyle(fontSize: 12.0),
                     ),
                   ),
@@ -115,11 +115,13 @@ class _GridMenuStoreState extends State<GridMenuStore> {
       case "ST002":
         return GetGoodProductsCheck('new', 0, () {
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (comtext) => ConfirmPages(GlobalParam.typeMenuCode!, "รับสินค้าดี")));
+              builder: (comtext) =>
+                  ConfirmPages(GlobalParam.typeMenuCode!, "รับสินค้าดี")));
           Future.delayed(Duration(seconds: delay.getTimeDelay()), () {
             Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
-                    builder: (context) => AppbarPage(11.toString(), GlobalParam.typeMenuCode)),
+                    builder: (context) =>
+                        AppbarPage(11.toString(), GlobalParam.typeMenuCode!)),
                 (Route<dynamic> route) => false);
           });
         });
@@ -128,11 +130,13 @@ class _GridMenuStoreState extends State<GridMenuStore> {
       case "ST003":
         return GetProductsCheck('new', 0, () {
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (comtext) => ConfirmPages(GlobalParam.typeMenuCode, "รับสินค้าชำรุด")));
+              builder: (comtext) =>
+                  ConfirmPages(GlobalParam.typeMenuCode!, "รับสินค้าชำรุด")));
           Future.delayed(Duration(seconds: delay.getTimeDelay()), () {
             Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
-                    builder: (context) => AppbarPage(11.toString(), GlobalParam.typeMenuCode)),
+                    builder: (context) =>
+                        AppbarPage(11.toString(), GlobalParam.typeMenuCode!)),
                 (Route<dynamic> route) => false);
           });
         });
@@ -154,7 +158,11 @@ class _GridMenuStoreState extends State<GridMenuStore> {
   }
 
   Widget menuicon(index) {
-    Widget menuicon;
+    Widget menuicon = Icon(
+      LineAwesomeIcons.dolly,
+      color: Colors.green,
+      size: 35.0,
+    );
     switch (storemenu[index]['menu']) {
       case "ST001":
         return menuicon = Icon(

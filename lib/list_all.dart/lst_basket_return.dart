@@ -101,7 +101,7 @@ class _ListBasketReturnState extends State<ListBasketReturn> {
                     Container(
                       margin: const EdgeInsets.all(5.0),
                       child: Image.asset(
-                        menus[index]['image'],
+                        menus[index]['image']!,
                         fit: BoxFit.cover,
                         width: 100.0,
                         height: 150.0,
@@ -118,7 +118,7 @@ class _ListBasketReturnState extends State<ListBasketReturn> {
                                   Expanded(
                                     child: Container(
                                       child: Text(
-                                        menus[index]['name'],
+                                        menus[index]['name']!,
                                         style: TextStyle(
                                           fontFamily: 'Prompt',
                                         ),
@@ -139,7 +139,7 @@ class _ListBasketReturnState extends State<ListBasketReturn> {
                                       padding: const EdgeInsets.all(5.0),
                                       alignment: Alignment.center,
                                       child: Text(
-                                        menus[index]['remaining'],
+                                        menus[index]['remaining']!,
                                         style: TextStyle(
                                           color: Colors.green,
                                           fontFamily: 'Prompt',
@@ -151,7 +151,7 @@ class _ListBasketReturnState extends State<ListBasketReturn> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: Text(
-                                        menus[index]['increase'],
+                                        menus[index]['increase']!,
                                         style: TextStyle(
                                           color: Colors.red,
                                           fontFamily: 'Prompt',
@@ -163,7 +163,7 @@ class _ListBasketReturnState extends State<ListBasketReturn> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: Text(
-                                        menus[index]['collect'],
+                                        menus[index]['collect']!,
                                         style: TextStyle(
                                           color: Colors.green,
                                           fontFamily: 'Prompt',
@@ -175,7 +175,7 @@ class _ListBasketReturnState extends State<ListBasketReturn> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: Text(
-                                        menus[index]['balance'],
+                                        menus[index]['balance']!,
                                         style: TextStyle(
                                           color: Colors.blue,
                                           fontFamily: 'Prompt',
@@ -217,7 +217,7 @@ class _ListBasketReturnState extends State<ListBasketReturn> {
                                           fontFamily: 'Prompt',
                                         ),
                                         cursorColor: Colors.black,
-                                        decoration: new InputDecoration(
+                                        decoration: InputDecoration(
                                           border: InputBorder.none,
                                           focusedBorder: InputBorder.none,
                                           enabledBorder: InputBorder.none,
@@ -366,7 +366,7 @@ class _ListBasketReturnState extends State<ListBasketReturn> {
                     menus[index]['name'] == 'ตระกร้า1'
                         ? Expanded(
                             child: Text(
-                              menus[index]['promo'],
+                              menus[index]['promo']!,
                               style: TextStyle(
                                 color: Colors.red,
                                 fontFamily: 'Prompt',
@@ -422,7 +422,7 @@ class _ListBasketReturnState extends State<ListBasketReturn> {
                           )
                         : Expanded(
                             child: Text(
-                              menus[index]['promo'],
+                              menus[index]['promo']!,
                               style: TextStyle(
                                 color: Colors.red,
                                 fontFamily: 'Prompt',
