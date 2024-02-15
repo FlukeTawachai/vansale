@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:blue_print_pos/models/blue_device.dart';
+// import 'package:blue_print_pos/models/blue_device.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:vansale/api/class/request/mobile/addBKRReq.dart';
@@ -118,7 +118,7 @@ class GlobalParam {
   static List<ProTypeResp> deliveryProType = [];
   static String deliveryReturnProRef = '';
   static bool bluetoothConnect = false;
-  static BlueDevice? selectDevice;
+  // static BlueDevice? selectDevice;
   static List<BluetoothDevice> blueListDevice = [];
   static var totalProGoodList = [];
   static var totalProBadList = [];

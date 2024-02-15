@@ -20,7 +20,6 @@ import 'package:vansale/function/substring_price.dart';
 import 'package:vansale/screens/Supplier/models/delayTime.dart';
 import 'package:vansale/screens/delivery/delivery_scanner.dart';
 import 'package:vansale/screens/home/home.dart';
-import 'package:blue_print_pos/blue_print_pos.dart';
 
 class StockTransferBasketReturn extends StatefulWidget {
   const StockTransferBasketReturn({Key? key}) : super(key: key);
@@ -38,7 +37,6 @@ class _StockTransferBasketReturnState extends State<StockTransferBasketReturn> {
   String poDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
   String timeNow = DateFormat('HH:mm a').format(DateTime.now());
   String dateNewF = '';
-  final BluePrintPos _bluePrintPos = BluePrintPos.instance;
   var basketData = [];
   List<GetBasketReturnOfRouteResp> basketReturnList = [];
   List<AddBKRReq> returnList = [];

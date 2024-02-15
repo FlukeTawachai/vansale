@@ -33,14 +33,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.6"
-  blue_print_pos:
-    dependency: "direct main"
-    description:
-      name: blue_print_pos
-      sha256: "31db2a954ec1aa75f76cbbd7ca60c65e7c58370a75db008fc73756e9af3dce30"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.14"
   blue_thermal_printer:
     dependency: "direct main"
     description:
@@ -169,14 +161,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.2"
-  esc_pos_utils_plus:
-    dependency: transitive
-    description:
-      name: esc_pos_utils_plus
-      sha256: "397c8c6eda37e3ee50aa22a591fe87c5ca8e0fa50ea0f092fcd42dbdfa8c2863"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1+6"
   fake_async:
     dependency: transitive
     description:
@@ -254,14 +238,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_blue_plus:
-    dependency: transitive
-    description:
-      name: flutter_blue_plus
-      sha256: "976d8cfd4068c392a9c2236bb1952b2bbc3905747f4177c5baa95aaa1f054f75"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.31.13"
   flutter_cache_manager:
     dependency: transitive
     description:
@@ -302,22 +278,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.8"
-  flutter_google_places:
-    dependency: "direct main"
-    description:
-      name: flutter_google_places
-      sha256: e9fb23ceacdc7359aa759627550146f7fd3ae6c067d16f39f3c50d8feebf4809
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.0"
   flutter_google_street_view:
     dependency: "direct main"
     description:
       name: flutter_google_street_view
-      sha256: "4dcc4cb0c382f8cdac00a4c2d1cac34e1c32c4b11c473007699659a5d1376c5d"
+      sha256: "0f68d965f27ef9b284f35b86d55491da78d02ba3ea3623a14e80ae9b6522243d"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.8"
+    version: "3.1.4"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -469,14 +437,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.2"
-  google_api_headers:
-    dependency: transitive
-    description:
-      name: google_api_headers
-      sha256: b27a55935d5c51cedda8a925f5df8388cc327c94a47fef5a4335e8707e089878
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.6.0"
   google_maps:
     dependency: transitive
     description:
@@ -525,14 +485,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.4+3"
-  google_maps_webservice:
-    dependency: transitive
-    description:
-      name: google_maps_webservice
-      sha256: d0ae4e4508afd74a3f051565261a3cdbae59db29448f9b6e6beb5674545e1eb7
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.20-nullsafety.5"
   hex:
     dependency: transitive
     description:
@@ -669,14 +621,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.4"
-  json_annotation:
-    dependency: transitive
-    description:
-      name: json_annotation
-      sha256: b10a7b2ff83d83c777edba3c6a0f97045ddadd56c944e1a23a3fdf43a1bf4467
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.8.1"
   kotlin_scope_function:
     dependency: transitive
     description:
@@ -957,6 +901,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.7.4"
+  printing:
+    dependency: "direct main"
+    description:
+      name: printing
+      sha256: "4df9e22bd4cb2ecea67183e5b328711b10276127b8878d9d5cb60ccd4c24a77c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.9.3"
   protobuf:
     dependency: transitive
     description:
@@ -981,14 +933,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
-  qr_flutter:
-    dependency: transitive
-    description:
-      name: qr_flutter
-      sha256: "5095f0fc6e3f71d08adef8feccc8cea4f12eec18a2e31c2e8d82cb6019f4b097"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.1.0"
   reactive_ble_mobile:
     dependency: transitive
     description:
@@ -1198,18 +1142,18 @@ packages:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
-      sha256: "3979f0b1c5a97422cadae52d476c21fa3e0fb671ef51de6cae1d646d8b99fe1f"
+      sha256: "4eed0d3ae50c16b5e8e4957f3c1917e9bd0315a08dfb49a104ca8fc10244bef3"
       url: "https://pub.dev"
     source: hosted
-    version: "20.4.54"
+    version: "24.2.6"
   syncfusion_flutter_pdf:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_pdf
-      sha256: cebcafc60d52d52e0789c18b6332c2bd378f0a6cca006fe0373293bcc6a66e6d
+      sha256: "389a50fc88acefb6b7767ab6a5dc84bc526ec5995368c50ef4923a147a83dc18"
       url: "https://pub.dev"
     source: hosted
-    version: "20.4.54"
+    version: "24.2.6"
   synchronized:
     dependency: transitive
     description:

@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:fdottedline/fdottedline.dart';
+import 'package:fdottedline_nullsafety/fdottedline__nullsafety.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
@@ -359,7 +359,7 @@ class _DeliveryMoneyNewState extends State<DeliveryMoneyNew> {
             padding: const EdgeInsets.only(left: 12.0, right: 12.0),
             alignment: Alignment.topCenter,
             child: FDottedLine(
-                color: Colors.grey[600],
+                color: Colors.grey,
                 strokeWidth: 2.0,
                 dottedLength: 10.0,
                 space: 2.0,

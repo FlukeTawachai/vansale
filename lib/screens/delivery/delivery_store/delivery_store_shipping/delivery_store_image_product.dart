@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:fdottedline_nullsafety/fdottedline__nullsafety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:fdottedline/fdottedline.dart';
 import 'package:location/location.dart';
 import 'package:vansale/api/allApiProxyMobile.dart';
 import 'package:vansale/api/class/globalparam.dart';
@@ -159,7 +159,7 @@ class _DeliveryImageProductState extends State<DeliveryImageProduct> {
               padding: const EdgeInsets.only(left: 30.0, right: 30.0),
               alignment: Alignment.topCenter,
               child: FDottedLine(
-                  color: Colors.grey[600],
+                  color: Colors.grey,
                   strokeWidth: 2.0,
                   dottedLength: 10.0,
                   space: 2.0,

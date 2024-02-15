@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -3377,7 +3377,7 @@ class _DeliveryNewSupplierMainState extends State<DeliveryNewSupplierMain> {
               setState(() {
                 dropdownSubDistrict = lstDistricts[0].name!;
                 storeName.text = customer.cCUSTNM!;
-                storeTax.text = customer.cTAXNO;
+                storeTax.text = customer.cTAXNO!;
                 storeType.text = customer.cCUSTTYPE!;
                 postCode.text = customer.cPOSTCD!;
                 tel.text = customer.cTEL!;

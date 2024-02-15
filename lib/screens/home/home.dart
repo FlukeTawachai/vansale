@@ -297,11 +297,11 @@ class _HomePageState extends State<HomePage> {
                       //         Warehouse3SearchRoute('T001'),
                       //   ),
                       // );
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const BluPrintPOS(code: '001'),
-                        ),
-                      );
+                      // Navigator.of(context).push(
+                      //   MaterialPageRoute(
+                      //     builder: (context) => const BluPrintPOS(code: '001'),
+                      //   ),
+                      // );
                     } else {
                       Navigator.pop(context);
                       Navigator.of(context).pushAndRemoveUntil(

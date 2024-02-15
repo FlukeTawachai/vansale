@@ -18,7 +18,6 @@ import 'package:vansale/api/class/response/routeMobile/getSupplierResp.dart';
 import 'package:vansale/function/substring_price.dart';
 import 'package:vansale/screens/Supplier/models/delayTime.dart';
 import 'package:vansale/screens/delivery/delivery_scanner.dart';
-import 'package:blue_print_pos/blue_print_pos.dart';
 import 'package:vansale/screens/stocks/stoeck_return/stock_return_img.dart';
 import 'package:vansale/screens/stocks/stoeck_return/stock_return_proMiss.dart';
 
@@ -41,7 +40,6 @@ class _StockBasketReturnState extends State<StockBasketReturn> {
   String poDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
   String timeNow = DateFormat('HH:mm a').format(DateTime.now());
   String dateNewF = '';
-  final BluePrintPos _bluePrintPos = BluePrintPos.instance;
   var basketData = [];
   List<GetSupplierBasketResp> supplierBasketList = [];
   List<AddBKRReq> returnList = [];

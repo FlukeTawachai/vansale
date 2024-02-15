@@ -7,7 +7,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:fdottedline/fdottedline.dart';
 import 'package:location/location.dart';
 import 'package:vansale/api/allApiProxyMobile.dart';
 import 'package:vansale/api/class/globalparam.dart';

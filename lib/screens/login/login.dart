@@ -9,6 +9,7 @@ import 'package:vansale/screens/delivery/delivery_map/map_selectBranch.dart';
 import 'package:vansale/screens/home/home.dart';
 import 'package:vansale/screens/namo/signature_screen.dart';
 import 'package:vansale/screens/navigatorStore/selectGroupRoute.dart';
+import 'package:vansale/screens/wifiPrinter/printA4.dart';
 import 'package:vansale/screens/wifiPrinter/wifiPrinter.dart';
 
 class Login extends StatefulWidget {
@@ -43,8 +44,10 @@ class _LoginState extends State<Login> {
             actions: [
               IconButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const WifiPrinter()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const PrintingA4("Test Print")));
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => const WifiPrinter()));
                   },
                   icon: const Icon(Icons.print_sharp))
             ],

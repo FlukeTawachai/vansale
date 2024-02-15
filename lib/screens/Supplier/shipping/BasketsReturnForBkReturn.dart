@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:blue_print_pos/models/blue_device.dart';
-import 'package:blue_print_pos/models/connection_status.dart';
-import 'package:blue_print_pos/receipt/receipt.dart';
+// import 'package:blue_print_pos/models/blue_device.dart';
+// import 'package:blue_print_pos/models/connection_status.dart';
+// import 'package:blue_print_pos/receipt/receipt.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +24,7 @@ import 'package:vansale/screens/delivery/delivery_bill/print.dart';
 import 'package:vansale/screens/delivery/delivery_scanner.dart';
 import 'package:vansale/screens/home/home.dart';
 import 'package:vansale/screens/Supplier/shipping/widgets/Footer3Layout.dart';
-import 'package:blue_print_pos/blue_print_pos.dart';
+// import 'package:blue_print_pos/blue_print_pos.dart';
 import 'package:vansale/screens/sale/survey/sale_storeDetail.dart';
 
 class BasketsReturnForBkReturn extends StatefulWidget {
@@ -47,7 +47,7 @@ class _BasketsReturnForBkReturnState extends State<BasketsReturnForBkReturn> {
   String timeNow = DateFormat('HH:mm a').format(DateTime.now());
   String dateNewF = '';
   TextEditingController txtBasketReturn = TextEditingController();
-  final BluePrintPos _bluePrintPos = BluePrintPos.instance;
+  // final BluePrintPos _bluePrintPos = BluePrintPos.instance;
   var basketData = [];
   int maxNumber = 0;
 
@@ -433,10 +433,10 @@ class _BasketsReturnForBkReturnState extends State<BasketsReturnForBkReturn> {
                                                             controller:
                                                                 txtBasketReturn,
                                                             inputFormatters: [
-                                                              RangeTextInputFormatter(
-                                                                  min: 0,
-                                                                  max:
-                                                                      maxNumber),
+                                                              // RangeTextInputFormatter(
+                                                              //     min: 0,
+                                                              //     max:
+                                                              //         maxNumber),
                                                             ],
 
                                                             style: TextStyle(
@@ -601,15 +601,15 @@ class _BasketsReturnForBkReturnState extends State<BasketsReturnForBkReturn> {
                 // Navigator.of(context)
                 //     .push(MaterialPageRoute(builder: (comtext) => SupPay()));
                 if (GlobalParam.bluetoothConnect == true) {
-                  _onPrintBill();
+                  // _onPrintBill();
                 } else {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => BluPrintPOS(
-                        code: '002',
-                      ),
-                    ),
-                  );
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (context) => BluPrintPOS(
+                  //       code: '002',
+                  //     ),
+                  //   ),
+                  // );
                 }
               } else if (GlobalParam.typeMenuCode == "T002") {
                 if ((int.tryParse(txtBasketReturn.text) ?? 0) > 0) {
@@ -852,8 +852,8 @@ class _BasketsReturnForBkReturnState extends State<BasketsReturnForBkReturn> {
     // box.put('test', 'test');
     bool checkRepeat = false;
 
-    final BlueDevice blueDevice = GlobalParam.selectDevice!;
-    _bluePrintPos.connect(blueDevice).then((ConnectionStatus status) {});
+    // final BlueDevice blueDevice = GlobalParam.selectDevice!;
+    // _bluePrintPos.connect(blueDevice).then((ConnectionStatus status) {});
   }
 
   addBasketReturn(double value, GetBasketResp data) {
@@ -882,460 +882,460 @@ class _BasketsReturnForBkReturnState extends State<BasketsReturnForBkReturn> {
     });
   }
 
-  Future<void> _onPrintBill() async {
-    final ReceiptSectionText receipt01 = ReceiptSectionText();
-    // final ReceiptSectionText receipt01 = ReceiptSectionText();
-    // final ReceiptSectionText receipt01 = ReceiptSectionText();
-    // final ReceiptSectionText receipt01 = ReceiptSectionText();
-    // final ReceiptSectionText receipt01 = ReceiptSectionText();
-    // final ReceiptSectionText receipt01 = ReceiptSectionText();
-    // final ReceiptSectionText receipt01 = ReceiptSectionText();
-    // final ReceiptSectionText receipt01 = ReceiptSectionText();
-    // final ReceiptSectionText receipt01 = ReceiptSectionText();
-    // final ReceiptSectionText receipt01 = ReceiptSectionText();
+//   Future<void> _onPrintBill() async {
+//     final ReceiptSectionText receipt01 = ReceiptSectionText();
+//     // final ReceiptSectionText receipt01 = ReceiptSectionText();
+//     // final ReceiptSectionText receipt01 = ReceiptSectionText();
+//     // final ReceiptSectionText receipt01 = ReceiptSectionText();
+//     // final ReceiptSectionText receipt01 = ReceiptSectionText();
+//     // final ReceiptSectionText receipt01 = ReceiptSectionText();
+//     // final ReceiptSectionText receipt01 = ReceiptSectionText();
+//     // final ReceiptSectionText receipt01 = ReceiptSectionText();
+//     // final ReceiptSectionText receipt01 = ReceiptSectionText();
+//     // final ReceiptSectionText receipt01 = ReceiptSectionText();
 
-    // header
-    receipt01.addText(
-      'นายกัณฐ์ เทรดดิ้ง',
-      size: ReceiptTextSizeType.large,
-      style: ReceiptTextStyleType.bold,
-    );
-    receipt01.addText(
-      'ใบส่งสินค้า',
-      size: ReceiptTextSizeType.medium,
-      style: ReceiptTextStyleType.bold,
-    );
-    receipt01.addSpacer(useDashed: true);
+//     // header
+//     receipt01.addText(
+//       'นายกัณฐ์ เทรดดิ้ง',
+//       size: ReceiptTextSizeType.large,
+//       style: ReceiptTextStyleType.bold,
+//     );
+//     receipt01.addText(
+//       'ใบส่งสินค้า',
+//       size: ReceiptTextSizeType.medium,
+//       style: ReceiptTextStyleType.bold,
+//     );
+//     receipt01.addSpacer(useDashed: true);
 
-    // locationStore
-    receipt01.addLeftRightText(
-      GlobalParam.deliverySelectStore.cCUSTNM!,
-      '',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-    );
-    receipt01.addLeftRightText(
-      GlobalParam.deliverySelectStore.cADDRESS!,
-      '',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-    );
-    receipt01.addLeftRightText(
-      GlobalParam.deliverySelectStore.cSUBDIST!,
-      '',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-    );
-    receipt01.addLeftRightText(
-      GlobalParam.deliverySelectStore.cDISTRICT!,
-      '',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-    );
-    receipt01.addLeftRightText(
-      '${GlobalParam.deliverySelectStore.cPROVINCE} ${GlobalParam.deliverySelectStore.cPOSTCD}',
-      '',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-    );
-    receipt01.addSpacer(useDashed: true);
+//     // locationStore
+//     receipt01.addLeftRightText(
+//       GlobalParam.deliverySelectStore.cCUSTNM!,
+//       '',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//     );
+//     receipt01.addLeftRightText(
+//       GlobalParam.deliverySelectStore.cADDRESS!,
+//       '',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//     );
+//     receipt01.addLeftRightText(
+//       GlobalParam.deliverySelectStore.cSUBDIST!,
+//       '',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//     );
+//     receipt01.addLeftRightText(
+//       GlobalParam.deliverySelectStore.cDISTRICT!,
+//       '',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//     );
+//     receipt01.addLeftRightText(
+//       '${GlobalParam.deliverySelectStore.cPROVINCE} ${GlobalParam.deliverySelectStore.cPOSTCD}',
+//       '',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//     );
+//     receipt01.addSpacer(useDashed: true);
 
-    receipt01.addLeftRightText(
-      'วันที่ ${dateNewF}',
-      'เวลา $timeNow',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-    );
-    receipt01.addLeftRightText(
-      'เลขที่ ${GlobalParam.deliveryPodtList[0].cPOCD}',
-      '',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-    );
-    receipt01.addSpacer(useDashed: true);
-    // productHeader
-    receipt01.addLeftRightText(
-      'รายละเอียด',
-      'ยอดเงิน',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-      rightSize: ReceiptTextSizeType.medium,
-      rightStyle: ReceiptTextStyleType.bold,
-    );
+//     receipt01.addLeftRightText(
+//       'วันที่ ${dateNewF}',
+//       'เวลา $timeNow',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//     );
+//     receipt01.addLeftRightText(
+//       'เลขที่ ${GlobalParam.deliveryPodtList[0].cPOCD}',
+//       '',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//     );
+//     receipt01.addSpacer(useDashed: true);
+//     // productHeader
+//     receipt01.addLeftRightText(
+//       'รายละเอียด',
+//       'ยอดเงิน',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//       rightSize: ReceiptTextSizeType.medium,
+//       rightStyle: ReceiptTextStyleType.bold,
+//     );
 
-    // productList() {
-    for (int index = 0; index < GlobalParam.deliveryPodtList.length; index++) {
-      String unitNM = '';
-      double qty = 0, prince = 0;
-      // ignore: unrelated_type_equality_checks
-      if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
-        qty = double.parse(GlobalParam.deliveryPodtList[index].iSSIZEQTY!);
-        prince = double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE!);
-        unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM!;
-        // ignore: unrelated_type_equality_checks
-      }
-      if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
-        qty = double.parse(GlobalParam.deliveryPodtList[index].iMSIZEQTY!);
-        prince = double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE!);
-        unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM!;
-        // ignore: unrelated_type_equality_checks
-      }
-      if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
-        qty = double.parse(GlobalParam.deliveryPodtList[index].iLSIZEQTY!);
-        prince = double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE!);
-        unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM!;
-      }
+//     // productList() {
+//     for (int index = 0; index < GlobalParam.deliveryPodtList.length; index++) {
+//       String unitNM = '';
+//       double qty = 0, prince = 0;
+//       // ignore: unrelated_type_equality_checks
+//       if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
+//         qty = double.parse(GlobalParam.deliveryPodtList[index].iSSIZEQTY!);
+//         prince = double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE!);
+//         unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM!;
+//         // ignore: unrelated_type_equality_checks
+//       }
+//       if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
+//         qty = double.parse(GlobalParam.deliveryPodtList[index].iMSIZEQTY!);
+//         prince = double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE!);
+//         unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM!;
+//         // ignore: unrelated_type_equality_checks
+//       }
+//       if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
+//         qty = double.parse(GlobalParam.deliveryPodtList[index].iLSIZEQTY!);
+//         prince = double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE!);
+//         unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM!;
+//       }
 
-      receipt01.addLeftRightText(
-        GlobalParam.deliveryPodtList[index].cPRODNM!,
-        '',
-        leftSize: ReceiptTextSizeType.medium,
-        leftStyle: ReceiptTextStyleType.bold,
-        // rightSize: ReceiptTextSizeType.medium,
-        // rightStyle: ReceiptTextStyleType.bold,
-      );
-      receipt01.addLeftRightText(
-        '$unitNM@${qty.toStringAsFixed(0)}',
-        '${prince.toStringAsFixed(2)}',
-        leftSize: ReceiptTextSizeType.medium,
-        // leftStyle: ReceiptTextStyleType.bold,
-        rightSize: ReceiptTextSizeType.medium,
-        // rightStyle: ReceiptTextStyleType.bold,
-      );
-    }
-    receipt01.addSpacer(useDashed: true);
+//       receipt01.addLeftRightText(
+//         GlobalParam.deliveryPodtList[index].cPRODNM!,
+//         '',
+//         leftSize: ReceiptTextSizeType.medium,
+//         leftStyle: ReceiptTextStyleType.bold,
+//         // rightSize: ReceiptTextSizeType.medium,
+//         // rightStyle: ReceiptTextStyleType.bold,
+//       );
+//       receipt01.addLeftRightText(
+//         '$unitNM@${qty.toStringAsFixed(0)}',
+//         '${prince.toStringAsFixed(2)}',
+//         leftSize: ReceiptTextSizeType.medium,
+//         // leftStyle: ReceiptTextStyleType.bold,
+//         rightSize: ReceiptTextSizeType.medium,
+//         // rightStyle: ReceiptTextStyleType.bold,
+//       );
+//     }
+//     receipt01.addSpacer(useDashed: true);
 
-    // incompHeader
-    receipt01.addLeftRightText(
-      'สินค้าขาด',
-      'ยอดเงิน',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-      rightSize: ReceiptTextSizeType.medium,
-      rightStyle: ReceiptTextStyleType.bold,
-    );
+//     // incompHeader
+//     receipt01.addLeftRightText(
+//       'สินค้าขาด',
+//       'ยอดเงิน',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//       rightSize: ReceiptTextSizeType.medium,
+//       rightStyle: ReceiptTextStyleType.bold,
+//     );
 
-    // incompList
-    for (int index = 0; index < GlobalParam.deliveryPodtList.length; index++) {
-      if (GlobalParam.deliveryPodtList[index].iSUNITPRICE == null) {
-        GlobalParam.deliveryPodtList[index].iSUNITPRICE = '0.0';
-      }
-      if (GlobalParam.deliveryPodtList[index].iINCOMPRO == null) {
-        GlobalParam.deliveryPodtList[index].iINCOMPRO = 0;
-      }
-      String unitNM = '';
-      int qty = GlobalParam.deliveryPodtList[index].iINCOMPRO!;
-      double prince = 0;
-      // ignore: unrelated_type_equality_checks
-      if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != '0' &&
-          GlobalParam.deliveryPodtList[index].iSSIZEQTY != null) {
-        prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE!);
-        unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM!;
-        // ignore: unrelated_type_equality_checks
-      } else if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != '0' &&
-          GlobalParam.deliveryPodtList[index].iMSIZEQTY != null) {
-        prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE!);
-        unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM!;
-        // ignore: unrelated_type_equality_checks
-      } else if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != '0' &&
-          GlobalParam.deliveryPodtList[index].iLSIZEQTY != null) {
-        prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE!);
-        unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM!;
-      }
-      if (GlobalParam.deliveryPodtList[index].iINCOMPRO != 0 &&
-          GlobalParam.deliveryPodtList[index].iINCOMPRO != null) {
-        receipt01.addLeftRightText(
-          GlobalParam.deliveryPodtList[index].cPRODNM!,
-          '',
-          leftSize: ReceiptTextSizeType.medium,
-          leftStyle: ReceiptTextStyleType.bold,
-          // rightSize: ReceiptTextSizeType.medium,
-          // rightStyle: ReceiptTextStyleType.bold,
-        );
-        receipt01.addLeftRightText(
-          '$unitNM@${qty.toStringAsFixed(0)}',
-          '${prince.toStringAsFixed(2)}',
-          leftSize: ReceiptTextSizeType.medium,
-          // leftStyle: ReceiptTextStyleType.bold,
-          rightSize: ReceiptTextSizeType.medium,
-          // rightStyle: ReceiptTextStyleType.bold,
-        );
-      }
-    }
+//     // incompList
+//     for (int index = 0; index < GlobalParam.deliveryPodtList.length; index++) {
+//       if (GlobalParam.deliveryPodtList[index].iSUNITPRICE == null) {
+//         GlobalParam.deliveryPodtList[index].iSUNITPRICE = '0.0';
+//       }
+//       if (GlobalParam.deliveryPodtList[index].iINCOMPRO == null) {
+//         GlobalParam.deliveryPodtList[index].iINCOMPRO = 0;
+//       }
+//       String unitNM = '';
+//       int qty = GlobalParam.deliveryPodtList[index].iINCOMPRO!;
+//       double prince = 0;
+//       // ignore: unrelated_type_equality_checks
+//       if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != '0' &&
+//           GlobalParam.deliveryPodtList[index].iSSIZEQTY != null) {
+//         prince =
+//             qty * double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE!);
+//         unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM!;
+//         // ignore: unrelated_type_equality_checks
+//       } else if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != '0' &&
+//           GlobalParam.deliveryPodtList[index].iMSIZEQTY != null) {
+//         prince =
+//             qty * double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE!);
+//         unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM!;
+//         // ignore: unrelated_type_equality_checks
+//       } else if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != '0' &&
+//           GlobalParam.deliveryPodtList[index].iLSIZEQTY != null) {
+//         prince =
+//             qty * double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE!);
+//         unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM!;
+//       }
+//       if (GlobalParam.deliveryPodtList[index].iINCOMPRO != 0 &&
+//           GlobalParam.deliveryPodtList[index].iINCOMPRO != null) {
+//         receipt01.addLeftRightText(
+//           GlobalParam.deliveryPodtList[index].cPRODNM!,
+//           '',
+//           leftSize: ReceiptTextSizeType.medium,
+//           leftStyle: ReceiptTextStyleType.bold,
+//           // rightSize: ReceiptTextSizeType.medium,
+//           // rightStyle: ReceiptTextStyleType.bold,
+//         );
+//         receipt01.addLeftRightText(
+//           '$unitNM@${qty.toStringAsFixed(0)}',
+//           '${prince.toStringAsFixed(2)}',
+//           leftSize: ReceiptTextSizeType.medium,
+//           // leftStyle: ReceiptTextStyleType.bold,
+//           rightSize: ReceiptTextSizeType.medium,
+//           // rightStyle: ReceiptTextStyleType.bold,
+//         );
+//       }
+//     }
 
-    receipt01.addSpacer(useDashed: true);
-    // cancelHeader
-    receipt01.addLeftRightText(
-      'ไม่รับ/คืน',
-      'ยอดเงิน',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-      rightSize: ReceiptTextSizeType.medium,
-      rightStyle: ReceiptTextStyleType.bold,
-    );
+//     receipt01.addSpacer(useDashed: true);
+//     // cancelHeader
+//     receipt01.addLeftRightText(
+//       'ไม่รับ/คืน',
+//       'ยอดเงิน',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//       rightSize: ReceiptTextSizeType.medium,
+//       rightStyle: ReceiptTextStyleType.bold,
+//     );
 
-    // cancelList
-    for (int index = 0; index < GlobalParam.deliveryPodtList.length; index++) {
-      if (GlobalParam.deliveryPodtList[index].iCANCLEPRO == null) {
-        GlobalParam.deliveryPodtList[index].iCANCLEPRO = 0;
-      }
-      String unitNM = '';
-      int qty = GlobalParam.deliveryPodtList[index].iCANCLEPRO!;
-      double prince = 0;
-      // ignore: unrelated_type_equality_checks
-      if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
-        prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE!);
-        unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM!;
-        // ignore: unrelated_type_equality_checks
-      } else if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
-        prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE!);
-        unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM!;
-        // ignore: unrelated_type_equality_checks
-      } else if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
-        prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE!);
-        unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM!;
-      }
-      if (GlobalParam.deliveryPodtList[index].iCANCLEPRO != 0) {
-        receipt01.addLeftRightText(
-          GlobalParam.deliveryPodtList[index].cPRODNM!,
-          '',
-          leftSize: ReceiptTextSizeType.medium,
-          leftStyle: ReceiptTextStyleType.bold,
-          // rightSize: ReceiptTextSizeType.medium,
-          // rightStyle: ReceiptTextStyleType.bold,
-        );
-        receipt01.addLeftRightText(
-          '$unitNM@${qty.toStringAsFixed(0)} ',
-          '${prince.toStringAsFixed(2)}',
-          leftSize: ReceiptTextSizeType.medium,
-          // leftStyle: ReceiptTextStyleType.bold,
-          rightSize: ReceiptTextSizeType.medium,
-          // rightStyle: ReceiptTextStyleType.bold,
-        );
-      }
-    }
+//     // cancelList
+//     for (int index = 0; index < GlobalParam.deliveryPodtList.length; index++) {
+//       if (GlobalParam.deliveryPodtList[index].iCANCLEPRO == null) {
+//         GlobalParam.deliveryPodtList[index].iCANCLEPRO = 0;
+//       }
+//       String unitNM = '';
+//       int qty = GlobalParam.deliveryPodtList[index].iCANCLEPRO!;
+//       double prince = 0;
+//       // ignore: unrelated_type_equality_checks
+//       if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
+//         prince =
+//             qty * double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE!);
+//         unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM!;
+//         // ignore: unrelated_type_equality_checks
+//       } else if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
+//         prince =
+//             qty * double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE!);
+//         unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM!;
+//         // ignore: unrelated_type_equality_checks
+//       } else if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
+//         prince =
+//             qty * double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE!);
+//         unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM!;
+//       }
+//       if (GlobalParam.deliveryPodtList[index].iCANCLEPRO != 0) {
+//         receipt01.addLeftRightText(
+//           GlobalParam.deliveryPodtList[index].cPRODNM!,
+//           '',
+//           leftSize: ReceiptTextSizeType.medium,
+//           leftStyle: ReceiptTextStyleType.bold,
+//           // rightSize: ReceiptTextSizeType.medium,
+//           // rightStyle: ReceiptTextStyleType.bold,
+//         );
+//         receipt01.addLeftRightText(
+//           '$unitNM@${qty.toStringAsFixed(0)} ',
+//           '${prince.toStringAsFixed(2)}',
+//           leftSize: ReceiptTextSizeType.medium,
+//           // leftStyle: ReceiptTextStyleType.bold,
+//           rightSize: ReceiptTextSizeType.medium,
+//           // rightStyle: ReceiptTextStyleType.bold,
+//         );
+//       }
+//     }
 
-    receipt01.addSpacer(useDashed: true);
+//     receipt01.addSpacer(useDashed: true);
 
-    // lossHeader
-    receipt01.addLeftRightText(
-      'สินค้าขาด',
-      'ยอดเงิน',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-      rightSize: ReceiptTextSizeType.medium,
-      rightStyle: ReceiptTextStyleType.bold,
-    );
+//     // lossHeader
+//     receipt01.addLeftRightText(
+//       'สินค้าขาด',
+//       'ยอดเงิน',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//       rightSize: ReceiptTextSizeType.medium,
+//       rightStyle: ReceiptTextStyleType.bold,
+//     );
 
-    // lossList
-    for (int index = 0; index < GlobalParam.deliveryPodtList.length; index++) {
-      if (GlobalParam.deliveryPodtList[index].iLOSSPRO == null) {
-        GlobalParam.deliveryPodtList[index].iLOSSPRO = 0;
-      }
-      String unitNM = '';
-      int qty = GlobalParam.deliveryPodtList[index].iLOSSPRO!;
-      double prince = 0;
-      // ignore: unrelated_type_equality_checks
-      if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
-        print(GlobalParam.deliveryPodtList[index].iSUNITPRICE);
-        prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE!);
-        unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM!;
-        // ignore: unrelated_type_equality_checks
-      } else if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
-        prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE!);
-        unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM!;
-        // ignore: unrelated_type_equality_checks
-      } else if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
-        prince =
-            qty * double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE!);
-        unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM!;
-      }
-      if (GlobalParam.deliveryPodtList[index].iLOSSPRO != 0) {
-        receipt01.addText(
-          GlobalParam.deliveryPodtList[index].cPRODNM!,
-          size: ReceiptTextSizeType.medium,
-        );
-        receipt01.addLeftRightText(
-          '$unitNM',
-          '${qty.toStringAsFixed(0)}             ${prince.toStringAsFixed(2)}',
-          leftSize: ReceiptTextSizeType.medium,
-          // leftStyle: ReceiptTextStyleType.bold,
-          rightSize: ReceiptTextSizeType.medium,
-          // rightStyle: ReceiptTextStyleType.bold,
-        );
-      }
-    }
+//     // lossList
+//     for (int index = 0; index < GlobalParam.deliveryPodtList.length; index++) {
+//       if (GlobalParam.deliveryPodtList[index].iLOSSPRO == null) {
+//         GlobalParam.deliveryPodtList[index].iLOSSPRO = 0;
+//       }
+//       String unitNM = '';
+//       int qty = GlobalParam.deliveryPodtList[index].iLOSSPRO!;
+//       double prince = 0;
+//       // ignore: unrelated_type_equality_checks
+//       if (GlobalParam.deliveryPodtList[index].iSSIZEQTY != 0) {
+//         print(GlobalParam.deliveryPodtList[index].iSUNITPRICE);
+//         prince =
+//             qty * double.parse(GlobalParam.deliveryPodtList[index].iSUNITPRICE!);
+//         unitNM = GlobalParam.deliveryPodtList[index].cSUOMNM!;
+//         // ignore: unrelated_type_equality_checks
+//       } else if (GlobalParam.deliveryPodtList[index].iMSIZEQTY != 0) {
+//         prince =
+//             qty * double.parse(GlobalParam.deliveryPodtList[index].iMUNITPRICE!);
+//         unitNM = GlobalParam.deliveryPodtList[index].cMUOMNM!;
+//         // ignore: unrelated_type_equality_checks
+//       } else if (GlobalParam.deliveryPodtList[index].iLSIZEQTY != 0) {
+//         prince =
+//             qty * double.parse(GlobalParam.deliveryPodtList[index].iLUNITPRICE!);
+//         unitNM = GlobalParam.deliveryPodtList[index].cLUOMNM!;
+//       }
+//       if (GlobalParam.deliveryPodtList[index].iLOSSPRO != 0) {
+//         receipt01.addText(
+//           GlobalParam.deliveryPodtList[index].cPRODNM!,
+//           size: ReceiptTextSizeType.medium,
+//         );
+//         receipt01.addLeftRightText(
+//           '$unitNM',
+//           '${qty.toStringAsFixed(0)}             ${prince.toStringAsFixed(2)}',
+//           leftSize: ReceiptTextSizeType.medium,
+//           // leftStyle: ReceiptTextStyleType.bold,
+//           rightSize: ReceiptTextSizeType.medium,
+//           // rightStyle: ReceiptTextStyleType.bold,
+//         );
+//       }
+//     }
 
-    receipt01.addSpacer(useDashed: true);
+//     receipt01.addSpacer(useDashed: true);
 
-    // basketHeader
-    receipt01.addLeftRightText(
-      'คืนตะกร้า',
-      'ยอดเงิน',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-      rightSize: ReceiptTextSizeType.medium,
-      rightStyle: ReceiptTextStyleType.bold,
-    );
+//     // basketHeader
+//     receipt01.addLeftRightText(
+//       'คืนตะกร้า',
+//       'ยอดเงิน',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//       rightSize: ReceiptTextSizeType.medium,
+//       rightStyle: ReceiptTextStyleType.bold,
+//     );
 
-    // basketList
-    for (int index = 0; index < GlobalParam.deliveryBasketReq.length; index++) {
-      String basName = '';
-      double basTotal = 0;
-      for (int i = 0; i < GlobalParam.deliveryBasketList.length; i++) {
-        if (GlobalParam.deliveryBasketList[i].cBASKCD ==
-            GlobalParam.deliveryBasketReq[index].cBASKCD) {
-          basName = GlobalParam.deliveryBasketList[i].cBASKNM!;
-          basTotal = GlobalParam.deliveryBasketReq[index].iQTY! *
-              double.parse(GlobalParam.deliveryBasketList[i].iPRICE!);
-        }
-      }
-      if (GlobalParam.deliveryBasketReq[index].iQTY != 0) {
-        receipt01.addLeftRightText(
-          '$basName@${GlobalParam.deliveryBasketReq[index].iQTY}',
-          '${basTotal.toStringAsFixed(2)}',
-          leftSize: ReceiptTextSizeType.medium,
-          // leftStyle: ReceiptTextStyleType.bold,
-          rightSize: ReceiptTextSizeType.medium,
-          // rightStyle: ReceiptTextStyleType.bold,
-        );
-      }
-    }
-    receipt01.addSpacer(useDashed: true);
-    // footer
-    List unitName = [];
-    double totalItem = 0;
-    var listItem = [];
-    for (int i = 0; i < GlobalParam.deliveryUnitList.length; i++) {
-      unitName.add(GlobalParam.deliveryUnitList[i]['cUOMNM']);
-    }
+//     // basketList
+//     for (int index = 0; index < GlobalParam.deliveryBasketReq.length; index++) {
+//       String basName = '';
+//       double basTotal = 0;
+//       for (int i = 0; i < GlobalParam.deliveryBasketList.length; i++) {
+//         if (GlobalParam.deliveryBasketList[i].cBASKCD ==
+//             GlobalParam.deliveryBasketReq[index].cBASKCD) {
+//           basName = GlobalParam.deliveryBasketList[i].cBASKNM!;
+//           basTotal = GlobalParam.deliveryBasketReq[index].iQTY! *
+//               double.parse(GlobalParam.deliveryBasketList[i].iPRICE!);
+//         }
+//       }
+//       if (GlobalParam.deliveryBasketReq[index].iQTY != 0) {
+//         receipt01.addLeftRightText(
+//           '$basName@${GlobalParam.deliveryBasketReq[index].iQTY}',
+//           '${basTotal.toStringAsFixed(2)}',
+//           leftSize: ReceiptTextSizeType.medium,
+//           // leftStyle: ReceiptTextStyleType.bold,
+//           rightSize: ReceiptTextSizeType.medium,
+//           // rightStyle: ReceiptTextStyleType.bold,
+//         );
+//       }
+//     }
+//     receipt01.addSpacer(useDashed: true);
+//     // footer
+//     List unitName = [];
+//     double totalItem = 0;
+//     var listItem = [];
+//     for (int i = 0; i < GlobalParam.deliveryUnitList.length; i++) {
+//       unitName.add(GlobalParam.deliveryUnitList[i]['cUOMNM']);
+//     }
 
-    var unitList = unitName.toSet().toList();
+//     var unitList = unitName.toSet().toList();
 
-    for (int i = 0; i < unitList.length; i++) {
-      int num = 0;
-      double numItem = 0;
+//     for (int i = 0; i < unitList.length; i++) {
+//       int num = 0;
+//       double numItem = 0;
 
-      for (int j = 0; j < GlobalParam.deliveryUnitList.length; j++) {
-        if (unitList[i] == GlobalParam.deliveryUnitList[j]['cUOMNM']) {
-          double total =
-              double.parse(GlobalParam.deliveryUnitList[j]['iTOTAL']);
-          double prince =
-              double.parse(GlobalParam.deliveryUnitList[j]['iPRICE']);
-          num++;
-          numItem += total / prince;
-        }
-      }
-      totalItem += numItem;
-      var text = {
-        "unitName": unitList[i],
-        "qty": num,
-        "sumItem": numItem.toStringAsFixed(0)
-      };
-      listItem.add(text);
-    }
+//       for (int j = 0; j < GlobalParam.deliveryUnitList.length; j++) {
+//         if (unitList[i] == GlobalParam.deliveryUnitList[j]['cUOMNM']) {
+//           double total =
+//               double.parse(GlobalParam.deliveryUnitList[j]['iTOTAL']);
+//           double prince =
+//               double.parse(GlobalParam.deliveryUnitList[j]['iPRICE']);
+//           num++;
+//           numItem += total / prince;
+//         }
+//       }
+//       totalItem += numItem;
+//       var text = {
+//         "unitName": unitList[i],
+//         "qty": num,
+//         "sumItem": numItem.toStringAsFixed(0)
+//       };
+//       listItem.add(text);
+//     }
 
-    receipt01.addLeftRightText(
-      'รวมทั้งหมด',
-      '${formatNum.format(double.parse(GlobalParam.deliveryStoreSum.iTOTAL!))}',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-    );
+//     receipt01.addLeftRightText(
+//       'รวมทั้งหมด',
+//       '${formatNum.format(double.parse(GlobalParam.deliveryStoreSum.iTOTAL!))}',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//     );
 
-    receipt01.addLeftRightText(
-      'รวม ${GlobalParam.deliveryStoreSum.iitems} รายการ',
-      'จำนวน  ${totalItem.toStringAsFixed(0)} ชิ้น',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-    );
+//     receipt01.addLeftRightText(
+//       'รวม ${GlobalParam.deliveryStoreSum.iitems} รายการ',
+//       'จำนวน  ${totalItem.toStringAsFixed(0)} ชิ้น',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//     );
 
-    receipt01.addLeftRightText(
-      'ได้ตรวจรับสิ่งของและชำระเงินถูกต้องเรียบร้อยแล้ว',
-      '',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-    );
-    receipt01.addLeftRightText(
-      'ผู้ส่งของ/รับเงิน',
-      '',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-    );
-    receipt01.addText('',
-        size: ReceiptTextSizeType.medium, style: ReceiptTextStyleType.bold);
-    receipt01.addText('ลงชื่อ______________________',
-        size: ReceiptTextSizeType.medium, style: ReceiptTextStyleType.bold);
+//     receipt01.addLeftRightText(
+//       'ได้ตรวจรับสิ่งของและชำระเงินถูกต้องเรียบร้อยแล้ว',
+//       '',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//     );
+//     receipt01.addLeftRightText(
+//       'ผู้ส่งของ/รับเงิน',
+//       '',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//     );
+//     receipt01.addText('',
+//         size: ReceiptTextSizeType.medium, style: ReceiptTextStyleType.bold);
+//     receipt01.addText('ลงชื่อ______________________',
+//         size: ReceiptTextSizeType.medium, style: ReceiptTextStyleType.bold);
 
-    await _bluePrintPos.printReceiptText(receipt01, feedCount: 1).then(
-        (value) => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (comtext) => SupPay())));
-  }
+//     await _bluePrintPos.printReceiptText(receipt01, feedCount: 1).then(
+//         (value) => Navigator.of(context)
+//             .push(MaterialPageRoute(builder: (comtext) => SupPay())));
+//   }
 
-  Future<void> _onPrintReceipt() async {
-    final ReceiptSectionText receipt01 = ReceiptSectionText();
-    receipt01.addText(
-      'พิมพ์ทดสอบ',
-      size: ReceiptTextSizeType.large,
-      style: ReceiptTextStyleType.bold,
-    );
+//   Future<void> _onPrintReceipt() async {
+//     final ReceiptSectionText receipt01 = ReceiptSectionText();
+//     receipt01.addText(
+//       'พิมพ์ทดสอบ',
+//       size: ReceiptTextSizeType.large,
+//       style: ReceiptTextStyleType.bold,
+//     );
 
-    receipt01.addLeftRightText(
-      '${GlobalParam.selectDevice!.name}',
-      '',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-    );
-    receipt01.addLeftRightText(
-      '${GlobalParam.selectDevice!.address}',
-      '',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-    );
-    receipt01.addLeftRightText(
-      'วันที่ ${dateNewF}',
-      'เวลา $timeNow',
-      leftSize: ReceiptTextSizeType.medium,
-      leftStyle: ReceiptTextStyleType.bold,
-    );
+//     receipt01.addLeftRightText(
+//       '${GlobalParam.selectDevice!.name}',
+//       '',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//     );
+//     receipt01.addLeftRightText(
+//       '${GlobalParam.selectDevice!.address}',
+//       '',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//     );
+//     receipt01.addLeftRightText(
+//       'วันที่ ${dateNewF}',
+//       'เวลา $timeNow',
+//       leftSize: ReceiptTextSizeType.medium,
+//       leftStyle: ReceiptTextStyleType.bold,
+//     );
 
-    await _bluePrintPos.printReceiptText(receipt01, feedCount: 1);
-  }
-}
+//     await _bluePrintPos.printReceiptText(receipt01, feedCount: 1);
+//   }
+// }
 
-class RangeTextInputFormatter extends TextInputFormatter {
-  final int? min;
-  final int? max;
+// class RangeTextInputFormatter extends TextInputFormatter {
+//   final int? min;
+//   final int? max;
 
-  RangeTextInputFormatter({this.min, this.max});
+//   RangeTextInputFormatter({this.min, this.max});
 
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-    TextEditingValue maxValue = TextEditingValue(text: '$max');
-    print('$min $max');
-    if (newValue.text.isEmpty) {
-      return newValue;
-    }
+//   @override
+//   TextEditingValue formatEditUpdate(
+//       TextEditingValue oldValue, TextEditingValue newValue) {
+//     TextEditingValue maxValue = TextEditingValue(text: '$max');
+//     print('$min $max');
+//     if (newValue.text.isEmpty) {
+//       return newValue;
+//     }
 
-    int? parsedValue = int.tryParse(newValue.text);
+//     int? parsedValue = int.tryParse(newValue.text);
 
-    if (parsedValue == null || parsedValue < min! || parsedValue > max!) {
-      // if (parsedValue > max) {
-      //   return maxValue;
-      // } else {
-      //   return oldValue;
-      // }
-      return oldValue;
-    }
+//     if (parsedValue == null || parsedValue < min! || parsedValue > max!) {
+//       // if (parsedValue > max) {
+//       //   return maxValue;
+//       // } else {
+//       //   return oldValue;
+//       // }
+//       return oldValue;
+//     }
 
-    return newValue;
-  }
+//     return newValue;
+//   }
 }

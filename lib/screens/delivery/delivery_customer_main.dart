@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:vansale/screens/delivery/delivery_show_map.dart';
