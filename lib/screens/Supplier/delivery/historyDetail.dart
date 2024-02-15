@@ -51,7 +51,7 @@ class _HistoryDetailState extends State<HistoryDetail> {
       id: 3,
       name: "สินค้า 3",
       uom1: "สต็อก",
-      uom2:"15-0-0",
+      uom2: "15-0-0",
       uom3: "1 ชิ้น",
       promo: '',
       price: 100.00,
@@ -273,16 +273,17 @@ class _HistoryDetailState extends State<HistoryDetail> {
                       ),
                     );
                   },
-                  icon1: Icon(
+                  icon1: const Icon(
                     LineAwesomeIcons.boxes,
                     color: Colors.green,
                     size: 25.0,
                   ),
-                  icon2: Icon(
+                  icon2: const Icon(
                     LineAwesomeIcons.check_circle,
                     color: Colors.green,
                     size: 25.0,
                   ),
+                  item: 0,
                 )),
           ],
         ),

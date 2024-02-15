@@ -10,8 +10,7 @@ import 'package:vansale/screens/googleMap/mapHome.dart';
 
 class DesMapFooter extends StatefulWidget {
   final StoreModel? store;
-  const DesMapFooter({Key? key, this.store})
-      : super(key: key);
+  const DesMapFooter({Key? key, this.store}) : super(key: key);
 
   @override
   State<DesMapFooter> createState() => _DesMapFooterState();
@@ -429,11 +428,12 @@ class _DesMapFooterState extends State<DesMapFooter> {
                     // Navigator.of(context).pop();
 
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => CurrentLocation()
+                        builder: (context) =>
+                            const CurrentLocation(openMap: false)
                         //  DestinationNavigated(),
                         ));
                   },
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [

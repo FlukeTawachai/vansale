@@ -494,7 +494,9 @@ class _GridMainSupplierState extends State<GridMainSupplier> {
         return GetBadProducts("T008");
         break;
       case "013":
-        return CustomerHome();
+        return const CustomerHome(
+          key: null,
+        );
         break;
       case "014":
         return Order(widget.typeMenuCode);

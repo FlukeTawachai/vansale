@@ -21,9 +21,9 @@ class CustomerHistoryProduct extends StatefulWidget {
 
 class _CustomerHistoryProductState extends State<CustomerHistoryProduct> {
   // ignore: deprecated_member_use
-  List<TextEditingController> incleaseCon = new List();
+  List<TextEditingController> incleaseCon = [];
   // ignore: deprecated_member_use
-  List<TextEditingController> decleaseCon = new List();
+  List<TextEditingController> decleaseCon = [];
 
   @override
   void initState() {

@@ -102,7 +102,10 @@ class _RefuelCheckInState extends State<RefuelCheckIn> {
                 ),
               ),
 
-              Expanded(child: RefuelMapCheckIn())
+              Expanded(
+                  child: RefuelMapCheckIn(
+                openMap: null,
+              ))
             ],
           ),
         ),

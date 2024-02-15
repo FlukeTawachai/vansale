@@ -40,9 +40,9 @@ class _CustomerPurchaseOrderEditState extends State<CustomerPurchaseOrderEdit> {
   var searchData = '';
   var formatNum = new NumberFormat("#,###.##", "en_US");
   // ignore: deprecated_member_use
-  List<TextEditingController> incleaseCon = new List();
+  List<TextEditingController> incleaseCon = [];
   // ignore: deprecated_member_use
-  List<TextEditingController> decleaseCon = new List();
+  List<TextEditingController> decleaseCon = [];
 
   List<QueryPodtResp> orderList = [];
   @override

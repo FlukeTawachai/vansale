@@ -48,7 +48,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
   String dateNewF = '';
   final BluePrintPos _bluePrintPos = BluePrintPos.instance;
   List<BlueDevice> _blueDevices = <BlueDevice>[];
-  late BlueDevice _selectedDevice;
+  late BlueDevice? _selectedDevice;
   bool _isLoading = false;
   int _loadingAtIndex = -1;
   bool pdfSave = false;
@@ -1837,6 +1837,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                 ]),
               ])));
             }
+            return pw.Container();
           }
 
           pw.Widget incompHeader() {
@@ -1938,6 +1939,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                         ]))
                       : pw.Container());
             }
+            return pw.Container();
           }
 
           pw.Widget cancelHeader() {
@@ -2039,6 +2041,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                         ]))
                       : pw.Container());
             }
+            return pw.Container();
           }
 
           pw.Widget lossHeader() {
@@ -2131,6 +2134,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                         ]))
                       : pw.Container());
             }
+            return pw.Container();
           }
 
           pw.Widget basketHeader() {
@@ -2210,6 +2214,7 @@ class _BluPrintPOSState extends State<BluPrintPOS> {
                         ]))
                       : pw.Container());
             }
+            return pw.Container();
           }
 
           pw.Widget dateOfBill() {
