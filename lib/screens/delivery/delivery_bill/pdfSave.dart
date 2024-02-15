@@ -203,7 +203,7 @@ Future<void> genenratePdf() async {
           ));
         }
 
-        pw.Widget productList() {
+        pw.Widget? productList() {
           for (int index = 0;
               index < GlobalParam.deliveryBasketReq.length;
               index++) {
@@ -295,7 +295,7 @@ Future<void> genenratePdf() async {
           ));
         }
 
-        pw.Widget incompList() {
+        pw.Widget? incompList() {
           for (int index = 0;
               index < GlobalParam.deliveryBasketReq.length;
               index++) {
@@ -388,7 +388,7 @@ Future<void> genenratePdf() async {
           ));
         }
 
-        pw.Widget cancelList() {
+        pw.Widget? cancelList() {
           for (int index = 0;
               index < GlobalParam.deliveryBasketReq.length;
               index++) {

@@ -217,7 +217,7 @@ class _DeliveryAddProductState extends State<DeliveryAddProduct> {
                       child: InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => FilterPage()));
+                              builder: (context) => FilterPage(pageNumber: '',)));
                         },
                         child: Container(
                           color: Colors.black12,

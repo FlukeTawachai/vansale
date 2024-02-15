@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:vansale/screens/delivery/delivery_show_map.dart';
@@ -24,7 +25,8 @@ class _NewSupplierMainState extends State<NewSupplierMain> {
   TextEditingController line = TextEditingController();
   TextEditingController credit = TextEditingController();
   TextEditingController limit = TextEditingController();
-  TextEditingController storeTax = TextEditingController();
+  MaskedTextController storeTax =
+      MaskedTextController(mask: '0-0000-00000-00-0');
 
   String dropdownValue = 'ร้านค้าส่ง';
   String dropdownGroup = 'เงินสด';

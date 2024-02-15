@@ -58,7 +58,6 @@ dependencies:
   flutter_easyloading: any
   auto_size_text: any
   smooth_page_indicator: any
-  mask_text_input_formatter: any
   search_page: any
   google_maps_flutter: any
   flutter_polyline_points: any
@@ -79,6 +78,7 @@ dependencies:
   flutter_esc_pos_network: ^1.0.1
   charset_converter: ^2.1.2
   card_swiper: ^3.0.1
+  flutter_masked_text2: ^0.9.1
 
 dev_dependencies:
   flutter_test:

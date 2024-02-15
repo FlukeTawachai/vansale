@@ -115,7 +115,7 @@ class _GridMenuStoreState extends State<GridMenuStore> {
       case "ST002":
         return GetGoodProductsCheck('new', 0, () {
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (comtext) => ConfirmPages(GlobalParam.typeMenuCode, "รับสินค้าดี")));
+              builder: (comtext) => ConfirmPages(GlobalParam.typeMenuCode!, "รับสินค้าดี")));
           Future.delayed(Duration(seconds: delay.getTimeDelay()), () {
             Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
