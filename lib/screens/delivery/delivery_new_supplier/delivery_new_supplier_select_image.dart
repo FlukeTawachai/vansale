@@ -72,6 +72,7 @@ class _DeliveryNewSupplierSelectImageState
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => ImageStoreList(
                           request: widget.request,
+                          key: null,
                         )));
                 // Navigator.of(context).push(MaterialPageRoute(
                 //     builder: (BuildContext context) =>

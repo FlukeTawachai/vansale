@@ -16,7 +16,7 @@ import 'package:vansale/screens/home/home.dart';
 
 class RefuelMapCheckIn extends StatefulWidget {
   RefuelMapCheckIn({Key? key, required this.openMap}) : super(key: key);
-  final bool openMap;
+  final bool? openMap;
 
   @override
   _RefuelMapCheckInState createState() => _RefuelMapCheckInState();

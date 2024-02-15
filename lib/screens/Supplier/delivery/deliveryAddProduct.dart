@@ -217,7 +217,9 @@ class _DeliveryAddProductState extends State<DeliveryAddProduct> {
                       child: InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => FilterPage(pageNumber: '',)));
+                              builder: (context) => FilterPage(
+                                    pageNumber: '',
+                                  )));
                         },
                         child: Container(
                           color: Colors.black12,
@@ -243,9 +245,7 @@ class _DeliveryAddProductState extends State<DeliveryAddProduct> {
               child: ListView.builder(
                   itemCount: virtualProduct.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      child: DeliveryBadProductCard(),
-                    );
+                    return const DeliveryBadProductCard();
                   }),
             ),
           ],
@@ -265,11 +265,14 @@ class _DeliveryAddProductState extends State<DeliveryAddProduct> {
                 (route) => false);
           });
         },
-        icon1: Icon(
+        icon1: const Icon(
           LineAwesomeIcons.check_circle,
           color: Colors.green,
           size: 25.0,
         ),
+        item: 0,
+        navigated2: () {},
+        icon2: null,
       ),
     );
   }

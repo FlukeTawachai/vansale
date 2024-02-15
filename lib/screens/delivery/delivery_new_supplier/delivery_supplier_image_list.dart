@@ -6,8 +6,8 @@ import 'package:vansale/api/class/request/customer/customerrequest.dart';
 import 'package:vansale/screens/delivery/delivery_new_supplier/delivery_new_supplier_select_image.dart';
 
 class ImageStoreList extends StatefulWidget {
-  final CustomerRequest request;
-  const ImageStoreList({required Key key, required this.request})
+  final CustomerRequest? request;
+  const ImageStoreList({required Key? key, required this.request})
       : super(key: key);
 
   @override
@@ -49,7 +49,7 @@ class _ImageStoreListState extends State<ImageStoreList> {
                             builder: (context) =>
                                 DeliveryNewSupplierSelectImage(
                                     GlobalParam.typeMenuCode!,
-                                    request: widget.request,
+                                    request: widget.request!,
                                     subMenu: '')));
                       },
                       child: Image.file(

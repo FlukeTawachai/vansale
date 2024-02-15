@@ -9,7 +9,7 @@ class DeliveryFooter extends StatelessWidget {
   final Function navigated1;
   final Function navigated2;
   final Icon icon1;
-  final Icon icon2;
+  final Icon? icon2;
   final String title1;
   final String title2;
   final double item;

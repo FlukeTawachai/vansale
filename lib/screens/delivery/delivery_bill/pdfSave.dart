@@ -203,7 +203,7 @@ Future<void> genenratePdf() async {
           ));
         }
 
-        pw.Widget? productList() {
+        pw.Widget productList() {
           for (int index = 0;
               index < GlobalParam.deliveryBasketReq.length;
               index++) {
@@ -272,6 +272,7 @@ Future<void> genenratePdf() async {
               ]),
             ])));
           }
+          return pw.Container();
         }
 
         pw.Widget incompHeader() {
@@ -295,7 +296,7 @@ Future<void> genenratePdf() async {
           ));
         }
 
-        pw.Widget? incompList() {
+        pw.Widget incompList() {
           for (int index = 0;
               index < GlobalParam.deliveryBasketReq.length;
               index++) {
@@ -365,6 +366,7 @@ Future<void> genenratePdf() async {
                       ]))
                     : pw.Container());
           }
+          return pw.Container();
         }
 
         pw.Widget cancelHeader() {
@@ -388,7 +390,7 @@ Future<void> genenratePdf() async {
           ));
         }
 
-        pw.Widget? cancelList() {
+        pw.Widget cancelList() {
           for (int index = 0;
               index < GlobalParam.deliveryBasketReq.length;
               index++) {
@@ -458,6 +460,7 @@ Future<void> genenratePdf() async {
                       ]))
                     : pw.Container());
           }
+          return pw.Container();
         }
 
         pw.Widget lossHeader() {
@@ -551,6 +554,7 @@ Future<void> genenratePdf() async {
                       ]))
                     : pw.Container());
           }
+          return pw.Container();
         }
 
         pw.Widget basketHeader() {
@@ -584,7 +588,7 @@ Future<void> genenratePdf() async {
               if (GlobalParam.deliveryBasketList[i].cBASKCD ==
                   GlobalParam.deliveryBasketReq[index].cBASKCD) {
                 basName = GlobalParam.deliveryBasketList[i].cBASKNM ?? '';
-                basTotal = (GlobalParam.deliveryBasketReq[index].iQTY *
+                basTotal = (GlobalParam.deliveryBasketReq[index].iQTY! *
                     double.parse(
                         GlobalParam.deliveryBasketList[i].iPRICE ?? '0'))!;
               }
@@ -625,6 +629,7 @@ Future<void> genenratePdf() async {
                       ]))
                     : pw.Container());
           }
+          return pw.Container();
         }
 
         return <pw.Widget>[
