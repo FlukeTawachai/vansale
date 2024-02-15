@@ -8,15 +8,14 @@ import 'package:intl/intl.dart';
 import 'package:vansale/api/allApiProxyMobile.dart';
 import 'package:vansale/api/class/globalparam.dart';
 import 'package:vansale/api/class/request/mobile/PayReq.dart';
-import 'package:vansale/screens/Pay/cashCheck_components.dart';
 import 'package:vansale/api/class/request/mobile/addStockCardReq.dart';
 import 'package:vansale/screens/Supplier/PayForBasketReturn/cashCheck_components_BkReturn.dart';
 import 'package:vansale/screens/Supplier/PayForBasketReturn/storeName_for_basketReturn.dart';
 
 class CashCheck extends StatefulWidget {
-  final VoidCallback navigated;
+  final VoidCallback? navigated;
   const CashCheck({
-    Key key,
+    Key? key,
     this.navigated,
   }) : super(key: key);
 
@@ -178,9 +177,9 @@ class _CashCheckState extends State<CashCheck> {
                             cCONTACTCD: GlobalParam.deliveryStoreSum.cCUSTCD,
                             iDEBIT: GlobalParam.deliveryPayReq.iDEBIT,
                             iCREDIT: (double.tryParse(
-                                        GlobalParam.deliveryStoreSum.iTOTAL) ??
+                                        GlobalParam.deliveryStoreSum.iTOTAL!) ??
                                     0.0) -
-                                GlobalParam.basketReturn['basketReturnPrice'],
+                                GlobalParam.basketReturn['basketReturnPrice']!,
                             cCREABY: GlobalParam.userID,
                             cRECTYPE: "CQ",
                             cBANK: GlobalParam.deliveryCashCheck['bank'],
@@ -189,7 +188,7 @@ class _CashCheckState extends State<CashCheck> {
                             cCQDT: GlobalParam.deliveryCashCheck['checkDate']);
                         print(datas.toJson());
                         payMent(datas);
-                        widget.navigated();
+                        widget.navigated!();
                       }
                     }
                   }
@@ -264,14 +263,14 @@ class _CashCheckState extends State<CashCheck> {
 
         if (GlobalParam.deliveryPodtList[i].iINCOMPRO != 0) {
           String cUOMCD = '';
-          if (double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cSUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cSUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cMUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cMUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cLUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cLUOMCD!;
           }
           StockCardReq inCom = StockCardReq(
               cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
@@ -302,14 +301,14 @@ class _CashCheckState extends State<CashCheck> {
           //   print(stockCardReqList[i].cLOTNO);
           // }
           String cUOMCD = '';
-          if (double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cSUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cSUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cMUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cMUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cLUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cLUOMCD!;
           }
           StockCardReq cancel = StockCardReq(
               cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
@@ -330,14 +329,14 @@ class _CashCheckState extends State<CashCheck> {
       for (int i = 0; i < GlobalParam.deliveryHisProduct.length; i++) {
         if (GlobalParam.deliveryHisProduct[i].iINCOMPRO != 0) {
           String cUOMCD = '';
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryHisProduct[i].cSUOMCD;
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryHisProduct[i].cSUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iMSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryHisProduct[i].cMUOMCD;
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iMSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryHisProduct[i].cMUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iLSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryHisProduct[i].cLUOMCD;
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iLSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryHisProduct[i].cLUOMCD!;
           }
           StockCardReq reGood = StockCardReq(
               cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
@@ -356,14 +355,14 @@ class _CashCheckState extends State<CashCheck> {
 
         if (GlobalParam.deliveryHisProduct[i].iLOSSPRO != 0) {
           String cUOMCD = '';
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryHisProduct[i].cSUOMCD;
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iSSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryHisProduct[i].cSUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iMSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryHisProduct[i].cMUOMCD;
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iMSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryHisProduct[i].cMUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryHisProduct[i].iLSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryHisProduct[i].cLUOMCD;
+          if (double.parse(GlobalParam.deliveryHisProduct[i].iLSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryHisProduct[i].cLUOMCD!;
           }
           StockCardReq reBad = StockCardReq(
               cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
@@ -483,7 +482,7 @@ class _CashCheckState extends State<CashCheck> {
           _dateHD(),
           Container(
             child: Text(
-              GlobalParam.deliveryStoreSum.cPOCD,
+              GlobalParam.deliveryStoreSum.cPOCD!,
               style: TextStyle(
                 color: Color.fromRGBO(130, 145, 169, 1),
                 fontFamily: 'Prompt',

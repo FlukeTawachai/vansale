@@ -1,9 +1,9 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:vansale/screens/Supplier/delivery/widgets/unitSlider.dart';
 
 class SliderCard extends StatelessWidget {
-  const SliderCard({Key key}) : super(key: key);
+  const SliderCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

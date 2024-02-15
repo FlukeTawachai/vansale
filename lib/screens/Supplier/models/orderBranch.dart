@@ -11,10 +11,10 @@ class OrderBranchFields {
 }
 
 class OrderBranchModel {
-  final int id;
-  final String date;
-  final String branchName;
-  final double amount;
+  final int? id;
+  final String? date;
+  final String? branchName;
+  final double? amount;
 
   OrderBranchModel({this.id, this.date, this.branchName, this.amount});
 
@@ -33,10 +33,10 @@ class OrderBranchModel {
 
   Map<String, Object> toMap() {
     return {
-      'id': id,
-      'date': date,
-      'branchName': branchName,
-      'amount': amount,
+      'id': id!,
+      'date': date!,
+      'branchName': branchName!,
+      'amount': amount!,
     };
   }
 }

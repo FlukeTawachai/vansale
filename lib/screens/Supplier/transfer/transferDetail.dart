@@ -6,8 +6,8 @@ import 'package:vansale/screens/Supplier/transfer/transferDistance.dart';
 import 'package:vansale/screens/home/home.dart';
 
 class TransferDetail extends StatefulWidget {
-  final VoidCallback navigated;
-  const TransferDetail({Key key, this.navigated}) : super(key: key);
+  final VoidCallback? navigated;
+  const TransferDetail({Key? key, this.navigated}) : super(key: key);
 
   @override
   State<TransferDetail> createState() => _TransferDetailState();
@@ -197,7 +197,7 @@ class _TransferDetailState extends State<TransferDetail> {
                           Container(
                             child: InkWell(
                                 onTap: () {
-                                  widget.navigated();
+                                  widget.navigated!();
 
                                   // Navigator.of(context).push(MaterialPageRoute(
                                   //     builder: (context) =>

@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -9,9 +9,9 @@ import 'package:vansale/api/class/utility.dart';
 import 'package:vansale/screens/delivery/delivery_store/delivery_store_list_basket.dart';
 
 class SaleStoreListMainMenuHD extends StatefulWidget {
-  final String storeName;
+  final String? storeName;
 
-  const SaleStoreListMainMenuHD({Key key, this.storeName}) : super(key: key);
+  const SaleStoreListMainMenuHD({Key? key, this.storeName}) : super(key: key);
 
   @override
   State<SaleStoreListMainMenuHD> createState() =>
@@ -84,7 +84,7 @@ class _SaleStoreListMainMenuHDState extends State<SaleStoreListMainMenuHD> {
                         Container(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            GlobalParam.deliverySelectStore.cCUSTNM,
+                            GlobalParam.deliverySelectStore.cCUSTNM!,
                             style: TextStyle(
                               fontFamily: 'Prompt',
                               color: Colors.black54,
@@ -108,7 +108,7 @@ class _SaleStoreListMainMenuHDState extends State<SaleStoreListMainMenuHD> {
                         Container(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            GlobalParam.deliverySelectStore.cCONTACTTEL,
+                            GlobalParam.deliverySelectStore.cCONTACTTEL!,
                             style: TextStyle(
                               fontFamily: 'Prompt',
                               color: Colors.black54,

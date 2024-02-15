@@ -13,7 +13,7 @@ import 'package:vansale/screens/home/home.dart';
 
 class TranferSort extends StatefulWidget {
   const TranferSort({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -137,7 +137,7 @@ class _TranferSortState extends State<TranferSort> {
                               children: [
                                 Container(
                                   width: widthScreen * 0.5,
-                                  child: Text(storeList[index].cCUSTNM,
+                                  child: Text(storeList[index].cCUSTNM!,
                                       style: TextStyle(
                                         fontFamily: "Prompt",
                                         fontSize: 16,
@@ -165,10 +165,10 @@ class _TranferSortState extends State<TranferSort> {
                           Spacer(),
                           IconButton(
                             onPressed: () {
-                              GlobalParam.updateCustomerID = storeList[index].cCUSTCD;
+                              GlobalParam.updateCustomerID = storeList[index].cCUSTCD!;
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => DeliveryNewSupplierMain(
-                                      GlobalParam.typeMenuCode)));
+                                      GlobalParam.typeMenuCode!)));
                             },
                             icon: Icon(
                               Icons.edit,

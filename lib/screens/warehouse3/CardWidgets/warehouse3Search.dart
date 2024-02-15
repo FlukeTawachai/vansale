@@ -11,10 +11,10 @@ import 'package:vansale/screens/delivery/delivery_store/delivery_store_shipping/
 import 'package:vansale/screens/warehouse3/warehouse3_prepare_order/warehouse3_list_stores.dart';
 
 class Warehouse3SearchCard extends StatefulWidget {
-  final String cRTECD;
-  final String cRTENM;
-  final String cGRPCD;
-  const Warehouse3SearchCard({Key key, this.cRTECD, this.cRTENM, this.cGRPCD})
+  final String? cRTECD;
+  final String? cRTENM;
+  final String? cGRPCD;
+  const Warehouse3SearchCard({Key? key, this.cRTECD, this.cRTENM, this.cGRPCD})
       : super(key: key);
 
   @override
@@ -24,13 +24,13 @@ class Warehouse3SearchCard extends StatefulWidget {
 class _Warehouse3SearchCardState extends State<Warehouse3SearchCard> {
   List<RouteCusResp> routeCusList = [];
   List<RouteCusResp> routeCusYstatusList = [];
-  Future<int> storeNumber;
+  Future<int>? storeNumber;
 
   @override
   void initState() {
     routeCusList.clear();
     setState(() {
-      storeNumber = getRouteTransfers(widget.cRTECD);
+      storeNumber = getRouteTransfers(widget.cRTECD!);
     });
     super.initState();
   }
@@ -58,10 +58,10 @@ class _Warehouse3SearchCardState extends State<Warehouse3SearchCard> {
                             MaterialPageRoute(
                               builder: (BuildContext context) =>
                                   Warehouse3StoreList(
-                                      GlobalParam.typeMenuCode,
-                                      widget.cRTENM,
-                                      widget.cRTECD,
-                                      widget.cGRPCD),
+                                      GlobalParam.typeMenuCode!,
+                                      widget.cRTENM!,
+                                      widget.cRTECD!,
+                                      widget.cGRPCD!),
                             ),
                           );
                         } else if (GlobalParam.subMenuCode == "003") {
@@ -70,7 +70,7 @@ class _Warehouse3SearchCardState extends State<Warehouse3SearchCard> {
                             MaterialPageRoute(
                               builder: (BuildContext context) =>
                                   DeliveryStoreGetBadProduct(
-                                      GlobalParam.typeMenuCode, widget.cRTENM),
+                                      GlobalParam.typeMenuCode!, widget.cRTENM!),
                             ),
                           );
                         }
@@ -122,7 +122,7 @@ class _Warehouse3SearchCardState extends State<Warehouse3SearchCard> {
                                 Spacer(),
                                 Container(
                                   child: Text(
-                                    'รอจัด ${allStore.data - routeCusYstatusList.length} ร้าน',
+                                    'รอจัด ${allStore.data! - routeCusYstatusList.length} ร้าน',
                                     style: TextStyle(
                                         fontSize: 16, color: Colors.grey),
                                   ),
@@ -143,7 +143,7 @@ class _Warehouse3SearchCardState extends State<Warehouse3SearchCard> {
         });
   }
 
-  Future<int> getRouteTransfers(String id) async {
+  getRouteTransfers(String id) async {
     if ((id != null) && (id != '')) {
       try {
         AllApiProxyMobile proxy = AllApiProxyMobile();
@@ -151,8 +151,8 @@ class _Warehouse3SearchCardState extends State<Warehouse3SearchCard> {
         var outputDate = outputFormat.format(new DateTime.now());
         // print(outputDate);
 
-        var result = await proxy.getRouteTransfer(id, outputDate, widget.cGRPCD,
-            GlobalParam.VEHICLE['cBRANCD'], false);
+        var result = await proxy.getRouteTransfer(id, outputDate, widget.cGRPCD!,
+            GlobalParam.VEHICLE['cBRANCD']!, false);
 
         // print(id);
         // print(outputDate);

@@ -5,7 +5,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:vansale/list_all.dart/lst_basket.dart';
 
 class StoreBasket extends StatefulWidget {
-  const StoreBasket({ Key key }) : super(key: key);
+  const StoreBasket({ Key? key }) : super(key: key);
 
   @override
   State<StoreBasket> createState() => _StoreBasketState();

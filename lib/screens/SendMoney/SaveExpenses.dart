@@ -301,10 +301,21 @@ class _SaveExpensesState extends State<SaveExpenses> {
                         color: HexColor('#00cb39'),
                       ),
                     ),
-                    Container(
-                      //alignment: Alignment.centerLeft,
-                      // ignore: deprecated_member_use
-                      child: FlatButton(
+                    InkWell(
+                      onTap: () {
+                        setState(
+                          () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => SendMoney(),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      child: Container(
+                        //alignment: Alignment.centerLeft,
+                        // ignore: deprecated_member_use
                         child: Text(
                           'บันทึกค่าใช้จ่าย',
                           style: TextStyle(
@@ -314,17 +325,6 @@ class _SaveExpensesState extends State<SaveExpenses> {
                             fontFamily: 'Prompt',
                           ),
                         ),
-                        onPressed: () {
-                          setState(
-                            () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => SendMoney(),
-                                ),
-                              );
-                            },
-                          );
-                        },
                       ),
                     ),
                   ],

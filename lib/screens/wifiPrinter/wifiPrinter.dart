@@ -4,7 +4,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:vansale/screens/wifiPrinter/printPage.dart';
 
 class WifiPrinter extends StatefulWidget {
-  const WifiPrinter({Key key}) : super(key: key);
+  const WifiPrinter({Key? key}) : super(key: key);
 
   @override
   State<WifiPrinter> createState() => _WifiPrinterState();

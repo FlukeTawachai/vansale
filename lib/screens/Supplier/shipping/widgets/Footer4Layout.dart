@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:vansale/function/substring_price.dart';
 
 class Footer4Layout extends StatelessWidget {
-  final String typeMenuCode;
-  final String layout1Title;
-  final String layout1Paramitor;
-  final String layout2Title;
-  final String layout2Paramitor;
-  final String layout3Title;
-  final String layout3Paramitor;
-  final String titleButton;
-  final IconData iconButton;
-  final VoidCallback navigated;
+  final String? typeMenuCode;
+  final String? layout1Title;
+  final String? layout1Paramitor;
+  final String? layout2Title;
+  final String? layout2Paramitor;
+  final String? layout3Title;
+  final String? layout3Paramitor;
+  final String? titleButton;
+  final IconData? iconButton;
+  final VoidCallback? navigated;
 
   const Footer4Layout({
-    Key key,
+    Key? key,
     this.typeMenuCode,
     this.layout1Title,
     this.layout1Paramitor,
@@ -55,7 +55,7 @@ class Footer4Layout extends StatelessWidget {
                 Expanded(
                   child: Container(
                     child: Text(
-                      layout1Title,
+                      layout1Title!,
                       style: TextStyle(
                         fontSize: 16.0,
                         color: Colors.black,
@@ -69,7 +69,7 @@ class Footer4Layout extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      layout1Paramitor,
+                      layout1Paramitor!,
                       style: TextStyle(
                         fontSize: 16.0,
                         fontFamily: 'Prompt',
@@ -89,7 +89,7 @@ class Footer4Layout extends StatelessWidget {
                 Expanded(
                   child: Container(
                     child: Text(
-                      layout2Title,
+                      layout2Title!,
                       style: TextStyle(
                         fontSize: 16.0,
                         color: Colors.black,
@@ -103,7 +103,7 @@ class Footer4Layout extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      layout2Paramitor,
+                      layout2Paramitor!,
                       style: TextStyle(
                         fontSize: 16.0,
                         fontFamily: 'Prompt',
@@ -121,7 +121,7 @@ class Footer4Layout extends StatelessWidget {
                 Expanded(
                   child: Container(
                     child: Text(
-                      layout3Title,
+                      layout3Title!,
                       style: TextStyle(
                         fontSize: 18.0,
                         color: Colors.black,
@@ -164,7 +164,7 @@ class Footer4Layout extends StatelessWidget {
           ),
           TextButton(
               onPressed: () {
-                navigated();
+                navigated!();
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -176,7 +176,7 @@ class Footer4Layout extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      titleButton,
+                      titleButton!,
                       style: TextStyle(
                         fontSize: 18.0,
                         color: Colors.green,

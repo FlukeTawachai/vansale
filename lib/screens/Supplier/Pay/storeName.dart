@@ -58,7 +58,7 @@ class Details_Main extends StatelessWidget {
                           width: widthScreen * 0.6,
                           // height: 48,
                           child: Text(
-                            GlobalParam.deliverySelectStore.cCUSTNM,
+                            GlobalParam.deliverySelectStore.cCUSTNM!,
                             style: TextStyle(
                               fontSize: 16.0,
                               color: Colors.black,
@@ -145,7 +145,7 @@ class Details_Main extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            GlobalParam.deliverySelectStore.cCUSTBNM,
+            GlobalParam.deliverySelectStore.cCUSTBNM!,
             style: TextStyle(
               fontSize: 16.0,
               color: Colors.black,
@@ -218,7 +218,7 @@ class Details_Main extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            GlobalParam.deliveryStoreSum.cPOCD,
+            GlobalParam.deliveryStoreSum.cPOCD!,
             style: TextStyle(
               fontSize: 14.0,
               color: Colors.grey,
@@ -317,14 +317,14 @@ class Details_Main_Pay extends StatelessWidget {
       var qty = 0.0;
       var price = 0.0;
       qty = double.parse('${GlobalParam.deliveryProIncom[i].iINCOMPRO}');
-      if (double.parse(GlobalParam.deliveryProIncom[i].iSSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryProIncom[i].iSUNITPRICE);
+      if (double.parse(GlobalParam.deliveryProIncom[i].iSSIZEQTY!) > 0) {
+        price = double.parse(GlobalParam.deliveryProIncom[i].iSUNITPRICE!);
       }
-      if (double.parse(GlobalParam.deliveryProIncom[i].iMSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryProIncom[i].iMUNITPRICE);
+      if (double.parse(GlobalParam.deliveryProIncom[i].iMSIZEQTY!) > 0) {
+        price = double.parse(GlobalParam.deliveryProIncom[i].iMUNITPRICE!);
       }
-      if (double.parse(GlobalParam.deliveryProIncom[i].iLSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryProIncom[i].iLUNITPRICE);
+      if (double.parse(GlobalParam.deliveryProIncom[i].iLSIZEQTY!) > 0) {
+        price = double.parse(GlobalParam.deliveryProIncom[i].iLUNITPRICE!);
       }
       totalIncom += qty * price;
     }
@@ -333,14 +333,14 @@ class Details_Main_Pay extends StatelessWidget {
       var qty = 0.0;
       var price = 0.0;
       qty = double.parse('${GlobalParam.deliveryPodCancel[i].iCANCLEPRO}');
-      if (double.parse(GlobalParam.deliveryPodCancel[i].iSSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryPodCancel[i].iSUNITPRICE);
+      if (double.parse(GlobalParam.deliveryPodCancel[i].iSSIZEQTY!) > 0) {
+        price = double.parse(GlobalParam.deliveryPodCancel[i].iSUNITPRICE!);
       }
-      if (double.parse(GlobalParam.deliveryPodCancel[i].iMSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryPodCancel[i].iMUNITPRICE);
+      if (double.parse(GlobalParam.deliveryPodCancel[i].iMSIZEQTY!) > 0) {
+        price = double.parse(GlobalParam.deliveryPodCancel[i].iMUNITPRICE!);
       }
-      if (double.parse(GlobalParam.deliveryPodCancel[i].iLSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryPodCancel[i].iLUNITPRICE);
+      if (double.parse(GlobalParam.deliveryPodCancel[i].iLSIZEQTY!) > 0) {
+        price = double.parse(GlobalParam.deliveryPodCancel[i].iLUNITPRICE!);
       }
       totalCancel += qty * price;
     }
@@ -349,14 +349,14 @@ class Details_Main_Pay extends StatelessWidget {
       var qty = 0.0;
       var price = 0.0;
       qty = double.parse('${GlobalParam.deliveryReturnGoodPro[i].iCANCLEPRO}');
-      if (double.parse(GlobalParam.deliveryReturnGoodPro[i].iSSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryReturnGoodPro[i].iSUNITPRICE);
+      if (double.parse(GlobalParam.deliveryReturnGoodPro[i].iSSIZEQTY!) > 0) {
+        price = double.parse(GlobalParam.deliveryReturnGoodPro[i].iSUNITPRICE!);
       }
-      if (double.parse(GlobalParam.deliveryReturnGoodPro[i].iMSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryReturnGoodPro[i].iMUNITPRICE);
+      if (double.parse(GlobalParam.deliveryReturnGoodPro[i].iMSIZEQTY!) > 0) {
+        price = double.parse(GlobalParam.deliveryReturnGoodPro[i].iMUNITPRICE!);
       }
-      if (double.parse(GlobalParam.deliveryReturnGoodPro[i].iLSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryReturnGoodPro[i].iLUNITPRICE);
+      if (double.parse(GlobalParam.deliveryReturnGoodPro[i].iLSIZEQTY!) > 0) {
+        price = double.parse(GlobalParam.deliveryReturnGoodPro[i].iLUNITPRICE!);
       }
       totalReGood += qty * price;
     }
@@ -365,19 +365,19 @@ class Details_Main_Pay extends StatelessWidget {
       var qty = 0.0;
       var price = 0.0;
       qty = double.parse('${GlobalParam.deliveryReturnBadPro[i].iCANCLEPRO}');
-      if (double.parse(GlobalParam.deliveryReturnBadPro[i].iSSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryReturnBadPro[i].iSUNITPRICE);
+      if (double.parse(GlobalParam.deliveryReturnBadPro[i].iSSIZEQTY!) > 0) {
+        price = double.parse(GlobalParam.deliveryReturnBadPro[i].iSUNITPRICE!);
       }
-      if (double.parse(GlobalParam.deliveryReturnBadPro[i].iMSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryReturnBadPro[i].iMUNITPRICE);
+      if (double.parse(GlobalParam.deliveryReturnBadPro[i].iMSIZEQTY!) > 0) {
+        price = double.parse(GlobalParam.deliveryReturnBadPro[i].iMUNITPRICE!);
       }
-      if (double.parse(GlobalParam.deliveryReturnBadPro[i].iLSIZEQTY) > 0) {
-        price = double.parse(GlobalParam.deliveryReturnBadPro[i].iLUNITPRICE);
+      if (double.parse(GlobalParam.deliveryReturnBadPro[i].iLSIZEQTY!) > 0) {
+        price = double.parse(GlobalParam.deliveryReturnBadPro[i].iLUNITPRICE!);
       }
       totalReBad += qty * price;
     }
     String totalPay =
-        '${double.parse(GlobalParam.deliveryStoreSum.iTOTAL) - totalIncom - totalCancel - totalReGood - totalReBad}';
+        '${double.parse(GlobalParam.deliveryStoreSum.iTOTAL!) - totalIncom - totalCancel - totalReGood - totalReBad}';
     GlobalParam.deliveryStoreSum.iTOTAL = totalPay;
     return Container(
       padding: const EdgeInsets.only(top: 5.0, left: 50.0, right: 7.0),
@@ -546,7 +546,7 @@ class Details_Main_more extends StatelessWidget {
             ),
             Container(
               child: Text(
-                '${nf.format(double.parse(GlobalParam.deliveryStoreSum.iTOTAL))} บาท',
+                '${nf.format(double.parse(GlobalParam.deliveryStoreSum.iTOTAL!))} บาท',
                 style: TextStyle(
                   fontSize: 14.0,
                   color: Colors.grey,
@@ -582,7 +582,7 @@ class Details_Main_more extends StatelessWidget {
             child: Expanded(
               child: Container(
                 alignment: Alignment.centerRight,
-                child: substringCashCheck(GlobalParam.deliveryStoreSum.iTOTAL),
+                child: substringCashCheck(GlobalParam.deliveryStoreSum.iTOTAL!),
               ),
             ),
           ),

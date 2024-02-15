@@ -5,8 +5,8 @@ import 'package:vansale/screens/Supplier/models/product.dart';
 import 'package:vansale/screens/Supplier/supplier/widgets/pickImageBox.dart';
 
 class ProductCheckCard extends StatefulWidget {
-  final String mode;
-  final ProductsModel product;
+  final String? mode;
+  final ProductsModel? product;
   ProductCheckCard({this.mode, this.product});
   @override
   _ProductCheckCardState createState() => _ProductCheckCardState();
@@ -41,7 +41,7 @@ class _ProductCheckCardState extends State<ProductCheckCard> {
                                 child: Container(
                                   width: 154,
                                   child: Text(
-                                    widget.product.name,
+                                    widget.product!.name!,
                                     style: TextStyle(
                                         fontFamily: 'Prompt', fontSize: 18),
                                     overflow: TextOverflow.ellipsis,
@@ -62,7 +62,7 @@ class _ProductCheckCardState extends State<ProductCheckCard> {
                                   padding: const EdgeInsets.all(5.0),
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    "   ${widget.product.uom1}",
+                                    "   ${widget.product!.uom1}",
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                     ),
@@ -73,7 +73,7 @@ class _ProductCheckCardState extends State<ProductCheckCard> {
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    "      ${widget.product.uom2}",
+                                    "      ${widget.product!.uom2}",
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                       color: Colors.green,
@@ -85,7 +85,7 @@ class _ProductCheckCardState extends State<ProductCheckCard> {
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    "    ${widget.product.uom3}",
+                                    "    ${widget.product!.uom3}",
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                       color: Colors.red,

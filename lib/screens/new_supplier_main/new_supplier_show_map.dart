@@ -30,7 +30,6 @@ class _NewSupplierShowMapState extends State<NewSupplierShowMap> {
         children: [
           searchLocation(),
           LongdoMapWidget(
-            bundleId: "",
             apiKey: "",
             key: map,
           ),

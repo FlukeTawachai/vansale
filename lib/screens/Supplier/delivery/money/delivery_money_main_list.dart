@@ -74,15 +74,16 @@ class _MoneyMainListState extends State<MoneyMainList> {
   }
 
   Widget _price(index) {
-    Widget result;
+    Widget result =Utility.formateNumberOR18(
+            double.parse(details[index]['price']!), 14.0);
     switch (details[index]['type']) {
       case "1":
         result = Utility.formateNumberOR18(
-            double.parse(details[index]['price']), 14.0);
+            double.parse(details[index]['price']!), 14.0);
         break;
       case "2":
         result = Utility.formateNumberGN18(
-          double.parse(details[index]['price']),
+          double.parse(details[index]['price']!),
           14.0,
         );
         break;
@@ -92,7 +93,7 @@ class _MoneyMainListState extends State<MoneyMainList> {
 
   Widget _name(index) {
     return Container(
-      child: Text(details[index]['name']),
+      child: Text(details[index]['name']!),
     );
   }
 
@@ -111,7 +112,7 @@ class _MoneyMainListState extends State<MoneyMainList> {
   Widget _createDate(index) {
     return Container(
       child: Text(
-        details[index]['createdate'],
+        details[index]['createdate']!,
         style: TextStyle(
           color: Colors.grey,
           fontSize: 10.0,

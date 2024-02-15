@@ -38,7 +38,7 @@ class StockTransferReturnGoodPro extends StatefulWidget {
 class _StockTransferReturnGoodProState
     extends State<StockTransferReturnGoodPro> {
   String total = '3200.00';
-  double widthScreen;
+  double widthScreen = 0;
   List<TextEditingController> deController = [];
   List<TextEditingController> inController = [];
   final formatNum = new NumberFormat("#,###.##", "en_US");
@@ -47,7 +47,7 @@ class _StockTransferReturnGoodProState
       cCREABY: GlobalParam.userData.cUSRNM,
       aPRODUCT: []);
   List<GetProductBranchResp> basketProduct = [];
-  List<GetProductReturnOfRouteResp> returnProList;
+  List<GetProductReturnOfRouteResp> returnProList = [];
   String search = '';
   var totalList = [];
   List<GetProductOrBasketStockResp> stockList = [];
@@ -256,11 +256,11 @@ class _StockTransferReturnGoodProState
               deController.add(new TextEditingController());
               inController.add(new TextEditingController());
               double sQty = double.parse(
-                  GlobalParam.customerShowGoodProList[index].iSSIZEQTY);
+                  GlobalParam.customerShowGoodProList[index].iSSIZEQTY!);
               double mQty = double.parse(
-                  GlobalParam.customerShowGoodProList[index].iMSIZEQTY);
+                  GlobalParam.customerShowGoodProList[index].iMSIZEQTY!);
               double lQty = double.parse(
-                  GlobalParam.customerShowGoodProList[index].iLSIZEQTY);
+                  GlobalParam.customerShowGoodProList[index].iLSIZEQTY!);
               double qty = 0;
               double unitPrice = 0.0;
               String unitName = '';
@@ -272,8 +272,8 @@ class _StockTransferReturnGoodProState
                 size = 'S';
                 qty = sQty;
                 unitPrice = double.parse(
-                    GlobalParam.customerShowGoodProList[index].iSUNITPRICE);
-                unitName = GlobalParam.customerShowGoodProList[index].cSUOMNM;
+                    GlobalParam.customerShowGoodProList[index].iSUNITPRICE!);
+                unitName = GlobalParam.customerShowGoodProList[index].cSUOMNM!;
                 for (var k = 0; k < totalList.length; k++) {
                   if (totalList[k]['cPRODCD'] ==
                           GlobalParam.customerShowGoodProList[index].cPRODCD &&
@@ -287,8 +287,8 @@ class _StockTransferReturnGoodProState
                 size = 'S';
                 qty = mQty;
                 unitPrice = double.parse(
-                    GlobalParam.customerShowGoodProList[index].iMUNITPRICE);
-                unitName = GlobalParam.customerShowGoodProList[index].cMUOMNM;
+                    GlobalParam.customerShowGoodProList[index].iMUNITPRICE!);
+                unitName = GlobalParam.customerShowGoodProList[index].cMUOMNM!;
                 for (var k = 0; k < totalList.length; k++) {
                   if (totalList[k]['cPRODCD'] ==
                           GlobalParam.customerShowGoodProList[index].cPRODCD &&
@@ -302,8 +302,8 @@ class _StockTransferReturnGoodProState
                 size = 'S';
                 qty = lQty;
                 unitPrice = double.parse(
-                    GlobalParam.customerShowGoodProList[index].iLUNITPRICE);
-                unitName = GlobalParam.customerShowGoodProList[index].cLUOMNM;
+                    GlobalParam.customerShowGoodProList[index].iLUNITPRICE!);
+                unitName = GlobalParam.customerShowGoodProList[index].cLUOMNM!;
                 for (var k = 0; k < totalList.length; k++) {
                   if (totalList[k]['cPRODCD'] ==
                           GlobalParam.customerShowGoodProList[index].cPRODCD &&
@@ -369,7 +369,7 @@ class _StockTransferReturnGoodProState
                                     height: 24,
                                     child: Text(
                                       GlobalParam.customerShowGoodProList[index]
-                                          .cPRODNM,
+                                          .cPRODNM!,
                                       style: TextStyle(
                                         fontFamily: 'Prompt',
                                         fontWeight: FontWeight.bold,
@@ -414,7 +414,7 @@ class _StockTransferReturnGoodProState
                                                   !GlobalParam
                                                       .customerShowGoodProList[
                                                           index]
-                                                      .cCHECK;
+                                                      .cCHECK!;
                                             });
                                           },
                                           child: GlobalParam
@@ -630,7 +630,7 @@ class _StockTransferReturnGoodProState
                                                             GlobalParam
                                                                 .customerShowGoodProList[
                                                                     index]
-                                                                .iMUNITPRICE) *
+                                                                .iMUNITPRICE!) *
                                                         double.parse(value);
                                                   }
                                                 },
@@ -844,12 +844,12 @@ class _StockTransferReturnGoodProState
     double productTotal = 0;
 
     for (var i = 0; i < orderList.length; i++) {
-      double sQty = double.parse(orderList[i].iSSIZEQTY);
-      double mQty = double.parse(orderList[i].iMSIZEQTY);
-      double lQty = double.parse(orderList[i].iLSIZEQTY);
-      double sPrice = double.parse(orderList[i].iSUNITPRICE);
-      double mPrice = double.parse(orderList[i].iMUNITPRICE);
-      double lPrice = double.parse(orderList[i].iLUNITPRICE);
+      double sQty = double.parse(orderList[i].iSSIZEQTY!);
+      double mQty = double.parse(orderList[i].iMSIZEQTY!);
+      double lQty = double.parse(orderList[i].iLSIZEQTY!);
+      double sPrice = double.parse(orderList[i].iSUNITPRICE!);
+      double mPrice = double.parse(orderList[i].iMUNITPRICE!);
+      double lPrice = double.parse(orderList[i].iLUNITPRICE!);
       if ((sQty + mQty + lQty) > 0) {
         showData.add(orderList[i]);
         productTotal += (sQty * sPrice) + (mQty * mPrice) + (lQty * lPrice);
@@ -857,24 +857,24 @@ class _StockTransferReturnGoodProState
           var data = {
             "cPRODCD": orderList[i].cPRODCD,
             "cUOMNM": orderList[i].cSUOMNM,
-            "iPRICE": double.parse(orderList[i].iSUNITPRICE),
-            "iTOTAL": double.parse(orderList[i].iSSIZEQTY)
+            "iPRICE": double.parse(orderList[i].iSUNITPRICE!),
+            "iTOTAL": double.parse(orderList[i].iSSIZEQTY!)
           };
           unitList.add(data);
         }
         if (mQty > 0) {
           var data = {
             "cUOMNM": orderList[i].cMUOMNM,
-            "iPRICE": double.parse(orderList[i].iMUNITPRICE),
-            "iTOTAL": double.parse(orderList[i].iMSIZEQTY)
+            "iPRICE": double.parse(orderList[i].iMUNITPRICE!),
+            "iTOTAL": double.parse(orderList[i].iMSIZEQTY!)
           };
           unitList.add(data);
         }
         if (lQty > 0) {
           var data = {
             "cUOMNM": orderList[i].cLUOMNM,
-            "iPRICE": double.parse(orderList[i].iLUNITPRICE),
-            "iTOTAL": double.parse(orderList[i].iLSIZEQTY)
+            "iPRICE": double.parse(orderList[i].iLUNITPRICE!),
+            "iTOTAL": double.parse(orderList[i].iLSIZEQTY!)
           };
           unitList.add(data);
         }
@@ -1187,9 +1187,9 @@ class _StockTransferReturnGoodProState
                 receiveGood.add(result[i]);
                 GlobalParam.customerGoodProList.add(result[i]);
 
-                double returnS = double.parse(returnProList[j].iSSIZEQTY);
-                double returnM = double.parse(returnProList[j].iMSIZEQTY);
-                double returnL = double.parse(returnProList[j].iLSIZEQTY);
+                double returnS = double.parse(returnProList[j].iSSIZEQTY!);
+                double returnM = double.parse(returnProList[j].iMSIZEQTY!);
+                double returnL = double.parse(returnProList[j].iLSIZEQTY!);
                 cRETCD = '${returnProList[j].cRETCD}';
                 if (returnS > 0) {
                   GetProductBranchResp proData = GetProductBranchResp(
@@ -1459,12 +1459,12 @@ class _StockTransferReturnGoodProState
       List<GetProductBranchResp> productReturn = [];
       productReturn.addAll(GlobalParam.customerGoodProList);
       for (int i = 0; i < productReturn.length; i++) {
-        double sQty = double.parse(productReturn[i].iSSIZEQTY);
-        double mQty = double.parse(productReturn[i].iMSIZEQTY);
-        double lQty = double.parse(productReturn[i].iLSIZEQTY);
-        double sPrice = double.parse(productReturn[i].iSUNITPRICE);
-        double mPrice = double.parse(productReturn[i].iMUNITPRICE);
-        double lPrice = double.parse(productReturn[i].iLUNITPRICE);
+        double sQty = double.parse(productReturn[i].iSSIZEQTY!);
+        double mQty = double.parse(productReturn[i].iMSIZEQTY!);
+        double lQty = double.parse(productReturn[i].iLSIZEQTY!);
+        double sPrice = double.parse(productReturn[i].iSUNITPRICE!);
+        double mPrice = double.parse(productReturn[i].iMUNITPRICE!);
+        double lPrice = double.parse(productReturn[i].iLUNITPRICE!);
         if ((sQty + mQty + lQty) > 0) {
           if (sQty > 0) {
             StockCardReq transferOut = StockCardReq(
@@ -1647,25 +1647,25 @@ class _StockTransferReturnGoodProState
       var lTotal = 0.0;
       var cRETCD = '';
       for (int i = 0; i < basketProduct.length; i++) {
-        checkReturn += double.parse(basketProduct[i].iLSIZEQTY) +
-            double.parse(basketProduct[i].iMSIZEQTY) +
-            double.parse(basketProduct[i].iSSIZEQTY);
+        checkReturn += double.parse(basketProduct[i].iLSIZEQTY!) +
+            double.parse(basketProduct[i].iMSIZEQTY!) +
+            double.parse(basketProduct[i].iSSIZEQTY!);
         if (checkReturn > 0) {
-          if (double.parse(basketProduct[i].iSSIZEQTY) > 0) {
-            sQty = double.parse(basketProduct[i].iSSIZEQTY);
-            sPrice = double.parse(basketProduct[i].iSUNITPRICE);
+          if (double.parse(basketProduct[i].iSSIZEQTY!) > 0) {
+            sQty = double.parse(basketProduct[i].iSSIZEQTY!);
+            sPrice = double.parse(basketProduct[i].iSUNITPRICE!);
             sTotal += sQty * sPrice;
           }
 
-          if (double.parse(basketProduct[i].iMSIZEQTY) > 0) {
-            mQty = double.parse(basketProduct[i].iMSIZEQTY);
-            mPrice = double.parse(basketProduct[i].iMUNITPRICE);
+          if (double.parse(basketProduct[i].iMSIZEQTY!) > 0) {
+            mQty = double.parse(basketProduct[i].iMSIZEQTY!);
+            mPrice = double.parse(basketProduct[i].iMUNITPRICE!);
             mTotal += mQty * mPrice;
           }
 
-          if (double.parse(basketProduct[i].iLSIZEQTY) > 0) {
-            lQty = double.parse(basketProduct[i].iLSIZEQTY);
-            lPrice = double.parse(basketProduct[i].iLUNITPRICE);
+          if (double.parse(basketProduct[i].iLSIZEQTY!) > 0) {
+            lQty = double.parse(basketProduct[i].iLSIZEQTY!);
+            lPrice = double.parse(basketProduct[i].iLUNITPRICE!);
             lTotal += lQty * lPrice;
           }
         }
@@ -1695,9 +1695,9 @@ class _StockTransferReturnGoodProState
           } else {
             GlobalParam.deliveryReturnProRef = result.result;
             for (int i = 0; i < basketProduct.length; i++) {
-              if ((double.parse(basketProduct[i].iSSIZEQTY) +
-                      double.parse(basketProduct[i].iMSIZEQTY) +
-                      double.parse(basketProduct[i].iLSIZEQTY)) >
+              if ((double.parse(basketProduct[i].iSSIZEQTY!) +
+                      double.parse(basketProduct[i].iMSIZEQTY!) +
+                      double.parse(basketProduct[i].iLSIZEQTY!)) >
                   0) {
                 AddReturnDTReq data = AddReturnDTReq(
                     cRETCD: result.result,
@@ -1829,17 +1829,17 @@ class _StockTransferReturnGoodProState
 
         for (var k = 0; k < totalList.length; k++) {
           double sQty =
-              double.parse(GlobalParam.customerGoodProList[i].iSSIZEQTY);
+              double.parse(GlobalParam.customerGoodProList[i].iSSIZEQTY!);
           double mQty =
-              double.parse(GlobalParam.customerGoodProList[i].iMSIZEQTY);
+              double.parse(GlobalParam.customerGoodProList[i].iMSIZEQTY!);
           double lQty =
-              double.parse(GlobalParam.customerGoodProList[i].iLSIZEQTY);
+              double.parse(GlobalParam.customerGoodProList[i].iLSIZEQTY!);
           double sPrice =
-              double.parse(GlobalParam.customerGoodProList[i].iSUNITPRICE);
+              double.parse(GlobalParam.customerGoodProList[i].iSUNITPRICE!);
           double mPrice =
-              double.parse(GlobalParam.customerGoodProList[i].iMUNITPRICE);
+              double.parse(GlobalParam.customerGoodProList[i].iMUNITPRICE!);
           double lPrice =
-              double.parse(GlobalParam.customerGoodProList[i].iLUNITPRICE);
+              double.parse(GlobalParam.customerGoodProList[i].iLUNITPRICE!);
           if (totalList[k]['cPRODCD'] ==
                   GlobalParam.customerGoodProList[i].cPRODCD &&
               totalList[k]['size'] == size) {
@@ -1864,7 +1864,7 @@ class _StockTransferReturnGoodProState
               GlobalParam.customerShowGoodProList[index].cDCUL = false;
             }
             returnProToStock[i].iTRUEQTY =
-                '${double.parse(returnProToStock[i].iQTY) + double.parse(value)}';
+                '${double.parse(returnProToStock[i].iQTY!) + double.parse(value)}';
           } else if (type == 'decrease') {
             if (value == '0.0') {
               GlobalParam.customerShowGoodProList[index].cICUL = true;
@@ -1873,7 +1873,7 @@ class _StockTransferReturnGoodProState
               GlobalParam.customerShowGoodProList[index].cICUL = false;
             }
             returnProToStock[i].iTRUEQTY =
-                '${double.parse(returnProToStock[i].iQTY) - double.parse(value)}';
+                '${double.parse(returnProToStock[i].iQTY!) - double.parse(value)}';
           }
         }
       }

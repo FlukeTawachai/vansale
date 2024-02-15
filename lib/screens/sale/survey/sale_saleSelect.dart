@@ -4,7 +4,7 @@ import 'package:vansale/api/class/response/routeMobile/getSaleStoreOrderResp.dar
 import 'package:vansale/screens/sale/survey/sale_productSet.dart';
 
 class SaleSelectSale extends StatelessWidget {
-  const SaleSelectSale({Key key}) : super(key: key);
+  const SaleSelectSale({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

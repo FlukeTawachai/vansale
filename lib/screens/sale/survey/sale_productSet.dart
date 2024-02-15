@@ -13,17 +13,14 @@ import 'package:vansale/api/class/request/mobile/getProductOrBasketStockReq.dart
 import 'package:vansale/api/class/request/mobile/getVehicleWithBranchReq.dart';
 import 'package:vansale/api/class/response/routeMobile/getProductOrBasketStockResp.dart';
 import 'package:vansale/api/class/response/routeMobile/getProductSetResp.dart';
-import 'package:vansale/api/class/response/routeMobile/getSaleStoreOrderResp.dart';
 import 'package:vansale/api/class/response/routeMobile/pohdAndPodtResp.dart';
 import 'package:vansale/function/substring_price.dart';
 import 'package:vansale/screens/Supplier/PayForBasketReturn/pay_main_for_basketReturn.dart';
-import 'package:vansale/screens/Supplier/delivery/money/delivery_money_main.dart';
-import 'package:vansale/screens/home/home.dart';
 
 class SaleProductSet extends StatefulWidget {
-  final String cBRANCD;
-  final String cCUSTTYPE;
-  const SaleProductSet({Key key, this.cBRANCD, this.cCUSTTYPE})
+  final String? cBRANCD;
+  final String? cCUSTTYPE;
+  const SaleProductSet({Key? key, this.cBRANCD, this.cCUSTTYPE})
       : super(key: key);
 
   @override
@@ -70,44 +67,44 @@ class _SaleProductSetState extends State<SaleProductSet> {
     double productTotal = 0;
 
     for (var i = 0; i < orderList.length; i++) {
-      double sQty = double.parse(orderList[i].iSSIZEQTY);
-      double mQty = double.parse(orderList[i].iMSIZEQTY);
-      double lQty = double.parse(orderList[i].iLSIZEQTY);
+      double sQty = double.parse(orderList[i].iSSIZEQTY!);
+      double mQty = double.parse(orderList[i].iMSIZEQTY!);
+      double lQty = double.parse(orderList[i].iLSIZEQTY!);
       double sPrice = 0;
       double mPrice = 0;
       double lPrice = 0;
 
       if ((sQty + mQty + lQty) > 0) {
-        for (int j = 0; j < orderList[i].aPRODUCT.length; j++) {
-          var data = orderList[i].aPRODUCT[j];
-          sPrice = double.parse(data.iSUomPrice);
-          mPrice = double.parse(data.iMUomPrice);
-          lPrice = double.parse(data.iLUomPrice);
+        for (int j = 0; j < orderList[i].aPRODUCT!.length; j++) {
+          var data = orderList[i].aPRODUCT![j];
+          sPrice = double.parse(data.iSUomPrice!);
+          mPrice = double.parse(data.iMUomPrice!);
+          lPrice = double.parse(data.iLUomPrice!);
 
-          if (double.parse(data.iSSIZEQTY) > 0) {
+          if (double.parse(data.iSSIZEQTY!) > 0) {
             var dataf = {
               "cPRODCD": data.cPRODCD,
               "cUOMNM": data.cSUOMNM,
               "iPRICE": sPrice,
-              "iTOTAL": double.parse(data.iSSIZEQTY)
+              "iTOTAL": double.parse(data.iSSIZEQTY!)
             };
             unitList.add(dataf);
           }
-          if (double.parse(data.iMSIZEQTY) > 0) {
+          if (double.parse(data.iMSIZEQTY!) > 0) {
             var dataf = {
               "cPRODCD": data.cPRODCD,
               "cUOMNM": data.cMUOMNM,
               "iPRICE": mPrice,
-              "iTOTAL": double.parse(data.iMSIZEQTY)
+              "iTOTAL": double.parse(data.iMSIZEQTY!)
             };
             unitList.add(dataf);
           }
-          if (double.parse(data.iLSIZEQTY) > 0) {
+          if (double.parse(data.iLSIZEQTY!) > 0) {
             var dataf = {
               "cPRODCD": data.cPRODCD,
               "cUOMNM": data.cLUOMNM,
               "iPRICE": lPrice,
-              "iTOTAL": double.parse(data.iLSIZEQTY)
+              "iTOTAL": double.parse(data.iLSIZEQTY!)
             };
             unitList.add(dataf);
           }
@@ -381,21 +378,21 @@ class _SaleProductSetState extends State<SaleProductSet> {
         var total = 0.0;
         double totalProduct = 0;
         for (int i = 0;
-            i < GlobalParam.saleProductSetList[index].aPRODUCT.length;
+            i < GlobalParam.saleProductSetList[index].aPRODUCT!.length;
             i++) {
-          var data = GlobalParam.saleProductSetList[index].aPRODUCT[i];
+          var data = GlobalParam.saleProductSetList[index].aPRODUCT![i];
           double sCost = 0;
           double mCost = 0;
           double lCost = 0;
-          sCost = double.parse(data.iSUOMQTY) *
-              double.parse(data.iSUomPrice) *
-              double.parse(data.iSSIZEQTY);
-          mCost = double.parse(data.iMUOMQTY) *
-              double.parse(data.iMUomPrice) *
-              double.parse(data.iMSIZEQTY);
-          lCost = double.parse(data.iLUOMQTY) *
-              double.parse(data.iLUomPrice) *
-              double.parse(data.iLSIZEQTY);
+          sCost = double.parse(data.iSUOMQTY!) *
+              double.parse(data.iSUomPrice!) *
+              double.parse(data.iSSIZEQTY!);
+          mCost = double.parse(data.iMUOMQTY!) *
+              double.parse(data.iMUomPrice!) *
+              double.parse(data.iMSIZEQTY!);
+          lCost = double.parse(data.iLUOMQTY!) *
+              double.parse(data.iLUomPrice!) *
+              double.parse(data.iLSIZEQTY!);
           total += sCost + mCost + lCost;
         }
         return Container(
@@ -415,7 +412,7 @@ class _SaleProductSetState extends State<SaleProductSet> {
                                 const EdgeInsets.only(left: 8.0, right: 8.0),
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              GlobalParam.saleProductSetList[index].cSETNM,
+                              GlobalParam.saleProductSetList[index].cSETNM!,
                               style: TextStyle(
                                 fontFamily: "Prompt",
                                 fontSize: 16,
@@ -572,71 +569,73 @@ class _SaleProductSetState extends State<SaleProductSet> {
           aPRODUCT: []);
 
       for (var j = 0;
-          j < GlobalParam.saleProductSetList[i].aPRODUCT.length;
+          j < GlobalParam.saleProductSetList[i].aPRODUCT!.length;
           j++) {
-        var data = new APRODUCTGetProductSet(
-            cGUID: GlobalParam.saleProductSetList[i].aPRODUCT[j].cGUID,
-            cSETCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSETCD,
-            iSEQ: GlobalParam.saleProductSetList[i].aPRODUCT[j].iSEQ,
-            cPRODCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cPRODCD,
-            cPRODNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cPRODNM,
-            cBRNDCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cBRNDCD,
-            cBRNDNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cBRNDNM,
-            iSSIZEQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iSSIZEQTY,
-            iMSIZEQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iMSIZEQTY,
-            iLSIZEQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iLSIZEQTY,
-            cSUOMCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSUOMCD,
-            cSUOMNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSUOMNM,
-            iSUOMQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iSUOMQTY,
-            cMUOMCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cMUOMCD,
-            cMUOMNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cMUOMNM,
-            iMUOMQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iMUOMQTY,
-            cLUOMCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cLUOMCD,
-            cLUOMNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cLUOMNM,
-            iLUOMQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iLUOMQTY,
-            cBASKCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cBASKCD,
-            cBASKNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cBASKNM,
-            dCREADT: GlobalParam.saleProductSetList[i].aPRODUCT[j].dCREADT,
-            cCREABY: GlobalParam.saleProductSetList[i].aPRODUCT[j].cCREABY,
-            dUPDADT: GlobalParam.saleProductSetList[i].aPRODUCT[j].dUPDADT,
-            cUPDABY: GlobalParam.saleProductSetList[i].aPRODUCT[j].cUPDABY,
-            iCOST: GlobalParam.saleProductSetList[i].aPRODUCT[j].iCOST,
-            iCOSTVAT: GlobalParam.saleProductSetList[i].aPRODUCT[j].iCOSTVAT,
-            cPRODEX: GlobalParam.saleProductSetList[i].aPRODUCT[j].cPRODEX,
-            iGENVAT: GlobalParam.saleProductSetList[i].aPRODUCT[j].iGENVAT,
-            iEXCVAT: GlobalParam.saleProductSetList[i].aPRODUCT[j].iEXCVAT,
-            cTYPE: GlobalParam.saleProductSetList[i].aPRODUCT[j].cTYPE,
-            cMCATE: GlobalParam.saleProductSetList[i].aPRODUCT[j].cMCATE,
-            cSCATE: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSCATE,
-            cCOLOR: GlobalParam.saleProductSetList[i].aPRODUCT[j].cCOLOR,
-            cDIMENS: GlobalParam.saleProductSetList[i].aPRODUCT[j].cDIMENS,
-            iWEIGHT: GlobalParam.saleProductSetList[i].aPRODUCT[j].iWEIGHT,
-            cSUPCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSUPCD,
-            cSHARE: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSHARE,
-            iMINSTK: GlobalParam.saleProductSetList[i].aPRODUCT[j].iMINSTK,
-            iMAXSTK: GlobalParam.saleProductSetList[i].aPRODUCT[j].iMAXSTK,
-            iSUomPrice:
-                GlobalParam.saleProductSetList[i].aPRODUCT[j].iSUomPrice,
-            iMUomPrice:
-                GlobalParam.saleProductSetList[i].aPRODUCT[j].iMUomPrice,
-            iLUomPrice:
-                GlobalParam.saleProductSetList[i].aPRODUCT[j].iLUomPrice);
-        master.aPRODUCT.add(data);
+        var json = GlobalParam.saleProductSetList[i].aPRODUCT![j].toJson();
+        APRODUCTGetProductSet data = APRODUCTGetProductSet.fromJson(json);
+        // var data = new APRODUCTGetProductSet(
+        //     cGUID: GlobalParam.saleProductSetList[i].aPRODUCT[j].cGUID,
+        //     cSETCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSETCD,
+        //     iSEQ: GlobalParam.saleProductSetList[i].aPRODUCT[j].iSEQ,
+        //     cPRODCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cPRODCD,
+        //     cPRODNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cPRODNM,
+        //     cBRNDCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cBRNDCD,
+        //     cBRNDNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cBRNDNM,
+        //     iSSIZEQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iSSIZEQTY,
+        //     iMSIZEQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iMSIZEQTY,
+        //     iLSIZEQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iLSIZEQTY,
+        //     cSUOMCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSUOMCD,
+        //     cSUOMNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSUOMNM,
+        //     iSUOMQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iSUOMQTY,
+        //     cMUOMCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cMUOMCD,
+        //     cMUOMNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cMUOMNM,
+        //     iMUOMQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iMUOMQTY,
+        //     cLUOMCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cLUOMCD,
+        //     cLUOMNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cLUOMNM,
+        //     iLUOMQTY: GlobalParam.saleProductSetList[i].aPRODUCT[j].iLUOMQTY,
+        //     cBASKCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cBASKCD,
+        //     cBASKNM: GlobalParam.saleProductSetList[i].aPRODUCT[j].cBASKNM,
+        //     dCREADT: GlobalParam.saleProductSetList[i].aPRODUCT[j].dCREADT,
+        //     cCREABY: GlobalParam.saleProductSetList[i].aPRODUCT[j].cCREABY,
+        //     dUPDADT: GlobalParam.saleProductSetList[i].aPRODUCT[j].dUPDADT,
+        //     cUPDABY: GlobalParam.saleProductSetList[i].aPRODUCT[j].cUPDABY,
+        //     iCOST: GlobalParam.saleProductSetList[i].aPRODUCT[j].iCOST,
+        //     iCOSTVAT: GlobalParam.saleProductSetList[i].aPRODUCT[j].iCOSTVAT,
+        //     cPRODEX: GlobalParam.saleProductSetList[i].aPRODUCT[j].cPRODEX,
+        //     iGENVAT: GlobalParam.saleProductSetList[i].aPRODUCT[j].iGENVAT,
+        //     iEXCVAT: GlobalParam.saleProductSetList[i].aPRODUCT[j].iEXCVAT,
+        //     cTYPE: GlobalParam.saleProductSetList[i].aPRODUCT[j].cTYPE,
+        //     cMCATE: GlobalParam.saleProductSetList[i].aPRODUCT[j].cMCATE,
+        //     cSCATE: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSCATE,
+        //     cCOLOR: GlobalParam.saleProductSetList[i].aPRODUCT[j].cCOLOR,
+        //     cDIMENS: GlobalParam.saleProductSetList[i].aPRODUCT[j].cDIMENS,
+        //     iWEIGHT: GlobalParam.saleProductSetList[i].aPRODUCT[j].iWEIGHT,
+        //     cSUPCD: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSUPCD,
+        //     cSHARE: GlobalParam.saleProductSetList[i].aPRODUCT[j].cSHARE,
+        //     iMINSTK: GlobalParam.saleProductSetList[i].aPRODUCT[j].iMINSTK,
+        //     iMAXSTK: GlobalParam.saleProductSetList[i].aPRODUCT[j].iMAXSTK,
+        //     iSUomPrice:
+        //         GlobalParam.saleProductSetList[i].aPRODUCT[j].iSUomPrice,
+        //     iMUomPrice:
+        //         GlobalParam.saleProductSetList[i].aPRODUCT[j].iMUomPrice,
+        //     iLUomPrice:
+        //         GlobalParam.saleProductSetList[i].aPRODUCT[j].iLUomPrice);
+        master.aPRODUCT!.add(data);
       }
 
       if (master.cSETCD == data.cSETCD) {
-        master.iSSIZEQTY = "${double.parse(master.iSSIZEQTY) * value}";
-        master.iMSIZEQTY = "${double.parse(master.iMSIZEQTY) * value}";
-        master.iLSIZEQTY = "${double.parse(master.iLSIZEQTY) * value}";
+        master.iSSIZEQTY = "${double.parse(master.iSSIZEQTY!) * value}";
+        master.iMSIZEQTY = "${double.parse(master.iMSIZEQTY!) * value}";
+        master.iLSIZEQTY = "${double.parse(master.iLSIZEQTY!) * value}";
 
-        for (var j = 0; j < master.aPRODUCT.length; j++) {
-          var product = master.aPRODUCT[j];
-          master.aPRODUCT[j].iSSIZEQTY =
-              "${double.parse(product.iSSIZEQTY) * value}";
-          master.aPRODUCT[j].iMSIZEQTY =
-              "${double.parse(product.iMSIZEQTY) * value}";
-          master.aPRODUCT[j].iLSIZEQTY =
-              "${double.parse(product.iLSIZEQTY) * value}";
+        for (var j = 0; j < master.aPRODUCT!.length; j++) {
+          var product = master.aPRODUCT![j];
+          master.aPRODUCT![j].iSSIZEQTY =
+              "${double.parse(product.iSSIZEQTY!) * value}";
+          master.aPRODUCT![j].iMSIZEQTY =
+              "${double.parse(product.iMSIZEQTY!) * value}";
+          master.aPRODUCT![j].iLSIZEQTY =
+              "${double.parse(product.iLSIZEQTY!) * value}";
         }
         GlobalParam.saleProductSetTransferList.add(master);
       }
@@ -659,7 +658,8 @@ class _SaleProductSetState extends State<SaleProductSet> {
             GlobalParam.saleProductSetList.add(result[i]);
           }
         }
-        GlobalParam.saleProductSetList.sort((a,b)=>a.cSETCD.compareTo(b.cSETCD));
+        GlobalParam.saleProductSetList
+            .sort((a, b) => a.cSETCD!.compareTo(b.cSETCD!));
       } else {
         GlobalParam.saleProductSetList = [];
       }
@@ -707,15 +707,15 @@ class _SaleProductSetState extends State<SaleProductSet> {
       List<APRODUCT> uniqueProList = [];
       for (var i = 0; i < GlobalParam.saleProductSetTransferList.length; i++) {
         for (var j = 0;
-            j < GlobalParam.saleProductSetTransferList[i].aPRODUCT.length;
+            j < GlobalParam.saleProductSetTransferList[i].aPRODUCT!.length;
             j++) {
-          var data = GlobalParam.saleProductSetTransferList[i].aPRODUCT[j];
+          var data = GlobalParam.saleProductSetTransferList[i].aPRODUCT![j];
           proDodeList.add(data.cPRODCD);
           APRODUCT product = APRODUCT(
               cPRODCD: data.cPRODCD,
-              iSSIZEQTY: double.parse(data.iSSIZEQTY),
-              iMSIZEQTY: double.parse(data.iMSIZEQTY),
-              iLSIZEQTY: double.parse(data.iLSIZEQTY));
+              iSSIZEQTY: double.parse(data.iSSIZEQTY!),
+              iMSIZEQTY: double.parse(data.iMSIZEQTY!),
+              iLSIZEQTY: double.parse(data.iLSIZEQTY!));
           proList.add(product);
         }
       }
@@ -729,9 +729,9 @@ class _SaleProductSetState extends State<SaleProductSet> {
             iLSIZEQTY: 0);
         for (var j = 0; j < proList.length; j++) {
           if (proList[j].cPRODCD == uniqueProDodeList[i]) {
-            product.iSSIZEQTY += proList[j].iSSIZEQTY;
-            product.iMSIZEQTY += proList[j].iMSIZEQTY;
-            product.iLSIZEQTY += proList[j].iLSIZEQTY;
+            product.iSSIZEQTY = product.iSSIZEQTY! + (proList[j].iSSIZEQTY?? 0) ;
+            product.iMSIZEQTY = product.iMSIZEQTY! + (proList[j].iMSIZEQTY?? 0) ;
+            product.iLSIZEQTY = product.iLSIZEQTY! + (proList[j].iLSIZEQTY?? 0) ;
           }
         }
         uniqueProList.add(product);

@@ -1,6 +1,6 @@
 
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:vansale/screens/Supplier/shipping/shippingBasketStore.dart';
 import 'package:vansale/screens/Supplier/shipping/shippingCreditStore.dart';
 import 'package:vansale/screens/Supplier/shipping/shippingDetailStore.dart';

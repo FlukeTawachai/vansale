@@ -14,13 +14,13 @@ class SupOrderDetailFields {
 }
 
 class SupOrderDetailModel {
-  int id;
-  int orderId;
-  String name;
-  int number;
-  double price;
-  double amount;
-  String img;
+  int? id;
+  int? orderId;
+  String? name;
+  int? number;
+  double? price;
+  double? amount;
+  String? img;
 
   SupOrderDetailModel({
     this.id,
@@ -53,13 +53,13 @@ class SupOrderDetailModel {
 
   Map<String, Object> toMap() {
     return {
-      'id': id,
-      'order_id': orderId,
-      'name': name,
-      'number': number,
-      'price': price,
-      'amount': amount,
-      'img': img,
+      'id': id!,
+      'order_id': orderId!,
+      'name': name!,
+      'number': number!,
+      'price': price!,
+      'amount': amount!,
+      'img': img!,
     };
   }
 }

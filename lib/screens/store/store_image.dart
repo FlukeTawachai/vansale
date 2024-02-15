@@ -1,5 +1,5 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 class StoreImgList extends StatefulWidget {
   //const StoreImgList({ Key? key }) : super(key: key);
@@ -10,24 +10,9 @@ class StoreImgList extends StatefulWidget {
 
 class _StoreImgListState extends State<StoreImgList> {
   var storeImg = [
-    {
-      "image": "assets/images/pt.png",
-    },
-    {
-      "image": "assets/images/ptt.png",
-    },
-    {
-      "image": "assets/images/shell.png",
-    },
-    {
-      "image": "assets/images/pt.png",
-    },
-    {
-      "image": "assets/images/ptt.png",
-    },
-    {
-      "image": "assets/images/shell.png",
-    },
+    StoreImgListModel("assets/images/pt.png"),
+    StoreImgListModel("assets/images/ptt.png"),
+    StoreImgListModel("assets/images/shell.png"),
   ];
   @override
   Widget build(BuildContext context) {
@@ -36,7 +21,7 @@ class _StoreImgListState extends State<StoreImgList> {
         return ClipRRect(
           borderRadius: BorderRadius.circular(15.0),
           child: Image.asset(
-            storeImg[index]['image'],
+            storeImg[index].image!,
             fit: BoxFit.cover,
           ),
         );
@@ -50,4 +35,9 @@ class _StoreImgListState extends State<StoreImgList> {
       scale: 0.9,
     );
   }
+}
+
+class StoreImgListModel{
+  String? image;
+  StoreImgListModel(this.image);
 }

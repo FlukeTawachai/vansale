@@ -339,9 +339,9 @@ class _RefuelEditState extends State<RefuelEdit> {
                     fontFamily: "Prompt",
                     color: HexColor("#a8a8a8"),
                   ),
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      dropdownFuel = newValue;
+                      dropdownFuel = newValue!;
                     });
                   },
                   items: <String>['ดีเซล', 'เบนซิน']

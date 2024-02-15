@@ -9,8 +9,8 @@ import 'package:vansale/screens/googleMap/currentLocation.dart';
 import 'package:vansale/screens/googleMap/mapHome.dart';
 
 class DesMapFooter extends StatefulWidget {
-  final StoreModel store;
-  const DesMapFooter({Key key, this.store})
+  final StoreModel? store;
+  const DesMapFooter({Key? key, this.store})
       : super(key: key);
 
   @override

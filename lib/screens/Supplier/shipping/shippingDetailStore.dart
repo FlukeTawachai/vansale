@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class StoreDetail extends StatefulWidget {
-  const StoreDetail({ Key key }) : super(key: key);
+  const StoreDetail({ Key? key }) : super(key: key);
 
   @override
   State<StoreDetail> createState() => _StoreDetailState();

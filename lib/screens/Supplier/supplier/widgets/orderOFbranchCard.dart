@@ -8,8 +8,8 @@ import 'package:vansale/screens/Supplier/models/orderBranch.dart';
 import 'package:vansale/screens/Supplier/supplier/orderBranchCheck.dart';
 
 class OrderOfBranchCard extends StatefulWidget {
-  final OrderBranchModel orderBranch;
-  const OrderOfBranchCard({Key key, this.orderBranch}) : super(key: key);
+  final OrderBranchModel? orderBranch;
+  const OrderOfBranchCard({Key? key, this.orderBranch}) : super(key: key);
 
   @override
   State<OrderOfBranchCard> createState() => _OrderOfBranchCardState();
@@ -54,7 +54,7 @@ class _OrderOfBranchCardState extends State<OrderOfBranchCard> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    "วันที่: ${dateFormat.format(DateTime.parse(widget.orderBranch.date))}",
+                                    "วันที่: ${dateFormat.format(DateTime.parse(widget.orderBranch!.date!))}",
                                     style: TextStyle(
                                         fontFamily: 'Prompt', fontSize: 16),
                                   ),
@@ -90,7 +90,7 @@ class _OrderOfBranchCardState extends State<OrderOfBranchCard> {
                                     Container(
                                       width: widthScreen * 0.32,
                                       child: Text(
-                                        widget.orderBranch.branchName,
+                                        widget.orderBranch!.branchName!,
                                         style: TextStyle(
                                             fontFamily: 'Prompt', fontSize: 18),
                                         overflow: TextOverflow.ellipsis,
@@ -115,7 +115,7 @@ class _OrderOfBranchCardState extends State<OrderOfBranchCard> {
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              "ยอดเงิน: ${formatNum.format(widget.orderBranch.amount)} ฿",
+                              "ยอดเงิน: ${formatNum.format(widget.orderBranch!.amount!)} ฿",
                               style: TextStyle(
                                   // color: Colors.black54,
                                   fontFamily: 'Prompt',

@@ -3,15 +3,13 @@ import 'dart:io';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:vansale/api/allApiProxyMobile.dart';
 import 'package:vansale/api/class/globalparam.dart';
-import 'package:vansale/api/class/request/mobile/getSPOrderDTReq.dart';
 import 'package:vansale/api/class/response/routeMobile/getSupplierOrderResp.dart';
 import 'package:vansale/function/substring_price.dart';
 import 'package:vansale/screens/stocks/stockOrderDetail.dart';
 
 class StockPOList extends StatefulWidget {
-  const StockPOList({Key key}) : super(key: key);
+  const StockPOList({Key? key}) : super(key: key);
 
   @override
   State<StockPOList> createState() => _StockPOListState();
@@ -41,20 +39,20 @@ class _StockPOListState extends State<StockPOList> {
           var total = 0.0;
 
           DateTime tempDate =
-              new DateFormat("dd-MM-yyyy").parse(orderList[index].dPODATE);
+              new DateFormat("dd-MM-yyyy").parse(orderList[index].dPODATE!);
 
           DateTime parseDate = new DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-              .parse(orderList[index].dPODATE);
+              .parse(orderList[index].dPODATE!);
           var inputDate = DateTime.parse(parseDate.toString());
           var outputFormat = DateFormat('dd-MM-yyyy');
           var outputDate = outputFormat.format(inputDate);
           for (int i = 0; i < GlobalParam.supplierOrProductList.length; i++) {
             if (GlobalParam.supplierOrProductList[i].cPOCD ==
                 orderList[index].cPOCD) {
-              if (double.parse(GlobalParam.supplierOrProductList[i].iPURCHASE) >
+              if (double.parse(GlobalParam.supplierOrProductList[i].iPURCHASE!) >
                   0) {
                 total += double.parse(
-                    GlobalParam.supplierOrProductList[i].iNETPRICE);
+                    GlobalParam.supplierOrProductList[i].iNETPRICE!);
                 item++;
               }
             }
@@ -74,7 +72,7 @@ class _StockPOListState extends State<StockPOList> {
                     padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
                     child: Container(
                         alignment: Alignment.centerLeft,
-                        child: Text(orderList[index].cSUPPNM,
+                        child: Text(orderList[index].cSUPPNM!,
                             style: TextStyle(
                                 fontFamily: 'Prompt',
                                 fontSize: 16,

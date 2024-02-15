@@ -19,8 +19,8 @@ class Warehouse3SearchRoute extends StatefulWidget {
 
 class _Warehouse3SearchRouteState extends State<Warehouse3SearchRoute> {
   var routeName = TextEditingController();
-  String routeId;
-  String nameOfRoute;
+  String routeId = "";
+  String nameOfRoute = "";
   String message = 'กรุณาระบุชื่อสาย';
   int storeInRoute = 0;
   List<RouteResp> routeList = [];
@@ -146,7 +146,7 @@ class _Warehouse3SearchRouteState extends State<Warehouse3SearchRoute> {
         AllApiProxyMobile proxy = AllApiProxyMobile();
 
         var result =
-            await proxy.getRoute(nameOfRoute, GlobalParam.VEHICLE['cBRANCD']);
+            await proxy.getRoute(nameOfRoute, GlobalParam.VEHICLE['cBRANCD']!);
         if (result.isNotEmpty) {
           for (int i = 0; i < result.length; i++) {
             routeList.add(result[i]);

@@ -7,9 +7,9 @@ import 'package:vansale/api/class/globalparam.dart';
 String mtTotal = '';
 
 class Details_Main_BasketReturn extends StatefulWidget {
-  final bool IsSale;
+  final bool? IsSale;
 
-  const Details_Main_BasketReturn({Key key, this.IsSale}) : super(key: key);
+  const Details_Main_BasketReturn({Key? key, this.IsSale}) : super(key: key);
   @override
   State<Details_Main_BasketReturn> createState() =>
       _Details_Main_BasketReturnState();
@@ -24,7 +24,7 @@ class _Details_Main_BasketReturnState extends State<Details_Main_BasketReturn> {
     // TODO: implement initState
     if (widget.IsSale == true) {
       if (GlobalParam.saleOrder.cCUSTCD != "" &&
-          GlobalParam.saleOrder.aPRODUCT.isNotEmpty == true) {
+          GlobalParam.saleOrder.aPRODUCT!.isNotEmpty == true) {
             
           }
     }
@@ -380,7 +380,7 @@ class Details_Main_BasketReturn_Pay extends StatelessWidget {
     String totalPay =
         '${(double.tryParse(GlobalParam.deliveryStoreSum.iTOTAL ?? "0") ?? 0.0)}';
     String totalPay2 =
-        '${(double.tryParse(GlobalParam.deliveryStoreSum.iTOTAL ?? "0") ?? 0.0) - GlobalParam.basketReturn['basketReturnPrice']}';
+        '${(double.tryParse(GlobalParam.deliveryStoreSum.iTOTAL ?? "0") ?? 0.0) - GlobalParam.basketReturn['basketReturnPrice']!}';
     mtTotal = '$totalPay2';
     return Container(
       child: Column(

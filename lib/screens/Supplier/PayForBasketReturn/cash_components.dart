@@ -39,7 +39,7 @@ class BodyCashPay extends StatelessWidget {
 
   Widget paymentAmount() {
     String totalPay2 =
-        '${(double.tryParse(GlobalParam.deliveryStoreSum.iTOTAL) ?? 0.0) - GlobalParam.basketReturn['basketReturnPrice']}';
+        '${(double.tryParse(GlobalParam.deliveryStoreSum.iTOTAL!) ?? 0.0) - GlobalParam.basketReturn['basketReturnPrice']!}';
     String totalpaymentAmount = '3000.00';
     return Center(
       child: Container(
@@ -215,7 +215,7 @@ class BodyCashPay extends StatelessWidget {
 
   Widget label2() {
     String totalPay2 =
-        '${(double.tryParse(GlobalParam.deliveryStoreSum.iTOTAL) ?? 0.0) - GlobalParam.basketReturn['basketReturnPrice']}';
+        '${(double.tryParse(GlobalParam.deliveryStoreSum.iTOTAL!) ?? 0.0) - GlobalParam.basketReturn['basketReturnPrice']!}';
     return Container(
       width: 360,
       child: Row(
@@ -293,7 +293,7 @@ class BodyCashPay extends StatelessWidget {
 
   Widget label3() {
     String totalPay2 =
-        '${(double.tryParse(GlobalParam.deliveryStoreSum.iTOTAL) ?? 0.0) - GlobalParam.basketReturn['basketReturnPrice'] - GlobalParam.deliveryPayReq.iDEBIT}';
+        '${(double.tryParse(GlobalParam.deliveryStoreSum.iTOTAL!) ?? 0.0) - GlobalParam.basketReturn['basketReturnPrice']! - GlobalParam.deliveryPayReq.iDEBIT!}';
     return Container(
       width: 360,
       child: Row(

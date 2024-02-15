@@ -10,9 +10,9 @@ import 'package:vansale/api/class/response/routeMobile/pocdResp.dart';
 import 'package:vansale/api/class/response/routeMobile/routeCusResp.dart';
 
 class TranferProducts extends StatefulWidget {
-  final String typeMenuCode;
+  final String? typeMenuCode;
   const TranferProducts({
-    Key key,
+    Key? key,
     this.typeMenuCode,
   }) : super(key: key);
 
@@ -103,7 +103,7 @@ class _TranferProductsState extends State<TranferProducts> {
                                   textAlign: TextAlign.center),
                             ),
                             title: AutoSizeText(
-                              routeCusList[index].cCUSTNM,
+                              routeCusList[index].cCUSTNM!,
                               style: TextStyle(fontSize: 16),
                               minFontSize: 12,
                               maxLines: 2,
@@ -208,10 +208,10 @@ class _TranferProductsState extends State<TranferProducts> {
         // print(outputDate);
 
         var result = await proxy.getRouteTransfer(
-            GlobalParam.deliveryRouteToday['cRTECD'],
+            GlobalParam.deliveryRouteToday['cRTECD']!,
             '2022-09-15',
-            GlobalParam.deliveryRouteToday['cGRPCD'],
-            GlobalParam.deliveryRouteToday['cBRANCD'],true);
+            GlobalParam.deliveryRouteToday['cGRPCD']!,
+            GlobalParam.deliveryRouteToday['cBRANCD']!,true);
         if (result.isNotEmpty) {
           routeCusList.clear();
           GlobalParam.deliveryListStores.clear();
@@ -231,7 +231,7 @@ class _TranferProductsState extends State<TranferProducts> {
           }
 
           for (int i = 0; i < routeCusList.length; i++) {
-            getPocdOfcustomer(routeCusList[i].cCUSTCD);
+            getPocdOfcustomer(routeCusList[i].cCUSTCD!);
           }
 
           setState(() {});

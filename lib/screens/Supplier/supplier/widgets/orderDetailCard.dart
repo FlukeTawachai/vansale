@@ -5,8 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:vansale/screens/Supplier/models/supOrderDetail.dart';
 
 class ListProduct extends StatelessWidget {
-  final SupOrderDetailModel orderDetail;
-  const ListProduct({ Key key, this.orderDetail }) : super(key: key);
+  final SupOrderDetailModel? orderDetail;
+  const ListProduct({ Key? key, this.orderDetail }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ListProduct extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.all(5.0),
                   child: Image.asset(
-                    orderDetail.img,
+                    orderDetail!.img!,
                     fit: BoxFit.cover,
                     width: 100.0,
                     height: 150.0,
@@ -47,7 +47,7 @@ class ListProduct extends StatelessWidget {
                                   child: Container(
                                     // width: widthScreen * 0.2,
                                     child: Text(
-                                      orderDetail.name,
+                                      orderDetail!.name!,
                                       style: TextStyle(
                                           fontFamily: 'Prompt', fontSize: 18),
                                       overflow: TextOverflow.ellipsis,
@@ -68,7 +68,7 @@ class ListProduct extends StatelessWidget {
                                   child: Container(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      "จำนวนสินค้า: ${orderDetail.number}",
+                                      "จำนวนสินค้า: ${orderDetail!.number}",
                                       style: TextStyle(
                                           fontFamily: 'Prompt', fontSize: 16),
                                     ),
@@ -81,7 +81,7 @@ class ListProduct extends StatelessWidget {
                           Container(
                             alignment: Alignment.centerRight,
                             child: Text(
-                              "ราคาสุทธิ: ${formatNum.format(orderDetail.price)} ฿",
+                              "ราคาสุทธิ: ${formatNum.format(orderDetail!.price)} ฿",
                               style: TextStyle(
                                   // color: Colors.black54,
                                   fontFamily: 'Prompt',

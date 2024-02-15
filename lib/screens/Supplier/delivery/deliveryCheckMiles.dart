@@ -7,12 +7,12 @@ import 'package:vansale/screens/Supplier/models/delayTime.dart';
 DelayTime delay = new DelayTime();
 
 class CheckInMiles extends StatefulWidget {
-  final String headerTitle;
-  final String title;
-  final Function submit;
-  final Function cancel;
+  final String? headerTitle;
+  final String? title;
+  final Function? submit;
+  final Function? cancel;
   const CheckInMiles({
-    Key key,
+    Key? key,
     this.headerTitle,
     this.title,
     this.submit,
@@ -37,7 +37,7 @@ class _CheckInMilesState extends State<CheckInMiles> {
         backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-          widget.headerTitle,
+          widget.headerTitle!,
           style: TextStyle(
             color: Colors.black,
             //color: Color.fromRGBO(0, 157, 181, 5),
@@ -51,7 +51,7 @@ class _CheckInMilesState extends State<CheckInMiles> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            widget.title,
+            widget.title!,
             style: TextStyle(
               color: Colors.grey,
               //color: Color.fromRGBO(0, 157, 181, 5),
@@ -110,7 +110,7 @@ class _CheckInMilesState extends State<CheckInMiles> {
                     alignment: Alignment.center,
                     child: InkWell(
                       onTap: () {
-                        widget.cancel();
+                        widget.cancel!();
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -150,7 +150,7 @@ class _CheckInMilesState extends State<CheckInMiles> {
                     alignment: Alignment.center,
                     child: InkWell(
                       onTap: () {
-                        widget.submit();
+                        widget.submit!();
 
                         // Navigator.of(context).push(MaterialPageRoute(
                         //     builder: (comtext) =>

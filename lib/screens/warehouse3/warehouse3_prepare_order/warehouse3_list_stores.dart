@@ -87,7 +87,7 @@ class _Warehouse3StoreListState extends State<Warehouse3StoreList> {
         // print(outputDate);
 
         var result = await proxy.getRouteTransfer(id, outputDate, widget.cGRPCD,
-            GlobalParam.VEHICLE['cBRANCD'], false);
+            GlobalParam.VEHICLE['cBRANCD']!, false);
         if (result.isNotEmpty) {
           routeCusList.clear();
           pocdResp.clear();

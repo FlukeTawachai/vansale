@@ -354,10 +354,21 @@ class _RecordCashDetailsState extends State<RecordCashDetails> {
                       color: HexColor('#00cb39'),
                     ),
                   ),
-                  Container(
-                    //alignment: Alignment.centerLeft,
-                    // ignore: deprecated_member_use
-                    child: FlatButton(
+                  InkWell(
+                    onTap: () {
+                      setState(
+                        () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => RecordCashDetails(),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Container(
+                      //alignment: Alignment.centerLeft,
+                      // ignore: deprecated_member_use
                       child: Text(
                         'ยืนยันการส่งเงิน',
                         style: TextStyle(
@@ -367,17 +378,6 @@ class _RecordCashDetailsState extends State<RecordCashDetails> {
                           fontFamily: 'Prompt',
                         ),
                       ),
-                      onPressed: () {
-                        setState(
-                          () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => RecordCashDetails(),
-                              ),
-                            );
-                          },
-                        );
-                      },
                     ),
                   ),
                 ],

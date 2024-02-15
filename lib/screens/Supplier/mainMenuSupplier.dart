@@ -184,7 +184,7 @@ class _GridMainSupplierState extends State<GridMainSupplier> {
       itemBuilder: (BuildContext context, int index) {
         return Card(
           //margin: const EdgeInsets.all(5.0),
-          child: new InkWell(
+          child: InkWell(
             onTap: () {
               Navigator.push(
                 context,
@@ -238,77 +238,83 @@ class _GridMainSupplierState extends State<GridMainSupplier> {
   }
 
   Widget _listmenu(index, String menutype) {
-    Widget menuname;
+    Widget menuname = Text(
+      menus[index]['name']!,
+      style: TextStyle(
+        fontFamily: 'Prompt',
+        fontSize: double.parse(menus[index]['font_size']!),
+      ),
+    );
     switch (menutype) {
       case "T001":
         return menuname = Text(
-          menus[index]['name'],
+          menus[index]['name']!,
           style: TextStyle(
             fontFamily: 'Prompt',
-            fontSize: double.parse(menus[index]['font_size']),
+            fontSize: double.parse(menus[index]['font_size']!),
           ),
         );
         break;
       case "T002":
         return menuname = Text(
-          menus[index]['name'],
+          menus[index]['name']!,
           style: TextStyle(
             fontFamily: 'Prompt',
-            fontSize: double.parse(menus[index]['font_size']),
+            fontSize: double.parse(menus[index]['font_size']!),
           ),
         );
         break;
       case "T003":
         return menuname = Text(
-          customermenu[index]['name'],
+          customermenu[index]['name']!,
           style: TextStyle(
             fontFamily: 'Prompt',
-            fontSize: double.parse(customermenu[index]['font_size']),
+            fontSize: double.parse(customermenu[index]['font_size']!),
           ),
         );
         break;
       case "T004":
         return menuname = Text(
-          menus[index]['name'],
+          menus[index]['name']!,
           style: TextStyle(
             fontFamily: 'Prompt',
-            fontSize: double.parse(menus[index]['font_size']),
+            fontSize: double.parse(menus[index]['font_size']!),
           ),
         );
         break;
       case "T005":
         return menuname = Text(
-          menus[index]['name'],
+          menus[index]['name']!,
           style: TextStyle(
             fontFamily: 'Prompt',
-            fontSize: double.parse(menus[index]['font_size']),
+            fontSize: double.parse(menus[index]['font_size']!),
           ),
         );
         break;
       case "T006":
         return menuname = Text(
-          menus[index]['name'],
+          menus[index]['name']!,
           style: TextStyle(
             fontFamily: 'Prompt',
-            fontSize: double.parse(menus[index]['font_size']),
+            fontSize: double.parse(menus[index]['font_size']!),
           ),
         );
         break;
       case "T007":
         return menuname = Text(
-          menus[index]['name'],
+          menus[index]['name']!,
           style: TextStyle(
             fontFamily: 'Prompt',
-            fontSize: double.parse(menus[index]['font_size']),
+            fontSize: double.parse(menus[index]['font_size']!),
           ),
         );
         break;
       case "T008":
         return menuname = Text(
-          suppliermenu[index]['name'],
+          suppliermenu[index]['name']!,
           style: TextStyle(
             fontFamily: 'Prompt',
-            fontSize: double.parse(suppliermenu[index]['font_size']),
+            fontSize: double.parse(suppliermenu[index]['font_size']!),
           ),
         );
         break;
@@ -318,64 +324,69 @@ class _GridMainSupplierState extends State<GridMainSupplier> {
   }
 
   Widget iconmenu(index, String menutype) {
-    Widget menuicon;
+    Widget menuicon = Icon(
+      IconData(int.parse(menus[index]['icon']!), fontFamily: 'vp_custom'),
+      color: Colors.green,
+      size: double.parse(menus[index]['icon_size']!),
+    );
+    ;
     switch (menutype) {
       case "T001":
         return menuicon = Icon(
-          IconData(int.parse(menus[index]['icon']), fontFamily: 'vp_custom'),
+          IconData(int.parse(menus[index]['icon']!), fontFamily: 'vp_custom'),
           color: Colors.green,
-          size: double.parse(menus[index]['icon_size']),
+          size: double.parse(menus[index]['icon_size']!),
         );
         break;
       case "T002":
         return menuicon = Icon(
-          IconData(int.parse(menus[index]['icon']), fontFamily: 'vp_custom'),
+          IconData(int.parse(menus[index]['icon']!), fontFamily: 'vp_custom'),
           color: Colors.green,
-          size: double.parse(menus[index]['icon_size']),
+          size: double.parse(menus[index]['icon_size']!),
         );
         break;
       case "T003":
         return menuicon = Icon(
-          IconData(int.parse(customermenu[index]['icon']),
+          IconData(int.parse(customermenu[index]['icon']!),
               fontFamily: 'vp_custom'),
           color: Colors.green,
-          size: double.parse(customermenu[index]['icon_size']),
+          size: double.parse(customermenu[index]['icon_size']!),
         );
         break;
       case "T004":
         return menuicon = Icon(
-          IconData(int.parse(menus[index]['icon']), fontFamily: 'vp_custom'),
+          IconData(int.parse(menus[index]['icon']!), fontFamily: 'vp_custom'),
           color: Colors.green,
-          size: double.parse(menus[index]['icon_size']),
+          size: double.parse(menus[index]['icon_size']!),
         );
         break;
       case "T005":
         return menuicon = Icon(
-          IconData(int.parse(menus[index]['icon']), fontFamily: 'vp_custom'),
+          IconData(int.parse(menus[index]['icon']!), fontFamily: 'vp_custom'),
           color: Colors.green,
-          size: double.parse(menus[index]['icon_size']),
+          size: double.parse(menus[index]['icon_size']!),
         );
         break;
       case "T006":
         return menuicon = Icon(
-          IconData(int.parse(menus[index]['icon']), fontFamily: 'vp_custom'),
+          IconData(int.parse(menus[index]['icon']!), fontFamily: 'vp_custom'),
           color: Colors.green,
-          size: double.parse(menus[index]['icon_size']),
+          size: double.parse(menus[index]['icon_size']!),
         );
         break;
       case "T007":
         return menuicon = Icon(
-          IconData(int.parse(menus[index]['icon']), fontFamily: 'vp_custom'),
+          IconData(int.parse(menus[index]['icon']!), fontFamily: 'vp_custom'),
           color: Colors.green,
-          size: double.parse(menus[index]['icon_size']),
+          size: double.parse(menus[index]['icon_size']!),
         );
         break;
       case "T008":
         return menuicon = Icon(
-          IconData(int.parse(suppliermenu[index]['icon']),
+          IconData(int.parse(suppliermenu[index]['icon']!),
               fontFamily: 'vp_custom'),
           color: Colors.green,
-          size: double.parse(suppliermenu[index]['icon_size']),
+          size: double.parse(suppliermenu[index]['icon_size']!),
         );
         break;
     }
@@ -417,28 +428,28 @@ class _GridMainSupplierState extends State<GridMainSupplier> {
     print(mapmenu);
     switch (mapmenu) {
       case "T001":
-        return lstMenu(menus[index]['menu']);
+        return lstMenu(menus[index]['menu']!);
         break;
       case "T002":
-        return lstMenu(menus[index]['menu']);
+        return lstMenu(menus[index]['menu']!);
         break;
       case "T003":
-        return lstMenu(customermenu[index]['menu']);
+        return lstMenu(customermenu[index]['menu']!);
         break;
       case "T004":
-        return lstMenu(menus[index]['menu']);
+        return lstMenu(menus[index]['menu']!);
         break;
       case "T005":
-        return lstMenu(menus[index]['menu']);
+        return lstMenu(menus[index]['menu']!);
         break;
       case "T006":
-        return lstMenu(menus[index]['menu']);
+        return lstMenu(menus[index]['menu']!);
         break;
       case "T007":
-        return lstMenu(menus[index]['menu']);
+        return lstMenu(menus[index]['menu']!);
         break;
       case "T008":
-        return lstMenu(suppliermenu[index]['menu']);
+        return lstMenu(suppliermenu[index]['menu']!);
         break;
     }
   }

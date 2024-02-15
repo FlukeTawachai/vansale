@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vansale/screens/home/home.dart';
 
 class DestinationNavigated extends StatefulWidget {
-  const DestinationNavigated({Key key}) : super(key: key);
+  const DestinationNavigated({Key? key}) : super(key: key);
 
   @override
   State<DestinationNavigated> createState() => _DestinationNavigatedState();

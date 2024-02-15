@@ -11,7 +11,7 @@ import 'package:vansale/function/substring_price.dart';
 import 'package:vansale/screens/stocks/stockOrderDetail.dart';
 
 class StockPOSuccList extends StatefulWidget {
-  const StockPOSuccList({Key key}) : super(key: key);
+  const StockPOSuccList({Key? key}) : super(key: key);
 
   @override
   State<StockPOSuccList> createState() => _StockPOSuccListState();
@@ -41,10 +41,10 @@ class _StockPOSuccListState extends State<StockPOSuccList> {
           var total = 0.0;
 
           DateTime tempDate =
-              new DateFormat("dd-MM-yyyy").parse(orderList[index].dPODATE);
+              new DateFormat("dd-MM-yyyy").parse(orderList[index].dPODATE!);
 
           DateTime parseDate = new DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-              .parse(orderList[index].dPODATE);
+              .parse(orderList[index].dPODATE!);
           var inputDate = DateTime.parse(parseDate.toString());
           var outputFormat = DateFormat('dd-MM-yyyy');
           var outputDate = outputFormat.format(inputDate);
@@ -52,7 +52,7 @@ class _StockPOSuccListState extends State<StockPOSuccList> {
             if (GlobalParam.supplierOrProductList[i].cPOCD ==
                 orderList[index].cPOCD) {
               total +=
-                  double.parse(GlobalParam.supplierOrProductList[i].iNETPRICE);
+                  double.parse(GlobalParam.supplierOrProductList[i].iNETPRICE!);
               item++;
             }
           }
@@ -71,7 +71,7 @@ class _StockPOSuccListState extends State<StockPOSuccList> {
                     padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
                     child: Container(
                         alignment: Alignment.centerLeft,
-                        child: Text(orderList[index].cSUPPNM,
+                        child: Text(orderList[index].cSUPPNM!,
                             style: TextStyle(
                                 fontFamily: 'Prompt',
                                 fontSize: 16,

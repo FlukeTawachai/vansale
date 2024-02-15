@@ -9,16 +9,16 @@ import 'package:vansale/screens/Supplier/delivery/widgets/desMapFooter.dart';
 import 'package:vansale/screens/googleMap/mapHome.dart';
 
 class DestionationMap extends StatefulWidget {
-  final StoreModel store;
-  const DestionationMap({Key key, this.store}) : super(key: key);
+  final StoreModel? store;
+  const DestionationMap({Key? key, this.store}) : super(key: key);
 
   @override
   State<DestionationMap> createState() => _DestionationMapState();
 }
 
 class _DestionationMapState extends State<DestionationMap> {
-  double latitude;
-  double longitude;
+  double latitude = 0;
+  double longitude = 0;
   bool discoverStores = true;
   @override
   void initState() {
@@ -73,9 +73,9 @@ class _DestionationMapState extends State<DestionationMap> {
         print(
             '----------- Location Store: ${result.cLATITUDE},${result.cLONGTITUDE} -----------');
         GlobalParam.deliveryLocationStoreLatitude =
-            double.parse(result.cLATITUDE);
+            double.parse(result.cLATITUDE!);
         GlobalParam.deliveryLocationStoreLongitude =
-            double.parse(result.cLONGTITUDE);
+            double.parse(result.cLONGTITUDE!);
       } else {
         discoverStores = false;
         wrongDialog('ไม่พบที่อยู่ร้าน');

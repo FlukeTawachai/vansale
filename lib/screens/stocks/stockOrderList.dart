@@ -43,11 +43,11 @@ class _StockOrderListState extends State<StockOrderList> {
             'ออเดอร์ (${orderSucList.length}/${GlobalParam.supplierOrderList.length})'),
         leading: IconButton(
           onPressed: () {
-            return Navigator.push(
+             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (BuildContext context) =>
-                    HomePage(GlobalParam.typeMenuCode),
+                    HomePage(GlobalParam.typeMenuCode!),
               ),
             );
           },
@@ -125,7 +125,7 @@ class _StockOrderListState extends State<StockOrderList> {
             orderSucList.add(result[i]);
           }
 
-          getSPOrderDT(result[i].cPOCD);
+          getSPOrderDT(result[i].cPOCD!);
         }
       } else {
         wrongDialog('ไม่พบออเดอร์');
@@ -150,7 +150,7 @@ class _StockOrderListState extends State<StockOrderList> {
       if (result.isNotEmpty) {
         orderSucList = [];
         for (int i = 0; i < result.length; i++) {
-          if (double.parse(result[i].iPURCHASE) > 0) {
+          if (double.parse(result[i].iPURCHASE!) > 0) {
             GlobalParam.supplierOrProductList.add(result[i]);
             GlobalParam.supplierOrProductShowList.add(result[i]);
           }

@@ -22,10 +22,10 @@ class _BasketReturnCardState extends State<BasketReturnCard> {
   int originValue = 20;
   int inclease = 0;
   int declease = 0;
-  int valueFinal;
-  String sam, sam2;
-  String airFlowText, velocityText, finalText;
-  double widthScreen;
+  int? valueFinal;
+  String sam = "", sam2 = "";
+  String airFlowText = "", velocityText = "", finalText = "";
+  double widthScreen = 0;
 
   @override
   void initState() {
@@ -108,7 +108,7 @@ class _BasketReturnCardState extends State<BasketReturnCard> {
                             alignment: Alignment.centerLeft,
                             // width: 136,
                             child: Text(
-                              widget.product.cBASKNM,
+                              widget.product.cBASKNM!,
                               style:
                                   TextStyle(fontFamily: 'Prompt', fontSize: 18),
                               overflow: TextOverflow.ellipsis,
@@ -165,7 +165,7 @@ class _BasketReturnCardState extends State<BasketReturnCard> {
                                               0 *
                                                   double.parse(GlobalParam
                                                       .deliveryBasketList[i]
-                                                      .iPRICE);
+                                                      .iPRICE!);
                                         } else {
                                           GlobalParam.deliveryBasketReq[i]
                                               .iQTY = double.parse(value);
@@ -174,13 +174,13 @@ class _BasketReturnCardState extends State<BasketReturnCard> {
                                               int.parse(value) *
                                                   double.parse(GlobalParam
                                                       .deliveryBasketList[i]
-                                                      .iPRICE);
+                                                      .iPRICE!);
                                         }
                                       }
                                       item += int.parse(
-                                          '${GlobalParam.deliveryBasketReq[i].iQTY.toStringAsFixed(0)}');
+                                          '${GlobalParam.deliveryBasketReq[i].iQTY!.toStringAsFixed(0)}');
                                       total += GlobalParam
-                                          .deliveryBasketReq[i].iTOTAL;
+                                          .deliveryBasketReq[i].iTOTAL!;
                                     }
                                     setBasketSum(item, total);
                                   },
@@ -576,7 +576,7 @@ class _BasketReturnCardState extends State<BasketReturnCard> {
   }
 
   setBasketSum(int item, double total) async {
-    await setState(() {
+    setState(() {
       print(item);
       print(total);
       GlobalParam.deliveryBasketSum['item'] = '$item';

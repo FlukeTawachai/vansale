@@ -31,7 +31,6 @@ class _RefuelMapState extends State<RefuelMap> {
             child: Container(
               color: Colors.amber,
               child: LongdoMapWidget(
-                bundleId: "",
                 apiKey: "",
                 key: map,
               ),

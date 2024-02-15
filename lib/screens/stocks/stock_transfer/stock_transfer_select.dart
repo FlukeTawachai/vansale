@@ -2,21 +2,17 @@ import 'dart:io';
 
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import 'package:vansale/api/allApiProxyMobile.dart';
 import 'package:vansale/api/class/globalparam.dart';
 import 'package:vansale/api/class/request/mobile/getGroupRouteReq.dart';
 import 'package:vansale/api/class/request/mobile/getProductReturnOfRouteReq.dart';
 import 'package:vansale/api/class/response/routeMobile/getGroupRouteResp.dart';
-import 'package:vansale/api/class/response/routeMobile/getSupplierResp.dart';
-import 'package:vansale/screens/stocks/stock_transfer/stock_transfer_bad.dart';
-import 'package:vansale/screens/stocks/stock_transfer/stock_transfer_good.dart';
+
 import 'package:vansale/screens/stocks/stock_transfer/stock_transfer_miss.dart';
-import 'package:vansale/screens/stocks/stoeck_return/stock_return_basket.dart';
 
 class StockSelectGroup extends StatefulWidget {
-  const StockSelectGroup({Key key}) : super(key: key);
+  const StockSelectGroup({Key? key}) : super(key: key);
 
   @override
   State<StockSelectGroup> createState() => _StockSelectGroupState();
@@ -108,7 +104,7 @@ class _StockSelectGroupState extends State<StockSelectGroup> {
                             height: 24,
                             alignment: Alignment.topLeft,
                             child: Text(
-                              StockSelectGroup[index].cRTENM,
+                              StockSelectGroup[index].cRTENM!,
                               style: TextStyle(
                                 fontFamily: 'Prompt',
                                 fontWeight: FontWeight.bold,

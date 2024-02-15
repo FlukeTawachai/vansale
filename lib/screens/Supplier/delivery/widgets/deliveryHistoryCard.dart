@@ -4,15 +4,15 @@ import 'package:vansale/function/substring_price.dart';
 import 'package:vansale/screens/Supplier/delivery/historyDetail.dart';
 
 class DeliveryHistoryCard extends StatelessWidget {
-  final String typeMenuCode;
-  final String billno;
-  final String status;
-  final String date;
-  final String group;
-  final String price;
-  final String unit;
+  final String? typeMenuCode;
+  final String? billno;
+  final String? status;
+  final String? date;
+  final String? group;
+  final String? price;
+  final String? unit;
   const DeliveryHistoryCard({
-    Key key,
+    Key? key,
     this.typeMenuCode,
     this.billno,
     this.status,
@@ -36,7 +36,7 @@ class DeliveryHistoryCard extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (BuildContext context) => HistoryDetail(typeMenuCode),
+                    builder: (BuildContext context) => HistoryDetail(typeMenuCode!),
                   ),
                 );
               },
@@ -109,9 +109,9 @@ class DeliveryHistoryCard extends StatelessWidget {
                               child: Container(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  date +
+                                  date! +
                                       " " +
-                                      group,
+                                      group!,
                                   style: TextStyle(
                                     fontSize: 14.0,
                                     color: Colors.black,
@@ -124,7 +124,7 @@ class DeliveryHistoryCard extends StatelessWidget {
                             Container(
                               alignment: Alignment.center,
                               child: Text(
-                                status,
+                                status!,
                                 style: TextStyle(
                                   fontSize: 14.0,
                                   color: Colors.black,

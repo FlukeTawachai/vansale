@@ -33,7 +33,7 @@ class StockReturnBadPro extends StatefulWidget {
 
 class _StockReturnBadProState extends State<StockReturnBadPro> {
   String total = '3200.00';
-  double widthScreen;
+  double widthScreen = 0;
   List<TextEditingController> sController = [];
   List<TextEditingController> mController = [];
   List<TextEditingController> lController = [];
@@ -197,7 +197,7 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
                                                     builder: (context) =>
                                                         StockReturnBadPro(
                                                             GlobalParam
-                                                                .typeMenuCode,
+                                                                .typeMenuCode!,
                                                             false)));
                                           },
                                         )));
@@ -262,15 +262,15 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
 
               if (GlobalParam.customerShowProList[index].cISSSIZE == 'Y') {
                 sUnitPrice = double.parse(
-                    GlobalParam.customerShowProList[index].iSUNITPRICE);
+                    GlobalParam.customerShowProList[index].iSUNITPRICE!);
               }
               if (GlobalParam.customerShowProList[index].cISMSIZE == 'Y') {
                 mUnitPrice = double.parse(
-                    GlobalParam.customerShowProList[index].iMUNITPRICE);
+                    GlobalParam.customerShowProList[index].iMUNITPRICE!);
               }
               if (GlobalParam.customerShowProList[index].cISLSIZE == 'Y') {
                 lUnitPrice = double.parse(
-                    GlobalParam.customerShowProList[index].iLUNITPRICE);
+                    GlobalParam.customerShowProList[index].iLUNITPRICE!);
               }
 
               for (var k = 0; k < totalList.length; k++) {
@@ -288,15 +288,15 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
                     GlobalParam.customerShowProList[index].cPRODCD) {
                   if (stockList[k].cUOMCD ==
                       GlobalParam.customerShowProList[index].cSUOMCD) {
-                    stockS = double.parse(stockList[k].iPROQTY);
+                    stockS = double.parse(stockList[k].iPROQTY!);
                   }
                   if (stockList[k].cUOMCD ==
                       GlobalParam.customerShowProList[index].cMUOMCD) {
-                    stockM = double.parse(stockList[k].iPROQTY);
+                    stockM = double.parse(stockList[k].iPROQTY!);
                   }
                   if (stockList[k].cUOMCD ==
                       GlobalParam.customerShowProList[index].cLUOMCD) {
-                    stockL = double.parse(stockList[k].iPROQTY);
+                    stockL = double.parse(stockList[k].iPROQTY!);
                   }
                 }
               }
@@ -355,7 +355,7 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
                                     height: 24,
                                     child: Text(
                                       GlobalParam
-                                          .customerShowProList[index].cPRODNM,
+                                          .customerShowProList[index].cPRODNM!,
                                       style: TextStyle(
                                         fontFamily: 'Prompt',
                                         fontWeight: FontWeight.bold,
@@ -398,7 +398,7 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
                                                       GlobalParam
                                                           .customerShowProList[
                                                               index]
-                                                          .cLUOMNM,
+                                                          .cLUOMNM!,
                                                       style: TextStyle(
                                                         fontFamily: 'Prompt',
                                                         color: Colors.black,
@@ -421,7 +421,7 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
                                                       GlobalParam
                                                           .customerShowProList[
                                                               index]
-                                                          .cMUOMNM,
+                                                          .cMUOMNM!,
                                                       style: TextStyle(
                                                         fontFamily: 'Prompt',
                                                         color: Colors.black,
@@ -447,7 +447,7 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
                                                       GlobalParam
                                                           .customerShowProList[
                                                               index]
-                                                          .cSUOMNM,
+                                                          .cSUOMNM!,
                                                       style: TextStyle(
                                                           fontFamily: 'Prompt',
                                                           fontSize: 14),
@@ -513,7 +513,7 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
                                                                   GlobalParam
                                                                       .customerShowProList[
                                                                           index]
-                                                                      .iLUNITPRICE) *
+                                                                      .iLUNITPRICE!) *
                                                               double.parse(
                                                                   value);
                                                         }
@@ -601,7 +601,7 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
                                                                   GlobalParam
                                                                       .customerShowProList[
                                                                           index]
-                                                                      .iMUNITPRICE) *
+                                                                      .iMUNITPRICE!) *
                                                               double.parse(
                                                                   value);
                                                         }
@@ -793,12 +793,12 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
     double productTotal = 0;
 
     for (var i = 0; i < orderList.length; i++) {
-      double sQty = double.parse(orderList[i].iSSIZEQTY);
-      double mQty = double.parse(orderList[i].iMSIZEQTY);
-      double lQty = double.parse(orderList[i].iLSIZEQTY);
-      double sPrice = double.parse(orderList[i].iSUNITPRICE);
-      double mPrice = double.parse(orderList[i].iMUNITPRICE);
-      double lPrice = double.parse(orderList[i].iLUNITPRICE);
+      double sQty = double.parse(orderList[i].iSSIZEQTY!);
+      double mQty = double.parse(orderList[i].iMSIZEQTY!);
+      double lQty = double.parse(orderList[i].iLSIZEQTY!);
+      double sPrice = double.parse(orderList[i].iSUNITPRICE!);
+      double mPrice = double.parse(orderList[i].iMUNITPRICE!);
+      double lPrice = double.parse(orderList[i].iLUNITPRICE!);
       if ((sQty + mQty + lQty) > 0) {
         showData.add(orderList[i]);
         productTotal += (sQty * sPrice) + (mQty * mPrice) + (lQty * lPrice);
@@ -806,24 +806,24 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
           var data = {
             "cPRODCD": orderList[i].cPRODCD,
             "cUOMNM": orderList[i].cSUOMNM,
-            "iPRICE": double.parse(orderList[i].iSUNITPRICE),
-            "iTOTAL": double.parse(orderList[i].iSSIZEQTY)
+            "iPRICE": double.parse(orderList[i].iSUNITPRICE!),
+            "iTOTAL": double.parse(orderList[i].iSSIZEQTY!)
           };
           unitList.add(data);
         }
         if (mQty > 0) {
           var data = {
             "cUOMNM": orderList[i].cMUOMNM,
-            "iPRICE": double.parse(orderList[i].iMUNITPRICE),
-            "iTOTAL": double.parse(orderList[i].iMSIZEQTY)
+            "iPRICE": double.parse(orderList[i].iMUNITPRICE!),
+            "iTOTAL": double.parse(orderList[i].iMSIZEQTY!)
           };
           unitList.add(data);
         }
         if (lQty > 0) {
           var data = {
             "cUOMNM": orderList[i].cLUOMNM,
-            "iPRICE": double.parse(orderList[i].iLUNITPRICE),
-            "iTOTAL": double.parse(orderList[i].iLSIZEQTY)
+            "iPRICE": double.parse(orderList[i].iLUNITPRICE!),
+            "iTOTAL": double.parse(orderList[i].iLSIZEQTY!)
           };
           unitList.add(data);
         }
@@ -994,7 +994,7 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
                     } else {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) =>
-                              HomePage(GlobalParam.typeMenuCode)));
+                              HomePage(GlobalParam.typeMenuCode!)));
                     }
                   },
                   child: Container(
@@ -1241,25 +1241,25 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
       var lTotal = 0.0;
       var cRETCD = '';
       for (int i = 0; i < basketProduct.length; i++) {
-        checkReturn += double.parse(basketProduct[i].iLSIZEQTY) +
-            double.parse(basketProduct[i].iMSIZEQTY) +
-            double.parse(basketProduct[i].iSSIZEQTY);
+        checkReturn += double.parse(basketProduct[i].iLSIZEQTY!) +
+            double.parse(basketProduct[i].iMSIZEQTY!) +
+            double.parse(basketProduct[i].iSSIZEQTY!);
         if (checkReturn > 0) {
-          if (double.parse(basketProduct[i].iSSIZEQTY) > 0) {
-            sQty = double.parse(basketProduct[i].iSSIZEQTY);
-            sPrice = double.parse(basketProduct[i].iSUNITPRICE);
+          if (double.parse(basketProduct[i].iSSIZEQTY!) > 0) {
+            sQty = double.parse(basketProduct[i].iSSIZEQTY!);
+            sPrice = double.parse(basketProduct[i].iSUNITPRICE!);
             sTotal += sQty * sPrice;
           }
 
-          if (double.parse(basketProduct[i].iMSIZEQTY) > 0) {
-            mQty = double.parse(basketProduct[i].iMSIZEQTY);
-            mPrice = double.parse(basketProduct[i].iMUNITPRICE);
+          if (double.parse(basketProduct[i].iMSIZEQTY!) > 0) {
+            mQty = double.parse(basketProduct[i].iMSIZEQTY!);
+            mPrice = double.parse(basketProduct[i].iMUNITPRICE!);
             mTotal += mQty * mPrice;
           }
 
-          if (double.parse(basketProduct[i].iLSIZEQTY) > 0) {
-            lQty = double.parse(basketProduct[i].iLSIZEQTY);
-            lPrice = double.parse(basketProduct[i].iLUNITPRICE);
+          if (double.parse(basketProduct[i].iLSIZEQTY!) > 0) {
+            lQty = double.parse(basketProduct[i].iLSIZEQTY!);
+            lPrice = double.parse(basketProduct[i].iLUNITPRICE!);
             lTotal += lQty * lPrice;
           }
         }
@@ -1289,9 +1289,9 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
           } else {
             GlobalParam.deliveryReturnProRef = result.result;
             for (int i = 0; i < basketProduct.length; i++) {
-              if ((double.parse(basketProduct[i].iSSIZEQTY) +
-                      double.parse(basketProduct[i].iMSIZEQTY) +
-                      double.parse(basketProduct[i].iLSIZEQTY)) >
+              if ((double.parse(basketProduct[i].iSSIZEQTY!) +
+                      double.parse(basketProduct[i].iMSIZEQTY!) +
+                      double.parse(basketProduct[i].iLSIZEQTY!)) >
                   0) {
                 AddReturnDTReq data = AddReturnDTReq(
                     cRETCD: result.result,
@@ -1347,7 +1347,7 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
       if (result.success == false) {
         wrongDialog('${result.message}');
       } else {
-        addStockCard(req.cRETCD);
+        addStockCard(req.cRETCD!);
       }
     } on SocketException catch (e) {
       wrongDialog(e.message);
@@ -1374,16 +1374,16 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
       var lTotal = 0.0;
 
       for (int i = 0; i < basketProduct.length; i++) {
-        checkReturn = double.parse(basketProduct[i].iLSIZEQTY) +
-            double.parse(basketProduct[i].iMSIZEQTY) +
-            double.parse(basketProduct[i].iLSIZEQTY);
+        checkReturn = double.parse(basketProduct[i].iLSIZEQTY!) +
+            double.parse(basketProduct[i].iMSIZEQTY!) +
+            double.parse(basketProduct[i].iLSIZEQTY!);
 
         if (checkReturn > 0) {
           String cUOMCD = '';
-          if (double.parse(basketProduct[i].iSSIZEQTY) > 0) {
-            cUOMCD = basketProduct[i].cSUOMCD;
-            sQty = double.parse(basketProduct[i].iSSIZEQTY);
-            sPrice = double.parse(basketProduct[i].iSUNITPRICE);
+          if (double.parse(basketProduct[i].iSSIZEQTY!) > 0) {
+            cUOMCD = basketProduct[i].cSUOMCD!;
+            sQty = double.parse(basketProduct[i].iSSIZEQTY!);
+            sPrice = double.parse(basketProduct[i].iSUNITPRICE!);
             sTotal = sQty * sPrice;
             StockCardReq reGood = StockCardReq(
                 cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
@@ -1399,10 +1399,10 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
 
             stockCardReqList.add(reGood);
           }
-          if (double.parse(basketProduct[i].iMSIZEQTY) > 0) {
-            cUOMCD = basketProduct[i].cMUOMCD;
-            mQty = double.parse(basketProduct[i].iMSIZEQTY);
-            mPrice = double.parse(basketProduct[i].iMUNITPRICE);
+          if (double.parse(basketProduct[i].iMSIZEQTY!) > 0) {
+            cUOMCD = basketProduct[i].cMUOMCD!;
+            mQty = double.parse(basketProduct[i].iMSIZEQTY!);
+            mPrice = double.parse(basketProduct[i].iMUNITPRICE!);
             mTotal = mQty * mPrice;
             StockCardReq reGood = StockCardReq(
                 cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
@@ -1418,10 +1418,10 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
 
             stockCardReqList.add(reGood);
           }
-          if (double.parse(basketProduct[i].iLSIZEQTY) > 0) {
-            cUOMCD = basketProduct[i].cLUOMCD;
-            lQty = double.parse(basketProduct[i].iLSIZEQTY);
-            lPrice = double.parse(basketProduct[i].iLUNITPRICE);
+          if (double.parse(basketProduct[i].iLSIZEQTY!) > 0) {
+            cUOMCD = basketProduct[i].cLUOMCD!;
+            lQty = double.parse(basketProduct[i].iLSIZEQTY!);
+            lPrice = double.parse(basketProduct[i].iLUNITPRICE!);
             lTotal = lQty * lPrice;
             StockCardReq reGood = StockCardReq(
                 cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
@@ -1517,15 +1517,15 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
         }
 
         for (var k = 0; k < totalList.length; k++) {
-          double sQty = double.parse(GlobalParam.customerProList[i].iSSIZEQTY);
-          double mQty = double.parse(GlobalParam.customerProList[i].iMSIZEQTY);
-          double lQty = double.parse(GlobalParam.customerProList[i].iLSIZEQTY);
+          double sQty = double.parse(GlobalParam.customerProList[i].iSSIZEQTY!);
+          double mQty = double.parse(GlobalParam.customerProList[i].iMSIZEQTY!);
+          double lQty = double.parse(GlobalParam.customerProList[i].iLSIZEQTY!);
           double sPrice =
-              double.parse(GlobalParam.customerProList[i].iSUNITPRICE);
+              double.parse(GlobalParam.customerProList[i].iSUNITPRICE!);
           double mPrice =
-              double.parse(GlobalParam.customerProList[i].iMUNITPRICE);
+              double.parse(GlobalParam.customerProList[i].iMUNITPRICE!);
           double lPrice =
-              double.parse(GlobalParam.customerProList[i].iLUNITPRICE);
+              double.parse(GlobalParam.customerProList[i].iLUNITPRICE!);
           if (totalList[k]['cPRODCD'] ==
               GlobalParam.customerProList[i].cPRODCD) {
             totalList[k]['total'] =
@@ -1533,15 +1533,15 @@ class _StockReturnBadProState extends State<StockReturnBadPro> {
           }
         }
       }
-      for (var j = 0; j < addRequest.aPRODUCT.length; j++) {
+      for (var j = 0; j < addRequest.aPRODUCT!.length; j++) {
         if (GlobalParam.customerProList[i].cPRODCD ==
-            addRequest.aPRODUCT[j].cPRODCD) {
-          addRequest.aPRODUCT[j].iSSIZEQTY =
-              double.parse(GlobalParam.customerProList[i].iSSIZEQTY);
-          addRequest.aPRODUCT[j].iMSIZEQTY =
-              double.parse(GlobalParam.customerProList[i].iMSIZEQTY);
-          addRequest.aPRODUCT[j].iLSIZEQTY =
-              double.parse(GlobalParam.customerProList[i].iLSIZEQTY);
+            addRequest.aPRODUCT![j].cPRODCD) {
+          addRequest.aPRODUCT![j].iSSIZEQTY =
+              double.parse(GlobalParam.customerProList[i].iSSIZEQTY!);
+          addRequest.aPRODUCT![j].iMSIZEQTY =
+              double.parse(GlobalParam.customerProList[i].iMSIZEQTY!);
+          addRequest.aPRODUCT![j].iLSIZEQTY =
+              double.parse(GlobalParam.customerProList[i].iLSIZEQTY!);
         }
       }
     }

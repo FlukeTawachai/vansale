@@ -13,16 +13,12 @@ import 'package:vansale/api/allApiProxyMobile.dart';
 import 'package:vansale/api/apiexception.dart';
 import 'package:vansale/api/class/globalparam.dart';
 import 'package:vansale/api/class/request/mobile/addSupplierReceivBillReq.dart';
-import 'package:vansale/api/class/request/mobile/getVehicleResp.dart';
-import 'package:vansale/api/class/response/routeMobile/getSupplierBasketResp.dart';
 import 'package:vansale/api/class/response/routeMobile/getSupplierResp.dart';
 import 'package:vansale/common_screen.dart/confirm_page.dart';
 import 'dart:typed_data';
 
 import 'package:vansale/function/substring_price.dart';
-import 'package:vansale/screens/home/home.dart';
-import 'package:vansale/screens/namo/show_signature.dart';
-import 'package:vansale/screens/stocks/stoeck_return/stock_return_proMiss.dart';
+
 
 class StockBasketReturnSignature extends StatefulWidget {
   final String cVEHICD;
@@ -30,7 +26,7 @@ class StockBasketReturnSignature extends StatefulWidget {
   final double total;
   final String cREF;
   StockBasketReturnSignature(
-      {Key key, this.cVEHICD, this.item, this.total, this.cREF})
+      {Key? key,required this.cVEHICD,required this.item,required this.total,required this.cREF})
       : super(key: key);
 
   @override
@@ -180,7 +176,7 @@ class _StockBasketReturnSignatureState
                     );
                     return;
                   }
-                  final Uint8List data = await _controller.toPngBytes();
+                  final Uint8List? data = await _controller.toPngBytes();
                   if (data != null) {
                     String img64 = base64Encode(data);
                     saveData(img64);
@@ -244,7 +240,7 @@ class _StockBasketReturnSignatureState
             context,
             MaterialPageRoute(
               builder: (BuildContext context) => ConfirmPage(
-                  GlobalParam.typeMenuCode, "เซ็นรับ", "เรียบร้อยแล้ว"),
+                  GlobalParam.typeMenuCode!, "เซ็นรับ", "เรียบร้อยแล้ว"),
             ),
           );
         } else {
@@ -337,7 +333,7 @@ class _StockBasketReturnSignatureState
 
 class TopContainer extends StatelessWidget {
   TopContainer(
-      {Key key, this.size, this.item, this.total, this.cREF, this.cVEHINM})
+      {Key? key,required this.size,required this.item,required this.total,required this.cREF,required this.cVEHINM})
       : super(key: key);
 
   final Size size;

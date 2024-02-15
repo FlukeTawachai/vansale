@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 import 'package:vansale/api/class/globalparam.dart';
 
 import 'package:vansale/screens/Supplier/Pay/pay_components.dart';
-import 'package:vansale/screens/SendMoney/main_SendMoney.dart';
 
 import 'storeName.dart';
 
@@ -176,7 +175,7 @@ class _SupPayState extends State<SupPay> {
           _dateHD(),
           Container(
             child: Text(
-              GlobalParam.deliveryPodtList[0].cPOCD,
+              GlobalParam.deliveryPodtList[0].cPOCD!,
               style: TextStyle(
                 color: Color.fromRGBO(130, 145, 169, 1),
                 fontFamily: 'Prompt',

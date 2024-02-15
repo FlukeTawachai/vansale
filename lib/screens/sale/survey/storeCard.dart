@@ -78,7 +78,7 @@ class _SaleSurveyCardState extends State<SaleSurveyCard> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        widget.store.cCUSTNM,
+                                        widget.store.cCUSTNM!,
                                         style: TextStyle(
                                           fontFamily: 'Prompt',
                                           fontWeight: FontWeight.bold,
@@ -329,7 +329,7 @@ class _SaleSurveyCardState extends State<SaleSurveyCard> {
                                 Container(
                                   alignment: Alignment.topLeft,
                                   child: Text(
-                                    widget.store.cCONTACT,
+                                    widget.store.cCONTACT!,
                                     style: TextStyle(
                                       fontFamily: 'Prompt',
                                       fontWeight: FontWeight.bold,
@@ -344,7 +344,7 @@ class _SaleSurveyCardState extends State<SaleSurveyCard> {
                                   child: Container(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      widget.store.cTEL,
+                                      widget.store.cTEL!,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                         fontFamily: 'Prompt',
