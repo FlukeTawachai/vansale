@@ -16,7 +16,6 @@ import 'package:vansale/api/class/globalparam.dart';
 import 'package:vansale/api/class/request/mobile/addLOSSPROReq.dart';
 import 'package:vansale/screens/Supplier/shipping/%E0%B8%BABasketsReturn.dart';
 
-
 class DeliveryImageProduct extends StatefulWidget {
   final String typeMenuCode;
   DeliveryImageProduct(this.typeMenuCode);
@@ -34,193 +33,191 @@ class _DeliveryImageProductState extends State<DeliveryImageProduct> {
   String imgB64 = "";
 
   Location _locationTracker = Location();
-  StreamSubscription _locationSubscription;
-  LatLng currentLocation;
+  late StreamSubscription _locationSubscription;
+  late LatLng currentLocation;
   bool imgIsNull = true;
-  PickedFile imageFile;
-  File _image;
-  String base64Image;
-  List<int> imageBytes;
-  Uint8List bytes;
+  late PickedFile imageFile;
+  late File _image;
+  late String base64Image;
+  late List<int> imageBytes;
+  late Uint8List bytes;
 
   @override
   Widget build(BuildContext context) {
     return Material(
       child: Scaffold(
         backgroundColor: Colors.black87,
-        body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                padding: const EdgeInsets.only(top: 50.0),
-                alignment: Alignment.center,
-                child: Text(
-                  'รูปสินค้าเสีย',
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.only(top: 50.0),
+              alignment: Alignment.center,
+              child: const Text(
+                'รูปสินค้าเสีย',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white,
+                  //fontWeight: FontWeight.bold,
+                  fontFamily: 'Prompt',
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(top: 10.0),
+              alignment: Alignment.center,
+              child: Text(
+                dateFormat.format(DateTime.now()),
+                style: const TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.green,
+                  //fontWeight: FontWeight.bold,
+                  fontFamily: 'Prompt',
+                ),
+              ),
+            ),
+            // Container(
+            //   padding: const EdgeInsets.only(top: 50.0, left: 10.0),
+            //   alignment: Alignment.center,
+            //   child: Container(
+            //     //width: 300.0,
+            //     child: OutlinedButton(
+            //       onPressed: () {
+            //         Navigator.push(
+            //           context,
+            //           MaterialPageRoute(
+            //             builder: (BuildContext context) =>
+            //                 AppbarPage(4.toString(), widget.typeMenuCode),
+            //           ),
+            //         );
+            //       },
+            //       style: ButtonStyle(
+            //         shape: MaterialStateProperty.all(
+            //           RoundedRectangleBorder(
+            //             borderRadius: BorderRadius.circular(5.0),
+            //           ),
+            //         ),
+            //       ),
+            //       child: Container(
+            //         height: 40.0,
+            //         child: Container(
+            //           alignment: Alignment.centerLeft,
+            //           child: Container(
+            //             // color: Colors.black,
+            //             height: 40.0,
+            //             child: Row(
+            //               children: [
+            //                 Container(
+            //                   width: 30.0,
+            //                   alignment: Alignment.centerLeft,
+            //                   child: Icon(
+            //                     LineAwesomeIcons.map_marker,
+            //                     color: Colors.white,
+            //                     size: 24,
+            //                   ),
+            //                 ),
+            //                 Expanded(
+            //                   child: Container(
+            //                     alignment: Alignment.centerLeft,
+            //                     child: AutoSizeText(
+            //                       '${GlobalParam.deliverySelectStore.cADDRESS} ${GlobalParam.deliverySelectStore.cSUBDIST} ${GlobalParam.deliverySelectStore.cDISTRICT} ${GlobalParam.deliverySelectStore.cPROVINCE} ${GlobalParam.deliverySelectStore.cPOSTCD}',
+            //                       style: TextStyle(
+            //                         color: Colors.white,
+            //                         fontSize: 16.0,
+            //                         fontWeight: FontWeight.bold,
+            //                         fontFamily: 'Prompt',
+            //                       ),
+            //                       maxLines: 1,
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            const SizedBox(height: 64),
+            Container(
+              padding: const EdgeInsets.only(left: 30.0),
+              alignment: Alignment.topLeft,
+              child: const Text(
+                'บันทึกภาพถ่าย',
+                style: TextStyle(
+                  fontSize: 14.0,
+                  color: Colors.grey,
+                  //fontWeight: FontWeight.bold,
+                  fontFamily: 'Prompt',
+                ),
+              ),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.3,
+              padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+              alignment: Alignment.topCenter,
+              child: FDottedLine(
+                  color: Colors.grey[600],
+                  strokeWidth: 2.0,
+                  dottedLength: 10.0,
+                  space: 2.0,
+                  child: imageFile != null
+                      ? Container(
+                          width: 500.0,
+                          height: 300.0,
+                          alignment: Alignment.center,
+                          color: Colors.black,
+                          child: InkWell(
+                            onTap: () {
+                              openCamera();
+                            },
+                            child: Container(
+                              width: 500,
+                              height: 300,
+                              child: Image.file(
+                                File(_image.path),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        )
+                      : Container(
+                          width: 500.0,
+                          height: 300.0,
+                          color: Colors.black,
+                          child: InkWell(
+                            onTap: () {
+                              openCamera();
+                            },
+                            child: const Icon(
+                              LineAwesomeIcons.camera,
+                              color: Colors.white,
+                              size: 100.0,
+                            ),
+                          ),
+                        )),
+            ),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                alignment: Alignment.topLeft,
+                child: const Text(
+                  "*กรุณาถ่ายภาพ",
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 14.0,
                     color: Colors.white,
                     //fontWeight: FontWeight.bold,
                     fontFamily: 'Prompt',
                   ),
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.only(top: 10.0),
-                alignment: Alignment.center,
-                child: Text(
-                  dateFormat.format(DateTime.now()),
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.green,
-                    //fontWeight: FontWeight.bold,
-                    fontFamily: 'Prompt',
-                  ),
-                ),
-              ),
-              // Container(
-              //   padding: const EdgeInsets.only(top: 50.0, left: 10.0),
-              //   alignment: Alignment.center,
-              //   child: Container(
-              //     //width: 300.0,
-              //     child: OutlinedButton(
-              //       onPressed: () {
-              //         Navigator.push(
-              //           context,
-              //           MaterialPageRoute(
-              //             builder: (BuildContext context) =>
-              //                 AppbarPage(4.toString(), widget.typeMenuCode),
-              //           ),
-              //         );
-              //       },
-              //       style: ButtonStyle(
-              //         shape: MaterialStateProperty.all(
-              //           RoundedRectangleBorder(
-              //             borderRadius: BorderRadius.circular(5.0),
-              //           ),
-              //         ),
-              //       ),
-              //       child: Container(
-              //         height: 40.0,
-              //         child: Container(
-              //           alignment: Alignment.centerLeft,
-              //           child: Container(
-              //             // color: Colors.black,
-              //             height: 40.0,
-              //             child: Row(
-              //               children: [
-              //                 Container(
-              //                   width: 30.0,
-              //                   alignment: Alignment.centerLeft,
-              //                   child: Icon(
-              //                     LineAwesomeIcons.map_marker,
-              //                     color: Colors.white,
-              //                     size: 24,
-              //                   ),
-              //                 ),
-              //                 Expanded(
-              //                   child: Container(
-              //                     alignment: Alignment.centerLeft,
-              //                     child: AutoSizeText(
-              //                       '${GlobalParam.deliverySelectStore.cADDRESS} ${GlobalParam.deliverySelectStore.cSUBDIST} ${GlobalParam.deliverySelectStore.cDISTRICT} ${GlobalParam.deliverySelectStore.cPROVINCE} ${GlobalParam.deliverySelectStore.cPOSTCD}',
-              //                       style: TextStyle(
-              //                         color: Colors.white,
-              //                         fontSize: 16.0,
-              //                         fontWeight: FontWeight.bold,
-              //                         fontFamily: 'Prompt',
-              //                       ),
-              //                       maxLines: 1,
-              //                     ),
-              //                   ),
-              //                 ),
-              //               ],
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              SizedBox(height: 64),
-              Container(
-                padding: const EdgeInsets.only(left: 30.0),
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'บันทึกภาพถ่าย',
-                  style: TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.grey,
-                    //fontWeight: FontWeight.bold,
-                    fontFamily: 'Prompt',
-                  ),
-                ),
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.3,
-                padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-                alignment: Alignment.topCenter,
-                child: FDottedLine(
-                    color: Colors.grey[600],
-                    strokeWidth: 2.0,
-                    dottedLength: 10.0,
-                    space: 2.0,
-                    child: imageFile != null
-                        ? Container(
-                            width: 500.0,
-                            height: 300.0,
-                            alignment: Alignment.center,
-                            color: Colors.black,
-                            child: InkWell(
-                              onTap: () {
-                                openCamera();
-                              },
-                              child: Container(
-                                width: 500,
-                                height: 300,
-                                child: Image.file(
-                                  File(_image.path),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          )
-                        : Container(
-                            width: 500.0,
-                            height: 300.0,
-                            color: Colors.black,
-                            child: InkWell(
-                              onTap: () {
-                                openCamera();
-                              },
-                              child: Icon(
-                                LineAwesomeIcons.camera,
-                                color: Colors.white,
-                                size: 100.0,
-                              ),
-                            ),
-                          )),
-              ),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "*กรุณาถ่ายภาพ",
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.white,
-                      //fontWeight: FontWeight.bold,
-                      fontFamily: 'Prompt',
-                    ),
-                  ),
-                ),
-              ),
-              // Container(
-              //     height: 64,
-              //     child: bytes == null ? Container() : Image.memory(bytes))
-            ],
-          ),
+            ),
+            // Container(
+            //     height: 64,
+            //     child: bytes == null ? Container() : Image.memory(bytes))
+          ],
         ),
         bottomNavigationBar: Container(
           width: double.maxFinite,
@@ -251,18 +248,18 @@ class _DeliveryImageProductState extends State<DeliveryImageProduct> {
                           children: [
                             Container(
                               alignment: Alignment.center,
-                              child: Icon(
+                              child: const Icon(
                                 LineAwesomeIcons.check_circle,
                                 color: Colors.green,
                                 size: 25.0,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5.0,
                             ),
                             Container(
                               alignment: Alignment.centerLeft,
-                              child: Text(
+                              child: const Text(
                                 'บันทึก',
                                 style: TextStyle(
                                   fontSize: 18.0,
@@ -289,10 +286,10 @@ class _DeliveryImageProductState extends State<DeliveryImageProduct> {
   Future<void> openCamera() async {
     //EasyLoading.show();
     // ignore: invalid_use_of_visible_for_testing_member
-    var image = await ImagePicker.platform.pickImage(
+    PickedFile? image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
       GlobalParam.deliveryImage = File(imageFile.path);
 
@@ -310,10 +307,10 @@ class _DeliveryImageProductState extends State<DeliveryImageProduct> {
     Future<void> selectImage() async {
       //EasyLoading.show();
       // ignore: invalid_use_of_visible_for_testing_member
-      var image = await ImagePicker.platform.pickImage(
+      PickedFile? image = await ImagePicker.platform.pickImage(
           source: ImageSource.gallery, maxHeight: 1800.0, maxWidth: 1800.0);
       setState(() {
-        imageFile = image;
+        imageFile = image!;
         _image = File(imageFile.path);
         GlobalParam.deliveryImage = File(imageFile.path);
         // EasyLoading.dismiss();
@@ -338,20 +335,20 @@ class _DeliveryImageProductState extends State<DeliveryImageProduct> {
         double price = 0.0;
         // ignore: unrelated_type_equality_checks
         if (GlobalParam.deliveryPodtList[i].iSSIZEQTY != 0.0) {
-          price = double.parse(GlobalParam.deliveryPodtList[i].iSUNITPRICE);
+          price = double.parse(GlobalParam.deliveryPodtList[i].iSUNITPRICE!);
           // ignore: unrelated_type_equality_checks
         } else if (GlobalParam.deliveryPodtList[i].iMSIZEQTY != 0.0) {
-          price = double.parse(GlobalParam.deliveryPodtList[i].iMUNITPRICE);
+          price = double.parse(GlobalParam.deliveryPodtList[i].iMUNITPRICE!);
           // ignore: unrelated_type_equality_checks
         } else if (GlobalParam.deliveryPodtList[i].iLSIZEQTY != 0.0) {
-          price = double.parse(GlobalParam.deliveryPodtList[i].iLUNITPRICE);
+          price = double.parse(GlobalParam.deliveryPodtList[i].iLUNITPRICE!);
         }
         var totail = 0.0;
         var qty = 0;
         if (GlobalParam.deliveryPodtList[i].iLOSSPRO != 0 &&
             GlobalParam.deliveryPodtList[i].iLOSSPRO != null) {
-          totail += GlobalParam.deliveryPodtList[i].iLOSSPRO * price;
-          qty += GlobalParam.deliveryPodtList[i].iLOSSPRO;
+          totail += GlobalParam.deliveryPodtList[i].iLOSSPRO! * price;
+          qty += GlobalParam.deliveryPodtList[i].iLOSSPRO!;
         }
         req.iQTY = '$qty';
         req.iTOTAL = '$totail';

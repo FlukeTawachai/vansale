@@ -14,14 +14,14 @@ class DeliveryFooter extends StatelessWidget {
   final String title2;
   final double item;
   const DeliveryFooter(
-      {Key key,
-      this.item,
-      this.navigated1,
-      this.navigated2,
-      this.title1,
-      this.title2,
-      this.icon1,
-      this.icon2})
+      {Key? key,
+      required this.item,
+      required this.navigated1,
+      required this.navigated2,
+      required this.title1,
+      required this.title2,
+      required this.icon1,
+      required this.icon2})
       : super(key: key);
 
   @override
@@ -38,7 +38,7 @@ class DeliveryFooter extends StatelessWidget {
       height: 136.0,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(15),
           topRight: Radius.circular(15),
         ),
@@ -47,7 +47,7 @@ class DeliveryFooter extends StatelessWidget {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 7,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
@@ -59,7 +59,7 @@ class DeliveryFooter extends StatelessWidget {
                   const EdgeInsets.only(top: 10.0, left: 12.0, right: 12.0),
               child: Row(
                 children: [
-                  Container(
+                  SizedBox(
                     width: widthScreen * 0.46,
                     height: 24,
                     child: GlobalParam.typeMenuCode == 'T001'
@@ -67,14 +67,14 @@ class DeliveryFooter extends StatelessWidget {
                             item == 0 || item == null
                                 ? '0 รายการ'
                                 : '${item.toStringAsFixed(0)} รายการ',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16.0,
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Prompt',
                             ),
                           )
-                        : Text(
+                        : const Text(
                             '0 รายการ',
                             style: TextStyle(
                               fontSize: 16.0,
@@ -84,7 +84,7 @@ class DeliveryFooter extends StatelessWidget {
                             ),
                           ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   InkWell(
                     onTap: () {
                       showDialog(
@@ -112,8 +112,8 @@ class DeliveryFooter extends StatelessWidget {
                                     GlobalParam.deliveryUnitList[j]['cUOMNM']) {
                                   double total =
                                       GlobalParam.deliveryUnitList[j]['iTOTAL'];
-                                  double prince = GlobalParam
-                                      .deliveryUnitList[j]['iPRICE'];
+                                  double prince =
+                                      GlobalParam.deliveryUnitList[j]['iPRICE'];
                                   num++;
                                   numItem += total;
                                 }
@@ -129,7 +129,7 @@ class DeliveryFooter extends StatelessWidget {
                               total += double.parse(data["sumItem"]);
                             }
                             return AlertDialog(
-                              title: Text(
+                              title: const Text(
                                 'รายละเอียด',
                                 style: TextStyle(
                                     fontFamily: 'Prompt', fontSize: 16),
@@ -152,7 +152,7 @@ class DeliveryFooter extends StatelessWidget {
                                             0, 0, 12, 0),
                                         child: Text(
                                             "${total.toStringAsFixed(0)} รวม",
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontFamily: 'Prompt',
                                                 fontSize: 16)),
                                       )
@@ -194,7 +194,7 @@ class DeliveryFooter extends StatelessWidget {
                       width: widthScreen * 0.4,
                       height: 24,
                       alignment: Alignment.centerRight,
-                      child: Text(
+                      child: const Text(
                         'แสดงรายละเอียด',
                         style: TextStyle(
                           fontSize: 16.0,
@@ -214,10 +214,10 @@ class DeliveryFooter extends StatelessWidget {
               padding: const EdgeInsets.only(top: 5.0, left: 12.0, right: 12.0),
               child: Row(
                 children: [
-                  Container(
+                  SizedBox(
                     width: widthScreen * 0.4,
                     height: 24,
-                    child: Text(
+                    child: const Text(
                       'รวมเป็นเงิน',
                       style: TextStyle(
                         fontSize: 16.0,
@@ -227,7 +227,7 @@ class DeliveryFooter extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: widthScreen * 0.4,
                     // height: 24,
@@ -277,7 +277,7 @@ class DeliveryFooter extends StatelessWidget {
             ),
 
             //--------------
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             Row(
@@ -294,11 +294,11 @@ class DeliveryFooter extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(alignment: Alignment.center, child: icon1),
-                        SizedBox(
+                        const SizedBox(
                           width: 5.0,
                         ),
                         Text(
-                          '${title1}',
+                          title1,
                           style: TextStyle(
                             fontSize: 18.0,
                             color: title1 == 'บันทึกสินค้าเสีย'
@@ -313,10 +313,10 @@ class DeliveryFooter extends StatelessWidget {
                   ),
                 ),
                 title2 == ''
-                    ? SizedBox(
+                    ? const SizedBox(
                         width: 0.0,
                       )
-                    : SizedBox(
+                    : const SizedBox(
                         width: 64.0,
                       ),
                 title2 == ''
@@ -332,12 +332,12 @@ class DeliveryFooter extends StatelessWidget {
                             children: [
                               Container(
                                   alignment: Alignment.center, child: icon2),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                '${title2}',
-                                style: TextStyle(
+                                title2,
+                                style: const TextStyle(
                                   fontSize: 16.0,
                                   color: Colors.green,
                                   fontFamily: 'Prompt',
@@ -389,19 +389,19 @@ class DeliveryFooter extends StatelessWidget {
       listItem.add(text);
     }
 
-    return Container(
+    return SizedBox(
       height: data.length * 48.0, // Change as per your requirement
       width: widthScreen * 0.8, // Change as per your requirement
       child: ListView.builder(
         shrinkWrap: true,
         itemCount: listItem.length,
         itemBuilder: (BuildContext context, int index) {
-          return Container(
+          return SizedBox(
             height: 48,
             child: Row(
               children: [
                 Text('${listItem[index]['qty']} รายการ'),
-                Spacer(),
+                const Spacer(),
                 Text(
                     '${listItem[index]['sumItem']} ${listItem[index]['unitName']}')
               ],

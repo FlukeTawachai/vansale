@@ -33,7 +33,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('เพิ่มร้านค้า'),
+        title: const Text('เพิ่มร้านค้า'),
       ),
       backgroundColor: HexColor("#F2F3F4"),
       body: GestureDetector(
@@ -93,9 +93,9 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
       child: TextButton(
         style: TextButton.styleFrom(
           backgroundColor: HexColor("#6c7e9b"),
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
         ),
-        child: Icon(
+        child: const Icon(
           LineAwesomeIcons.crosshairs,
           color: Colors.white,
         ),
@@ -130,7 +130,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
                 style: BorderStyle.solid,
               ),
             ),
-            child: CircleAvatar(
+            child: const CircleAvatar(
               backgroundColor: Colors.white,
               radius: 60.0,
               backgroundImage: AssetImage('assets/images/Image.png'),
@@ -143,9 +143,9 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
               child: TextButton(
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.transparent,
-                  shape: CircleBorder(),
+                  shape: const CircleBorder(),
                 ),
-                child: Icon(
+                child: const Icon(
                   LineAwesomeIcons.camera,
                   color: Colors.white,
                   size: 40.0,
@@ -166,9 +166,9 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
       child: TextButton(
         style: TextButton.styleFrom(
           backgroundColor: Colors.black12,
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
         ),
-        child: Icon(
+        child: const Icon(
           LineAwesomeIcons.edit,
           color: Colors.black,
         ),
@@ -184,7 +184,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ชื่อร้านค้า',
               style: TextStyle(
                 color: Colors.grey,
@@ -204,7 +204,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
               ),
               controller: storeName,
               cursorColor: Colors.black,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -227,7 +227,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'เลขประจำตัวผู้เสียภาษี',
               style: TextStyle(
                 color: Colors.grey,
@@ -249,7 +249,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
               keyboardType: TextInputType.number,
               controller: storeTax,
               cursorColor: Colors.black,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 hintText: '0-0000-00000-00-0',
                 hintStyle: TextStyle(color: Colors.grey),
                 border: InputBorder.none,
@@ -274,7 +274,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ที่อยู่',
               style: TextStyle(
                 color: Colors.grey,
@@ -295,7 +295,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
               ),
               controller: storeName,
               cursorColor: Colors.black,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -318,7 +318,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ที่จัดส่ง',
               style: TextStyle(
                 color: Colors.grey,
@@ -339,7 +339,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
               ),
               controller: storeName,
               cursorColor: Colors.black,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -362,7 +362,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'จังหวัด',
               style: TextStyle(
                 color: Colors.grey,
@@ -387,9 +387,9 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
                     fontSize: 16.0,
                     color: HexColor("#a8a8a8"),
                   ),
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      dropdownProvince = newValue;
+                      dropdownProvince = newValue!;
                     });
                   },
                   items: <String>['กรุงเทพ', 'กาญจนบุรี']
@@ -415,7 +415,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'เขต/อำเภอ',
               style: TextStyle(
                 color: Colors.grey,
@@ -440,9 +440,9 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
                     fontSize: 16.0,
                     color: HexColor("#a8a8a8"),
                   ),
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      dropdownDistrict = newValue;
+                      dropdownDistrict = newValue!;
                     });
                   },
                   items: <String>['บางกะปิ', 'วังทองหลาง']
@@ -468,7 +468,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'แขวง/ตำบล',
               style: TextStyle(
                 color: Colors.grey,
@@ -493,9 +493,9 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
                     fontSize: 16.0,
                     color: HexColor("#a8a8a8"),
                   ),
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
-                      dropdownSubDistrict = newValue;
+                      dropdownSubDistrict = newValue!;
                     });
                   },
                   items: <String>['หัวหมาก', 'วังทองหลาง']
@@ -521,7 +521,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'รหัสไปรษณีย์',
               style: TextStyle(
                 color: Colors.grey,
@@ -542,7 +542,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
               ),
               controller: postCode,
               cursorColor: Colors.black,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -565,7 +565,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'เบอร์โทร',
               style: TextStyle(
                 color: Colors.grey,
@@ -585,7 +585,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
               ),
               controller: tel,
               cursorColor: Colors.black,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -608,7 +608,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ผู้ติดต่อ',
               style: TextStyle(
                 color: Colors.grey,
@@ -628,7 +628,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
               ),
               controller: contactName,
               cursorColor: Colors.black,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -651,7 +651,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'เบอร์ติดต่อ',
               style: TextStyle(
                 color: Colors.grey,
@@ -671,7 +671,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
               ),
               controller: contactTel,
               cursorColor: Colors.black,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -694,7 +694,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'ไลน์',
               style: TextStyle(
                 color: Colors.grey,
@@ -714,7 +714,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
               ),
               controller: line,
               cursorColor: Colors.black,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -754,18 +754,18 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
                         children: [
                           Container(
                             alignment: Alignment.center,
-                            child: Icon(
+                            child: const Icon(
                               LineAwesomeIcons.times_circle,
                               size: 25.0,
                               color: Colors.black45,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10.0,
                           ),
                           Container(
                             //alignment: Alignment.centerLeft,
-                            child: Text(
+                            child: const Text(
                               'ยกเลิก',
                               style: TextStyle(
                                 fontSize: 16.0,
@@ -776,7 +776,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       child: Divider(
                         height: 5.0,
                         indent: 65.0,
@@ -820,7 +820,7 @@ class _DeliveryCustomerMainState extends State<DeliveryCustomerMain> {
                               color: HexColor('#00cb39'),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10.0,
                           ),
                           Container(

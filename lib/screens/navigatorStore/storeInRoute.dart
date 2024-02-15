@@ -17,8 +17,8 @@ import 'package:vansale/screens/home/home.dart';
 class StoreInRoute extends StatefulWidget {
   final GetGroupRouteReq request;
   const StoreInRoute({
-    Key key,
-    this.request,
+    Key? key,
+    required this.request,
   }) : super(key: key);
 
   @override
@@ -28,7 +28,7 @@ class StoreInRoute extends StatefulWidget {
 class _StoreInRouteState extends State<StoreInRoute> {
   List<GetCustInRouteResp> storeList = [];
   List<GetCustInRouteResp> showStoreList = [];
-  double widthScreen;
+  late double widthScreen;
 
   @override
   void initState() {
@@ -42,7 +42,7 @@ class _StoreInRouteState extends State<StoreInRoute> {
     widthScreen = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
-          title: Text("รายการร้านค้า"),
+          title: const Text("รายการร้านค้า"),
           centerTitle: true,
         ),
         body: Stack(
@@ -60,7 +60,7 @@ class _StoreInRouteState extends State<StoreInRoute> {
                       child: Column(
                         children: [
                           listDetail_(showStoreList[index]),
-                          DottedLine(
+                          const DottedLine(
                             dashColor: Colors.grey,
                           ),
                         ],
@@ -75,7 +75,7 @@ class _StoreInRouteState extends State<StoreInRoute> {
               child: Container(
                 alignment: Alignment.center,
                 margin: const EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(5),
@@ -104,7 +104,7 @@ class _StoreInRouteState extends State<StoreInRoute> {
                               showStoreList = storeList;
                             }
                           },
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'Prompt',
                           ),
                           textInputAction: TextInputAction.search,
@@ -112,7 +112,7 @@ class _StoreInRouteState extends State<StoreInRoute> {
                             hintText: "ค้นหา",
                             border: InputBorder.none,
                             contentPadding:
-                                EdgeInsets.only(left: 5.0, top: 5.0),
+                                const EdgeInsets.only(left: 5.0, top: 5.0),
                             prefixIcon: RotatedBox(
                               quarterTurns: 1,
                               child: IconButton(
@@ -150,19 +150,19 @@ class _StoreInRouteState extends State<StoreInRoute> {
                 Container(
                   alignment: Alignment.topCenter,
                   width: 60.0,
-                  decoration: new BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.grey,
                     image: storeTotal.cPHOTOPATH != ''
                         ? DecorationImage(
-                            image: new NetworkImage(
+                            image: NetworkImage(
                               'http://${storeTotal.cPHOTOSERV}/${storeTotal.cPHOTOPATH}',
                             ),
                             scale: 1.0,
                             fit: BoxFit.cover,
                           )
-                        : DecorationImage(
-                            image: new AssetImage(
+                        : const DecorationImage(
+                            image: AssetImage(
                               "assets/images/no_image.png",
                             ),
                             scale: 1.0,
@@ -182,40 +182,40 @@ class _StoreInRouteState extends State<StoreInRoute> {
                         Container(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            storeTotal.cCUSTNM,
-                            style: TextStyle(
+                            storeTotal.cCUSTNM!,
+                            style: const TextStyle(
                               fontFamily: 'Prompt',
                               fontWeight: FontWeight.bold,
                               fontSize: 14.0,
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5.0,
                         ),
-                       Container(
-                            width: widthScreen * 0.6,
-                            height: 48,
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              '${storeTotal.cADDRESS} ${storeTotal.cSUBDIST} ${storeTotal.cDISTRICT} ${storeTotal.cPROVINCE} ${storeTotal.cPOSTCD} ',
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontFamily: 'Prompt',
-                                fontSize: 14.0,
-                                color: Colors.grey,
-                              ),
-                              maxLines: 3,
+                        Container(
+                          width: widthScreen * 0.6,
+                          height: 48,
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            '${storeTotal.cADDRESS} ${storeTotal.cSUBDIST} ${storeTotal.cDISTRICT} ${storeTotal.cPROVINCE} ${storeTotal.cPOSTCD} ',
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontFamily: 'Prompt',
+                              fontSize: 14.0,
+                              color: Colors.grey,
                             ),
+                            maxLines: 3,
                           ),
+                        ),
                       ],
                     ),
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: 40.0,
                   child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       LineAwesomeIcons.dolly,
                       color: Colors.grey,
                     ),
@@ -236,7 +236,7 @@ class _StoreInRouteState extends State<StoreInRoute> {
                 Container(
                   alignment: Alignment.center,
                   width: 60.0,
-                  child: Icon(
+                  child: const Icon(
                     LineAwesomeIcons.map_marked,
                     color: Colors.grey,
                     size: 20.0,
@@ -250,7 +250,7 @@ class _StoreInRouteState extends State<StoreInRoute> {
                       children: [
                         Container(
                           alignment: Alignment.topLeft,
-                          child: Text(
+                          child: const Text(
                             'เบอร์ติดต่อ',
                             style: TextStyle(
                               fontFamily: 'Prompt',
@@ -259,7 +259,7 @@ class _StoreInRouteState extends State<StoreInRoute> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5.0,
                         ),
                         Flexible(
@@ -268,7 +268,7 @@ class _StoreInRouteState extends State<StoreInRoute> {
                             child: Text(
                               '${storeTotal.cCONTACTTEL} ระยะห่าง ${storeTotal.cDISTANCS} กม.',
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: 'Prompt',
                                 fontSize: 14.0,
                                 color: Colors.grey,
@@ -280,16 +280,16 @@ class _StoreInRouteState extends State<StoreInRoute> {
                     ),
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: 40.0,
                   child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       LineAwesomeIcons.location_arrow,
                       color: Colors.green,
                     ),
                     onPressed: () {
-                      openMaps(double.parse(storeTotal.cLATITUDE),
-                          double.parse(storeTotal.cLONGTITUDE));
+                      openMaps(double.parse(storeTotal.cLATITUDE!),
+                          double.parse(storeTotal.cLONGTITUDE!));
 
                       // Navigator.of(context).pushAndRemoveUntil(
                       //     MaterialPageRoute(

@@ -5,7 +5,7 @@ import 'dart:typed_data';
 import 'package:vansale/screens/home/home.dart';
 
 class SignatureComfirm extends StatefulWidget {
-  SignatureComfirm(this.typeMenuCode, {Key key, this.imagedata})
+  SignatureComfirm(this.typeMenuCode, {Key? key, required this.imagedata})
       : super(key: key);
 
   @override

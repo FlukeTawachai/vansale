@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    final moonLanding = new DateTime.now();
+    final moonLanding = DateTime.now();
     // print(moonLanding.weekday); // 7
     if (moonLanding.weekday == 1) {
       dayName = '%จันทร์%';
@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget appbar_() {
+  PreferredSizeWidget appbar_() {
     return AppBar(
       elevation: 0.0,
       backgroundColor: Colors.green,
@@ -271,7 +271,7 @@ class _HomePageState extends State<HomePage> {
   Widget iconBell_() {
     return Container(
       margin: const EdgeInsets.only(left: 10.0, right: 5.0),
-      child: Icon(
+      child: const Icon(
         LineAwesomeIcons.bell,
         color: Colors.black,
       ),
@@ -284,7 +284,7 @@ class _HomePageState extends State<HomePage> {
       child: GlobalParam.typeMenuCode == 'T001'
           ? Stack(children: [
               IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     LineAwesomeIcons.print,
                     color: Colors.black,
                   ),
@@ -299,7 +299,7 @@ class _HomePageState extends State<HomePage> {
                       // );
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => BluPrintPOS(code: '001'),
+                          builder: (context) => const BluPrintPOS(code: '001'),
                         ),
                       );
                     } else {
@@ -315,7 +315,7 @@ class _HomePageState extends State<HomePage> {
                   ? Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 4, 2),
                       child: Container(
-                          child: Icon(Icons.warning, color: Colors.red)),
+                          child: const Icon(Icons.warning, color: Colors.red)),
                     )
                   : Container()
             ])
@@ -329,15 +329,15 @@ class _HomePageState extends State<HomePage> {
       child: Container(
         width: 130.0,
         height: 130.0,
-        decoration: new BoxDecoration(
+        decoration: BoxDecoration(
           color: Colors.grey,
-          image: new DecorationImage(
-            image: new AssetImage('assets/images/brandon.png'),
+          image: const DecorationImage(
+            image: AssetImage('assets/images/brandon.png'),
             scale: 1.0,
             fit: BoxFit.cover,
           ),
-          borderRadius: new BorderRadius.all(new Radius.circular(100.0)),
-          border: new Border.all(
+          borderRadius: const BorderRadius.all(Radius.circular(100.0)),
+          border: Border.all(
             color: Colors.white,
             width: 4.0,
           ),
@@ -348,7 +348,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget companyName_() {
     return Container(
-      child: Text(
+      child: const Text(
         'บจก. นายกัณฐ์เทรดดิ้ง',
         style: TextStyle(
           color: Colors.green,
@@ -361,7 +361,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget userFName_() {
     return Container(
-      child: Text(
+      child: const Text(
         'นายปิยวัฒน์ มีเสน',
         style: TextStyle(
           color: Colors.green,
@@ -373,7 +373,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget carNo_() {
     return Container(
-      child: Text(
+      child: const Text(
         'หมายเลขรถ 0002',
         style: TextStyle(
           color: Colors.green,
@@ -385,7 +385,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget licensePlate_() {
     return Container(
-      child: Text(
+      child: const Text(
         'ทะเบียนรถ 1ฒจ 6477 กรุงเทพ',
         style: TextStyle(
           color: Colors.green,
@@ -403,18 +403,18 @@ class _HomePageState extends State<HomePage> {
       AllApiProxyMobile proxy = AllApiProxyMobile();
 
       var result = await proxy.getRouteToday(
-        GlobalParam.VEHICLE['cVEHICD'],
-        GlobalParam.VEHICLE['cBRANCD'],
+        GlobalParam.VEHICLE['cVEHICD']!,
+        GlobalParam.VEHICLE['cBRANCD']!,
         dayName,
       );
 
       // var result = await proxy.getRouteToday(cVEHINM, cPLATE, '%พุธ%');
 
       if (result.cRTECD != '') {
-        GlobalParam.deliveryRouteToday['cRTECD'] = result.cRTECD;
-        GlobalParam.deliveryRouteToday['cRTENM'] = result.cRTENM;
-        GlobalParam.deliveryRouteToday['cGRPCD'] = result.cGRPCD;
-        GlobalParam.deliveryRouteToday['cBRANCD'] = result.cBRANCD;
+        GlobalParam.deliveryRouteToday['cRTECD'] = result.cRTECD!;
+        GlobalParam.deliveryRouteToday['cRTENM'] = result.cRTENM!;
+        GlobalParam.deliveryRouteToday['cGRPCD'] = result.cGRPCD!;
+        GlobalParam.deliveryRouteToday['cBRANCD'] = result.cBRANCD!;
         // print(
         //     '++++++++++++ ${GlobalParam.deliveryRouteToday['cRTECD']} : ${GlobalParam.deliveryRouteToday['cRTENM']} ++++++++++++');
       } else {
@@ -451,7 +451,7 @@ class _HomePageState extends State<HomePage> {
   getStartWork() async {
     try {
       var outputFormat = DateFormat('yyyy-MM-dd');
-      var outputDate = outputFormat.format(new DateTime.now());
+      var outputDate = outputFormat.format(DateTime.now());
       AllApiProxyMobile proxy = AllApiProxyMobile();
       String section = '';
       if (GlobalParam.typeMenuCode == 'T001') {
@@ -537,7 +537,7 @@ class MyClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return null;
+    return false;
   }
 }
 

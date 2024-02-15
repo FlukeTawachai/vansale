@@ -24,13 +24,13 @@ class DeliveryListToday extends StatefulWidget {
 class _DeliveryListTodayState extends State<DeliveryListToday> {
   List<RouteCusResp> store = GlobalParam.deliveryListStores;
   double total = 3200.00;
-  double widthScreen;
+  late double widthScreen;
   List<PoHDAndPoDTResp> storeTotal = [];
 
   @override
   Widget build(BuildContext context) {
     widthScreen = MediaQuery.of(context).size.width;
-    return widget.showStore.length == 0
+    return widget.showStore.isEmpty
         ? Container()
         : ListView.builder(
             shrinkWrap: true,
@@ -46,7 +46,7 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
               }
               // print(
               //     '============ ${storeTotal.length} : ${widget.showStore.length} ============');
-              return storeTotal.length == 0
+              return storeTotal.isEmpty
                   ? Container()
                   : Container(
                       padding: const EdgeInsets.all(3.0),
@@ -54,7 +54,7 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                       child: Column(
                         children: [
                           listDetail_(index, storeTotal[index]),
-                          DottedLine(
+                          const DottedLine(
                             dashColor: Colors.grey,
                           ),
                         ],
@@ -77,19 +77,19 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                 Container(
                   alignment: Alignment.topCenter,
                   width: 60.0,
-                  decoration: new BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.grey,
                     image: widget.showStore[index].cPHOTOPATH != ''
                         ? DecorationImage(
-                            image: new NetworkImage(
+                            image: NetworkImage(
                               'http://${widget.showStore[index].cPHOTOSERV}/${widget.showStore[index].cPHOTOPATH}',
                             ),
                             scale: 1.0,
                             fit: BoxFit.cover,
                           )
-                        : DecorationImage(
-                            image: new AssetImage(
+                        : const DecorationImage(
+                            image: AssetImage(
                               "assets/images/no_image.png",
                             ),
                             scale: 1.0,
@@ -108,15 +108,15 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                         Container(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            widget.showStore[index].cCUSTNM,
-                            style: TextStyle(
+                            widget.showStore[index].cCUSTNM!,
+                            style: const TextStyle(
                               fontFamily: 'Prompt',
                               fontWeight: FontWeight.bold,
                               fontSize: 14.0,
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5.0,
                         ),
                         Flexible(
@@ -126,7 +126,7 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                             child: Text(
                               '${widget.showStore[index].cADDRESS} ${widget.showStore[index].cSUBDIST} ${widget.showStore[index].cDISTRICT} ${widget.showStore[index].cPROVINCE} ${widget.showStore[index].cPOSTCD}',
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: 'Prompt',
                                 fontSize: 12.0,
                                 color: Colors.grey,
@@ -139,10 +139,10 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                     ),
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: 40.0,
                   child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       LineAwesomeIcons.dolly,
                       color: Colors.green,
                     ),
@@ -166,7 +166,7 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                         context,
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                DeliveryCheckIn(storeTotal.cPOCD, false)
+                                DeliveryCheckIn(storeTotal.cPOCD!, false)
                             // CurrentLocation(openMap: false),
                             ),
                       );
@@ -187,7 +187,7 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                 Container(
                   alignment: Alignment.center,
                   width: 60.0,
-                  child: Icon(
+                  child: const Icon(
                     LineAwesomeIcons.map_marked,
                     color: Colors.grey,
                     size: 20.0,
@@ -201,7 +201,7 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                       children: [
                         Container(
                           alignment: Alignment.topLeft,
-                          child: Text(
+                          child: const Text(
                             'ระยะทาง',
                             style: TextStyle(
                               fontFamily: 'Prompt',
@@ -210,7 +210,7 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5.0,
                         ),
                         Flexible(
@@ -219,7 +219,7 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                             child: Text(
                               '${widget.showStore[index].cDISTANCS} กม.',
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: 'Prompt',
                                 fontSize: 14.0,
                                 color: Colors.grey,
@@ -231,10 +231,10 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                     ),
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: 40.0,
                   child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       LineAwesomeIcons.location_arrow,
                       color: Colors.green,
                     ),
@@ -252,7 +252,7 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
                                 // CurrentLocation(openMap: true),
-                                DeliveryCheckIn(storeTotal.cPOCD, true)),
+                                DeliveryCheckIn(storeTotal.cPOCD!, true)),
                       );
                     },
                     iconSize: 20.0,
@@ -267,7 +267,7 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
             height: MediaQuery.of(context).size.height / 12,
             child: Row(
               children: [
-                Container(
+                const SizedBox(
                   width: 60.0,
                   child: Icon(
                     LineAwesomeIcons.user,
@@ -285,24 +285,24 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                         Container(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            widget.showStore[index].cCONTACT,
-                            style: TextStyle(
+                            widget.showStore[index].cCONTACT!,
+                            style: const TextStyle(
                               fontFamily: 'Prompt',
                               fontWeight: FontWeight.bold,
                               fontSize: 14.0,
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5.0,
                         ),
                         Flexible(
                           child: Container(
                             alignment: Alignment.topLeft,
                             child: Text(
-                              widget.showStore[index].cCONTACTTEL,
+                              widget.showStore[index].cCONTACTTEL!,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: 'Prompt',
                                 fontSize: 14.0,
                                 color: Colors.grey,
@@ -320,7 +320,7 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                   child: RotatedBox(
                     quarterTurns: 1,
                     child: IconButton(
-                      icon: Icon(
+                      icon: const Icon(
                         LineAwesomeIcons.phone,
                         color: Colors.green,
                       ),
@@ -340,7 +340,7 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
+                const SizedBox(
                   width: 60.0,
                   child: Icon(
                     FontAwesomeIcons.boxes,
@@ -358,15 +358,15 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                         Container(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            '${double.parse(storeTotal.iitems).toStringAsFixed(0)} รายการ ,${double.parse(storeTotal.ibasket).toStringAsFixed(0)} ตะกร้า',
-                            style: TextStyle(
+                            '${double.parse(storeTotal.iitems!).toStringAsFixed(0)} รายการ ,${double.parse(storeTotal.ibasket!).toStringAsFixed(0)} ตะกร้า',
+                            style: const TextStyle(
                               fontFamily: 'Prompt',
                               fontWeight: FontWeight.bold,
                               fontSize: 14.0,
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5.0,
                         ),
                         Flexible(
@@ -375,7 +375,7 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                             child: Text(
                               '${storeTotal.cPOCD}',
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: 'Prompt',
                                 fontSize: 14.0,
                                 color: Colors.grey,
@@ -397,15 +397,15 @@ class _DeliveryListTodayState extends State<DeliveryListToday> {
                       Container(
                         alignment: Alignment.centerRight,
                         child: Utility.formateNumberOrenge(
-                            double.parse(storeTotal.iTOTAL)),
+                            double.parse(storeTotal.iTOTAL!)),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5.0,
                       ),
                       Flexible(
                         child: Container(
                           alignment: Alignment.centerRight,
-                          child: Text(
+                          child: const Text(
                             'THB',
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(

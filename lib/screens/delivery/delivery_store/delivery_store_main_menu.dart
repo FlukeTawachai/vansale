@@ -70,7 +70,7 @@ class _DeliveryStoreMainMenuState extends State<DeliveryStoreMainMenu> {
       "menu": "ST005",
     },
   ];
-  Icvp aaa;
+  late Icvp aaa;
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -78,7 +78,7 @@ class _DeliveryStoreMainMenuState extends State<DeliveryStoreMainMenu> {
       //physics: new NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.all(15.0),
       itemCount: newStoreMenu.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         crossAxisSpacing: 15,
         mainAxisSpacing: 15,
@@ -88,7 +88,7 @@ class _DeliveryStoreMainMenuState extends State<DeliveryStoreMainMenu> {
       itemBuilder: (BuildContext context, int index) {
         return Card(
           //margin: const EdgeInsets.all(5.0),
-          child: new InkWell(
+          child: InkWell(
             onTap: () {
               _gotoPage(index);
             },
@@ -106,8 +106,8 @@ class _DeliveryStoreMainMenuState extends State<DeliveryStoreMainMenu> {
                   child: Container(
                     alignment: Alignment.center,
                     child: Text(
-                      newStoreMenu[index]['name'],
-                      style: TextStyle(fontSize: 14.0),
+                      newStoreMenu[index]['name']!,
+                      style: const TextStyle(fontSize: 14.0),
                     ),
                   ),
                 ),
@@ -165,53 +165,57 @@ class _DeliveryStoreMainMenuState extends State<DeliveryStoreMainMenu> {
     Widget menuicon;
     switch (storemenu[index]['menu']) {
       case "ST001":
-        return menuicon = Icon(
+        return menuicon = const Icon(
           LineAwesomeIcons.dolly,
           color: Colors.green,
           size: 35.0,
         );
         break;
       case "ST002":
-        return menuicon = Icon(
+        return menuicon = const Icon(
           Icvp.undo_alt_solid,
           color: Colors.green,
           size: 35.0,
         );
         break;
       case "ST003":
-        return menuicon = Icon(
+        return menuicon = const Icon(
           Icvp.redo_alt_solid,
           color: Colors.green,
           size: 35.0,
         );
         break;
       case "ST004":
-        return menuicon = Icon(
+        return menuicon = const Icon(
           Icvp.credit_card,
           color: Colors.green,
           size: 35.0,
         );
         break;
       case "ST005":
-        return menuicon = Icon(
+        return menuicon = const Icon(
           Icvp.file_invoice_solid,
           color: Colors.green,
           size: 35.0,
         );
         break;
       case "ST006":
-        return menuicon = Icon(
+        return menuicon = const Icon(
           Icvp.shopping_basket_solid,
           color: Colors.green,
           size: 35.0,
         );
         break;
       case "ST007":
-        return menuicon = Icon(
+        return menuicon = const Icon(
           Icvp.truck_solid,
           color: Colors.green,
           size: 35.0,
         );
+        break;
+      default:
+        // Handle the case where 'menuicon' is not assigned
+        menuicon = const SizedBox(); // Or any other default Widget
         break;
     }
     return menuicon;
@@ -221,46 +225,44 @@ class _DeliveryStoreMainMenuState extends State<DeliveryStoreMainMenu> {
     Widget menuicon;
     switch (storemenu[index]['menu']) {
       case "ST001":
-        return menuicon = Icon(
+        return menuicon = const Icon(
           LineAwesomeIcons.dolly,
           color: Colors.green,
           size: 35.0,
         );
-        break;
       case "ST002":
-        return menuicon = Icon(
+        return menuicon = const Icon(
           Icvp.undo_alt_solid,
           color: Colors.green,
           size: 35.0,
         );
-        break;
       case "ST003":
-        return menuicon = Icon(
+        return menuicon = const Icon(
           LineAwesomeIcons.product_hunt,
           color: Colors.green,
           size: 35.0,
         );
-        break;
       case "ST004":
-        return menuicon = Icon(
+        return menuicon = const Icon(
           Icvp.credit_card,
           color: Colors.green,
           size: 35.0,
         );
-        break;
       case "ST005":
-        return menuicon = Icon(
+        return menuicon = const Icon(
           Icvp.file_invoice_solid,
           color: Colors.green,
           size: 35.0,
         );
-        break;
       case "ST006":
-        return menuicon = Icon(
+        return menuicon = const Icon(
           Icvp.shopping_basket_solid,
           color: Colors.green,
           size: 35.0,
         );
+      default:
+        // Handle the case where 'menuicon' is not assigned
+        menuicon = const SizedBox(); // Or any other default Widget
         break;
     }
     return menuicon;

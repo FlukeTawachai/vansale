@@ -17,16 +17,16 @@ class DeliveryStoreImage extends StatefulWidget {
 }
 
 class _DeliveryStoreImageState extends State<DeliveryStoreImage> {
-  PickedFile imageFile;
+  late PickedFile imageFile;
   // final ImagePicker _picker = ImagePicker();
-  File file;
-  Timer timer;
+  late File file;
+  late Timer timer;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('ถ่ายรูปร้านค้า'),
+        title: const Text('ถ่ายรูปร้านค้า'),
       ),
       backgroundColor: Colors.black12,
       body: SizedBox(
@@ -102,7 +102,7 @@ class _DeliveryStoreImageState extends State<DeliveryStoreImage> {
           );
         },
         child: Container(
-          child: Icon(
+          child: const Icon(
             LineAwesomeIcons.arrow_right,
             size: 30.0,
           ),
@@ -120,7 +120,7 @@ class _DeliveryStoreImageState extends State<DeliveryStoreImage> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text(
+            child: const Text(
               'ยกเลิก',
               style: TextStyle(
                 fontFamily: 'Prompt',
@@ -137,7 +137,7 @@ class _DeliveryStoreImageState extends State<DeliveryStoreImage> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'ถ่ายภาพ',
                 style: TextStyle(
                   color: Colors.black,
@@ -152,7 +152,7 @@ class _DeliveryStoreImageState extends State<DeliveryStoreImage> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'เลือกรูปภาพ',
                 style: TextStyle(
                   color: Colors.black,
@@ -179,14 +179,14 @@ class _DeliveryStoreImageState extends State<DeliveryStoreImage> {
     EasyLoading.dismiss();
   }*/
 
-  File _image;
+  late File _image;
   Future<void> openCamera() async {
     //EasyLoading.show();
     // ignore: invalid_use_of_visible_for_testing_member
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
       GlobalParam.deliveryImage = File(imageFile.path);
       //EasyLoading.dismiss();
@@ -199,7 +199,7 @@ class _DeliveryStoreImageState extends State<DeliveryStoreImage> {
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.gallery, maxHeight: 1800.0, maxWidth: 1800.0);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
       _image = File(imageFile.path);
       GlobalParam.deliveryImage = File(imageFile.path);
       // EasyLoading.dismiss();

@@ -39,7 +39,7 @@ class _DeliveryListState extends State<DeliveryList> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getRouteTransfers(GlobalParam.deliveryRouteToday['cRTECD']);
+    getRouteTransfers(GlobalParam.deliveryRouteToday['cRTECD']!);
   }
 
   @override
@@ -51,7 +51,7 @@ class _DeliveryListState extends State<DeliveryList> {
             Text('ส่งสินค้า (${completeList.length}/${routeCusList.length})'),
         leading: IconButton(
           onPressed: () {
-            return Navigator.push(
+            Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (BuildContext context) =>
@@ -59,7 +59,7 @@ class _DeliveryListState extends State<DeliveryList> {
               ),
             );
           },
-          icon: Icon(LineAwesomeIcons.home),
+          icon: const Icon(LineAwesomeIcons.home),
         ),
       ),
       body:
@@ -69,12 +69,13 @@ class _DeliveryListState extends State<DeliveryList> {
         initialIndex: 1,
         child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(50.0), // here the desired height
+            preferredSize:
+                const Size.fromHeight(50.0), // here the desired height
             child: AppBar(
               elevation: 0.0,
               backgroundColor: Colors.white,
               centerTitle: true,
-              bottom: TabBar(
+              bottom: const TabBar(
                 indicatorColor: Colors.green,
                 labelColor: Colors.green,
                 unselectedLabelColor: Colors.black38,
@@ -138,14 +139,14 @@ class _DeliveryListState extends State<DeliveryList> {
         AllApiProxyMobile proxy = AllApiProxyMobile();
 
         var outputFormat = DateFormat('yyyy-MM-dd');
-        var outputDate = outputFormat.format(new DateTime.now());
+        var outputDate = outputFormat.format(DateTime.now());
         // print(outputDate);
 
         var result = await proxy.getRouteTransfer(
             id,
             outputDate,
-            GlobalParam.deliveryRouteToday['cGRPCD'],
-            GlobalParam.VEHICLE['cBRANCD'],
+            GlobalParam.deliveryRouteToday['cGRPCD']!,
+            GlobalParam.VEHICLE['cBRANCD']!,
             true);
         // var result = await proxy.getRouteTransfer('RBR013', '2022-11-28',
         //     'GRMON', GlobalParam.deliveryRouteToday['cBRANCD'], true);
@@ -170,7 +171,7 @@ class _DeliveryListState extends State<DeliveryList> {
           }
 
           for (int i = 0; i < routeCusList.length; i++) {
-            getPocdOfcustomer(routeCusList[i].cCUSTCD);
+            getPocdOfcustomer(routeCusList[i].cCUSTCD!);
           }
           setState(() {
             GlobalParam.deliveryListStores = routeCusList;
@@ -235,7 +236,7 @@ class _DeliveryListState extends State<DeliveryList> {
         try {
           AllApiProxyMobile proxy = AllApiProxyMobile();
           var outputFormat = DateFormat('yyyy-MM-dd');
-          var outputDate = outputFormat.format(new DateTime.now());
+          var outputDate = outputFormat.format(DateTime.now());
           print(outputDate);
 
           var result = await proxy.getPocd(custcd, outputDate);
@@ -243,7 +244,7 @@ class _DeliveryListState extends State<DeliveryList> {
             // print("+++++++++++++++++ ${result.cPOCD} +++++++++++++++++");
             setState(() {
               pocdResp = result;
-              getBasketsofCustomer(pocdResp.cCUSTCD, pocdResp.cPOCD);
+              getBasketsofCustomer(pocdResp.cCUSTCD!, pocdResp.cPOCD!);
             });
           } else {
             // print("+++++++++++++++++ null +++++++++++++++++");
@@ -276,9 +277,9 @@ class _DeliveryListState extends State<DeliveryList> {
             basketNum = 0;
             amount = 0;
             for (int i = 0; i < result.length; i++) {
-              itemNum += double.parse(result[i].iitems);
-              basketNum += double.parse(result[i].ibasket);
-              amount += double.parse(result[i].iTOTAL);
+              itemNum += double.parse(result[i].iitems!);
+              basketNum += double.parse(result[i].ibasket!);
+              amount += double.parse(result[i].iTOTAL!);
             }
             setState(() {
               sumBaskets = PoHDAndPoDTResp(

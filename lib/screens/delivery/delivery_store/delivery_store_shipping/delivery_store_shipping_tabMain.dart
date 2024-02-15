@@ -14,7 +14,7 @@ class DeliveryStoreShippingTabMain extends StatefulWidget {
 
 class _DeliveryStoreShippingTabMainState
     extends State<DeliveryStoreShippingTabMain> {
-      double widthScreen;
+  late double widthScreen;
   @override
   Widget build(BuildContext context) {
     widthScreen = MediaQuery.of(context).size.width;
@@ -47,33 +47,33 @@ class _DeliveryStoreShippingTabMainState
                   alignment: Alignment.topLeft,
                   width: 60.0,
                   height: 60.0,
-                  decoration: new BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Colors.grey,
                     image: GlobalParam.deliverySelectStore.cPHOTOPATH != ''
                         ? DecorationImage(
-                            image: new NetworkImage(
+                            image: NetworkImage(
                               'http://${GlobalParam.deliverySelectStore.cPHOTOSERV}/${GlobalParam.deliverySelectStore.cPHOTOPATH}',
                             ),
                             scale: 1.0,
                             fit: BoxFit.cover,
                           )
-                        : DecorationImage(
-                            image: new AssetImage(
+                        : const DecorationImage(
+                            image: AssetImage(
                               "assets/images/no_image.png",
                             ),
                             scale: 1.0,
                             fit: BoxFit.cover,
                           ),
                     borderRadius:
-                        new BorderRadius.all(new Radius.circular(150.0)),
-                    border: new Border.all(
+                        const BorderRadius.all(const Radius.circular(150.0)),
+                    border: Border.all(
                       color: Colors.white,
                       width: 2.0,
                     ),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10.0,
               ),
               Expanded(
@@ -88,8 +88,8 @@ class _DeliveryStoreShippingTabMainState
                         Container(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            GlobalParam.deliverySelectStore.cCUSTNM,
-                            style: TextStyle(
+                            GlobalParam.deliverySelectStore.cCUSTNM!,
+                            style: const TextStyle(
                               fontFamily: 'Prompt',
                               fontSize: 14.0,
                               //fontWeight: FontWeight.bold,
@@ -101,7 +101,7 @@ class _DeliveryStoreShippingTabMainState
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "${GlobalParam.deliverySelectStore.cADDRESS} ${GlobalParam.deliverySelectStore.cSUBDIST} ${GlobalParam.deliverySelectStore.cDISTRICT} ${GlobalParam.deliverySelectStore.cPROVINCE} ${GlobalParam.deliverySelectStore.cPOSTCD}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'Prompt',
                               fontSize: 12.0,
                               //fontWeight: FontWeight.bold,

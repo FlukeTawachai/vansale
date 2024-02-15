@@ -30,12 +30,12 @@ class _DeliveryStoreHomeState extends State<DeliveryStoreHome> {
   RouteCusResp deliverySelectStore = GlobalParam.deliverySelectStore;
   PoHDAndPoDTResp deliveryStoreSum = GlobalParam.deliveryStoreSum;
   yearThai() {
-    var _podate = poDate.split('-');
-    var _day = _podate[0];
-    var _month = _podate[1];
-    var _year = _podate[2];
-    int cal = int.parse(_year) + 43;
-    String poDatethai = _day + '/' + _month + '/' + cal.toString();
+    var podate = poDate.split('-');
+    var day = podate[0];
+    var month = podate[1];
+    var year = podate[2];
+    int cal = int.parse(year) + 43;
+    String poDatethai = day + '/' + month + '/' + cal.toString();
     return poDatethai;
   }
 
@@ -65,15 +65,16 @@ class _DeliveryStoreHomeState extends State<DeliveryStoreHome> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('ส่งสินค้า'),
+        title: const Text('ส่งสินค้า'),
         leading: IconButton(
             onPressed: () {
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
-                      builder: (context) => HomePage(GlobalParam.typeMenuCode)),
+                      builder: (context) =>
+                          HomePage(GlobalParam.typeMenuCode!)),
                   (Route<dynamic> route) => false);
             },
-            icon: Icon(Icons.home_outlined)),
+            icon: const Icon(Icons.home_outlined)),
       ),
       body: Container(
         child: Column(
@@ -92,7 +93,7 @@ class _DeliveryStoreHomeState extends State<DeliveryStoreHome> {
                 ],
               ),
             ),
-            Container(
+            SizedBox(
               height: 135,
               child: DeliveryStoreListMainMenuHD(
                 storeName: widget.storeName,
@@ -108,7 +109,7 @@ class _DeliveryStoreHomeState extends State<DeliveryStoreHome> {
                     _summaryDelivery(),
                     _summaryReturn(),
                     //------------------
-                    Container(
+                    SizedBox(
                       height: 360,
                       child: _gridMenu(),
                     ),
@@ -131,7 +132,7 @@ class _DeliveryStoreHomeState extends State<DeliveryStoreHome> {
       alignment: Alignment.centerLeft,
       child: Text(
         yearThai(),
-        style: TextStyle(
+        style: const TextStyle(
           fontFamily: 'Prompt',
           fontSize: 16.0,
           fontWeight: FontWeight.bold,
@@ -145,8 +146,8 @@ class _DeliveryStoreHomeState extends State<DeliveryStoreHome> {
     return Container(
       alignment: Alignment.centerRight,
       child: Text(
-        deliveryStoreSum.cPOCD,
-        style: TextStyle(
+        deliveryStoreSum.cPOCD!,
+        style: const TextStyle(
           fontFamily: 'Prompt',
           fontSize: 14.0,
           fontWeight: FontWeight.bold,
@@ -163,7 +164,7 @@ class _DeliveryStoreHomeState extends State<DeliveryStoreHome> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          const SizedBox(
             width: 70.0,
             child: AutoSizeText(
               'รวมส่ง',
@@ -175,40 +176,34 @@ class _DeliveryStoreHomeState extends State<DeliveryStoreHome> {
             ),
           ),
           Expanded(
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    child: AutoSizeText(
-                      '${deliveryStoreSum.iitems} รายการ ,${deliveryStoreSum.ibasket} ตระกร้า',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                      minFontSize: 8.0,
-                      maxFontSize: 14.0,
-                    ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AutoSizeText(
+                  '${deliveryStoreSum.iitems} รายการ ,${deliveryStoreSum.ibasket} ตระกร้า',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
                   ),
-                  Container(
-                    child: Text(
-                      deliveryStoreSum.cPOCD,
-                      style: TextStyle(
-                        fontFamily: 'Prompt',
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                      ),
-                    ),
+                  minFontSize: 8.0,
+                  maxFontSize: 14.0,
+                ),
+                Text(
+                  deliveryStoreSum.cPOCD!,
+                  style: const TextStyle(
+                    fontFamily: 'Prompt',
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           Container(
               child: Utility.formateNumberGN18(
-                  double.parse(deliveryStoreSum.iTOTAL), 18)),
+                  double.parse(deliveryStoreSum.iTOTAL!), 18)),
         ],
       ),
     );
@@ -221,7 +216,7 @@ class _DeliveryStoreHomeState extends State<DeliveryStoreHome> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          const SizedBox(
             width: 70.0,
             child: AutoSizeText(
               'รวมรับคืน',
@@ -233,49 +228,43 @@ class _DeliveryStoreHomeState extends State<DeliveryStoreHome> {
             ),
           ),
           Expanded(
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    child: AutoSizeText(
-                      '${double.parse(GlobalParam.deliveryStoreReturn.ibasket).toStringAsFixed(0)} รายการ ,${double.parse(GlobalParam.deliveryStoreReturn.iitems).toStringAsFixed(0)}  ตระกร้า',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                      minFontSize: 8.0,
-                      maxFontSize: 14.0,
-                    ),
-                  ),
-                  Container(),
-                ],
-              ),
-            ),
-          ),
-          Container(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  child: Utility.formateNumberOR18(
-                      double.parse(GlobalParam.deliveryStoreReturn.iTOTAL), 18),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(right: 5.0),
-                  alignment: Alignment.bottomRight,
-                  child: Text(
-                    'บาท',
-                    style: TextStyle(
-                      fontFamily: 'Prompt',
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
-                    ),
+                AutoSizeText(
+                  '${double.parse(GlobalParam.deliveryStoreReturn!.ibasket!).toStringAsFixed(0)} รายการ ,${double.parse(GlobalParam.deliveryStoreReturn!.iitems!).toStringAsFixed(0)}  ตระกร้า',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
                   ),
+                  minFontSize: 8.0,
+                  maxFontSize: 14.0,
                 ),
+                Container(),
               ],
             ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Container(
+                child: Utility.formateNumberOR18(
+                    double.parse(GlobalParam.deliveryStoreReturn!.iTOTAL!), 18),
+              ),
+              Container(
+                padding: const EdgeInsets.only(right: 5.0),
+                alignment: Alignment.bottomRight,
+                child: const Text(
+                  'บาท',
+                  style: TextStyle(
+                    fontFamily: 'Prompt',
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -312,7 +301,7 @@ class _DeliveryStoreHomeState extends State<DeliveryStoreHome> {
                     Container(
                       width: 35.0,
                       alignment: Alignment.center,
-                      child: Icon(
+                      child: const Icon(
                         LineAwesomeIcons.map_marker,
                         color: Colors.green,
                         size: 25.0,
@@ -320,7 +309,7 @@ class _DeliveryStoreHomeState extends State<DeliveryStoreHome> {
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         'เช็คอิน',
                         style: TextStyle(
                           fontSize: 18.0,

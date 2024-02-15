@@ -28,14 +28,14 @@ class _DeliveryStoreProductMissListState
     GlobalParam.deliveryCustPOHisBtnCheck = [];
     for (var item in GlobalParam.deliveryPodtShow) {
       var unitCode = "";
-      if (double.parse(item.iSSIZEQTY) > 0) {
-        unitCode = item.cSUOMCD;
+      if (double.parse(item.iSSIZEQTY!) > 0) {
+        unitCode = item.cSUOMCD!;
       }
-      if (double.parse(item.iMSIZEQTY) > 0) {
-        unitCode = item.cMUOMCD;
+      if (double.parse(item.iMSIZEQTY!) > 0) {
+        unitCode = item.cMUOMCD!;
       }
-      if (double.parse(item.iLSIZEQTY) > 0) {
-        unitCode = item.cLUOMCD;
+      if (double.parse(item.iLSIZEQTY!) > 0) {
+        unitCode = item.cLUOMCD!;
       }
       var data = {
         "cPRODCD": item.cPRODCD,
@@ -51,16 +51,16 @@ class _DeliveryStoreProductMissListState
   @override
   Widget build(BuildContext context) {
     widthScreen = MediaQuery.of(context).size.width;
-    return GlobalParam.deliveryPodtShow.length > 0
+    return GlobalParam.deliveryPodtShow.isNotEmpty
         ? ListView.builder(
             reverse: false,
             padding: const EdgeInsets.all(5),
             itemCount: GlobalParam.deliveryPodtList.length,
             itemBuilder: (BuildContext context, int index) {
               double item = double.parse(
-                      GlobalParam.deliveryPodtShow[index].iSSIZEQTY) +
-                  double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY) +
-                  double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY);
+                      GlobalParam.deliveryPodtShow[index].iSSIZEQTY!) +
+                  double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY!) +
+                  double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY!);
               var unit = '';
               var unitCode = '';
               var hisPro = '0';
@@ -69,64 +69,67 @@ class _DeliveryStoreProductMissListState
               var total = 0.0;
               bool goodCheck = false;
               bool badCheck = false;
-              controller.add(new TextEditingController());
+              controller.add(TextEditingController());
 
-              if (double.parse(GlobalParam.deliveryPodtShow[index].iSSIZEQTY) >
+              if (double.parse(GlobalParam.deliveryPodtShow[index].iSSIZEQTY!) >
                   0) {
-                unitCode = GlobalParam.deliveryPodtShow[index].cSUOMCD;
-                unit = GlobalParam.deliveryPodtShow[index].cSUOMNM;
+                unitCode = GlobalParam.deliveryPodtShow[index].cSUOMCD!;
+                unit = GlobalParam.deliveryPodtShow[index].cSUOMNM!;
                 currentPro =
-                    double.parse(GlobalParam.deliveryPodtShow[index].iSSIZEQTY)
+                    double.parse(GlobalParam.deliveryPodtShow[index].iSSIZEQTY!)
                         .toStringAsFixed(0);
                 unitPrice = double.parse(
-                    GlobalParam.deliveryPodtShow[index].iSUNITPRICE);
+                    GlobalParam.deliveryPodtShow[index].iSUNITPRICE!);
                 total = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iSUNITPRICE) *
-                    double.parse(GlobalParam.deliveryPodtShow[index].iSSIZEQTY);
+                        GlobalParam.deliveryPodtShow[index].iSUNITPRICE!) *
+                    double.parse(
+                        GlobalParam.deliveryPodtShow[index].iSSIZEQTY!);
               }
-              if (double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY) >
+              if (double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY!) >
                   0) {
-                unitCode = GlobalParam.deliveryPodtShow[index].cMUOMCD;
-                unit = GlobalParam.deliveryPodtShow[index].cMUOMNM;
+                unitCode = GlobalParam.deliveryPodtShow[index].cMUOMCD!;
+                unit = GlobalParam.deliveryPodtShow[index].cMUOMNM!;
                 currentPro =
-                    double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY)
+                    double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY!)
                         .toStringAsFixed(0);
                 unitPrice = double.parse(
-                    GlobalParam.deliveryPodtShow[index].iMUNITPRICE);
+                    GlobalParam.deliveryPodtShow[index].iMUNITPRICE!);
                 total = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iMUNITPRICE) *
-                    double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY);
+                        GlobalParam.deliveryPodtShow[index].iMUNITPRICE!) *
+                    double.parse(
+                        GlobalParam.deliveryPodtShow[index].iMSIZEQTY!);
               }
-              if (double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY) >
+              if (double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY!) >
                   0) {
-                unitCode = GlobalParam.deliveryPodtShow[index].cLUOMCD;
-                unit = GlobalParam.deliveryPodtShow[index].cLUOMNM;
+                unitCode = GlobalParam.deliveryPodtShow[index].cLUOMCD!;
+                unit = GlobalParam.deliveryPodtShow[index].cLUOMNM!;
                 currentPro =
-                    double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY)
+                    double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY!)
                         .toStringAsFixed(0);
                 unitPrice = double.parse(
-                    GlobalParam.deliveryPodtShow[index].iLUNITPRICE);
+                    GlobalParam.deliveryPodtShow[index].iLUNITPRICE!);
                 total = double.parse(
-                        GlobalParam.deliveryPodtShow[index].iLUNITPRICE) *
-                    double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY);
+                        GlobalParam.deliveryPodtShow[index].iLUNITPRICE!) *
+                    double.parse(
+                        GlobalParam.deliveryPodtShow[index].iLSIZEQTY!);
               }
               for (var item in GlobalParam.deliveryCustPOHisDate) {
                 if (item.cPRODCD ==
                     GlobalParam.deliveryPodtShow[index].cPRODCD) {
                   if (double.parse(
-                          GlobalParam.deliveryPodtShow[index].iSSIZEQTY) >
+                          GlobalParam.deliveryPodtShow[index].iSSIZEQTY!) >
                       0) {
-                    hisPro = item.iSSIZEQTY;
+                    hisPro = item.iSSIZEQTY!;
                   }
                   if (double.parse(
-                          GlobalParam.deliveryPodtShow[index].iMSIZEQTY) >
+                          GlobalParam.deliveryPodtShow[index].iMSIZEQTY!) >
                       0) {
-                    hisPro = item.iMSIZEQTY;
+                    hisPro = item.iMSIZEQTY!;
                   }
                   if (double.parse(
-                          GlobalParam.deliveryPodtShow[index].iLSIZEQTY) >
+                          GlobalParam.deliveryPodtShow[index].iLSIZEQTY!) >
                       0) {
-                    hisPro = item.iLSIZEQTY;
+                    hisPro = item.iLSIZEQTY!;
                   }
                 }
               }
@@ -163,21 +166,21 @@ class _DeliveryStoreProductMissListState
                                             .cPHOTOPATH !=
                                         ''
                                     ? DecorationImage(
-                                        image: new NetworkImage(
+                                        image: NetworkImage(
                                           'http://${GlobalParam.deliveryPodtShow[index].cPHOTOSERV}/${GlobalParam.deliveryPodtShow[index].cPHOTOPATH}',
                                         ),
                                         scale: 1.0,
                                         fit: BoxFit.cover,
                                       )
-                                    : DecorationImage(
-                                        image: new AssetImage(
+                                    : const DecorationImage(
+                                        image: AssetImage(
                                           "assets/images/no_image.png",
                                         ),
                                         scale: 1.0,
                                         fit: BoxFit.cover,
                                       ),
                                 color: Colors.white,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(5),
                                   topRight: Radius.circular(5),
                                   bottomLeft: Radius.circular(5),
@@ -195,7 +198,7 @@ class _DeliveryStoreProductMissListState
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     '${item.toStringAsFixed(0)} ${GlobalParam.deliveryPodtShow[index].cPRODNM}',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.black,
                                         fontFamily: 'Prompt',
                                         fontWeight: FontWeight.bold,
@@ -219,19 +222,18 @@ class _DeliveryStoreProductMissListState
                                         children: [
                                           Container(
                                             alignment: Alignment.centerLeft,
-                                            child: GlobalParam.deliveryPodtShow
-                                                        .length >
-                                                    0
+                                            child: GlobalParam
+                                                    .deliveryPodtShow.isNotEmpty
                                                 ? Text(
                                                     '$unit',
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.grey,
                                                         fontFamily: 'Prompt',
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         fontSize: 14.0),
                                                   )
-                                                : Text(
+                                                : const Text(
                                                     '',
                                                     style: TextStyle(
                                                         color: Colors.grey,
@@ -244,7 +246,7 @@ class _DeliveryStoreProductMissListState
                                         ],
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     InkWell(
                                       onTap: () {
                                         setState(() {
@@ -292,7 +294,8 @@ class _DeliveryStoreProductMissListState
                                             color: goodCheck == false
                                                 ? Colors.white
                                                 : Colors.green.shade100,
-                                            borderRadius: BorderRadius.only(
+                                            borderRadius:
+                                                const BorderRadius.only(
                                               topLeft: Radius.circular(5),
                                               topRight: Radius.circular(5),
                                               bottomLeft: Radius.circular(5),
@@ -300,7 +303,7 @@ class _DeliveryStoreProductMissListState
                                             ),
                                             border: Border.all(
                                                 color: Colors.green)),
-                                        child: Center(
+                                        child: const Center(
                                             child: Text('สินค้าดี',
                                                 style: TextStyle(
                                                     color: Colors.green,
@@ -309,7 +312,7 @@ class _DeliveryStoreProductMissListState
                                                 textAlign: TextAlign.center)),
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     InkWell(
                                       onTap: () {
                                         setState(() {
@@ -357,7 +360,8 @@ class _DeliveryStoreProductMissListState
                                             color: badCheck == false
                                                 ? Colors.white
                                                 : Colors.red.shade100,
-                                            borderRadius: BorderRadius.only(
+                                            borderRadius:
+                                                const BorderRadius.only(
                                               topLeft: Radius.circular(5),
                                               topRight: Radius.circular(5),
                                               bottomLeft: Radius.circular(5),
@@ -365,7 +369,7 @@ class _DeliveryStoreProductMissListState
                                             ),
                                             border:
                                                 Border.all(color: Colors.red)),
-                                        child: Center(
+                                        child: const Center(
                                             child: Text('สินค้าเสีย',
                                                 style: TextStyle(
                                                     color: Colors.red,
@@ -380,52 +384,48 @@ class _DeliveryStoreProductMissListState
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Container(
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            height: 32.0,
-                                            width: widthScreen * 0.2,
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              'รอบก่อน',
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontFamily: 'Prompt',
-                                                  fontSize: 14.0),
-                                              textAlign: TextAlign.center,
-                                            ),
+                                    Column(
+                                      children: [
+                                        Container(
+                                          height: 32.0,
+                                          width: widthScreen * 0.2,
+                                          alignment: Alignment.center,
+                                          child: const Text(
+                                            'รอบก่อน',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontFamily: 'Prompt',
+                                                fontSize: 14.0),
+                                            textAlign: TextAlign.center,
                                           ),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            // padding: const EdgeInsets.all(5.0),
-                                            height: 30.0,
-                                            width: widthScreen * 0.2,
-                                            decoration: BoxDecoration(
-                                                color: Colors.grey.shade400,
-                                                borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(5),
-                                                  topRight: Radius.circular(5),
-                                                  bottomLeft:
-                                                      Radius.circular(5),
-                                                  bottomRight:
-                                                      Radius.circular(5),
-                                                ),
-                                                border: Border.all(
-                                                    color: Colors.grey)),
-                                            child: Center(
-                                                child: Text(hisPro,
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontFamily: 'Prompt',
-                                                        fontSize: 14.0),
-                                                    textAlign:
-                                                        TextAlign.center)),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                        Container(
+                                          alignment: Alignment.center,
+                                          // padding: const EdgeInsets.all(5.0),
+                                          height: 30.0,
+                                          width: widthScreen * 0.2,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey.shade400,
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topLeft: Radius.circular(5),
+                                                topRight: Radius.circular(5),
+                                                bottomLeft: Radius.circular(5),
+                                                bottomRight: Radius.circular(5),
+                                              ),
+                                              border: Border.all(
+                                                  color: Colors.grey)),
+                                          child: Center(
+                                              child: Text(hisPro,
+                                                  style: const TextStyle(
+                                                      color: Colors.black,
+                                                      fontFamily: 'Prompt',
+                                                      fontSize: 14.0),
+                                                  textAlign: TextAlign.center)),
+                                        ),
+                                      ],
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Container(
                                       child: Column(
                                         children: [
@@ -433,7 +433,7 @@ class _DeliveryStoreProductMissListState
                                             height: 32.0,
                                             width: widthScreen * 0.2,
                                             alignment: Alignment.center,
-                                            child: Text(
+                                            child: const Text(
                                               'รอบนี้',
                                               style: TextStyle(
                                                   color: Colors.black,
@@ -449,7 +449,8 @@ class _DeliveryStoreProductMissListState
                                             width: widthScreen * 0.2,
                                             decoration: BoxDecoration(
                                                 color: Colors.grey.shade400,
-                                                borderRadius: BorderRadius.only(
+                                                borderRadius:
+                                                    const BorderRadius.only(
                                                   topLeft: Radius.circular(5),
                                                   topRight: Radius.circular(5),
                                                   bottomLeft:
@@ -461,7 +462,7 @@ class _DeliveryStoreProductMissListState
                                                     color: Colors.grey)),
                                             child: Center(
                                                 child: Text(currentPro,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.black,
                                                         fontFamily: 'Prompt',
                                                         fontSize: 14.0),
@@ -471,7 +472,7 @@ class _DeliveryStoreProductMissListState
                                         ],
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Container(
                                       child: Column(
                                         children: [
@@ -479,7 +480,7 @@ class _DeliveryStoreProductMissListState
                                             height: 32.0,
                                             width: widthScreen * 0.2,
                                             alignment: Alignment.center,
-                                            child: Text(
+                                            child: const Text(
                                               'คืน/เหลือ',
                                               style: TextStyle(
                                                   color: Colors.black,
@@ -495,7 +496,8 @@ class _DeliveryStoreProductMissListState
                                             width: widthScreen * 0.2,
                                             decoration: BoxDecoration(
                                                 color: Colors.white,
-                                                borderRadius: BorderRadius.only(
+                                                borderRadius:
+                                                    const BorderRadius.only(
                                                   topLeft: Radius.circular(5),
                                                   topRight: Radius.circular(5),
                                                   bottomLeft:
@@ -574,7 +576,8 @@ class _DeliveryStoreProductMissListState
                                                   }
                                                 },
                                                 cursorColor: Colors.black,
-                                                decoration: new InputDecoration(
+                                                decoration:
+                                                    const InputDecoration(
                                                   border: InputBorder.none,
                                                   focusedBorder:
                                                       InputBorder.none,
@@ -600,10 +603,10 @@ class _DeliveryStoreProductMissListState
                     ),
                     Row(
                       children: [
-                        Spacer(),
-                        Container(
+                        const Spacer(),
+                        SizedBox(
                           width: widthScreen * 0.2,
-                          child: Text(
+                          child: const Text(
                             "ต่อหน่วย",
                             style: TextStyle(
                                 color: Colors.black,
@@ -612,20 +615,20 @@ class _DeliveryStoreProductMissListState
                             textAlign: TextAlign.right,
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: widthScreen * 0.22,
                           child: Text(
                             "${numberFormat.format(unitPrice)} ฿",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.black,
                                 fontFamily: 'Prompt',
                                 fontSize: 14.0),
                             textAlign: TextAlign.right,
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: widthScreen * 0.1,
-                          child: Text(
+                          child: const Text(
                             "รวม",
                             style: TextStyle(
                                 color: Colors.black,
@@ -634,11 +637,11 @@ class _DeliveryStoreProductMissListState
                             textAlign: TextAlign.right,
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: widthScreen * 0.22,
                           child: Text(
                             "${numberFormat.format(total)} ฿",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.black,
                                 fontFamily: 'Prompt',
                                 fontSize: 14.0),
@@ -647,7 +650,7 @@ class _DeliveryStoreProductMissListState
                         ),
                       ],
                     ),
-                    DottedLine(
+                    const DottedLine(
                       dashColor: Colors.grey,
                     ),
                   ],

@@ -38,7 +38,7 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getPodt(GlobalParam.deliveryStoreSum.cPOCD);
+    getPodt(GlobalParam.deliveryStoreSum.cPOCD!);
   }
 
   @override
@@ -55,7 +55,7 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
           DeliveryFooter(
             title1: 'บันทึกส่งสินค้า',
             title2: '',
-            item: double.parse(GlobalParam.deliveryStoreSum.iitems),
+            item: double.parse(GlobalParam.deliveryStoreSum.iitems!),
             navigated1: () {
               GlobalParam.deliveryRegetPODT = true;
               Navigator.push(
@@ -69,12 +69,12 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
               addStockCard();
             },
             navigated2: () {},
-            icon1: Icon(
+            icon1: const Icon(
               LineAwesomeIcons.check_circle,
               color: Colors.green,
               size: 25.0,
             ),
-            icon2: Icon(
+            icon2: const Icon(
               LineAwesomeIcons.check_circle,
               color: Colors.green,
               size: 25.0,
@@ -93,19 +93,19 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
       for (int i = 0; i < GlobalParam.deliveryPodtList.length; i++) {
         String cUOMCD = '';
         double qty = 0;
-        if (double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY) != 0) {
-          cUOMCD = GlobalParam.deliveryPodtList[i].cSUOMCD;
+        if (double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY!) != 0) {
+          cUOMCD = GlobalParam.deliveryPodtList[i].cSUOMCD!;
         }
-        if (double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY) != 0) {
-          cUOMCD = GlobalParam.deliveryPodtList[i].cMUOMCD;
+        if (double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY!) != 0) {
+          cUOMCD = GlobalParam.deliveryPodtList[i].cMUOMCD!;
         }
-        if (double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY) != 0) {
-          cUOMCD = GlobalParam.deliveryPodtList[i].cLUOMCD;
+        if (double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY!) != 0) {
+          cUOMCD = GlobalParam.deliveryPodtList[i].cLUOMCD!;
         }
         for (int j = 0; j < GlobalParam.deliveryProductList.length; j++) {
           if (GlobalParam.deliveryProductList[j].cPRODCD ==
               GlobalParam.deliveryPodtList[i].cPRODCD) {
-            qty = double.parse(GlobalParam.deliveryProductList[j].iitems);
+            qty = double.parse(GlobalParam.deliveryProductList[j].iitems!);
           }
         }
         StockCardReq proList = StockCardReq(
@@ -115,7 +115,7 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
             cWH: 'FG',
             cREFDOC: GlobalParam.deliveryProductList[0].cPOCD,
             iRECEIVEQTY: '0',
-            iISSUEQTY: '${qty.toStringAsFixed(0)}',
+            iISSUEQTY: qty.toStringAsFixed(0),
             cREMARK: '',
             cLOTNO: '',
             cCREABY: GlobalParam.userID);
@@ -199,27 +199,27 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
           AllApiProxyMobile proxy = AllApiProxyMobile();
 
           var result = await proxy.getPodt(QueryPodtReq(
-          cPOCD: cPOCD,
-          cPRODCD: '%%',
-          cPRODNM: '%%',
-          cCUSTTYPE: GlobalParam.customer['cCUSTTYPE']));
+              cPOCD: cPOCD,
+              cPRODCD: '%%',
+              cPRODNM: '%%',
+              cCUSTTYPE: GlobalParam.customer['cCUSTTYPE']));
           if (result.isNotEmpty) {
             //  print('+++++++++++++++++++ query TBT_PODT success +++++++++++++++++++');
             podtList.clear();
             for (int i = 0; i < result.length; i++) {
-              sumItem += double.parse(result[i].iSSIZEQTY) +
-                  double.parse(result[i].iMSIZEQTY) +
-                  double.parse(result[i].iLSIZEQTY);
+              sumItem += double.parse(result[i].iSSIZEQTY!) +
+                  double.parse(result[i].iMSIZEQTY!) +
+                  double.parse(result[i].iLSIZEQTY!);
 
-              if (double.parse(result[i].iSSIZEQTY) > 0) {
+              if (double.parse(result[i].iSSIZEQTY!) > 0) {
                 var data = {
                   "cPRODCD": result[i].cPRODCD,
                   "cUOMNM": result[i].cSUOMNM,
-                  "iPRICE": double.parse(result[i].iSUNITPRICE),
-                  "iTOTAL": double.parse(result[i].iSSIZEQTY)
+                  "iPRICE": double.parse(result[i].iSUNITPRICE!),
+                  "iTOTAL": double.parse(result[i].iSSIZEQTY!)
                 };
                 unitList.add(data);
-                QueryPodtResp product = new QueryPodtResp(
+                QueryPodtResp product = QueryPodtResp(
                   cBASKCD: result[i].cBASKCD,
                   cBASKNM: result[i].cBASKNM,
                   cBRNDCD: result[i].cBRNDCD,
@@ -236,9 +236,7 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
                   cPHOTOPATH: result[i].cPHOTOPATH,
                   cPHOTOSERV: result[i].cPHOTOSERV,
                   cPOCD: result[i].cPOCD,
-                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                      ? 'N'
-                      : result[i].cPREPAIRSTATUS,
+                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
                   cPRODCD: result[i].cPRODCD,
                   cPRODNM: result[i].cPRODNM,
                   cPROMO: result[i].cPROMO,
@@ -261,28 +259,25 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
                   iLUNITPRICE: result[i].iLUNITPRICE,
                   iMSIZEQTY: '0.0',
                   iMUNITPRICE: result[i].iMUNITPRICE,
-                  iNETTOTAL:
-                      result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                      ? '0'
-                      : result[i].iPREPAIRAMOUT,
+                  iNETTOTAL: result[i].iNETTOTAL ?? '0',
+                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
                   iSEQ: result[i].iSEQ,
                   iSSIZEQTY: result[i].iSSIZEQTY,
                   iSUNITPRICE: result[i].iSUNITPRICE,
                   iTOTAL:
-                      "${double.parse(result[i].iSSIZEQTY) * double.parse(result[i].iSUNITPRICE)}",
+                      "${double.parse(result[i].iSSIZEQTY!) * double.parse(result[i].iSUNITPRICE!)}",
                 );
 
                 podtList.add(product);
               }
-              if (double.parse(result[i].iMSIZEQTY) > 0) {
+              if (double.parse(result[i].iMSIZEQTY!) > 0) {
                 var data = {
                   "cUOMNM": result[i].cMUOMNM,
-                  "iPRICE": double.parse(result[i].iMUNITPRICE),
-                  "iTOTAL": double.parse(result[i].iMSIZEQTY)
+                  "iPRICE": double.parse(result[i].iMUNITPRICE!),
+                  "iTOTAL": double.parse(result[i].iMSIZEQTY!)
                 };
                 unitList.add(data);
-                QueryPodtResp product = new QueryPodtResp(
+                QueryPodtResp product = QueryPodtResp(
                   cBASKCD: result[i].cBASKCD,
                   cBASKNM: result[i].cBASKNM,
                   cBRNDCD: result[i].cBRNDCD,
@@ -299,9 +294,7 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
                   cPHOTOPATH: result[i].cPHOTOPATH,
                   cPHOTOSERV: result[i].cPHOTOSERV,
                   cPOCD: result[i].cPOCD,
-                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                      ? 'N'
-                      : result[i].cPREPAIRSTATUS,
+                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
                   cPRODCD: result[i].cPRODCD,
                   cPRODNM: result[i].cPRODNM,
                   cPROMO: result[i].cPROMO,
@@ -324,28 +317,25 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
                   iLUNITPRICE: result[i].iLUNITPRICE,
                   iMSIZEQTY: result[i].iMSIZEQTY,
                   iMUNITPRICE: result[i].iMUNITPRICE,
-                  iNETTOTAL:
-                      result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                      ? '0'
-                      : result[i].iPREPAIRAMOUT,
+                  iNETTOTAL: result[i].iNETTOTAL ?? '0',
+                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
                   iSEQ: result[i].iSEQ,
                   iSSIZEQTY: '0.0',
                   iSUNITPRICE: result[i].iSUNITPRICE,
                   iTOTAL:
-                      "${double.parse(result[i].iMSIZEQTY) * double.parse(result[i].iMUNITPRICE)}",
+                      "${double.parse(result[i].iMSIZEQTY!) * double.parse(result[i].iMUNITPRICE!)}",
                 );
 
                 podtList.add(product);
               }
-              if (double.parse(result[i].iLSIZEQTY) > 0) {
+              if (double.parse(result[i].iLSIZEQTY!) > 0) {
                 var data = {
                   "cUOMNM": result[i].cLUOMNM,
-                  "iPRICE": double.parse(result[i].iLUNITPRICE),
-                  "iTOTAL": double.parse(result[i].iLSIZEQTY)
+                  "iPRICE": double.parse(result[i].iLUNITPRICE!),
+                  "iTOTAL": double.parse(result[i].iLSIZEQTY!)
                 };
                 unitList.add(data);
-                QueryPodtResp product = new QueryPodtResp(
+                QueryPodtResp product = QueryPodtResp(
                   cBASKCD: result[i].cBASKCD,
                   cBASKNM: result[i].cBASKNM,
                   cBRNDCD: result[i].cBRNDCD,
@@ -362,9 +352,7 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
                   cPHOTOPATH: result[i].cPHOTOPATH,
                   cPHOTOSERV: result[i].cPHOTOSERV,
                   cPOCD: result[i].cPOCD,
-                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                      ? 'N'
-                      : result[i].cPREPAIRSTATUS,
+                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
                   cPRODCD: result[i].cPRODCD,
                   cPRODNM: result[i].cPRODNM,
                   cPROMO: result[i].cPROMO,
@@ -387,16 +375,13 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
                   iLUNITPRICE: result[i].iLUNITPRICE,
                   iMSIZEQTY: '0.0',
                   iMUNITPRICE: result[i].iMUNITPRICE,
-                  iNETTOTAL:
-                      result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                      ? '0'
-                      : result[i].iPREPAIRAMOUT,
+                  iNETTOTAL: result[i].iNETTOTAL ?? '0',
+                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
                   iSEQ: result[i].iSEQ,
                   iSSIZEQTY: '0.0',
                   iSUNITPRICE: result[i].iSUNITPRICE,
                   iTOTAL:
-                      "${double.parse(result[i].iLSIZEQTY) * double.parse(result[i].iLUNITPRICE)}",
+                      "${double.parse(result[i].iLSIZEQTY!) * double.parse(result[i].iLUNITPRICE!)}",
                 );
 
                 podtList.add(product);
@@ -409,8 +394,8 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
             GlobalParam.deliveryPodtList = podtList;
             GlobalParam.deliveryPodtShow = podtList;
             GlobalParam.deliveryUnitList = unitList;
-            getBasketsofCustomer(GlobalParam.deliverySelectStore.cCUSTCD,
-                GlobalParam.deliveryStoreSum.cPOCD);
+            getBasketsofCustomer(GlobalParam.deliverySelectStore.cCUSTCD!,
+                GlobalParam.deliveryStoreSum.cPOCD!);
           } else {
             // print('+++++++++++++++++++ query TBT_PODT fail +++++++++++++++++++');
             podtList.clear();
@@ -459,18 +444,18 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
       padding: const EdgeInsets.all(5),
       itemCount: podtList.length,
       itemBuilder: (BuildContext context, int index) {
-        double item = double.parse(podtList[index].iSSIZEQTY) +
-            double.parse(podtList[index].iMSIZEQTY) +
-            double.parse(podtList[index].iLSIZEQTY);
+        double item = double.parse(podtList[index].iSSIZEQTY!) +
+            double.parse(podtList[index].iMSIZEQTY!) +
+            double.parse(podtList[index].iLSIZEQTY!);
         var unit = '';
-        if (double.parse(podtList[index].iSSIZEQTY) > 0) {
-          unit = podtList[index].cSUOMNM;
+        if (double.parse(podtList[index].iSSIZEQTY!) > 0) {
+          unit = podtList[index].cSUOMNM!;
         }
-        if (double.parse(podtList[index].iMSIZEQTY) > 0) {
-          unit = podtList[index].cMUOMNM;
+        if (double.parse(podtList[index].iMSIZEQTY!) > 0) {
+          unit = podtList[index].cMUOMNM!;
         }
-        if (double.parse(podtList[index].iLSIZEQTY) > 0) {
-          unit = podtList[index].cLUOMNM;
+        if (double.parse(podtList[index].iLSIZEQTY!) > 0) {
+          unit = podtList[index].cLUOMNM!;
         }
         return Container(
           color: HexColor("#F2F3F4"),
@@ -492,21 +477,21 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
                       decoration: BoxDecoration(
                           image: podtList[index].cPHOTOPATH != ''
                               ? DecorationImage(
-                                  image: new NetworkImage(
+                                  image: NetworkImage(
                                     'http://${podtList[index].cPHOTOSERV}/${podtList[index].cPHOTOPATH}',
                                   ),
                                   scale: 1.0,
                                   fit: BoxFit.cover,
                                 )
-                              : DecorationImage(
-                                  image: new AssetImage(
+                              : const DecorationImage(
+                                  image: AssetImage(
                                     "assets/images/no_image.png",
                                   ),
                                   scale: 1.0,
                                   fit: BoxFit.cover,
                                 ),
                           color: Colors.white,
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(5),
                             topRight: Radius.circular(5),
                             bottomLeft: Radius.circular(5),
@@ -523,8 +508,8 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              podtList[index].cPRODNM,
-                              style: TextStyle(
+                              podtList[index].cPRODNM!,
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontFamily: 'Prompt',
                                   fontWeight: FontWeight.bold,
@@ -549,13 +534,13 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
                                         child: item > 0
                                             ? Text(
                                                 '${item.toStringAsFixed(0)} $unit',
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.black,
                                                     fontFamily: 'Prompt',
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 14.0),
                                               )
-                                            : Text(
+                                            : const Text(
                                                 '0 ตะกร้า',
                                                 style: TextStyle(
                                                     color: Colors.black,
@@ -567,8 +552,8 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
                                       Container(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          podtList[index].cPRODCD,
-                                          style: TextStyle(
+                                          podtList[index].cPRODCD!,
+                                          style: const TextStyle(
                                               color: Colors.grey,
                                               fontFamily: 'Prompt',
                                               fontWeight: FontWeight.bold,
@@ -609,7 +594,7 @@ class _DeliveryStoreTabShippingState extends State<DeliveryStoreTabShipping> {
                   ],
                 ),
               ),
-              DottedLine(
+              const DottedLine(
                 dashColor: Colors.grey,
               ),
             ],

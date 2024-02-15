@@ -43,28 +43,28 @@ class _LoginState extends State<Login> {
             actions: [
               IconButton(
                   onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => WifiPrinter()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const WifiPrinter()));
                   },
-                  icon: Icon(Icons.print_sharp))
+                  icon: const Icon(Icons.print_sharp))
             ],
           ),
           body: ListView(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 50.0,
               ),
               logo_(),
               userName_(),
               password_(),
               type_(),
-              Divider(
+              const Divider(
                 indent: 15.0,
                 endIndent: 15.0,
                 thickness: 1.0,
                 color: Colors.black45,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
               rememberPassword_(),
@@ -94,7 +94,7 @@ class _LoginState extends State<Login> {
       alignment: Alignment.bottomRight,
       child: Text(
         GlobalParam.appVersion,
-        style: TextStyle(fontSize: 10.0),
+        style: const TextStyle(fontSize: 10.0),
       ),
     );
   }
@@ -108,7 +108,7 @@ class _LoginState extends State<Login> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text(
+            child: const Text(
               'ยกเลิก',
               style: TextStyle(
                 fontFamily: 'Prompt',
@@ -126,7 +126,7 @@ class _LoginState extends State<Login> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'ฝ่ายขนส่ง',
                 style: TextStyle(
                   fontFamily: 'Prompt',
@@ -143,7 +143,7 @@ class _LoginState extends State<Login> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'ฝ่ายขาย',
                 style: TextStyle(
                   fontFamily: 'Prompt',
@@ -160,7 +160,7 @@ class _LoginState extends State<Login> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'ฝ่ายร้านค้า',
                 style: TextStyle(
                   fontFamily: 'Prompt',
@@ -177,7 +177,7 @@ class _LoginState extends State<Login> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'ฝ่ายคลังสาขา',
                 style: TextStyle(
                   fontFamily: 'Prompt',
@@ -194,7 +194,7 @@ class _LoginState extends State<Login> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'โกดัง 2',
                 style: TextStyle(
                   fontFamily: 'Prompt',
@@ -211,7 +211,7 @@ class _LoginState extends State<Login> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'ฝ่ายจัดสินค้า',
                 style: TextStyle(
                   fontFamily: 'Prompt',
@@ -228,7 +228,7 @@ class _LoginState extends State<Login> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'ฝ่ายตรวจสอบ',
                 style: TextStyle(
                   fontFamily: 'Prompt',
@@ -245,7 +245,7 @@ class _LoginState extends State<Login> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'ฝ่ายซัพพลายเออร์',
                 style: TextStyle(
                   fontFamily: 'Prompt',
@@ -262,7 +262,7 @@ class _LoginState extends State<Login> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'เพิ่มร้านค้า',
                 style: TextStyle(
                   fontFamily: 'Prompt',
@@ -296,7 +296,7 @@ class _LoginState extends State<Login> {
                   Navigator.of(context).pop();
                 });
               },
-              child: Text(
+              child: const Text(
                 'แผนที่นำทาง',
                 style: TextStyle(
                   fontFamily: 'Prompt',
@@ -329,18 +329,18 @@ class _LoginState extends State<Login> {
         controller: userName,
         keyboardType: TextInputType.name,
         style: TextStyle(
-            color: Theme.of(context).copyWith().textTheme.headline1.color),
-        decoration: new InputDecoration(
+            color: Theme.of(context).copyWith().textTheme.headline1!.color!),
+        decoration: InputDecoration(
           labelText: "ชื่อผู้ใช้งาน",
-          labelStyle: TextStyle(
+          labelStyle: const TextStyle(
             color: Colors.black,
             fontSize: 14.0,
           ),
           enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.grey.withOpacity(1.0))),
-          focusedBorder:
-              UnderlineInputBorder(borderSide: BorderSide(color: Colors.green)),
-          prefixIcon: Icon(
+          focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.green)),
+          prefixIcon: const Icon(
             LineAwesomeIcons.user,
             color: Colors.black45,
           ),
@@ -359,8 +359,8 @@ class _LoginState extends State<Login> {
         obscureText: true,
         keyboardType: TextInputType.name,
         style: TextStyle(
-            color: Theme.of(context).copyWith().textTheme.headline1.color),
-        decoration: new InputDecoration(
+            color: Theme.of(context).copyWith().textTheme.headline1!.color),
+        decoration: InputDecoration(
           /*hintText: '••••••',
           hintStyle: TextStyle(
             color: Colors.black,
@@ -369,15 +369,15 @@ class _LoginState extends State<Login> {
             fontSize: 35.0,
           ),*/
           labelText: 'พาสเวิร์ด',
-          labelStyle: TextStyle(
+          labelStyle: const TextStyle(
             color: Colors.black,
             fontSize: 14.0,
           ),
           enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.grey.withOpacity(1.0))),
-          focusedBorder:
-              UnderlineInputBorder(borderSide: BorderSide(color: Colors.green)),
-          prefixIcon: Icon(
+          focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.green)),
+          prefixIcon: const Icon(
             LineAwesomeIcons.lock,
             color: Colors.black45,
           ),
@@ -399,18 +399,18 @@ class _LoginState extends State<Login> {
           child: Row(
             children: [
               Container(
-                child: Icon(
+                child: const Icon(
                   LineAwesomeIcons.bars,
                   color: Colors.black45,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15.0,
               ),
               Container(
                 child: Text(
                   typeCode == "" ? 'ประเภท' : typeName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                   ),
                 ),
@@ -438,10 +438,10 @@ class _LoginState extends State<Login> {
                     LineAwesomeIcons.check_circle,
                     color: HexColor('#00cb39'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 15.0,
                   ),
-                  Text(
+                  const Text(
                     'จดจำ',
                   ),
                 ],
@@ -452,7 +452,7 @@ class _LoginState extends State<Login> {
             child: Container(
               alignment: Alignment.center,
               child: Container(
-                child: Text(
+                child: const Text(
                   'ลืมพาสเวิร์ด?',
                   style: TextStyle(
                     color: Colors.orangeAccent,
@@ -477,7 +477,7 @@ class _LoginState extends State<Login> {
           width: 128,
           decoration: BoxDecoration(
               // color: Colors.white,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(5),
                 topRight: Radius.circular(5),
                 bottomLeft: Radius.circular(5),

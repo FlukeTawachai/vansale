@@ -9,7 +9,6 @@ import 'package:vansale/api/class/request/mobile/canclePoByBeforePOReq.dart';
 import 'package:vansale/api/class/request/mobile/createPoByBeforePOReq.dart';
 import 'package:vansale/api/class/request/mobile/getStartWorkReq.dart';
 import 'package:vansale/api/class/request/mobile/startStopWorkReq.dart';
-import 'package:vansale/screens/Supplier/delivery/delivery_list.dart';
 import 'package:vansale/screens/Supplier/delivery/money/delivery_money_main.dart';
 import 'package:vansale/screens/Supplier/delivery/refuel/delivery_refuel_main.dart';
 import 'package:vansale/screens/Supplier/supplier/basket.dart';
@@ -19,23 +18,18 @@ import 'package:vansale/screens/Supplier/supplier/getProducts.dart';
 import 'package:vansale/screens/Supplier/supplier/orderOFbranch.dart';
 import 'package:vansale/screens/Supplier/supplier/productOrder.dart';
 import 'package:vansale/screens/Supplier/transfer/tranferProducts.dart';
-import 'package:vansale/screens/Supplier/transfer/transferInOut.dart';
 import 'package:vansale/screens/Supplier/transfer/transferSort.dart';
 import 'package:vansale/screens/branch_warehouse/branch_warehouse_transfer/branch_warehouse_transfer_main.dart';
 import 'package:vansale/screens/customer_menu/customer_home/customer_main_page.dart';
-import 'package:vansale/screens/customer_menu/customer_purchase/customer_purchase_order.dart';
 import 'package:vansale/screens/customer_menu/customer_purchase/customer_purchase_history.dart';
 import 'package:vansale/screens/customer_menu/customer_purchase/customer_transfer_payment.dart';
 import 'package:vansale/screens/customer_menu/custommer_Order/customer_add_order.dart';
 import 'package:vansale/screens/delivery/delivery_list.dart';
 import 'package:vansale/screens/delivery/delivery_map/map_selectBranch.dart';
-import 'package:vansale/screens/delivery/delivery_money/delivery_money_main.dart';
 import 'package:vansale/screens/delivery/delivery_money/delivery_money_new.dart';
 import 'package:vansale/screens/delivery/delivery_new_supplier/delivery_new_supplier_main.dart';
 import 'package:vansale/screens/delivery/delivery_refuel/delivery_refuel_main.dart';
-import 'package:vansale/screens/delivery/delivery_startwork/delivery_startwork_main.dart';
 import 'package:vansale/screens/namo/signature_screen.dart';
-import 'package:vansale/screens/sale/sale_transfer_product/sale_transfer_product_main.dart';
 import 'package:vansale/screens/sale/survey/sale_delivery.dart';
 import 'package:vansale/screens/startwork.dart';
 import 'package:vansale/screens/stocks/stockOrderList.dart';
@@ -276,7 +270,7 @@ class _MainMenuState extends State<MainMenu> {
             //physics: new NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.all(15.0),
             itemCount: countMenu(widget.typeMenuCode),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               crossAxisSpacing: 15,
               mainAxisSpacing: 15,
@@ -302,7 +296,7 @@ class _MainMenuState extends State<MainMenu> {
                       if (GlobalParam.startWorkList.isNotEmpty == false) {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) =>
-                                StartWork(GlobalParam.typeMenuCode)));
+                                StartWork(GlobalParam.typeMenuCode!)));
                         // startStopWork();
                       }
                     }
@@ -311,7 +305,7 @@ class _MainMenuState extends State<MainMenu> {
                       if (GlobalParam.startWorkList.isNotEmpty == false) {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) =>
-                                StartWork(GlobalParam.typeMenuCode)));
+                                StartWork(GlobalParam.typeMenuCode!)));
                         // startStopWork();
                       }
                     }
@@ -346,7 +340,7 @@ class _MainMenuState extends State<MainMenu> {
             //physics: new NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.all(15.0),
             itemCount: countMenu(widget.typeMenuCode),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               crossAxisSpacing: 15,
               mainAxisSpacing: 15,
@@ -440,7 +434,7 @@ class _MainMenuState extends State<MainMenu> {
             return Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => TranferSort(),
+                builder: (BuildContext context) => const TranferSort(),
               ),
             );
 
@@ -449,13 +443,13 @@ class _MainMenuState extends State<MainMenu> {
             return Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => SelectBranchMap(),
+                builder: (BuildContext context) => const SelectBranchMap(),
               ),
             );
             break;
           case "009":
             return Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => StartWork(GlobalParam.typeMenuCode)));
+                builder: (context) => StartWork(GlobalParam.typeMenuCode!)));
             break;
         }
         break;
@@ -471,8 +465,10 @@ class _MainMenuState extends State<MainMenu> {
             );
             break;
           case "002":
-            return Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => BranchWarehouseMain()));
+            return Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => BranchWarehouseMain(
+                      typeMenuCode: '',
+                    )));
             break;
           case "003":
             return Navigator.push(
@@ -510,7 +506,7 @@ class _MainMenuState extends State<MainMenu> {
             return Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => TranferSort(),
+                builder: (BuildContext context) => const TranferSort(),
               ),
             );
             break;
@@ -518,13 +514,13 @@ class _MainMenuState extends State<MainMenu> {
             return Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => SelectBranchMap(),
+                builder: (BuildContext context) => const SelectBranchMap(),
               ),
             );
             break;
           case "009":
             return Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => StartWork(GlobalParam.typeMenuCode)));
+                builder: (context) => StartWork(GlobalParam.typeMenuCode!)));
             break;
         }
         break;
@@ -582,12 +578,12 @@ class _MainMenuState extends State<MainMenu> {
                 MaterialPageRoute(builder: (context) => StockOrderList()));
             break;
           case "002":
-            return Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => SupplierList()));
+            return Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const SupplierList()));
             break;
           case "003":
-            return Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => StockSelectGroup()));
+            return Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const StockSelectGroup()));
             break;
           case "004":
             return Navigator.of(context).push(MaterialPageRoute(
@@ -598,7 +594,7 @@ class _MainMenuState extends State<MainMenu> {
           case "005":
             return Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) =>
-                    RecheckProductStock(GlobalParam.typeMenuCode, true)));
+                    RecheckProductStock(GlobalParam.typeMenuCode!, true)));
             break;
           case "006":
             return () {};
@@ -691,7 +687,7 @@ class _MainMenuState extends State<MainMenu> {
             return Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => ProductOrder(),
+                builder: (BuildContext context) => const ProductOrder(),
               ),
             );
             break;
@@ -699,7 +695,7 @@ class _MainMenuState extends State<MainMenu> {
             return Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => OrderOfBranch(),
+                builder: (BuildContext context) => const OrderOfBranch(),
               ),
             );
             break;
@@ -762,56 +758,56 @@ class _MainMenuState extends State<MainMenu> {
     switch (menutype) {
       case "T001":
         return Text(
-          newMenus[index]['name'],
-          style: TextStyle(fontSize: 14.0),
+          newMenus[index]['name']!,
+          style: const TextStyle(fontSize: 14.0),
         );
         break;
 
       case "T002":
         return Text(
-          saleordermenu[index]['name'],
-          style: TextStyle(fontSize: 14.0),
+          saleordermenu[index]['name']!,
+          style: const TextStyle(fontSize: 14.0),
         );
         break;
       case "T003":
         return menuname = Text(
-          customermenu[index]['name'],
-          style: TextStyle(fontSize: 14.0),
+          customermenu[index]['name']!,
+          style: const TextStyle(fontSize: 14.0),
         );
         break;
       case "T004":
         return menuname = Text(
-          stockMenu[index]['name'],
-          style: TextStyle(fontSize: 14.0),
+          stockMenu[index]['name']!,
+          style: const TextStyle(fontSize: 14.0),
         );
         break;
       case "T005":
         return menuname =
-            Text(menus[index]['name'], style: TextStyle(fontSize: 14.0));
+            Text(menus[index]['name']!, style: const TextStyle(fontSize: 14.0));
 
         break;
       case "T006":
         return menuname = Text(
-          warehouse3[index]['name'],
-          style: TextStyle(fontSize: 14.0),
+          warehouse3[index]['name']!,
+          style: const TextStyle(fontSize: 14.0),
         );
         break;
       case "T007":
         return menuname = Text(
-          menus[index]['name'],
-          style: TextStyle(fontSize: 14.0),
+          menus[index]['name']!,
+          style: const TextStyle(fontSize: 14.0),
         );
         break;
       case "T008":
         if (suppliermenu[index]['name'] == "สินค้าเสีย") {
           return menuname = Text(
-            suppliermenu[index]['name'],
-            style: TextStyle(fontSize: 14.0, color: Colors.red),
+            suppliermenu[index]['name']!,
+            style: const TextStyle(fontSize: 14.0, color: Colors.red),
           );
         } else {
           return menuname = Text(
-            suppliermenu[index]['name'],
-            style: TextStyle(
+            suppliermenu[index]['name']!,
+            style: const TextStyle(
               fontSize: 14.0,
             ),
           );
@@ -819,9 +815,13 @@ class _MainMenuState extends State<MainMenu> {
         break;
       case "T010":
         return menuname = Text(
-          signatureMenu[index]['name'],
-          style: TextStyle(fontSize: 14.0),
+          signatureMenu[index]['name']!,
+          style: const TextStyle(fontSize: 14.0),
         );
+        break;
+      default:
+        // Handle the case where 'menuicon' is not assigned
+        menuname = const SizedBox(); // Or any other default Widget
         break;
     }
     return menuname;
@@ -833,56 +833,56 @@ class _MainMenuState extends State<MainMenu> {
       case "T001":
         switch (newMenus[index]['menu']) {
           case "001":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.shipping_fast,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "002":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.boxes,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "003":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.store,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "004":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.gas_pump,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "005":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.donate,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "006":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.business_time,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "007":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.sort_amount_down,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "008":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.map,
               color: Colors.green,
               size: 35.0,
@@ -894,73 +894,77 @@ class _MainMenuState extends State<MainMenu> {
               child: Container(
                 height: 48,
                 alignment: Alignment.bottomCenter,
-                child: Center(
+                child: const Center(
                   child: Icon(
                     LineAwesomeIcons.shipping_fast,
                     color: Colors.white,
                     size: 35.0,
                   ),
                 ),
-                decoration:
-                    BoxDecoration(color: Colors.green, shape: BoxShape.circle),
+                decoration: const BoxDecoration(
+                    color: Colors.green, shape: BoxShape.circle),
               ),
             );
+            break;
+          default:
+            // Handle the case where 'menuicon' is not assigned
+            menuicon = const SizedBox(); // Or any other default Widget
             break;
         }
         break;
       case "T002":
         switch (saleordermenu[index]['menu']) {
           case "001":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.shipping_fast,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "002":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.business_time,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "003":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.store,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "004":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.gas_pump,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "005":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.donate,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "006":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.business_time,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "007":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.sort_amount_down,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "008":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.map,
               color: Colors.green,
               size: 35.0,
@@ -972,306 +976,342 @@ class _MainMenuState extends State<MainMenu> {
               child: Container(
                 height: 48,
                 alignment: Alignment.bottomCenter,
-                child: Center(
+                child: const Center(
                   child: Icon(
                     LineAwesomeIcons.shipping_fast,
                     color: Colors.white,
                     size: 35.0,
                   ),
                 ),
-                decoration:
-                    BoxDecoration(color: Colors.green, shape: BoxShape.circle),
+                decoration: const BoxDecoration(
+                    color: Colors.green, shape: BoxShape.circle),
               ),
             );
+            break;
+          default:
+            // Handle the case where 'menuicon' is not assigned
+            menuicon = const SizedBox(); // Or any other default Widget
             break;
         }
         break;
       case "T003":
         switch (menus[index]['menu']) {
           case "001":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.shipping_fast,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "002":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.business_time,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "003":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.store,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "004":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.shopping_basket,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "005":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.window_close,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "006":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.donate,
               color: Colors.green,
               size: 35.0,
             );
+            break;
+          default:
+            // Handle the case where 'menuicon' is not assigned
+            menuicon = const SizedBox(); // Or any other default Widget
             break;
         }
         break;
       case "T004":
         switch (menus[index]['menu']) {
           case "001":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.store,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "002":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.shopping_basket,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "003":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.shipping_fast,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "004":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.alternate_exchange,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "005":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.boxes,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "006":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.truck,
               color: Colors.green,
               size: 35.0,
             );
+            break;
+          default:
+            // Handle the case where 'menuicon' is not assigned
+            menuicon = const SizedBox(); // Or any other default Widget
             break;
         }
         break;
       case "T005":
         switch (menus[index]['menu']) {
           case "001":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.shipping_fast,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "002":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.business_time,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "003":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.store,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "004":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.gas_pump,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "005":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.donate,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "006":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.truck,
               color: Colors.green,
               size: 35.0,
             );
+            break;
+          default:
+            // Handle the case where 'menuicon' is not assigned
+            menuicon = const SizedBox(); // Or any other default Widget
             break;
         }
         break;
       case "T006":
         switch (menus[index]['menu']) {
           case "001":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.shipping_fast,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "002":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.business_time,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "003":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.box,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "004":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.gas_pump,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "005":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.donate,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "006":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.truck,
               color: Colors.green,
               size: 35.0,
             );
+            break;
+          default:
+            // Handle the case where 'menuicon' is not assigned
+            menuicon = const SizedBox(); // Or any other default Widget
             break;
         }
         break;
       case "T007":
         switch (menus[index]['menu']) {
           case "001":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.shipping_fast,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "002":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.business_time,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "003":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.store,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "004":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.gas_pump,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "005":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.donate,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "006":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.truck,
               color: Colors.green,
               size: 35.0,
             );
+            break;
+          default:
+            // Handle the case where 'menuicon' is not assigned
+            menuicon = const SizedBox(); // Or any other default Widget
             break;
         }
         break;
       case "T008":
         switch (suppliermenu[index]['menu']) {
           case "001":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.shipping_fast,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "002":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.business_time,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "003":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.store,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "004":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.gas_pump,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "005":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.donate,
               color: Colors.green,
               size: 35.0,
             );
             break;
           case "006":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.truck,
               color: Colors.green,
               size: 35.0,
             );
+            break;
+          default:
+            // Handle the case where 'menuicon' is not assigned
+            menuicon = const SizedBox(); // Or any other default Widget
             break;
         }
         break;
       case "T010":
         switch (menus[index]['menu']) {
           case "001":
-            return menuicon = Icon(
+            return menuicon = const Icon(
               LineAwesomeIcons.signature,
               color: Colors.green,
               size: 35.0,
             );
             break;
+          default:
+            // Handle the case where 'menuicon' is not assigned
+            menuicon = const SizedBox(); // Or any other default Widget
+            break;
         }
+        break;
+      default:
+        // Handle the case where 'menuicon' is not assigned
+        menuicon = const SizedBox(); // Or any other default Widget
         break;
     }
     return menuicon;
@@ -1412,7 +1452,7 @@ class _MainMenuState extends State<MainMenu> {
     try {
       AllApiProxyMobile proxy = AllApiProxyMobile();
       String cGRPCD = "";
-      final moonLanding = new DateTime.now();
+      final moonLanding = DateTime.now();
       // print(moonLanding.weekday); // 7
       if (moonLanding.weekday == 1) {
         cGRPCD = "GRSUN";
@@ -1452,7 +1492,7 @@ class _MainMenuState extends State<MainMenu> {
     try {
       AllApiProxyMobile proxy = AllApiProxyMobile();
       String cGRPCD = "";
-      final moonLanding = new DateTime.now();
+      final moonLanding = DateTime.now();
       // print(moonLanding.weekday); // 7
       if (moonLanding.weekday == 1) {
         cGRPCD = "GRSUN";
@@ -1535,7 +1575,8 @@ class _MainMenuState extends State<MainMenu> {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         contentPadding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-        title: menu == '01' ? Text('สั่งซื้อ') : Text('ไม่สั่งซื้อ'),
+        title:
+            menu == '01' ? const Text('สั่งซื้อ') : const Text('ไม่สั่งซื้อ'),
         content: Text(
           msg,
           style: const TextStyle(fontSize: 11.0),
@@ -1585,7 +1626,7 @@ class _MainMenuState extends State<MainMenu> {
   getStartWork() async {
     try {
       var outputFormat = DateFormat('yyyy-MM-dd');
-      var outputDate = outputFormat.format(new DateTime.now());
+      var outputDate = outputFormat.format(DateTime.now());
       AllApiProxyMobile proxy = AllApiProxyMobile();
       String section = '';
       if (GlobalParam.typeMenuCode == 'T001') {

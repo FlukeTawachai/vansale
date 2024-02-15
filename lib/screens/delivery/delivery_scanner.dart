@@ -22,7 +22,8 @@ import 'package:vansale/screens/delivery/delivery_store/delivery_store_shipping/
 class DeliveryQrScanner extends StatefulWidget {
   final Function navigator;
   final String code;
-  const DeliveryQrScanner({Key key, this.navigator, this.code})
+  const DeliveryQrScanner(
+      {Key? key, required this.navigator, required this.code})
       : super(key: key);
 
   @override
@@ -30,10 +31,10 @@ class DeliveryQrScanner extends StatefulWidget {
 }
 
 class _DeliveryQrScannerState extends State<DeliveryQrScanner> {
-  Barcode result;
-  QRViewController controller;
+  late Barcode result;
+  late QRViewController controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  BuildContext scaffoldContext;
+  late BuildContext scaffoldContext;
   bool success = false;
   int counter = 0;
   String code = '';
@@ -57,8 +58,8 @@ class _DeliveryQrScannerState extends State<DeliveryQrScanner> {
     super.initState();
     // discovered == false;
     if (widget.code == '003') {
-      cCUSTCD = GlobalParam.deliveryProductList[0].cCUSTCD;
-      cPOCD = GlobalParam.deliveryProductList[0].cPOCD;
+      cCUSTCD = GlobalParam.deliveryProductList[0].cCUSTCD!;
+      cPOCD = GlobalParam.deliveryProductList[0].cPOCD!;
     }
   }
 
@@ -66,11 +67,11 @@ class _DeliveryQrScannerState extends State<DeliveryQrScanner> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.black),
         elevation: 0.0,
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "สะแกนบาร์โค้ด",
           style: TextStyle(
             color: Colors.black,
@@ -118,17 +119,17 @@ class _DeliveryQrScannerState extends State<DeliveryQrScanner> {
       //   result = scanData;
       //   code = scanData.code;
       // });
-      code = scanData.code;
+      code = scanData.code!;
       if (widget.code == '004') {
         getBasket(SearchBasketReq(cBASKCD: '%$code%', cBASKNM: '%%'));
       } else if (widget.code == '005' || widget.code == '002') {
-        getHisProduct('$code', '%%');
+        getHisProduct(code, '%%');
       } else if (widget.code == '006') {
-        getSPOrderDTShow(GlobalParam.supplierSelectOrder.cPOCD, '', '$code');
+        getSPOrderDTShow(GlobalParam.supplierSelectOrder!.cPOCD!, '', code);
       } else if (widget.code == '007') {
-        storeGetPodtSearch('$code');
+        storeGetPodtSearch(code);
       } else if (widget.code == '008') {
-        searchProductBranch('$code');
+        searchProductBranch(code);
       } else {
         if (code != '' && code != null) {
           getPodt(cPOCD, '', code);
@@ -207,9 +208,9 @@ class _DeliveryQrScannerState extends State<DeliveryQrScanner> {
             //  print('+++++++++++++++++++ query TBT_PODT success +++++++++++++++++++');
             podtList.clear();
             for (int i = 0; i < result.length; i++) {
-              sumItem += double.parse(result[i].iSSIZEQTY) +
-                  double.parse(result[i].iMSIZEQTY) +
-                  double.parse(result[i].iLSIZEQTY);
+              sumItem += double.parse(result[i].iSSIZEQTY!) +
+                  double.parse(result[i].iMSIZEQTY!) +
+                  double.parse(result[i].iLSIZEQTY!);
               podtList.add(result[i]);
 
               if (result[i].cPREPAIRSTATUS == 'N') {
@@ -332,7 +333,7 @@ class _DeliveryQrScannerState extends State<DeliveryQrScanner> {
       var unitList = [];
       AllApiProxyMobile proxy = AllApiProxyMobile();
       var result = await proxy.getPodt(QueryPodtReq(
-          cPOCD: GlobalParam.customerPOHDSelect.cPOCD,
+          cPOCD: GlobalParam.customerPOHDSelect!.cPOCD!,
           cPRODCD: '%$cPRODCD%',
           cPRODNM: '%%',
           cCUSTTYPE: GlobalParam.customer['cCUSTTYPE']));
@@ -345,15 +346,15 @@ class _DeliveryQrScannerState extends State<DeliveryQrScanner> {
           //     double.parse(result[i].iMSIZEQTY) +
           //     double.parse(result[i].iLSIZEQTY);
 
-          if (double.parse(result[i].iSSIZEQTY) > 0) {
+          if (double.parse(result[i].iSSIZEQTY!) > 0) {
             var data = {
               "cPRODCD": result[i].cPRODCD,
               "cUOMNM": result[i].cSUOMNM,
-              "iPRICE": double.parse(result[i].iSUNITPRICE),
-              "iTOTAL": double.parse(result[i].iSSIZEQTY)
+              "iPRICE": double.parse(result[i].iSUNITPRICE!),
+              "iTOTAL": double.parse(result[i].iSSIZEQTY!)
             };
             unitList.add(data);
-            QueryPodtResp product = new QueryPodtResp(
+            QueryPodtResp product = QueryPodtResp(
               cBASKCD: result[i].cBASKCD,
               cBASKNM: result[i].cBASKNM,
               cBRNDCD: result[i].cBRNDCD,
@@ -370,9 +371,7 @@ class _DeliveryQrScannerState extends State<DeliveryQrScanner> {
               cPHOTOPATH: result[i].cPHOTOPATH,
               cPHOTOSERV: result[i].cPHOTOSERV,
               cPOCD: result[i].cPOCD,
-              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                  ? 'N'
-                  : result[i].cPREPAIRSTATUS,
+              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
               cPRODCD: result[i].cPRODCD,
               cPRODNM: result[i].cPRODNM,
               cPROMO: result[i].cPROMO,
@@ -395,28 +394,25 @@ class _DeliveryQrScannerState extends State<DeliveryQrScanner> {
               iLUNITPRICE: result[i].iLUNITPRICE,
               iMSIZEQTY: '0.0',
               iMUNITPRICE: result[i].iMUNITPRICE,
-              iNETTOTAL:
-                  result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                  ? '0'
-                  : result[i].iPREPAIRAMOUT,
+              iNETTOTAL: result[i].iNETTOTAL ?? '0',
+              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
               iSEQ: result[i].iSEQ,
               iSSIZEQTY: result[i].iSSIZEQTY,
               iSUNITPRICE: result[i].iSUNITPRICE,
               iTOTAL:
-                  "${double.parse(result[i].iSSIZEQTY) * double.parse(result[i].iSUNITPRICE)}",
+                  "${double.parse(result[i].iSSIZEQTY!) * double.parse(result[i].iSUNITPRICE!)}",
             );
 
             podtList.add(product);
           }
-          if (double.parse(result[i].iMSIZEQTY) > 0) {
+          if (double.parse(result[i].iMSIZEQTY!) > 0) {
             var data = {
               "cUOMNM": result[i].cMUOMNM,
-              "iPRICE": double.parse(result[i].iMUNITPRICE),
-              "iTOTAL": double.parse(result[i].iMSIZEQTY)
+              "iPRICE": double.parse(result[i].iMUNITPRICE!),
+              "iTOTAL": double.parse(result[i].iMSIZEQTY!)
             };
             unitList.add(data);
-            QueryPodtResp product = new QueryPodtResp(
+            QueryPodtResp product = QueryPodtResp(
               cBASKCD: result[i].cBASKCD,
               cBASKNM: result[i].cBASKNM,
               cBRNDCD: result[i].cBRNDCD,
@@ -433,9 +429,7 @@ class _DeliveryQrScannerState extends State<DeliveryQrScanner> {
               cPHOTOPATH: result[i].cPHOTOPATH,
               cPHOTOSERV: result[i].cPHOTOSERV,
               cPOCD: result[i].cPOCD,
-              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                  ? 'N'
-                  : result[i].cPREPAIRSTATUS,
+              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
               cPRODCD: result[i].cPRODCD,
               cPRODNM: result[i].cPRODNM,
               cPROMO: result[i].cPROMO,
@@ -458,28 +452,25 @@ class _DeliveryQrScannerState extends State<DeliveryQrScanner> {
               iLUNITPRICE: result[i].iLUNITPRICE,
               iMSIZEQTY: result[i].iMSIZEQTY,
               iMUNITPRICE: result[i].iMUNITPRICE,
-              iNETTOTAL:
-                  result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                  ? '0'
-                  : result[i].iPREPAIRAMOUT,
+              iNETTOTAL: result[i].iNETTOTAL ?? '0',
+              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
               iSEQ: result[i].iSEQ,
               iSSIZEQTY: '0.0',
               iSUNITPRICE: result[i].iSUNITPRICE,
               iTOTAL:
-                  "${double.parse(result[i].iMSIZEQTY) * double.parse(result[i].iMUNITPRICE)}",
+                  "${double.parse(result[i].iMSIZEQTY!) * double.parse(result[i].iMUNITPRICE!)}",
             );
 
             podtList.add(product);
           }
-          if (double.parse(result[i].iLSIZEQTY) > 0) {
+          if (double.parse(result[i].iLSIZEQTY!) > 0) {
             var data = {
               "cUOMNM": result[i].cLUOMNM,
-              "iPRICE": double.parse(result[i].iLUNITPRICE),
-              "iTOTAL": double.parse(result[i].iLSIZEQTY)
+              "iPRICE": double.parse(result[i].iLUNITPRICE!),
+              "iTOTAL": double.parse(result[i].iLSIZEQTY!)
             };
             unitList.add(data);
-            QueryPodtResp product = new QueryPodtResp(
+            QueryPodtResp product = QueryPodtResp(
               cBASKCD: result[i].cBASKCD,
               cBASKNM: result[i].cBASKNM,
               cBRNDCD: result[i].cBRNDCD,
@@ -496,9 +487,7 @@ class _DeliveryQrScannerState extends State<DeliveryQrScanner> {
               cPHOTOPATH: result[i].cPHOTOPATH,
               cPHOTOSERV: result[i].cPHOTOSERV,
               cPOCD: result[i].cPOCD,
-              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                  ? 'N'
-                  : result[i].cPREPAIRSTATUS,
+              cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
               cPRODCD: result[i].cPRODCD,
               cPRODNM: result[i].cPRODNM,
               cPROMO: result[i].cPROMO,
@@ -521,16 +510,13 @@ class _DeliveryQrScannerState extends State<DeliveryQrScanner> {
               iLUNITPRICE: result[i].iLUNITPRICE,
               iMSIZEQTY: '0.0',
               iMUNITPRICE: result[i].iMUNITPRICE,
-              iNETTOTAL:
-                  result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                  ? '0'
-                  : result[i].iPREPAIRAMOUT,
+              iNETTOTAL: result[i].iNETTOTAL ?? '0',
+              iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
               iSEQ: result[i].iSEQ,
               iSSIZEQTY: '0.0',
               iSUNITPRICE: result[i].iSUNITPRICE,
               iTOTAL:
-                  "${double.parse(result[i].iLSIZEQTY) * double.parse(result[i].iLUNITPRICE)}",
+                  "${double.parse(result[i].iLSIZEQTY!) * double.parse(result[i].iLUNITPRICE!)}",
             );
 
             podtList.add(product);

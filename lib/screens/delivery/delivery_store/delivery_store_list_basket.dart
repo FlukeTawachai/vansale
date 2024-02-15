@@ -47,8 +47,8 @@ class _DeliveryStoreListBasketState extends State<DeliveryStoreListBasket> {
     super.initState();
     int basketTotal = 0;
     for (int i = 0; i < GlobalParam.deliveryHisBasket.length; i++) {
-      basketTotal += GlobalParam.deliveryHisBasket[i].iTOTAL -
-          GlobalParam.deliveryHisBasket[i].iRETURN;
+      basketTotal += (GlobalParam.deliveryHisBasket[i].iTOTAL! -
+          GlobalParam.deliveryHisBasket[i].iRETURN!);
     }
 
     basket = [
@@ -60,10 +60,10 @@ class _DeliveryStoreListBasketState extends State<DeliveryStoreListBasket> {
     ];
 
     for (int i = 0; i < GlobalParam.deliveryHisBasket.length; i++) {
-      var data = {
-        'store': GlobalParam.deliveryHisBasket[i].cBASKNM,
+      Map<String, String> data = {
+        'store': GlobalParam.deliveryHisBasket[i].cBASKNM!,
         'total':
-            '${GlobalParam.deliveryHisBasket[i].iTOTAL - GlobalParam.deliveryHisBasket[i].iRETURN}',
+            '${GlobalParam.deliveryHisBasket[i].iTOTAL! - GlobalParam.deliveryHisBasket[i].iRETURN!}',
         'unit': "ใบ",
       };
       basket.add(data);
@@ -85,7 +85,7 @@ class _DeliveryStoreListBasketState extends State<DeliveryStoreListBasket> {
               Expanded(
                 child: Container(
                   child: Text(
-                    basket[index]['store'],
+                    basket[index]['store']!,
                     style: TextStyle(
                       fontSize: 14.0,
                       color: basket[index]['store'] == "ทั้งหมด"
@@ -100,7 +100,7 @@ class _DeliveryStoreListBasketState extends State<DeliveryStoreListBasket> {
               Expanded(
                 child: Container(
                   child: Text(
-                    basket[index]['total'],
+                    basket[index]['total']!,
                     style: TextStyle(
                       fontSize: 14.0,
                       color: basket[index]['store'] == "ทั้งหมด"
@@ -115,7 +115,7 @@ class _DeliveryStoreListBasketState extends State<DeliveryStoreListBasket> {
               Expanded(
                 child: Container(
                   child: Text(
-                    basket[index]['unit'],
+                    basket[index]['unit']!,
                     style: TextStyle(
                       fontSize: 14.0,
                       color: basket[index]['store'] == "ทั้งหมด"

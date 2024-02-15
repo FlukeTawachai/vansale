@@ -11,7 +11,7 @@ import 'package:vansale/screens/delivery/delivery_store/delivery_store_list_bask
 class DeliveryStoreListMainMenuHD extends StatefulWidget {
   final String storeName;
 
-  const DeliveryStoreListMainMenuHD({Key key, this.storeName})
+  const DeliveryStoreListMainMenuHD({Key? key, required this.storeName})
       : super(key: key);
 
   @override
@@ -28,11 +28,11 @@ class _DeliveryStoreListMainMenuHDState
     // TODO: implement initState
     super.initState();
 
-    double debt = double.parse(GlobalParam.deliveryStoreDetail.iTOTAL) -
-        double.parse(GlobalParam.deliveryStoreDetail.iPAID);
+    double debt = double.parse(GlobalParam.deliveryStoreDetail.iTOTAL!) -
+        double.parse(GlobalParam.deliveryStoreDetail.iPAID!);
     double remainCredit =
-        double.parse(GlobalParam.deliveryStoreDetail.iCREDLIM) -
-            double.parse(GlobalParam.deliveryStoreDetail.iCREDTERM);
+        double.parse(GlobalParam.deliveryStoreDetail.iCREDLIM!) -
+            double.parse(GlobalParam.deliveryStoreDetail.iCREDTERM!);
   }
 
   var storeDetail = [
@@ -45,26 +45,26 @@ class _DeliveryStoreListMainMenuHDState
           children: [
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 20.0,
                 ),
                 Container(
                   child: Container(
                     width: 60.0,
                     height: 60.0,
-                    decoration: new BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.grey,
                       image: GlobalParam.deliverySelectStore.cPHOTOPATH != ''
                           ? DecorationImage(
-                              image: new NetworkImage(
+                              image: NetworkImage(
                                 'http://${GlobalParam.deliverySelectStore.cPHOTOSERV}/${GlobalParam.deliverySelectStore.cPHOTOPATH}',
                               ),
                               scale: 1.0,
                               fit: BoxFit.cover,
                             )
-                          : DecorationImage(
-                              image: new AssetImage(
+                          : const DecorationImage(
+                              image: AssetImage(
                                 "assets/images/no_image.png",
                               ),
                               scale: 1.0,
@@ -89,8 +89,8 @@ class _DeliveryStoreListMainMenuHDState
                         Container(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            GlobalParam.deliverySelectStore.cCUSTNM,
-                            style: TextStyle(
+                            GlobalParam.deliverySelectStore.cCUSTNM!,
+                            style: const TextStyle(
                               fontFamily: 'Prompt',
                               color: Colors.black54,
                               fontWeight: FontWeight.bold,
@@ -102,7 +102,7 @@ class _DeliveryStoreListMainMenuHDState
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "${GlobalParam.deliverySelectStore.cADDRESS} ${GlobalParam.deliverySelectStore.cSUBDIST} ${GlobalParam.deliverySelectStore.cDISTRICT} ${GlobalParam.deliverySelectStore.cPROVINCE} ${GlobalParam.deliverySelectStore.cPOSTCD}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'Prompt',
                               color: Colors.grey,
                               //fontWeight: FontWeight.bold,
@@ -113,8 +113,8 @@ class _DeliveryStoreListMainMenuHDState
                         Container(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            GlobalParam.deliverySelectStore.cCONTACTTEL,
-                            style: TextStyle(
+                            GlobalParam.deliverySelectStore.cCONTACTTEL!,
+                            style: const TextStyle(
                               fontFamily: 'Prompt',
                               color: Colors.black54,
                               //fontWeight: FontWeight.bold,
@@ -153,18 +153,18 @@ class _DeliveryStoreListMainMenuHDState
                   Container(
                     alignment: Alignment.centerLeft,
                     width: 30.0,
-                    child: Icon(
+                    child: const Icon(
                       LineAwesomeIcons.user_check,
                       size: 35.0,
                       color: Colors.green,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
-                    child: Text(
+                    child: const Text(
                       'ประวัติ',
                       style: TextStyle(
                         fontFamily: 'Prompt',
@@ -187,7 +187,7 @@ class _DeliveryStoreListMainMenuHDState
                     child: Container(
                       padding: const EdgeInsets.only(left: 10.0),
                       alignment: Alignment.centerLeft,
-                      child: AutoSizeText(
+                      child: const AutoSizeText(
                         'เยี่ยมครั้งสุดท้าย',
                         style: TextStyle(
                           color: Colors.green,
@@ -197,16 +197,16 @@ class _DeliveryStoreListMainMenuHDState
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
                   Expanded(
                     child: Container(
                       alignment: Alignment.centerLeft,
                       child: AutoSizeText(
-                        GlobalParam.deliveryStoreDetail.dCANDT,
+                        GlobalParam.deliveryStoreDetail.dCANDT!,
                         textAlign: TextAlign.right,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.blue,
                         ),
                         minFontSize: 8.0,
@@ -227,7 +227,7 @@ class _DeliveryStoreListMainMenuHDState
                     child: Container(
                       padding: const EdgeInsets.only(left: 10.0),
                       alignment: Alignment.centerLeft,
-                      child: AutoSizeText(
+                      child: const AutoSizeText(
                         'สั่งครั้งสุดท้าย',
                         style: TextStyle(
                           color: Colors.green,
@@ -237,16 +237,16 @@ class _DeliveryStoreListMainMenuHDState
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
                   Expanded(
                     child: Container(
                       alignment: Alignment.centerLeft,
                       child: AutoSizeText(
-                        GlobalParam.deliveryStoreDetail.dSUCCDT,
+                        GlobalParam.deliveryStoreDetail.dSUCCDT!,
                         textAlign: TextAlign.right,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.blue,
                         ),
                         minFontSize: 8.0,
@@ -270,7 +270,7 @@ class _DeliveryStoreListMainMenuHDState
                           child: Container(
                             padding: const EdgeInsets.only(left: 10.0),
                             alignment: Alignment.centerLeft,
-                            child: AutoSizeText(
+                            child: const AutoSizeText(
                               'เลขบิลครั้งสุดท้าย',
                               style: TextStyle(
                                 color: Colors.green,
@@ -280,15 +280,15 @@ class _DeliveryStoreListMainMenuHDState
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 2.0,
                         ),
                         Container(
                           width: 90.0,
                           alignment: Alignment.centerLeft,
                           child: AutoSizeText(
-                            GlobalParam.deliveryStoreDetail.cPOCD,
-                            style: TextStyle(color: Colors.blue),
+                            GlobalParam.deliveryStoreDetail.cPOCD!,
+                            style: const TextStyle(color: Colors.blue),
                             minFontSize: 8.0,
                             maxFontSize: 10.0,
                           ),
@@ -300,22 +300,23 @@ class _DeliveryStoreListMainMenuHDState
                     children: [
                       Container(
                         alignment: Alignment.centerRight,
-                        child: AutoSizeText(
+                        child: const AutoSizeText(
                           'ยอดสั่งซื้อ',
                           style: TextStyle(color: Colors.green),
                           minFontSize: 8.0,
                           maxFontSize: 14.0,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 2.0,
                       ),
                       Container(
                         width: 60.0,
                         alignment: Alignment.centerLeft,
                         child: AutoSizeText(
-                          '${NumberFormat("#,###", "en_US").format(double.parse(GlobalParam.deliveryStoreDetail.iPOTOTAL))}',
-                          style: TextStyle(
+                          NumberFormat("#,###", "en_US").format(double.parse(
+                              GlobalParam.deliveryStoreDetail.iPOTOTAL!)),
+                          style: const TextStyle(
                             color: Colors.blue,
                           ),
                           minFontSize: 8.0,
@@ -350,18 +351,18 @@ class _DeliveryStoreListMainMenuHDState
                   Container(
                     alignment: Alignment.centerLeft,
                     width: 30.0,
-                    child: Icon(
+                    child: const Icon(
                       LineAwesomeIcons.donate,
                       size: 35.0,
                       color: Colors.green,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
-                    child: Text(
+                    child: const Text(
                       'เครดิต',
                       style: TextStyle(
                         fontFamily: 'Prompt',
@@ -384,7 +385,7 @@ class _DeliveryStoreListMainMenuHDState
                     child: Container(
                       padding: const EdgeInsets.only(left: 50.0),
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         'ยอดค้าง',
                         style: TextStyle(
                           fontFamily: 'Prompt',
@@ -400,7 +401,7 @@ class _DeliveryStoreListMainMenuHDState
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '${NumberFormat("#,###", "en_US").format(GlobalParam.deliveryDebt)} บาท',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'Prompt',
                           color: Colors.red,
                           //fontWeight: FontWeight.bold,
@@ -422,7 +423,7 @@ class _DeliveryStoreListMainMenuHDState
                     child: Container(
                       padding: const EdgeInsets.only(left: 50.0),
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         'วงเงินเครดิต',
                         style: TextStyle(
                           fontFamily: 'Prompt',
@@ -437,8 +438,8 @@ class _DeliveryStoreListMainMenuHDState
                     child: Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '${NumberFormat("#,###", "en_US").format(double.parse(GlobalParam.deliveryStoreDetail.iCREDLIM))} บาท',
-                        style: TextStyle(
+                        '${NumberFormat("#,###", "en_US").format(double.parse(GlobalParam.deliveryStoreDetail.iCREDLIM!))} บาท',
+                        style: const TextStyle(
                           fontFamily: 'Prompt',
                           color: Colors.grey,
                           //fontWeight: FontWeight.bold,
@@ -460,7 +461,7 @@ class _DeliveryStoreListMainMenuHDState
                     child: Container(
                       padding: const EdgeInsets.only(left: 50.0),
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         'วงเงินคงเหลือ',
                         style: TextStyle(
                           fontFamily: 'Prompt',
@@ -475,8 +476,8 @@ class _DeliveryStoreListMainMenuHDState
                     child: Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '${NumberFormat("#,###", "en_US").format(double.parse('${double.parse(GlobalParam.deliveryStoreDetail.iCREDLIM) - double.parse(GlobalParam.deliveryStoreDetail.iCREDTERM)}'))} บาท',
-                        style: TextStyle(
+                        '${NumberFormat("#,###", "en_US").format(double.parse('${double.parse(GlobalParam.deliveryStoreDetail.iCREDLIM!) - double.parse(GlobalParam.deliveryStoreDetail.iCREDTERM!)}'))} บาท',
+                        style: const TextStyle(
                           fontFamily: 'Prompt',
                           color: Colors.green,
                           //fontWeight: FontWeight.bold,
@@ -529,18 +530,18 @@ class _DeliveryStoreListMainMenuHDState
                   Container(
                     alignment: Alignment.centerLeft,
                     width: 30.0,
-                    child: Icon(
+                    child: const Icon(
                       LineAwesomeIcons.shopping_basket,
                       size: 35.0,
                       color: Colors.green,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
-                    child: Text(
+                    child: const Text(
                       'ตระกร้า',
                       style: TextStyle(
                         fontFamily: 'Prompt',
@@ -553,7 +554,7 @@ class _DeliveryStoreListMainMenuHDState
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             Expanded(
@@ -584,7 +585,7 @@ class _DeliveryStoreListMainMenuHDState
         autoplay: false,
         itemCount: storeDetail.length,
         //pagination: new SwiperPagination(),
-        control: new SwiperControl(
+        control: SwiperControl(
           color: Colors.black,
           size: 20.0,
         ),

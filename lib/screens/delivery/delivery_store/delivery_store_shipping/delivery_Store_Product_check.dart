@@ -28,8 +28,8 @@ class DeliveryStoreProductCheck extends StatefulWidget {
 
 class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
   var IncomPro = TextEditingController();
-  String cCUSTCD = GlobalParam.deliveryProductList[0].cCUSTCD;
-  String cPOCD = GlobalParam.deliveryProductList[0].cPOCD;
+  String cCUSTCD = GlobalParam.deliveryProductList[0].cCUSTCD!;
+  String cPOCD = GlobalParam.deliveryProductList[0].cPOCD!;
   List<QueryPodtResp> podtList = [];
   List<QueryPodtResp> podtListNstatus = [];
   List<PoHDAndPoDTResp> productList = [];
@@ -50,7 +50,7 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('สินค้าขาด'),
+        title: const Text('สินค้าขาด'),
         centerTitle: true,
       ),
       body: Stack(
@@ -68,7 +68,7 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
             child: Container(
               alignment: Alignment.center,
               margin: const EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(5),
@@ -99,14 +99,15 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                                 GlobalParam.deliveryPodtList;
                           }
                         },
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'Prompt',
                         ),
                         textInputAction: TextInputAction.search,
                         decoration: InputDecoration(
                           hintText: "ค้นหา",
                           border: InputBorder.none,
-                          contentPadding: EdgeInsets.only(left: 5.0, top: 5.0),
+                          contentPadding:
+                              const EdgeInsets.only(left: 5.0, top: 5.0),
                           prefixIcon: RotatedBox(
                             quarterTurns: 1,
                             child: IconButton(
@@ -139,7 +140,7 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                                               builder: (context) =>
                                                   DeliveryStoreProductCheck(
                                                       GlobalParam
-                                                          .typeMenuCode)));
+                                                          .typeMenuCode!)));
                                     },
                                   )));
                         },
@@ -159,12 +160,12 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
         navigated1: () {
           for (int i = 0; i < GlobalParam.deliveryProIncom.length; i++) {
             updateICLPro(
-                GlobalParam.deliveryProIncom[i].cPOCD,
-                GlobalParam.deliveryProIncom[i].iSEQ,
-                GlobalParam.deliveryProIncom[i].iINCOMPRO,
-                GlobalParam.deliveryProIncom[i].iCANCLEPRO,
-                GlobalParam.deliveryProIncom[i].iLOSSPRO,
-                GlobalParam.deliveryProIncom[i].cUPDABY);
+                GlobalParam.deliveryProIncom[i].cPOCD!,
+                GlobalParam.deliveryProIncom[i].iSEQ!,
+                GlobalParam.deliveryProIncom[i].iINCOMPRO!,
+                GlobalParam.deliveryProIncom[i].iCANCLEPRO!,
+                GlobalParam.deliveryProIncom[i].iLOSSPRO!,
+                GlobalParam.deliveryProIncom[i].cUPDABY!);
           }
           GlobalParam.deliveryRegetPODT = true;
           Navigator.push(
@@ -177,12 +178,12 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
           addStockCard();
         },
         navigated2: () {},
-        icon1: Icon(
+        icon1: const Icon(
           LineAwesomeIcons.check_circle,
           color: Colors.green,
           size: 25.0,
         ),
-        icon2: Icon(
+        icon2: const Icon(
           LineAwesomeIcons.check_circle,
           color: Colors.green,
           size: 25.0,
@@ -226,12 +227,12 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
             podtList.clear();
             double total = 0;
             for (int i = 0; i < result.length; i++) {
-              total += double.parse(result[i].iTOTAL);
-              sumItem += double.parse(result[i].iSSIZEQTY) +
-                  double.parse(result[i].iMSIZEQTY) +
-                  double.parse(result[i].iLSIZEQTY);
+              total += double.parse(result[i].iTOTAL!);
+              sumItem += double.parse(result[i].iSSIZEQTY!) +
+                  double.parse(result[i].iMSIZEQTY!) +
+                  double.parse(result[i].iLSIZEQTY!);
 
-              if (double.parse(result[i].iSSIZEQTY) > 0) {
+              if (double.parse(result[i].iSSIZEQTY!) > 0) {
                 var data = {
                   "cPRODCD": result[i].cPRODCD,
                   "cUOMNM": result[i].cSUOMNM,
@@ -239,7 +240,7 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                   "iTOTAL": result[i].iTOTAL
                 };
 
-                QueryPodtResp product = new QueryPodtResp(
+                QueryPodtResp product = QueryPodtResp(
                   cBASKCD: result[i].cBASKCD,
                   cBASKNM: result[i].cBASKNM,
                   cBRNDCD: result[i].cBRNDCD,
@@ -256,9 +257,7 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                   cPHOTOPATH: result[i].cPHOTOPATH,
                   cPHOTOSERV: result[i].cPHOTOSERV,
                   cPOCD: result[i].cPOCD,
-                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                      ? 'N'
-                      : result[i].cPREPAIRSTATUS,
+                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
                   cPRODCD: result[i].cPRODCD,
                   cPRODNM: result[i].cPRODNM,
                   cPROMO: result[i].cPROMO,
@@ -281,21 +280,18 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                   iLUNITPRICE: result[i].iLUNITPRICE,
                   iMSIZEQTY: '0.0',
                   iMUNITPRICE: result[i].iMUNITPRICE,
-                  iNETTOTAL:
-                      result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                      ? '0'
-                      : result[i].iPREPAIRAMOUT,
+                  iNETTOTAL: result[i].iNETTOTAL ?? '0',
+                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
                   iSEQ: result[i].iSEQ,
                   iSSIZEQTY: result[i].iSSIZEQTY,
                   iSUNITPRICE: result[i].iSUNITPRICE,
                   iTOTAL:
-                      "${double.parse(result[i].iSSIZEQTY) * double.parse(result[i].iSUNITPRICE)}",
+                      "${double.parse(result[i].iSSIZEQTY!) * double.parse(result[i].iSUNITPRICE!)}",
                 );
 
                 podtList.add(product);
               }
-              if (double.parse(result[i].iMSIZEQTY) > 0) {
+              if (double.parse(result[i].iMSIZEQTY!) > 0) {
                 var data = {
                   "cPRODCD": result[i].cPRODCD,
                   "cUOMNM": result[i].cMUOMNM,
@@ -303,7 +299,7 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                   "iTOTAL": result[i].iTOTAL
                 };
 
-                QueryPodtResp product = new QueryPodtResp(
+                QueryPodtResp product = QueryPodtResp(
                   cBASKCD: result[i].cBASKCD,
                   cBASKNM: result[i].cBASKNM,
                   cBRNDCD: result[i].cBRNDCD,
@@ -320,9 +316,7 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                   cPHOTOPATH: result[i].cPHOTOPATH,
                   cPHOTOSERV: result[i].cPHOTOSERV,
                   cPOCD: result[i].cPOCD,
-                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                      ? 'N'
-                      : result[i].cPREPAIRSTATUS,
+                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
                   cPRODCD: result[i].cPRODCD,
                   cPRODNM: result[i].cPRODNM,
                   cPROMO: result[i].cPROMO,
@@ -345,21 +339,18 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                   iLUNITPRICE: result[i].iLUNITPRICE,
                   iMSIZEQTY: result[i].iMSIZEQTY,
                   iMUNITPRICE: result[i].iMUNITPRICE,
-                  iNETTOTAL:
-                      result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                      ? '0'
-                      : result[i].iPREPAIRAMOUT,
+                  iNETTOTAL: result[i].iNETTOTAL ?? '0',
+                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
                   iSEQ: result[i].iSEQ,
                   iSSIZEQTY: '0.0',
                   iSUNITPRICE: result[i].iSUNITPRICE,
                   iTOTAL:
-                      "${double.parse(result[i].iMSIZEQTY) * double.parse(result[i].iMUNITPRICE)}",
+                      "${double.parse(result[i].iMSIZEQTY!) * double.parse(result[i].iMUNITPRICE!)}",
                 );
 
                 podtList.add(product);
               }
-              if (double.parse(result[i].iLSIZEQTY) > 0) {
+              if (double.parse(result[i].iLSIZEQTY!) > 0) {
                 var data = {
                   "cPRODCD": result[i].cPRODCD,
                   "cUOMNM": result[i].cLUOMNM,
@@ -367,7 +358,7 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                   "iTOTAL": result[i].iTOTAL
                 };
 
-                QueryPodtResp product = new QueryPodtResp(
+                QueryPodtResp product = QueryPodtResp(
                   cBASKCD: result[i].cBASKCD,
                   cBASKNM: result[i].cBASKNM,
                   cBRNDCD: result[i].cBRNDCD,
@@ -384,9 +375,7 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                   cPHOTOPATH: result[i].cPHOTOPATH,
                   cPHOTOSERV: result[i].cPHOTOSERV,
                   cPOCD: result[i].cPOCD,
-                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS == null
-                      ? 'N'
-                      : result[i].cPREPAIRSTATUS,
+                  cPREPAIRSTATUS: result[i].cPREPAIRSTATUS ?? 'N',
                   cPRODCD: result[i].cPRODCD,
                   cPRODNM: result[i].cPRODNM,
                   cPROMO: result[i].cPROMO,
@@ -409,16 +398,13 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                   iLUNITPRICE: result[i].iLUNITPRICE,
                   iMSIZEQTY: '0.0',
                   iMUNITPRICE: result[i].iMUNITPRICE,
-                  iNETTOTAL:
-                      result[i].iNETTOTAL == null ? '0' : result[i].iNETTOTAL,
-                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT == null
-                      ? '0'
-                      : result[i].iPREPAIRAMOUT,
+                  iNETTOTAL: result[i].iNETTOTAL ?? '0',
+                  iPREPAIRAMOUT: result[i].iPREPAIRAMOUT ?? '0',
                   iSEQ: result[i].iSEQ,
                   iSSIZEQTY: '0.0',
                   iSUNITPRICE: result[i].iSUNITPRICE,
                   iTOTAL:
-                      "${double.parse(result[i].iLSIZEQTY) * double.parse(result[i].iLUNITPRICE)}",
+                      "${double.parse(result[i].iLSIZEQTY!) * double.parse(result[i].iLUNITPRICE!)}",
                 );
 
                 podtList.add(product);
@@ -539,14 +525,14 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
 
         if (GlobalParam.deliveryPodtList[i].iINCOMPRO != 0) {
           String cUOMCD = '';
-          if (double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cSUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iSSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cSUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cMUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iMSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cMUOMCD!;
           }
-          if (double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY) != 0) {
-            cUOMCD = GlobalParam.deliveryPodtList[i].cLUOMCD;
+          if (double.parse(GlobalParam.deliveryPodtList[i].iLSIZEQTY!) != 0) {
+            cUOMCD = GlobalParam.deliveryPodtList[i].cLUOMCD!;
           }
           StockCardReq inCom = StockCardReq(
               cBRANCD: GlobalParam.VEHICLE['cBRANCD'],
@@ -592,39 +578,39 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
   }
 
   Widget listOfProduct() {
-    return GlobalParam.deliveryPodtShow.length > 0
+    return GlobalParam.deliveryPodtShow.isNotEmpty
         ? ListView.builder(
             reverse: false,
             padding: const EdgeInsets.all(5),
             itemCount: GlobalParam.deliveryPodtShow.length,
             itemBuilder: (BuildContext context, int index) {
               double item = double.parse(
-                      GlobalParam.deliveryPodtShow[index].iSSIZEQTY) +
-                  double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY) +
-                  double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY);
+                      GlobalParam.deliveryPodtShow[index].iSSIZEQTY!) +
+                  double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY!) +
+                  double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY!);
               var unit = '';
               var unitCode = '';
               var unitPrice = '';
               var size = '';
-              if (double.parse(GlobalParam.deliveryPodtShow[index].iSSIZEQTY) >
+              if (double.parse(GlobalParam.deliveryPodtShow[index].iSSIZEQTY!) >
                   0) {
-                unit = GlobalParam.deliveryPodtShow[index].cSUOMNM;
-                unitPrice = GlobalParam.deliveryPodtShow[index].iSUNITPRICE;
-                unitCode = GlobalParam.deliveryPodtShow[index].cSUOMCD;
+                unit = GlobalParam.deliveryPodtShow[index].cSUOMNM!;
+                unitPrice = GlobalParam.deliveryPodtShow[index].iSUNITPRICE!;
+                unitCode = GlobalParam.deliveryPodtShow[index].cSUOMCD!;
                 size = 'S';
               }
-              if (double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY) >
+              if (double.parse(GlobalParam.deliveryPodtShow[index].iMSIZEQTY!) >
                   0) {
-                unit = GlobalParam.deliveryPodtShow[index].cMUOMNM;
-                unitPrice = GlobalParam.deliveryPodtShow[index].iMUNITPRICE;
-                unitCode = GlobalParam.deliveryPodtShow[index].cMUOMCD;
+                unit = GlobalParam.deliveryPodtShow[index].cMUOMNM!;
+                unitPrice = GlobalParam.deliveryPodtShow[index].iMUNITPRICE!;
+                unitCode = GlobalParam.deliveryPodtShow[index].cMUOMCD!;
                 size = 'M';
               }
-              if (double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY) >
+              if (double.parse(GlobalParam.deliveryPodtShow[index].iLSIZEQTY!) >
                   0) {
-                unit = GlobalParam.deliveryPodtShow[index].cLUOMNM;
-                unitPrice = GlobalParam.deliveryPodtShow[index].iLUNITPRICE;
-                unitCode = GlobalParam.deliveryPodtShow[index].cLUOMCD;
+                unit = GlobalParam.deliveryPodtShow[index].cLUOMNM!;
+                unitPrice = GlobalParam.deliveryPodtShow[index].iLUNITPRICE!;
+                unitCode = GlobalParam.deliveryPodtShow[index].cLUOMCD!;
                 size = 'L';
               }
               return Container(
@@ -649,21 +635,21 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                                             .cPHOTOPATH !=
                                         ''
                                     ? DecorationImage(
-                                        image: new NetworkImage(
+                                        image: NetworkImage(
                                           'http://${GlobalParam.deliveryPodtShow[index].cPHOTOSERV}/${GlobalParam.deliveryPodtShow[index].cPHOTOPATH}',
                                         ),
                                         scale: 1.0,
                                         fit: BoxFit.cover,
                                       )
-                                    : DecorationImage(
-                                        image: new AssetImage(
+                                    : const DecorationImage(
+                                        image: AssetImage(
                                           "assets/images/no_image.png",
                                         ),
                                         scale: 1.0,
                                         fit: BoxFit.cover,
                                       ),
                                 color: Colors.white,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(5),
                                   topRight: Radius.circular(5),
                                   bottomLeft: Radius.circular(5),
@@ -680,8 +666,9 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                                 Container(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    GlobalParam.deliveryPodtShow[index].cPRODNM,
-                                    style: TextStyle(
+                                    GlobalParam
+                                        .deliveryPodtShow[index].cPRODNM!,
+                                    style: const TextStyle(
                                         color: Colors.black,
                                         fontFamily: 'Prompt',
                                         fontWeight: FontWeight.bold,
@@ -705,19 +692,18 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                                             Container(
                                               alignment: Alignment.centerLeft,
                                               child: GlobalParam
-                                                          .deliveryPodtShow
-                                                          .length >
-                                                      0
+                                                      .deliveryPodtShow
+                                                      .isNotEmpty
                                                   ? Text(
                                                       '${item.toStringAsFixed(0)} $unit',
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           color: Colors.black,
                                                           fontFamily: 'Prompt',
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           fontSize: 14.0),
                                                     )
-                                                  : Text(
+                                                  : const Text(
                                                       ' ตะกร้า',
                                                       style: TextStyle(
                                                           color: Colors.black,
@@ -732,8 +718,8 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                                               child: Text(
                                                 GlobalParam
                                                     .deliveryPodtShow[index]
-                                                    .cPOCD,
-                                                style: TextStyle(
+                                                    .cPOCD!,
+                                                style: const TextStyle(
                                                     color: Colors.grey,
                                                     fontFamily: 'Prompt',
                                                     fontWeight: FontWeight.bold,
@@ -753,7 +739,7 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                                             height: 36.0,
                                             width: 64.0,
                                             alignment: Alignment.center,
-                                            child: Text(
+                                            child: const Text(
                                               'สินค้าขาด',
                                               style: TextStyle(
                                                   color: Colors.black,
@@ -769,7 +755,8 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                                             width: 96.0,
                                             decoration: BoxDecoration(
                                                 color: Colors.white,
-                                                borderRadius: BorderRadius.only(
+                                                borderRadius:
+                                                    const BorderRadius.only(
                                                   topLeft: Radius.circular(5),
                                                   topRight: Radius.circular(5),
                                                   bottomLeft:
@@ -795,7 +782,7 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                                                   ),
                                                   cursorColor: Colors.black,
                                                   decoration:
-                                                      new InputDecoration(
+                                                      const InputDecoration(
                                                     border: InputBorder.none,
                                                     focusedBorder:
                                                         InputBorder.none,
@@ -881,7 +868,7 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
                         ],
                       ),
                     ),
-                    DottedLine(
+                    const DottedLine(
                       dashColor: Colors.grey,
                     ),
                   ],
@@ -893,7 +880,7 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
   }
 
   addProIncom(QueryPodtResp data, int iINCOMPRO, String size) {
-    QueryPodtResp incom = new QueryPodtResp(
+    QueryPodtResp incom = QueryPodtResp(
         cGUID: data.cGUID,
         cPOCD: data.cPOCD,
         iSEQ: data.iSEQ,
@@ -942,18 +929,18 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
         cLUOMCD: data.cLUOMCD);
     if (iINCOMPRO > 0) {
       if (size == "S") {
-        if (double.parse(data.iSSIZEQTY) > 0) {
+        if (double.parse(data.iSSIZEQTY!) > 0) {
           GlobalParam.deliveryProIncom.add(incom);
         }
       }
 
       if (size == "M") {
-        if (double.parse(data.iMSIZEQTY) > 0) {
+        if (double.parse(data.iMSIZEQTY!) > 0) {
           GlobalParam.deliveryProIncom.add(incom);
         }
       }
       if (size == "L") {
-        if (double.parse(data.iLSIZEQTY) > 0) {
+        if (double.parse(data.iLSIZEQTY!) > 0) {
           GlobalParam.deliveryProIncom.add(incom);
         }
       }
@@ -962,18 +949,18 @@ class _DeliveryStoreProductCheckState extends State<DeliveryStoreProductCheck> {
         // ignore: unrelated_type_equality_checks
         if (GlobalParam.deliveryProIncom[i].cPRODCD == data.cPRODCD) {
           if (size == "S") {
-            if (double.parse(data.iSSIZEQTY) > 0) {
+            if (double.parse(data.iSSIZEQTY!) > 0) {
               GlobalParam.deliveryProIncom.removeAt(i);
             }
           }
 
           if (size == "M") {
-            if (double.parse(data.iMSIZEQTY) > 0) {
+            if (double.parse(data.iMSIZEQTY!) > 0) {
               GlobalParam.deliveryProIncom.removeAt(i);
             }
           }
           if (size == "L") {
-            if (double.parse(data.iLSIZEQTY) > 0) {
+            if (double.parse(data.iLSIZEQTY!) > 0) {
               GlobalParam.deliveryProIncom.removeAt(i);
             }
           }

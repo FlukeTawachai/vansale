@@ -13,7 +13,7 @@ import 'package:vansale/api/class/response/routeMobile/getGroupRouteResp.dart';
 import 'package:vansale/screens/navigatorStore/storeInRoute.dart';
 
 class SelectGroupRoute extends StatefulWidget {
-  const SelectGroupRoute({Key key}) : super(key: key);
+  const SelectGroupRoute({Key? key}) : super(key: key);
 
   @override
   State<SelectGroupRoute> createState() => _SelectGroupRouteState();
@@ -31,21 +31,21 @@ class _SelectGroupRouteState extends State<SelectGroupRoute> {
   String selectGroup = '';
   String selectRoute = '';
   List<DropdownMenuItem<String>> branchList = [
-    DropdownMenuItem(child: Text("เลือก"), value: ""),
+    const DropdownMenuItem(child: Text("เลือก"), value: ""),
   ];
   List<DropdownMenuItem<String>> group = [
-    DropdownMenuItem(child: Text("เลือก"), value: ""),
-    DropdownMenuItem(child: Text("วันจันทร์"), value: "GRMON"),
-    DropdownMenuItem(child: Text("วันอังคาร"), value: "GRTUE"),
-    DropdownMenuItem(child: Text("วันพุธ"), value: "GRWED"),
-    DropdownMenuItem(child: Text("วันพฤหัสบดี"), value: "GRTHU"),
-    DropdownMenuItem(child: Text("ศุกร์"), value: "GRFRI"),
-    DropdownMenuItem(child: Text("เสาร์"), value: "GRSAT"),
-    DropdownMenuItem(child: Text("อาทิตย์"), value: "GRSUN"),
+    const DropdownMenuItem(child: Text("เลือก"), value: ""),
+    const DropdownMenuItem(child: Text("วันจันทร์"), value: "GRMON"),
+    const DropdownMenuItem(child: Text("วันอังคาร"), value: "GRTUE"),
+    const DropdownMenuItem(child: Text("วันพุธ"), value: "GRWED"),
+    const DropdownMenuItem(child: Text("วันพฤหัสบดี"), value: "GRTHU"),
+    const DropdownMenuItem(child: Text("ศุกร์"), value: "GRFRI"),
+    const DropdownMenuItem(child: Text("เสาร์"), value: "GRSAT"),
+    const DropdownMenuItem(child: Text("อาทิตย์"), value: "GRSUN"),
   ];
 
   List<DropdownMenuItem<String>> route = [
-    DropdownMenuItem(child: Text("เลือก"), value: ""),
+    const DropdownMenuItem(child: Text("เลือก"), value: ""),
   ];
 
   getBranchAll() async {
@@ -60,7 +60,7 @@ class _SelectGroupRouteState extends State<SelectGroupRoute> {
         setState(() {
           for (var i = 0; i < result.length; i++) {
             branchList.add(DropdownMenuItem(
-                value: result[i].cBRANCD, child: Text(result[i].cBRANNM)));
+                value: result[i].cBRANCD, child: Text(result[i].cBRANNM!)));
           }
         });
       }
@@ -81,7 +81,7 @@ class _SelectGroupRouteState extends State<SelectGroupRoute> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
                 width: widthScreen * 0.2,
                 child: Text(
                   "เลือกสาขา:",
@@ -111,8 +111,8 @@ class _SelectGroupRouteState extends State<SelectGroupRoute> {
                             color: HexColor('#000000'),
                             // fontFamily: "Prompt",
                           ),
-                          onChanged: (String value) {
-                            getRouteGroup(value);
+                          onChanged: (value) {
+                            getRouteGroup(value!);
                             setState(() {
                               selectBranch = value;
                             });
@@ -121,14 +121,14 @@ class _SelectGroupRouteState extends State<SelectGroupRoute> {
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
                 width: widthScreen * 0.2,
                 child: Text(
                   "เลือกกลุ่ม:",
@@ -158,8 +158,8 @@ class _SelectGroupRouteState extends State<SelectGroupRoute> {
                             color: HexColor('#000000'),
                             // fontFamily: "Prompt",
                           ),
-                          onChanged: (String value) {
-                            getRouteGroup(value);
+                          onChanged: (value) {
+                            getRouteGroup(value!);
                             setState(() {
                               selectGroup = value;
                             });
@@ -168,14 +168,14 @@ class _SelectGroupRouteState extends State<SelectGroupRoute> {
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
                 width: widthScreen * 0.2,
                 child: Text(
                   "เลือกสาย:",
@@ -205,16 +205,16 @@ class _SelectGroupRouteState extends State<SelectGroupRoute> {
                             color: HexColor('#000000'),
                             // fontFamily: "Prompt",
                           ),
-                          onChanged: (String value) {
+                          onChanged: (value) {
                             setState(() {
-                              selectRoute = value;
+                              selectRoute = value!;
                             });
                           },
                           items: route))),
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 48,
         ),
         InkWell(
@@ -314,11 +314,11 @@ class _SelectGroupRouteState extends State<SelectGroupRoute> {
               GetGroupRouteReq(cBRANCD: selectBranch, cGRPCD: cGRPCD));
           if ((result.isNotEmpty)) {
             route = [];
-            route.add(DropdownMenuItem(child: Text('เลือก'), value: ''));
+            route.add(const DropdownMenuItem(child: Text('เลือก'), value: ''));
             setState(() {
               for (int i = 0; i < result.length; i++) {
                 route.add(DropdownMenuItem(
-                    child: Text(result[i].cRTENM), value: result[i].cRTECD));
+                    child: Text(result[i].cRTENM!), value: result[i].cRTECD));
               }
             });
           }
@@ -330,7 +330,7 @@ class _SelectGroupRouteState extends State<SelectGroupRoute> {
       }
     } else {
       route = [];
-      route.add(DropdownMenuItem(child: Text('เลือก'), value: ''));
+      route.add(const DropdownMenuItem(child: Text('เลือก'), value: ''));
     }
   }
 }

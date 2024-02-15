@@ -12,14 +12,14 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:custom_marker/marker_icon.dart';
 
 class MapSample extends StatefulWidget {
-  const MapSample({Key key}) : super(key: key);
+  const MapSample({Key? key}) : super(key: key);
   @override
   State<MapSample> createState() => MapSampleState();
 }
 
 class MapSampleState extends State<MapSample> {
-  TextEditingController source = new TextEditingController();
-  TextEditingController destination = new TextEditingController();
+  TextEditingController source = TextEditingController();
+  TextEditingController destination = TextEditingController();
   Completer<GoogleMapController> _controller = Completer();
   Set<Marker> _marker = Set<Marker>();
   Set<Polygon> _polygons = Set<Polygon>();
@@ -63,7 +63,7 @@ class MapSampleState extends State<MapSample> {
   //     strokeColor: Colors.blue,
   //     fillColor: Colors.transparent);
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
+  static final CameraPosition _kGooglePlex = const CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
@@ -104,8 +104,8 @@ class MapSampleState extends State<MapSample> {
     // setPolyLine(directions['polyline_decode']);
 
     final GoogleMapController controller = await _controller.future;
-    double lat = GlobalParam.deliveryLocationStoreLatitude;
-    double lng = GlobalParam.deliveryLocationStoreLongitude;
+    double lat = GlobalParam.deliveryLocationStoreLatitude!;
+    double lng = GlobalParam.deliveryLocationStoreLongitude!;
     controller.animateCamera(CameraUpdate.newCameraPosition(
         CameraPosition(target: LatLng(lat, lng), zoom: 12)));
 
@@ -133,7 +133,7 @@ class MapSampleState extends State<MapSample> {
     // setPolyLine(pointList);
     setState(() {
       _marker.add(Marker(
-        markerId: MarkerId('Marker'),
+        markerId: const MarkerId('Marker'),
         position: LatLng(point.latitude, point.longitude),
       ));
     });
@@ -292,8 +292,8 @@ class MapSampleState extends State<MapSample> {
         // print(
         //     '----------- Location Store: ${result.cLATITUDE},${result.cLONGTITUDE} -----------');
         final GoogleMapController controller = await _controller.future;
-        var lat = double.parse(result.cLATITUDE);
-        var lng = double.parse(result.cLONGTITUDE);
+        var lat = double.parse(result.cLATITUDE!);
+        var lng = double.parse(result.cLONGTITUDE!);
         controller.animateCamera(CameraUpdate.newCameraPosition(
             CameraPosition(target: LatLng(lat, lng), zoom: 12)));
 
